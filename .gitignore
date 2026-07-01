@@ -1,6 +1,3 @@
-db.config.php
-ai.config.php
-stripe.config.php
 uploads/books/*.pdf
 uploads/covers/*
 uploads/ai-temp/*
