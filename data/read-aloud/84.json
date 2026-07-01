@@ -1,0 +1,32 @@
+{
+    "story_id": "the-scaly-trail",
+    "book_id": 84,
+    "title": "The Scaly Trail",
+    "audio_source": "uploaded",
+    "pages": [
+        {
+            "page": 1,
+            "text": "The Scaly Trail"
+        },
+        {
+            "page": 2,
+            "text": "Page 2"
+        },
+        {
+            "page": 3,
+            "text": "Page 3"
+        },
+        {
+            "page": 4,
+            "text": "Page 4"
+        },
+        {
+            "page": 5,
+            "text": "Page 5"
+        },
+        {
+            "page": 6,
+            "text": "Page 6"
+        }
+    ]
+}

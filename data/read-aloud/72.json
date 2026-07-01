@@ -1,0 +1,32 @@
+{
+    "story_id": "the-heat-that-traveled-three-ways",
+    "book_id": 72,
+    "title": "The Heat That Traveled Three Ways",
+    "pages": [
+        {
+            "page": 1,
+            "text": "The Heat That Traveled Three Ways"
+        },
+        {
+            "page": 2,
+            "text": "Ms. Lopez placed a spoon in her hot tea. Soon the handle felt warm too. ‘This is conduction,’ she explained. ‘Heat moves through direct contact. The hot tea warmed the spoon, and the bench warmed Omar’s hand the same way.’"
+        },
+        {
+            "page": 3,
+            "text": "Steam curled upward from the cup. Ms. Lopez drew arrows in the air. ‘Warm air rises and cooler air sinks,’ she said. ‘This moving pattern is called a convection current. Convection happens in liquids and gases when heat makes the warmer parts rise.’"
+        },
+        {
+            "page": 4,
+            "text": "Nina looked at the bright Sun. ‘So how did the bench get hot in the first place?’ she asked. ‘Radiation,’ said Ms. Lopez. ‘Heat from the Sun travels as waves through space and warms the Earth, even without touching it.’"
+        },
+        {
+            "page": 5,
+            "text": "‘The Sun warmed the bench by radiation,’ Nina said. ‘The bench warmed my hand by conduction,’ Omar added. ‘And the warm air rising above the ground is convection!’ The three smiled as the mystery finally made sense."
+        },
+        {
+            "page": 6,
+            "text": "Science Element Conduction: heat moves by direct contact. Convection: heat moves in liquids and gases. Warm air rises, cooler air sinks, creating convection currents. Radiation: heat travels in waves and needs no matter. Heat always moves from warmer places to cooler places."
+        }
+    ],
+    "audio_source": "uploaded"
+}

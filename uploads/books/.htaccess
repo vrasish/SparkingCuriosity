@@ -1,0 +1,12 @@
+# Block script execution in the book uploads folder
+<FilesMatch "\.(php|phtml|php3|php4|php5|phps|cgi|pl|py|asp|aspx|jsp)$">
+    Require all denied
+</FilesMatch>
+
+# PDFs must be read through read-pdf.php (purchase check)
+<FilesMatch "\.pdf$">
+    Require all denied
+</FilesMatch>
+
+Options -ExecCGI
+RemoveHandler .php .phtml .php3 .php4 .php5 .phps

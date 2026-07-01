@@ -1,0 +1,32 @@
+{
+    "story_id": "the-day-the-sun-disappeared",
+    "book_id": 85,
+    "title": "The Day the Sun Disappeared",
+    "audio_source": "uploaded",
+    "pages": [
+        {
+            "page": 1,
+            "text": "The Day the Sun Disappeared"
+        },
+        {
+            "page": 2,
+            "text": "Page 2"
+        },
+        {
+            "page": 3,
+            "text": "Page 3"
+        },
+        {
+            "page": 4,
+            "text": "Page 4"
+        },
+        {
+            "page": 5,
+            "text": "Page 5"
+        },
+        {
+            "page": 6,
+            "text": "Page 6"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+db.config.php
+ai.config.php
+stripe.config.php
+uploads/books/*.pdf
+uploads/covers/*
+uploads/ai-temp/*
+!uploads/ai-temp/.gitkeep
+!uploads/covers/.gitkeep
+data/cache/*
+!data/cache/.gitkeep
+.DS_Store

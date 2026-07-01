@@ -1,0 +1,20 @@
+# Block direct web access to secret/config files
+<FilesMatch "^(db\.config|ai\.config|\.env)">
+    Require all denied
+</FilesMatch>
+
+<FilesMatch "\.example\.php$">
+    Require all denied
+</FilesMatch>
+
+RewriteEngine On
+RewriteBase /stories/
+
+# Redirect .php URLs to extensionless URLs
+RewriteCond %{THE_REQUEST} \s/stories/([^\s?]+)\.php[\s?] [NC]
+RewriteRule ^ /stories/%1 [R=301,L]
+
+# Internally rewrite extensionless URLs to .php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+?)/?$ $1.php [L]
