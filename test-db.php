@@ -24,7 +24,7 @@ if (!is_readable($configPath)) {
 
 $dbConfig = require $configPath;
 $dbHost = (string) ($dbConfig['host'] ?? '127.0.0.1');
-$dbPort = (string) ($dbConfig['port'] ?? '3307');
+$dbPort = (string) ($dbConfig['port'] ?? '3306');
 $dbName = (string) ($dbConfig['dbname'] ?? 'myappdb');
 $dbUser = (string) ($dbConfig['user'] ?? 'dbeaver_user');
 $dbPassword = $dbConfig['password'] ?? '';

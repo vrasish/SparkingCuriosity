@@ -10,7 +10,7 @@ if (!is_readable($configPath)) {
 
 $dbConfig = require $configPath;
 $dbHost = (string) ($dbConfig['host'] ?? '127.0.0.1');
-$dbPort = (string) ($dbConfig['port'] ?? '3307');
+$dbPort = (string) ($dbConfig['port'] ?? '3306');
 $dbName = (string) ($dbConfig['dbname'] ?? 'myappdb');
 $dbUser = (string) ($dbConfig['user'] ?? 'dbeaver_user');
 $dbPassword = $dbConfig['password'] ?? '';
@@ -201,6 +201,91 @@ function cover_image_src(?string $url, ?string $title = null): string
 function books_covers_dir(): string
 {
     return __DIR__ . '/uploads/covers';
+}
+
+function cover_slug_from_title(string $title): string
+{
+    $title = strtolower(trim($title));
+    $title = str_replace(["'", '"', '’', '—', '–'], '', $title);
+    $title = preg_replace('/[^a-z0-9]+/', '_', $title) ?? $title;
+
+    return trim($title, '_');
+}
+
+function cover_storage_url(string $filename): string
+{
+    return 'uploads/covers/' . ltrim($filename, '/');
+}
+
+function cover_filename_from_url(?string $url): ?string
+{
+    if ($url === null || trim($url) === '') {
+        return null;
+    }
+
+    if (preg_match('#/uploads/covers/([a-zA-Z0-9._-]+\.(?:png|jpe?g|webp|gif))$#i', trim($url), $m)) {
+        return $m[1];
+    }
+
+    return null;
+}
+
+function find_cover_file_for_title(string $title): ?string
+{
+    $dir = books_covers_dir();
+    $slug = cover_slug_from_title($title);
+    $candidates = [
+        'cover_the_' . $slug . '.png',
+        'cover_' . $slug . '.png',
+    ];
+
+    foreach ($candidates as $file) {
+        if (is_file($dir . '/' . $file)) {
+            return $file;
+        }
+    }
+
+    return null;
+}
+
+/** @return array{updated: int, missing: list<string>} */
+function sync_book_cover_urls(PDO $pdo, bool $approvedOnly = true): array
+{
+    $sql = 'SELECT book_id, title, cover_image_url FROM books';
+    if ($approvedOnly) {
+        $sql .= " WHERE status = 'approved'";
+    }
+    $sql .= ' ORDER BY book_id';
+
+    $stmt = $pdo->query($sql);
+    $update = $pdo->prepare('UPDATE books SET cover_image_url = ? WHERE book_id = ?');
+    $updated = 0;
+    $missing = [];
+
+    foreach ($stmt->fetchAll() as $row) {
+        $bookId = (int) ($row['book_id'] ?? 0);
+        $title = trim((string) ($row['title'] ?? ''));
+        $current = trim((string) ($row['cover_image_url'] ?? ''));
+
+        $filename = cover_filename_from_url($current);
+        if ($filename !== null && is_file(books_covers_dir() . '/' . $filename)) {
+            $storageUrl = cover_storage_url($filename);
+        } else {
+            $filename = find_cover_file_for_title($title);
+            if ($filename === null) {
+                $missing[] = '#' . $bookId . ' — ' . $title;
+                continue;
+            }
+            $storageUrl = cover_storage_url($filename);
+        }
+
+        if ($current !== $storageUrl) {
+            $update->execute([$storageUrl, $bookId]);
+            $updated += 1;
+        }
+    }
+
+    return ['updated' => $updated, 'missing' => $missing];
 }
 
 /** Science box columns filling left and right edges (center stays clear). */
@@ -414,6 +499,48 @@ function delete_book_files(array $book): void
     }
 }
 
+function delete_book_sidecar_data(int $bookId): void
+{
+    if ($bookId <= 0) {
+        return;
+    }
+
+    $paths = [
+        __DIR__ . '/data/quiz/' . $bookId . '.json',
+        __DIR__ . '/data/read-aloud/' . $bookId . '.json',
+    ];
+    foreach ($paths as $path) {
+        if (is_file($path)) {
+            @unlink($path);
+        }
+    }
+
+    $audioDir = __DIR__ . '/data/read-aloud/audio/' . $bookId;
+    if (is_dir($audioDir)) {
+        foreach (glob($audioDir . '/*') ?: [] as $file) {
+            if (is_file($file)) {
+                @unlink($file);
+            }
+        }
+        @rmdir($audioDir);
+    }
+}
+
+function book_has_order_history(PDO $pdo, int $bookId): bool
+{
+    if ($bookId <= 0) {
+        return false;
+    }
+
+    try {
+        $stmt = $pdo->prepare('SELECT 1 FROM order_items WHERE book_id = ? LIMIT 1');
+        $stmt->execute([$bookId]);
+        return (bool) $stmt->fetchColumn();
+    } catch (PDOException $ex) {
+        return false;
+    }
+}
+
 function delete_book_by_id(PDO $pdo, int $bookId): bool
 {
     if ($bookId <= 0) {
@@ -433,15 +560,40 @@ function delete_book_by_id(PDO $pdo, int $bookId): bool
             return false;
         }
 
+        if (book_has_order_history($pdo, $bookId)) {
+            error_log('delete_book_by_id blocked for book ' . $bookId . ': purchase history exists.');
+            return false;
+        }
+
         $pdo->beginTransaction();
         $pdo->prepare('DELETE FROM reports WHERE book_id = ?')->execute([$bookId]);
         $pdo->prepare('DELETE FROM book_pages WHERE book_id = ?')->execute([$bookId]);
         $pdo->prepare('DELETE FROM book_categories WHERE book_id = ?')->execute([$bookId]);
         $pdo->prepare('DELETE FROM submissions WHERE book_id = ?')->execute([$bookId]);
+
+        if (is_file(__DIR__ . '/reviews-lib.php')) {
+            require_once __DIR__ . '/reviews-lib.php';
+            ensure_book_reviews_schema($pdo);
+            $pdo->prepare('DELETE FROM book_reviews WHERE book_id = ?')->execute([$bookId]);
+        }
+
+        if (is_file(__DIR__ . '/favorites-lib.php')) {
+            require_once __DIR__ . '/favorites-lib.php';
+            ensure_user_favorites_schema($pdo);
+            $pdo->prepare('DELETE FROM user_favorites WHERE book_id = ?')->execute([$bookId]);
+        }
+
+        if (is_file(__DIR__ . '/stripe-lib.php')) {
+            require_once __DIR__ . '/stripe-lib.php';
+            ensure_purchase_schema($pdo);
+            $pdo->prepare('DELETE FROM user_library WHERE book_id = ?')->execute([$bookId]);
+        }
+
         $pdo->prepare('DELETE FROM books WHERE book_id = ?')->execute([$bookId]);
         $pdo->commit();
 
         delete_book_files($book);
+        delete_book_sidecar_data($bookId);
 
         return true;
     } catch (PDOException $ex) {
@@ -451,4 +603,28 @@ function delete_book_by_id(PDO $pdo, int $bookId): bool
         error_log($ex->getMessage());
         return false;
     }
+}
+
+/** @return list<int> */
+function purge_unapproved_books(PDO $pdo): array
+{
+    $stmt = $pdo->query("
+        SELECT book_id, title, status
+        FROM books
+        WHERE status != 'approved'
+        ORDER BY book_id
+    ");
+    $removed = [];
+
+    foreach ($stmt->fetchAll() as $row) {
+        $bookId = (int) ($row['book_id'] ?? 0);
+        if ($bookId <= 0) {
+            continue;
+        }
+        if (delete_book_by_id($pdo, $bookId)) {
+            $removed[] = $bookId;
+        }
+    }
+
+    return $removed;
 }
