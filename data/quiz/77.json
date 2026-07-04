@@ -1,0 +1,54 @@
+{
+    "book_id": 77,
+    "title": "The Backbone Clue",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Backbone Clue\" mostly about?",
+            "choices": [
+                "Animals are grouped by whether they have a backbone (vertebrates) or not (invertebrates)",
+                "Rocks never change at all.",
+                "Fish breathe air like people do.",
+                "Sound is fastest in outer space."
+            ],
+            "correct_index": 0,
+            "explanation": "Animals are grouped by whether they have a backbone (vertebrates) or not (invertebrates)"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Rocks never change at all.",
+                "Vertebrates—including fish",
+                "Plants eat food from soil only.",
+                "The brain does not help you move."
+            ],
+            "correct_index": 1,
+            "explanation": "Vertebrates—including fish"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "The Moon makes its own light.",
+                "Invertebrates like insects",
+                "Your heart pumps air through your body.",
+                "The brain does not help you move."
+            ],
+            "correct_index": 1,
+            "explanation": "Invertebrates like insects"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Fish breathe air like people do.",
+                "The Moon makes its own light.",
+                "Your heart pumps air through your body.",
+                "such as exoskeletons or tough outer skin"
+            ],
+            "correct_index": 3,
+            "explanation": "such as exoskeletons or tough outer skin"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "book_id": 66,
+    "title": "The Matter Mystery",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Matter Mystery\" mostly about?",
+            "choices": [
+                "Fish breathe air like people do.",
+                "The Moon makes its own light.",
+                "Plants eat food from soil only.",
+                "Matter is anything that has mass and takes up space"
+            ],
+            "correct_index": 3,
+            "explanation": "Matter is anything that has mass and takes up space"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "It exists as solids",
+                "Fish breathe air like people do.",
+                "Rocks never change at all.",
+                "All germs are bad for you."
+            ],
+            "correct_index": 0,
+            "explanation": "It exists as solids"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "All germs are bad for you.",
+                "Plants eat food from soil only.",
+                "Fish breathe air like people do.",
+                "The Matter Mystery — A Story About Matter Nia looked around the room"
+            ],
+            "correct_index": 3,
+            "explanation": "The Matter Mystery — A Story About Matter Nia looked around the room"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "All germs are bad for you.",
+                "Rocks never change at all.",
+                "You may not see it easily",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 2,
+            "explanation": "You may not see it easily"
+        }
+    ]
+}

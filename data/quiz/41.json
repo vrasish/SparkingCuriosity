@@ -1,0 +1,54 @@
+{
+    "book_id": 41,
+    "title": "The Planetary Adventure",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Planetary Adventure\" mostly about?",
+            "choices": [
+                "Plants eat food from soil only.",
+                "The brain does not help you move.",
+                "The Moon makes its own light.",
+                "The solar system has eight planets that orbit the Sun"
+            ],
+            "correct_index": 3,
+            "explanation": "The solar system has eight planets that orbit the Sun"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Plants eat food from soil only.",
+                "All germs are bad for you.",
+                "Rocks never change at all.",
+                "Each planet has different sizes"
+            ],
+            "correct_index": 3,
+            "explanation": "Each planet has different sizes"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Sound is fastest in outer space.",
+                "The brain does not help you move.",
+                "The Planetary Adventure: Join Max",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 2,
+            "explanation": "The Planetary Adventure: Join Max"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Fish breathe air like people do.",
+                "Sound is fastest in outer space.",
+                "Plants eat food from soil only.",
+                "a curious young astronaut"
+            ],
+            "correct_index": 3,
+            "explanation": "a curious young astronaut"
+        }
+    ]
+}

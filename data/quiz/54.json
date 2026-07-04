@@ -1,0 +1,54 @@
+{
+    "book_id": 54,
+    "title": "The Stem That Carried a River",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Stem That Carried a River\" mostly about?",
+            "choices": [
+                "Your heart pumps air through your body.",
+                "All germs are bad for you.",
+                "Plants move water through their stems in tubes called xylem",
+                "Fish breathe air like people do."
+            ],
+            "correct_index": 2,
+            "explanation": "Plants move water through their stems in tubes called xylem"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Fish breathe air like people do.",
+                "Rocks never change at all.",
+                "The Moon makes its own light.",
+                "Water is pulled up from the roots to the leaves"
+            ],
+            "correct_index": 3,
+            "explanation": "Water is pulled up from the roots to the leaves"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Your heart pumps air through your body.",
+                "All germs are bad for you.",
+                "where it helps with photosynthesis and can escape as water vapor through transpiration",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 2,
+            "explanation": "where it helps with photosynthesis and can escape as water vapor through transpiration"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "The Moon makes its own light.",
+                "Sound is fastest in outer space.",
+                "Rocks never change at all.",
+                "The Stem That Carried a River: A story about stems"
+            ],
+            "correct_index": 3,
+            "explanation": "The Stem That Carried a River: A story about stems"
+        }
+    ]
+}

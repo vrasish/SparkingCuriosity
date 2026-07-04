@@ -69,6 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $book) {
     $scienceElement = trim($_POST['science_element'] ?? '');
     $status = trim($_POST['status'] ?? '');
     $coverImageUrl = trim($_POST['cover_image_url'] ?? '');
+    if ($coverImageUrl !== '') {
+        $coverFilename = cover_filename_from_url($coverImageUrl);
+        if ($coverFilename !== null) {
+            $coverImageUrl = cover_storage_url($coverFilename);
+        }
+    }
     $storyTextInput = trim($_POST['story_text'] ?? '');
     $isPdf = ($book['book_format'] ?? '') === 'pdf';
 
@@ -258,6 +264,11 @@ if ($book) {
                     <div class="form-group">
                         <label for="cover_image_url">Cover Image URL</label>
                         <input type="url" id="cover_image_url" name="cover_image_url" class="form-control" value="<?= e($book['cover_image_url'] ?? '') ?>">
+                        <?php if (!empty($book['cover_image_url'])): ?>
+                            <p class="form-hint mt-2">
+                                <img src="<?= e(cover_image_src($book['cover_image_url'], $book['title'])) ?>" alt="Cover preview" class="admin-cover-preview">
+                            </p>
+                        <?php endif; ?>
                     </div>
 
                     <div class="action-bar">

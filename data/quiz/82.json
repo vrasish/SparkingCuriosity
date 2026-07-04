@@ -1,0 +1,54 @@
+{
+    "book_id": 82,
+    "title": "The Hidden Color Clue",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Hidden Color Clue\" mostly about?",
+            "choices": [
+                "Rocks never change at all.",
+                "Plants eat food from soil only.",
+                "Many animals use color and pattern to survive",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 2,
+            "explanation": "Many animals use color and pattern to survive"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "All germs are bad for you.",
+                "Plants eat food from soil only.",
+                "Sound is fastest in outer space.",
+                "Camouflage helps prey blend into their surroundings and hide from predators"
+            ],
+            "correct_index": 3,
+            "explanation": "Camouflage helps prey blend into their surroundings and hide from predators"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Some animals use bright warning colors to signal danger",
+                "Your heart pumps air through your body.",
+                "Fish breathe air like people do.",
+                "The brain does not help you move."
+            ],
+            "correct_index": 0,
+            "explanation": "Some animals use bright warning colors to signal danger"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "A creature's colors are often a clue to where it lives and how it stays safe",
+                "Rocks never change at all.",
+                "Your heart pumps air through your body.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 0,
+            "explanation": "A creature's colors are often a clue to where it lives and how it stays safe"
+        }
+    ]
+}

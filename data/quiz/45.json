@@ -1,0 +1,54 @@
+{
+    "book_id": 45,
+    "title": "The Tree That Made Its Own Lunch",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Tree That Made Its Own Lunch\" mostly about?",
+            "choices": [
+                "The brain does not help you move.",
+                "All germs are bad for you.",
+                "Your heart pumps air through your body.",
+                "Plants make their own food through photosynthesis"
+            ],
+            "correct_index": 3,
+            "explanation": "Plants make their own food through photosynthesis"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "they produce sugars that fuel growth and release oxygen",
+                "The Moon makes its own light.",
+                "The brain does not help you move.",
+                "Fish breathe air like people do."
+            ],
+            "correct_index": 0,
+            "explanation": "they produce sugars that fuel growth and release oxygen"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Rocks never change at all.",
+                "All germs are bad for you.",
+                "Noah opened his sandwich",
+                "Sound is fastest in outer space."
+            ],
+            "correct_index": 2,
+            "explanation": "Noah opened his sandwich"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "All germs are bad for you.",
+                "Sound is fastest in outer space.",
+                "Asha opened her fruit box",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 2,
+            "explanation": "Asha opened her fruit box"
+        }
+    ]
+}

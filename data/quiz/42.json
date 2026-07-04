@@ -1,0 +1,54 @@
+{
+    "book_id": 42,
+    "title": "The Beach That Ate the Footprints",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Beach That Ate the Footprints\" mostly about?",
+            "choices": [
+                "Ocean waves and tides move sand and water along the beach",
+                "Rocks never change at all.",
+                "The brain does not help you move.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 0,
+            "explanation": "Ocean waves and tides move sand and water along the beach"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Each wave can wash away footprints and carry sand to new places",
+                "The Moon makes its own light.",
+                "Rocks never change at all.",
+                "All germs are bad for you."
+            ],
+            "correct_index": 0,
+            "explanation": "Each wave can wash away footprints and carry sand to new places"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Fish breathe air like people do.",
+                "The brain does not help you move.",
+                "constantly changing the shoreline",
+                "Sound is fastest in outer space."
+            ],
+            "correct_index": 2,
+            "explanation": "constantly changing the shoreline"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "leaving footprints behind them",
+                "Plants eat food from soil only.",
+                "Rocks never change at all.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 0,
+            "explanation": "leaving footprints behind them"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "book_id": 72,
+    "title": "The Heat That Traveled Three Ways",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Heat That Traveled Three Ways\" mostly about?",
+            "choices": [
+                "Rocks never change at all.",
+                "Sound is fastest in outer space.",
+                "Plants eat food from soil only.",
+                "Heat moves in three main ways"
+            ],
+            "correct_index": 3,
+            "explanation": "Heat moves in three main ways"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Fish breathe air like people do.",
+                "Conduction transfers heat through direct contact",
+                "Your heart pumps air through your body.",
+                "Rocks never change at all."
+            ],
+            "correct_index": 1,
+            "explanation": "Conduction transfers heat through direct contact"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Plants eat food from soil only.",
+                "like a metal spoon warming in hot soup",
+                "Rocks never change at all.",
+                "All germs are bad for you."
+            ],
+            "correct_index": 1,
+            "explanation": "like a metal spoon warming in hot soup"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "The Moon makes its own light.",
+                "Radiation sends heat through empty space as invisible waves",
+                "Plants eat food from soil only.",
+                "Fish breathe air like people do."
+            ],
+            "correct_index": 1,
+            "explanation": "Radiation sends heat through empty space as invisible waves"
+        }
+    ]
+}

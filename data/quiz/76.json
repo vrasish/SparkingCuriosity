@@ -1,0 +1,54 @@
+{
+    "book_id": 76,
+    "title": "The Mystery of Day and Night Animals",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Mystery of Day and Night Animals\" mostly about?",
+            "choices": [
+                "Animals have different activity patterns",
+                "Plants eat food from soil only.",
+                "Rocks never change at all.",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 0,
+            "explanation": "Animals have different activity patterns"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Sound is fastest in outer space.",
+                "Diurnal animals are active during the day",
+                "Your heart pumps air through your body.",
+                "All germs are bad for you."
+            ],
+            "correct_index": 1,
+            "explanation": "Diurnal animals are active during the day"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Rocks never change at all.",
+                "The brain does not help you move.",
+                "Night animals often have adaptations like large eyes",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 2,
+            "explanation": "Night animals often have adaptations like large eyes"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Fish breathe air like people do.",
+                "The Moon makes its own light.",
+                "The Mystery of Day and Night Animals In the bright morning light",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 2,
+            "explanation": "The Mystery of Day and Night Animals In the bright morning light"
+        }
+    ]
+}

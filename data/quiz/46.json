@@ -1,0 +1,54 @@
+{
+    "book_id": 46,
+    "title": "The Plant With Many Jobs",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Plant With Many Jobs\" mostly about?",
+            "choices": [
+                "Plants do more than grow",
+                "The Moon makes its own light.",
+                "Plants eat food from soil only.",
+                "All germs are bad for you."
+            ],
+            "correct_index": 0,
+            "explanation": "Plants do more than grow"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Rocks never change at all.",
+                "They produce oxygen",
+                "Sound is fastest in outer space.",
+                "All germs are bad for you."
+            ],
+            "correct_index": 1,
+            "explanation": "They produce oxygen"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Fish breathe air like people do.",
+                "Rocks never change at all.",
+                "The brain does not help you move.",
+                "provide food and shelter for animals"
+            ],
+            "correct_index": 3,
+            "explanation": "provide food and shelter for animals"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "prevent soil erosion",
+                "All germs are bad for you.",
+                "The brain does not help you move.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 0,
+            "explanation": "prevent soil erosion"
+        }
+    ]
+}

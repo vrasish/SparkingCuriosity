@@ -1,0 +1,54 @@
+{
+    "book_id": 47,
+    "title": "The Creatures of the Midnight Sea",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Creatures of the Midnight Sea\" mostly about?",
+            "choices": [
+                "Your heart pumps air through your body.",
+                "The brain does not help you move.",
+                "Fish breathe air like people do.",
+                "hide from predators"
+            ],
+            "correct_index": 3,
+            "explanation": "hide from predators"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Fish breathe air like people do.",
+                "Your heart pumps air through your body.",
+                "The brain does not help you move.",
+                "The Creatures of the Midnight Sea"
+            ],
+            "correct_index": 3,
+            "explanation": "The Creatures of the Midnight Sea"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "All germs are bad for you.",
+                "Sound is fastest in outer space.",
+                "Plants eat food from soil only.",
+                "A story about glowing animals in the deep ocean"
+            ],
+            "correct_index": 3,
+            "explanation": "A story about glowing animals in the deep ocean"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Maya and Leo stood at the aquarium glass",
+                "The brain does not help you move.",
+                "Plants eat food from soil only.",
+                "All germs are bad for you."
+            ],
+            "correct_index": 0,
+            "explanation": "Maya and Leo stood at the aquarium glass"
+        }
+    ]
+}

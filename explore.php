@@ -12,64 +12,65 @@ if (isset($topicAliases[$topicFilter])) {
 }
 $searchQuery = trim((string) ($_GET['q'] ?? ''));
 
-$pageCache = explore_page_cache_get($topicFilter, $searchQuery);
-if ($pageCache !== null) {
-    define('STORIES_SKIP_DB', true);
-}
-
 require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/favorites-lib.php';
 
+$exploreLocked = !is_logged_in();
 $books = [];
 $dbError = null;
 $ratingSummaries = [];
 
-if ($pageCache !== null) {
-    $books = $pageCache['books'];
-    $ratingSummaries = $pageCache['ratings'];
-} else {
-    cart_bootstrap();
+if (!$exploreLocked) {
+    $pageCache = explore_page_cache_get($topicFilter, $searchQuery);
+    if ($pageCache !== null) {
+        define('STORIES_SKIP_DB', true);
+        $books = $pageCache['books'];
+        $ratingSummaries = $pageCache['ratings'];
+    } else {
+        cart_bootstrap();
 
-    try {
-        $sql = "
-            SELECT
-                b.book_id,
-                b.title,
-                b.author_name,
-                b.description,
-                b.science_element,
-                b.cover_image_url,
-                b.age_group,
-                b.book_format,
-                b.price_cents,
-                GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
-            FROM books b
-            LEFT JOIN book_categories bc ON b.book_id = bc.book_id
-            LEFT JOIN categories c ON bc.category_id = c.category_id
-            WHERE b.status = 'approved'
-        ";
-        $params = [];
-        if ($topicFilter !== '') {
-            $sql .= ' AND c.category_name = ?';
-            $params[] = $topicFilter;
-        }
-        $sql .= '
-            GROUP BY b.book_id
-            ORDER BY b.created_at DESC
-        ';
-        $stmt = stories_connect()->prepare($sql);
-        $stmt->execute($params);
-        $books = $stmt->fetchAll();
+        try {
+            $sql = "
+                SELECT
+                    b.book_id,
+                    b.title,
+                    b.author_name,
+                    b.description,
+                    b.science_element,
+                    b.cover_image_url,
+                    b.age_group,
+                    b.book_format,
+                    b.price_cents,
+                    GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
+                FROM books b
+                LEFT JOIN book_categories bc ON b.book_id = bc.book_id
+                LEFT JOIN categories c ON bc.category_id = c.category_id
+                WHERE b.status = 'approved'
+            ";
+            $params = [];
+            if ($topicFilter !== '') {
+                $sql .= ' AND c.category_name = ?';
+                $params[] = $topicFilter;
+            }
+            $sql .= '
+                GROUP BY b.book_id
+                ORDER BY b.created_at DESC
+            ';
+            $stmt = stories_connect()->prepare($sql);
+            $stmt->execute($params);
+            $books = $stmt->fetchAll();
 
-        if ($searchQuery !== '') {
-            $books = explore_books_filter_by_search($books, $searchQuery);
+            if ($searchQuery !== '') {
+                $books = explore_books_filter_by_search($books, $searchQuery);
+            }
+        } catch (PDOException $ex) {
+            $dbError = 'The story library could not be loaded.';
+            error_log($ex->getMessage());
         }
-    } catch (PDOException $ex) {
-        $dbError = 'The story library could not be loaded.';
-        error_log($ex->getMessage());
+
+        $ratingSummaries = get_book_rating_summaries(stories_connect(), array_column($books, 'book_id'));
+        explore_page_cache_set($topicFilter, $searchQuery, $books, $ratingSummaries);
     }
-
-    $ratingSummaries = get_book_rating_summaries(stories_connect(), array_column($books, 'book_id'));
-    explore_page_cache_set($topicFilter, $searchQuery, $books, $ratingSummaries);
 }
 
 cart_bootstrap();
@@ -77,6 +78,10 @@ release_session_lock();
 
 $hasFilters = $topicFilter !== '' || $searchQuery !== '';
 $topicTiles = home_topic_tiles();
+$exploreRedirect = app_url('explore.php' . ($hasFilters ? '?' . http_build_query(array_filter([
+    'topic' => $topicFilter !== '' ? $topicFilter : null,
+    'q' => $searchQuery !== '' ? $searchQuery : null,
+])) : ''));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -93,6 +98,17 @@ $topicTiles = home_topic_tiles();
 <main class="container page-main page-main-compact">
     <h2 class="section-title section-title-compact">Story Library</h2>
 
+    <?php if ($exploreLocked): ?>
+        <div class="empty-state empty-state-compact explore-locked-state" role="status">
+            <p class="explore-locked-message">
+                All Stories are Locked.
+                <a href="<?= e(app_url('register.php?redirect=' . rawurlencode($exploreRedirect))) ?>">Sign up</a>
+                or
+                <a href="<?= e(app_url('login.php?redirect=' . rawurlencode($exploreRedirect))) ?>">login</a>
+                to view them.
+            </p>
+        </div>
+    <?php else: ?>
     <section class="explore-search-panel" aria-label="Search and filter stories">
         <form class="search-form explore-search-form" method="get" action="<?= e(app_url('explore.php')) ?>">
             <?php if ($topicFilter !== ''): ?>
@@ -158,7 +174,7 @@ $topicTiles = home_topic_tiles();
             <?php foreach ($books as $book): ?>
                 <?php $cover = cover_image_src($book['cover_image_url'] ?? null, $book['title']); ?>
                 <article class="story-card story-card-compact">
-                    <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="story-card-img" loading="lazy">
+                    <?php render_story_card_cover((int) $book['book_id'], $cover, (string) $book['title'], $exploreRedirect); ?>
                     <div class="story-card-content">
                         <?php render_topic_tags($book['categories'] ?? ''); ?>
                         <h3 class="story-card-title"><?= e($book['title']) ?></h3>
@@ -174,6 +190,7 @@ $topicTiles = home_topic_tiles();
                 </article>
             <?php endforeach; ?>
         </div>
+    <?php endif; ?>
     <?php endif; ?>
 </main>
 

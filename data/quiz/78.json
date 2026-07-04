@@ -1,0 +1,54 @@
+{
+    "book_id": 78,
+    "title": "The Pond Puzzle",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Pond Puzzle\" mostly about?",
+            "choices": [
+                "All germs are bad for you.",
+                "The Moon makes its own light.",
+                "A pond is a small ecosystem where many animals and plants interact",
+                "Sound is fastest in outer space."
+            ],
+            "correct_index": 2,
+            "explanation": "A pond is a small ecosystem where many animals and plants interact"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "The Moon makes its own light.",
+                "From eggs to tadpoles to adult frogs",
+                "All germs are bad for you.",
+                "The brain does not help you move."
+            ],
+            "correct_index": 1,
+            "explanation": "From eggs to tadpoles to adult frogs"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "The Moon makes its own light.",
+                "life cycles connect every creature to the water they share",
+                "Rocks never change at all.",
+                "Sound is fastest in outer space."
+            ],
+            "correct_index": 1,
+            "explanation": "life cycles connect every creature to the water they share"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "The brain does not help you move.",
+                "Fish breathe air like people do.",
+                "Sound is fastest in outer space.",
+                "The Pond Puzzle Ms"
+            ],
+            "correct_index": 3,
+            "explanation": "The Pond Puzzle Ms"
+        }
+    ]
+}

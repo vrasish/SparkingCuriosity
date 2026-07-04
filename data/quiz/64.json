@@ -1,0 +1,54 @@
+{
+    "book_id": 64,
+    "title": "The Body's Tiny Defense System",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Body's Tiny Defense System\" mostly about?",
+            "choices": [
+                "The immune system protects the body from germs and illness",
+                "Plants eat food from soil only.",
+                "Fish breathe air like people do.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 0,
+            "explanation": "The immune system protects the body from germs and illness"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "The Body's Tiny Defense Team A story about the immune system Ms",
+                "The Moon makes its own light.",
+                "Plants eat food from soil only.",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 0,
+            "explanation": "The Body's Tiny Defense Team A story about the immune system Ms"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "The brain does not help you move.",
+                "The Moon makes its own light.",
+                "Lopez explained that colds are caused by tiny germs called viruses",
+                "Sound is fastest in outer space."
+            ],
+            "correct_index": 2,
+            "explanation": "Lopez explained that colds are caused by tiny germs called viruses"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Plants eat food from soil only.",
+                "Sound is fastest in outer space.",
+                "They travel in droplets from coughs and sneezes",
+                "Fish breathe air like people do."
+            ],
+            "correct_index": 2,
+            "explanation": "They travel in droplets from coughs and sneezes"
+        }
+    ]
+}

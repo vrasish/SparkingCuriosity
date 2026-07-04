@@ -279,7 +279,61 @@ function read_aloud_cached_audio_path(int $bookId, int $page): ?string
 
     $tts = read_aloud_tts_config();
     $path = read_aloud_audio_dir($bookId) . '/page-' . $page . '-' . $tts['cache_version'] . '.mp3';
-    return is_file($path) ? $path : null;
+    if (is_file($path)) {
+        return $path;
+    }
+
+    $dir = read_aloud_audio_dir($bookId);
+    if (!is_dir($dir)) {
+        return null;
+    }
+
+    $matches = glob($dir . '/page-' . $page . '-*.mp3');
+    if (!is_array($matches)) {
+        return null;
+    }
+
+    foreach ($matches as $candidate) {
+        if (is_file($candidate) && !str_ends_with($candidate, '-uploaded.mp3')) {
+            return $candidate;
+        }
+    }
+
+    return null;
+}
+
+/** @return list<int> */
+function read_aloud_playable_pages(int $bookId): array
+{
+    $data = read_aloud_story_data($bookId);
+    if ($data === null) {
+        return [];
+    }
+
+    $pages = [];
+    foreach ($data['pages'] as $entry) {
+        if (!is_array($entry)) {
+            continue;
+        }
+        $page = (int) ($entry['page'] ?? 0);
+        if ($page <= 0) {
+            continue;
+        }
+        $text = isset($entry['text']) ? trim((string) $entry['text']) : '';
+        if ($text === '') {
+            continue;
+        }
+        if (read_aloud_book_prefers_uploaded_audio($bookId)) {
+            if (read_aloud_uploaded_audio_path($bookId, $page) === null) {
+                continue;
+            }
+        }
+        $pages[] = $page;
+    }
+
+    sort($pages);
+
+    return $pages;
 }
 
 function read_aloud_generate_audio(int $bookId, int $page): string

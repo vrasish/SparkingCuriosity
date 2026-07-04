@@ -1,0 +1,54 @@
+{
+    "book_id": 63,
+    "title": "The Food Tunnel Adventure",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Food Tunnel Adventure\" mostly about?",
+            "choices": [
+                "The digestive system breaks food into nutrients the body can use",
+                "All germs are bad for you.",
+                "Plants eat food from soil only.",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 0,
+            "explanation": "The digestive system breaks food into nutrients the body can use"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Food travels through the mouth",
+                "Rocks never change at all.",
+                "The Moon makes its own light.",
+                "Plants eat food from soil only."
+            ],
+            "correct_index": 0,
+            "explanation": "Food travels through the mouth"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "The Moon makes its own light.",
+                "The brain does not help you move.",
+                "where enzymes and acids help break it down before nutrients are absorbed into the blood",
+                "All germs are bad for you."
+            ],
+            "correct_index": 2,
+            "explanation": "where enzymes and acids help break it down before nutrients are absorbed into the blood"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "They were ready to follow the food on its adventure",
+                "Rocks never change at all.",
+                "Plants eat food from soil only.",
+                "Sound is fastest in outer space."
+            ],
+            "correct_index": 0,
+            "explanation": "They were ready to follow the food on its adventure"
+        }
+    ]
+}

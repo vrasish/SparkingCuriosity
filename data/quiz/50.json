@@ -1,0 +1,54 @@
+{
+    "book_id": 50,
+    "title": "The Earth with Hidden Layers",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Earth with Hidden Layers\" mostly about?",
+            "choices": [
+                "Earth is built in layers: the crust where we live",
+                "Fish breathe air like people do.",
+                "Sound is fastest in outer space.",
+                "Plants eat food from soil only."
+            ],
+            "correct_index": 0,
+            "explanation": "Earth is built in layers: the crust where we live"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "The brain does not help you move.",
+                "the liquid outer core",
+                "All germs are bad for you.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 1,
+            "explanation": "the liquid outer core"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "The brain does not help you move.",
+                "All germs are bad for you.",
+                "Rocks never change at all.",
+                "These layers shape volcanoes"
+            ],
+            "correct_index": 3,
+            "explanation": "These layers shape volcanoes"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Your heart pumps air through your body.",
+                "The Earth with Hidden Layers",
+                "Rocks never change at all.",
+                "All germs are bad for you."
+            ],
+            "correct_index": 1,
+            "explanation": "The Earth with Hidden Layers"
+        }
+    ]
+}

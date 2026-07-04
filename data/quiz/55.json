@@ -1,0 +1,54 @@
+{
+    "book_id": 55,
+    "title": "The Forest That Stayed Green",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Forest That Stayed Green\" mostly about?",
+            "choices": [
+                "The brain does not help you move.",
+                "Sound is fastest in outer space.",
+                "Deciduous trees lose their leaves in fall to save water and energy",
+                "Fish breathe air like people do."
+            ],
+            "correct_index": 2,
+            "explanation": "Deciduous trees lose their leaves in fall to save water and energy"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Plants eat food from soil only.",
+                "The Forest That Stayed Green: A story about evergreen trees Aria and Mateo followed Ms",
+                "Your heart pumps air through your body.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 1,
+            "explanation": "The Forest That Stayed Green: A story about evergreen trees Aria and Mateo followed Ms"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "The brain does not help you move.",
+                "Lin along the trail",
+                "Rocks never change at all.",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 1,
+            "explanation": "Lin along the trail"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Some trees nearby were bare, but the pine trees were still green",
+                "Sound is fastest in outer space.",
+                "The brain does not help you move.",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 0,
+            "explanation": "Some trees nearby were bare, but the pine trees were still green"
+        }
+    ]
+}

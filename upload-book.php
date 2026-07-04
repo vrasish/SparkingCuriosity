@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $coverRel = 'uploads/covers/' . $coverSafe;
                         $coverFull = __DIR__ . '/' . $coverRel;
                         if (move_uploaded_file($coverFile['tmp_name'], $coverFull)) {
-                            $savedCoverUrl = app_base_path() . '/' . $coverRel;
+                            $savedCoverUrl = $coverRel;
                         }
                     }
                 }

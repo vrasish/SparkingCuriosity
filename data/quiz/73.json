@@ -1,0 +1,54 @@
+{
+    "book_id": 73,
+    "title": "The Backpack That Felt Lighter",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Backpack That Felt Lighter\" mostly about?",
+            "choices": [
+                "Rocks never change at all.",
+                "Weight is the force of gravity pulling on an object's mass",
+                "Fish breathe air like people do.",
+                "Sound is fastest in outer space."
+            ],
+            "correct_index": 1,
+            "explanation": "Weight is the force of gravity pulling on an object's mass"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "The same backpack has the same mass",
+                "Rocks never change at all.",
+                "Plants eat food from soil only.",
+                "The brain does not help you move."
+            ],
+            "correct_index": 0,
+            "explanation": "The same backpack has the same mass"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Sound is fastest in outer space.",
+                "All germs are bad for you.",
+                "The Moon makes its own light.",
+                "The Backpack That Felt Lighter: A story about mass and weight Ms"
+            ],
+            "correct_index": 3,
+            "explanation": "The Backpack That Felt Lighter: A story about mass and weight Ms"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "The brain does not help you move.",
+                "Bennett placed the backpack on one side of a balance scale",
+                "Your heart pumps air through your body.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 1,
+            "explanation": "Bennett placed the backpack on one side of a balance scale"
+        }
+    ]
+}

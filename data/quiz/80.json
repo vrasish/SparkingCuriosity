@@ -1,0 +1,54 @@
+{
+    "book_id": 80,
+    "title": "The Cozy Cave Clue",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Cozy Cave Clue\" mostly about?",
+            "choices": [
+                "Sound is fastest in outer space.",
+                "Caves and hollow spaces provide shelter for many animals",
+                "Your heart pumps air through your body.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 1,
+            "explanation": "Caves and hollow spaces provide shelter for many animals"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "The brain does not help you move.",
+                "Fish breathe air like people do.",
+                "Sound is fastest in outer space.",
+                "like bears and bats"
+            ],
+            "correct_index": 3,
+            "explanation": "like bears and bats"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Sound is fastest in outer space.",
+                "The Moon makes its own light.",
+                "All germs are bad for you.",
+                "The Cozy Cave Clue First, Ms"
+            ],
+            "correct_index": 3,
+            "explanation": "The Cozy Cave Clue First, Ms"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Jun pointed to a black bear searching for berries and nuts",
+                "The Moon makes its own light.",
+                "All germs are bad for you.",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 0,
+            "explanation": "Jun pointed to a black bear searching for berries and nuts"
+        }
+    ]
+}

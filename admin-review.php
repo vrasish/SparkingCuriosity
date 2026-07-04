@@ -15,33 +15,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['book_id'], $_POST['ac
     ];
 
     if ($bookId > 0 && isset($statusMap[$action])) {
-        $newStatus = $statusMap[$action];
-        try {
-            $pdo->beginTransaction();
-
-            $stmtBook = $pdo->prepare('UPDATE books SET status = ? WHERE book_id = ?');
-            $stmtBook->execute([$newStatus, $bookId]);
-
-            if ($action === 'approve') {
-                $stmtSub = $pdo->prepare("
-                    UPDATE submissions
-                    SET status = 'approved', reviewed_at = NOW()
-                    WHERE book_id = ?
-                ");
-                $stmtSub->execute([$bookId]);
+        if ($action === 'reject') {
+            if (delete_book_by_id($pdo, $bookId)) {
+                $flash = 'Story rejected and removed from the library.';
             } else {
-                $stmtSub = $pdo->prepare('UPDATE submissions SET status = ? WHERE book_id = ?');
-                $stmtSub->execute([$newStatus, $bookId]);
+                $flash = 'Could not remove that story. It may have purchase history.';
             }
+        } else {
+            $newStatus = $statusMap[$action];
+            try {
+                $pdo->beginTransaction();
 
-            $pdo->commit();
-            $flash = 'Story updated: ' . str_replace('_', ' ', $newStatus) . '.';
-        } catch (PDOException $ex) {
-            if ($pdo->inTransaction()) {
-                $pdo->rollBack();
+                $stmtBook = $pdo->prepare('UPDATE books SET status = ? WHERE book_id = ?');
+                $stmtBook->execute([$newStatus, $bookId]);
+
+                if ($action === 'approve') {
+                    $stmtSub = $pdo->prepare("
+                        UPDATE submissions
+                        SET status = 'approved', reviewed_at = NOW()
+                        WHERE book_id = ?
+                    ");
+                    $stmtSub->execute([$bookId]);
+                } else {
+                    $stmtSub = $pdo->prepare('UPDATE submissions SET status = ? WHERE book_id = ?');
+                    $stmtSub->execute([$newStatus, $bookId]);
+                }
+
+                $pdo->commit();
+                $flash = 'Story updated: ' . str_replace('_', ' ', $newStatus) . '.';
+            } catch (PDOException $ex) {
+                if ($pdo->inTransaction()) {
+                    $pdo->rollBack();
+                }
+                error_log($ex->getMessage());
+                $flash = 'Update failed. Please try again.';
             }
-            error_log($ex->getMessage());
-            $flash = 'Update failed. Please try again.';
         }
     }
 }

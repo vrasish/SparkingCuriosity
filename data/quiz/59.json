@@ -1,0 +1,54 @@
+{
+    "book_id": 59,
+    "title": "The Body's Hidden Frame",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Body's Hidden Frame\" mostly about?",
+            "choices": [
+                "Your heart pumps air through your body.",
+                "All germs are bad for you.",
+                "Sound is fastest in outer space.",
+                "The human skeleton is made of 206 bones that provide structure"
+            ],
+            "correct_index": 3,
+            "explanation": "The human skeleton is made of 206 bones that provide structure"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Sound is fastest in outer space.",
+                "Fish breathe air like people do.",
+                "protect organs like the brain and heart",
+                "Plants eat food from soil only."
+            ],
+            "correct_index": 2,
+            "explanation": "protect organs like the brain and heart"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Plants eat food from soil only.",
+                "The brain does not help you move.",
+                "The Moon makes its own light.",
+                "Bones also store minerals and produce blood cells in their marrow"
+            ],
+            "correct_index": 3,
+            "explanation": "Bones also store minerals and produce blood cells in their marrow"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Fish breathe air like people do.",
+                "Rocks never change at all.",
+                "They stacked it higher and higher",
+                "The brain does not help you move."
+            ],
+            "correct_index": 2,
+            "explanation": "They stacked it higher and higher"
+        }
+    ]
+}

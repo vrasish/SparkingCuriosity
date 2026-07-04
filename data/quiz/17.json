@@ -1,0 +1,54 @@
+{
+    "book_id": 17,
+    "title": "The Mountain That Lost Its Echo",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Mountain That Lost Its Echo\" mostly about?",
+            "choices": [
+                "An echo happens when sound waves bounce off a hard surface and return to your ears",
+                "Sound is fastest in outer space.",
+                "Fish breathe air like people do.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 0,
+            "explanation": "An echo happens when sound waves bounce off a hard surface and return to your ears"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Soft materials absorb sound, while hard surfaces reflect it",
+                "All germs are bad for you.",
+                "Your heart pumps air through your body.",
+                "Plants eat food from soil only."
+            ],
+            "correct_index": 0,
+            "explanation": "Soft materials absorb sound, while hard surfaces reflect it"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Your heart pumps air through your body.",
+                "All germs are bad for you.",
+                "The Mountain That Lost Its Echo: A science mystery about sound waves",
+                "Plants eat food from soil only."
+            ],
+            "correct_index": 2,
+            "explanation": "The Mountain That Lost Its Echo: A science mystery about sound waves"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "The Moon makes its own light.",
+                "All germs are bad for you.",
+                "Rocks never change at all.",
+                "Tara and Omar hiked to Echo Point"
+            ],
+            "correct_index": 3,
+            "explanation": "Tara and Omar hiked to Echo Point"
+        }
+    ]
+}

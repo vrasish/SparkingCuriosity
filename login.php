@@ -42,36 +42,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php render_fun_background(); ?>
 <?php render_site_header('public'); ?>
 
-<main class="container page-main page-main-compact">
-    <?php render_page_header('Log in', 'Sign in with your email and password.'); ?>
+<main class="container page-main page-main-compact auth-main">
+    <div class="auth-card">
+        <h1 class="auth-title">Log in</h1>
+        <p class="auth-lead">Sign in with your email and password.</p>
 
-    <div class="page-section">
         <?php if ($error): ?>
             <div class="alert alert-error"><?= e($error) ?></div>
         <?php endif; ?>
 
-        <div class="form-panel login-panel">
-            <form method="post" action="<?= e(app_url('login.php')) ?>">
-                <input type="hidden" name="redirect" value="<?= e($redirect) ?>">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" required autocomplete="email"
-                        value="<?= e($_POST['email'] ?? '') ?>">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" class="form-control" required autocomplete="current-password">
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="creator_account" value="1"<?= !empty($_POST['creator_account']) ? ' checked' : '' ?>>
-                        I want to publish stories (creator account)
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary">Log in</button>
-            </form>
-            <p class="mt-2">Need an account? <a href="<?= e(app_url('register.php?redirect=' . rawurlencode($redirect))) ?>">Create one with your name, email, and password</a></p>
-        </div>
+        <form method="post" action="<?= e(app_url('login.php')) ?>" class="auth-form">
+            <input type="hidden" name="redirect" value="<?= e($redirect) ?>">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" class="form-control" required autocomplete="email"
+                    value="<?= e($_POST['email'] ?? '') ?>">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" required autocomplete="current-password">
+            </div>
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="creator_account" value="1"<?= !empty($_POST['creator_account']) ? ' checked' : '' ?>>
+                    I want to publish stories (creator account)
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </form>
+        <p class="auth-switch">Need an account? <a href="<?= e(app_url('register.php?redirect=' . rawurlencode($redirect))) ?>">Create one with your name, email, and password</a></p>
     </div>
 </main>
 <?php render_site_footer(); ?>

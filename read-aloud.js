@@ -31,6 +31,7 @@
         timeEl: null,
         pageLabelEl: null,
         pageDurations: {},
+        audioPages: null,
         isSeeking: false,
         progressTimer: null,
         browserPageProgress: 0,
@@ -157,6 +158,9 @@
     }
 
     function getTimelinePages() {
+        if (state.audioPages && state.audioPages.length) {
+            return state.audioPages.slice();
+        }
         return getSortedPagesWithText();
     }
 
@@ -480,6 +484,10 @@
                 return;
             }
 
+            if (event.target.closest('.story-quiz-cta, .story-quiz-start, .story-quiz, .story-quiz-mount')) {
+                return;
+            }
+
             var frame = event.target.closest('.pdf-page-frame');
             if (!frame) {
                 return;
@@ -674,7 +682,7 @@
     }
 
     function getNextPageWithText(afterPage) {
-        var pages = getSortedPagesWithText();
+        var pages = getTimelinePages();
         for (var i = 0; i < pages.length; i += 1) {
             if (pages[i] > afterPage) {
                 return pages[i];
@@ -683,7 +691,20 @@
         return null;
     }
 
+    function handleNeuralPageFailure(pageNumber) {
+        if (!state.storyMode) {
+            return;
+        }
+        var nextPage = getNextPageWithText(pageNumber);
+        if (nextPage) {
+            speakStoryFrom(nextPage);
+            return;
+        }
+        finishStory();
+    }
+
     function finishStory() {
+        var total = getTotalDuration();
         state.storyMode = false;
         state.status = 'idle';
         state.pageNumber = null;
@@ -694,6 +715,21 @@
         setButtonState('idle');
         setStopVisible(false);
         clearHighlights();
+        if (state.seekInput) {
+            state.seekInput.value = '1000';
+        }
+        if (state.timeEl && total > 0) {
+            state.timeEl.textContent = formatTime(total) + ' / ' + formatTime(total);
+        }
+        if (state.pageLabelEl) {
+            var pages = getTimelinePages();
+            if (pages.length) {
+                state.pageLabelEl.textContent = 'Page ' + pages.length + ' of ' + pages.length;
+            }
+        }
+        if (state.pdfReaderEl) {
+            state.pdfReaderEl.dispatchEvent(new CustomEvent('story-quiz:reveal', { bubbles: true }));
+        }
         updateSeekBar();
     }
 
@@ -765,9 +801,8 @@
             var playPromise = audio.play();
             if (playPromise && typeof playPromise.catch === 'function') {
                 playPromise.catch(function () {
-                    if (state.storyMode) {
-                        state.status = 'error';
-                        setButtonState('error');
+                    if (state.storyMode && state.pageNumber === pageNumber) {
+                        handleNeuralPageFailure(pageNumber);
                     }
                 });
             }
@@ -798,13 +833,10 @@
         });
 
         audio.addEventListener('error', function () {
-            if (!state.storyMode) {
+            if (!state.storyMode || state.pageNumber !== pageNumber) {
                 return;
             }
-            state.status = 'error';
-            setButtonState('error');
-            setStopVisible(true);
-            stopProgressTimer();
+            handleNeuralPageFailure(pageNumber);
         });
     }
 
@@ -977,7 +1009,7 @@
         setStopVisible(true);
         setPlayerVisible(true);
 
-        var firstPage = getSortedPagesWithText()[0];
+        var firstPage = getTimelinePages()[0];
         if (!firstPage) {
             state.storyMode = false;
             setButtonState('unavailable');
@@ -1085,6 +1117,20 @@
                 state.useNeuralAudio = !!data.neural_audio && !!data.tts_api;
                 state.ttsApiUrl = data.tts_api || '';
                 state.ttsSpeed = typeof data.tts_speed === 'number' ? data.tts_speed : 0.9;
+                if (Array.isArray(data.audio_pages) && data.audio_pages.length) {
+                    state.audioPages = data.audio_pages
+                        .map(function (pageNum) {
+                            return parseInt(pageNum, 10);
+                        })
+                        .filter(function (pageNum) {
+                            return !Number.isNaN(pageNum) && getPageText(pageNum) !== '';
+                        })
+                        .sort(function (a, b) {
+                            return a - b;
+                        });
+                } else {
+                    state.audioPages = null;
+                }
                 preloadPageDurations();
                 updateSeekBar();
                 return data;

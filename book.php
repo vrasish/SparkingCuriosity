@@ -2,6 +2,7 @@
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/reviews-lib.php';
 require_once __DIR__ . '/recommendations-lib.php';
+require_once __DIR__ . '/favorites-lib.php';
 
 ensure_book_pdf_schema($pdo);
 ensure_book_pricing_schema($pdo);
@@ -125,7 +126,10 @@ if ($book && !$preview && !$bookLocked) {
     <?php else: ?>
         <div class="page-section">
         <div class="book-header">
-            <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="book-cover">
+            <div class="book-cover-wrap">
+                <?php render_story_favorite_button($bookId, app_url('book.php?id=' . $bookId)); ?>
+                <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="book-cover">
+            </div>
             <div>
                 <?php render_topic_tags($book['categories'] ?? ''); ?>
                 <h1><?= e($book['title']) ?></h1>
@@ -176,7 +180,7 @@ if ($book && !$preview && !$bookLocked) {
         </div>
         </div>
 
-        <div class="page-section book-content<?= $isPdfBook ? ' book-content-pdf' : '' ?>">
+        <div class="page-section book-content<?= $isPdfBook ? ' book-content-pdf' : ' book-content-text' ?>"<?= !$isPdfBook && !$bookLocked ? ' data-book-id="' . (int) $bookId . '" data-quiz-api="' . e(app_api_url('quiz-api.php')) . '"' : '' ?>>
         <?php if ($bookLocked): ?>
             <div class="empty-state">
                 <p>This story is locked. Add it to your cart and purchase for <?= e(format_book_price($book)) ?> to read.</p>
@@ -184,23 +188,30 @@ if ($book && !$preview && !$bookLocked) {
         <?php elseif ($isPdfBook): ?>
             <?php if ($pdfExists): ?>
                 <section class="pdf-viewer-wrap">
-                    <div class="pdf-viewer-actions">
-                        <a href="<?= e($pdfDownloadUrl) ?>" class="btn btn-primary btn-sm btn-download-pdf">Download PDF</a>
-                        <a href="<?= e($pdfUrl) ?>" class="btn btn-outline btn-sm" target="_blank" rel="noopener">Open in new tab</a>
-                    </div>
-                    <div
-                        id="pdf-reader"
-                        class="pdf-reader"
-                        data-pdf-url="<?= e($pdfUrl) ?>"
-                        data-story-id="<?= (int) $bookId ?>"
-                        data-read-aloud-api="<?= e(app_api_url('read-aloud-api.php')) ?>"
-                    >
-                        <p class="pdf-reader-loading">Loading pages…</p>
+                    <div class="pdf-viewer-layout">
+                        <div class="pdf-viewer-column">
+                            <div class="pdf-viewer-actions">
+                                <a href="<?= e($pdfDownloadUrl) ?>" class="btn btn-primary btn-sm btn-download-pdf">Download PDF</a>
+                                <a href="<?= e($pdfUrl) ?>" class="btn btn-outline btn-sm" target="_blank" rel="noopener">Open in new tab</a>
+                            </div>
+                            <div
+                                id="pdf-reader"
+                                class="pdf-reader"
+                                data-pdf-url="<?= e($pdfUrl) ?>"
+                                data-story-id="<?= (int) $bookId ?>"
+                                data-read-aloud-api="<?= e(app_api_url('read-aloud-api.php')) ?>"
+                                data-quiz-api="<?= e(app_api_url('quiz-api.php')) ?>"
+                            >
+                                <p class="pdf-reader-loading">Loading pages…</p>
+                            </div>
+                        </div>
+                        <aside class="pdf-viewer-sidebar" id="pdf-quiz-sidebar" aria-label="Story quiz"></aside>
                     </div>
                 </section>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
                 <script src="<?= e(asset_url('pdf-reader.js')) ?>"></script>
                 <script src="<?= e(asset_url('read-aloud.js')) ?>"></script>
+                <script src="<?= e(asset_url('quiz.js')) ?>"></script>
             <?php else: ?>
                 <div class="alert alert-error">PDF file not found on the server.</div>
             <?php endif; ?>
@@ -226,6 +237,7 @@ if ($book && !$preview && !$bookLocked) {
                 </article>
             <?php endforeach; ?>
             <?php render_book_recommendations($recommendedBooks, $recommendedRatingSummaries); ?>
+            <script src="<?= e(asset_url('quiz.js')) ?>"></script>
         <?php endif; ?>
 
         <?php if (!$bookLocked && !empty($book['science_element'])): ?>

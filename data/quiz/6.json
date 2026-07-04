@@ -1,0 +1,54 @@
+{
+    "book_id": 6,
+    "title": "The Town That Forgot the Stars",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Town That Forgot the Stars\" mostly about?",
+            "choices": [
+                "The brain does not help you move.",
+                "Sound is fastest in outer space.",
+                "Light pollution occurs when too much artificial light shines upward or sideways",
+                "All germs are bad for you."
+            ],
+            "correct_index": 2,
+            "explanation": "Light pollution occurs when too much artificial light shines upward or sideways"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "The Moon makes its own light.",
+                "Sound is fastest in outer space.",
+                "making the night sky brighter and hiding the stars",
+                "Rocks never change at all."
+            ],
+            "correct_index": 2,
+            "explanation": "making the night sky brighter and hiding the stars"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "warm-colored lights that point downward help reduce skyglow and make more stars visible",
+                "All germs are bad for you.",
+                "Rocks never change at all.",
+                "The brain does not help you move."
+            ],
+            "correct_index": 0,
+            "explanation": "warm-colored lights that point downward help reduce skyglow and make more stars visible"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "The Moon makes its own light.",
+                "something felt wrong",
+                "Your heart pumps air through your body.",
+                "Rocks never change at all."
+            ],
+            "correct_index": 1,
+            "explanation": "something felt wrong"
+        }
+    ]
+}

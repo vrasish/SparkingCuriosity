@@ -389,6 +389,9 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
     } else {
         echo '<a href="' . e(app_url('index.php')) . '">Home</a>';
         echo '<a href="' . e(app_url('explore.php')) . '">Explore</a>';
+        if ($user) {
+            echo '<a href="' . e(app_url('my-library.php')) . '">My Library</a>';
+        }
         if ($user && is_creator_user()) {
             echo '<a href="' . e(app_url('ai-authoring.php')) . '">AI Authoring Tool</a>';
             echo '<a href="' . e(app_url('upload-book.php')) . '">Upload PDF</a>';

@@ -7,6 +7,7 @@ if ($pageCache !== null) {
 }
 
 require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/favorites-lib.php';
 
 $latestBooks = [];
 $dbError = null;
@@ -103,9 +104,12 @@ $topicTiles = home_topic_tiles();
                     $readMins = estimate_reading_minutes((string) ($book['description'] ?? ''));
                     ?>
                     <article class="home-story-card">
-                        <a href="<?= e(app_url('book.php?id=' . (int) $book['book_id'])) ?>" class="home-story-cover-link">
-                            <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="home-story-img" loading="lazy">
-                        </a>
+                        <div class="home-story-cover-wrap">
+                            <?php render_story_favorite_button((int) $book['book_id'], app_url('index.php')); ?>
+                            <a href="<?= e(app_url('book.php?id=' . (int) $book['book_id'])) ?>" class="home-story-cover-link">
+                                <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="home-story-img" loading="lazy">
+                            </a>
+                        </div>
                         <div class="home-story-body">
                             <?php if ($primaryCat !== ''): ?>
                                 <span class="home-story-tag topic-tag category-btn <?= e(topic_class($primaryCat)) ?>"><?= e(strtoupper($primaryCat)) ?></span>

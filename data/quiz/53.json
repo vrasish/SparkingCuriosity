@@ -1,0 +1,54 @@
+{
+    "book_id": 53,
+    "title": "The Web in the Meadow",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Web in the Meadow\" mostly about?",
+            "choices": [
+                "A meadow is an ecosystem where plants",
+                "All germs are bad for you.",
+                "Fish breathe air like people do.",
+                "Rocks never change at all."
+            ],
+            "correct_index": 0,
+            "explanation": "A meadow is an ecosystem where plants"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "The brain does not help you move.",
+                "Spiders build webs to catch prey",
+                "Rocks never change at all.",
+                "Sound is fastest in outer space."
+            ],
+            "correct_index": 1,
+            "explanation": "Spiders build webs to catch prey"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Sound is fastest in outer space.",
+                "Rocks never change at all.",
+                "pollinators visit flowers",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 2,
+            "explanation": "pollinators visit flowers"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Rocks never change at all.",
+                "Fish breathe air like people do.",
+                "the meadow no longer looked quiet and ordinary",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 2,
+            "explanation": "the meadow no longer looked quiet and ordinary"
+        }
+    ]
+}

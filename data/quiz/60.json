@@ -1,0 +1,54 @@
+{
+    "book_id": 60,
+    "title": "The Breath That Took a Journey",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Breath That Took a Journey\" mostly about?",
+            "choices": [
+                "air travels through the nose or mouth",
+                "Sound is fastest in outer space.",
+                "Your heart pumps air through your body.",
+                "Fish breathe air like people do."
+            ],
+            "correct_index": 0,
+            "explanation": "air travels through the nose or mouth"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Sound is fastest in outer space.",
+                "Fish breathe air like people do.",
+                "Rocks never change at all.",
+                "Oxygen passes from tiny air sacs called alveoli into the blood"
+            ],
+            "correct_index": 3,
+            "explanation": "Oxygen passes from tiny air sacs called alveoli into the blood"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Plants eat food from soil only.",
+                "Your heart pumps air through your body.",
+                "Sound is fastest in outer space.",
+                "This gas exchange fuels cells throughout the body"
+            ],
+            "correct_index": 3,
+            "explanation": "This gas exchange fuels cells throughout the body"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Plants eat food from soil only.",
+                "“Oxygen is a gas in the air your body needs it to make energy.” Saanvi touched her nose",
+                "The brain does not help you move.",
+                "Sound is fastest in outer space."
+            ],
+            "correct_index": 1,
+            "explanation": "“Oxygen is a gas in the air your body needs it to make energy.” Saanvi touched her nose"
+        }
+    ]
+}

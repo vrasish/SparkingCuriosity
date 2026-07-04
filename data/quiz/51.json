@@ -1,0 +1,54 @@
+{
+    "book_id": 51,
+    "title": "The Mountain That Rumbled",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Mountain That Rumbled\" mostly about?",
+            "choices": [
+                "Fish breathe air like people do.",
+                "The brain does not help you move.",
+                "The Moon makes its own light.",
+                "Mountains can rumble when tectonic plates shift or magma moves beneath the surface"
+            ],
+            "correct_index": 3,
+            "explanation": "Mountains can rumble when tectonic plates shift or magma moves beneath the surface"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Your heart pumps air through your body.",
+                "All germs are bad for you.",
+                "Plants eat food from soil only.",
+                "The Mountain That Rumbled"
+            ],
+            "correct_index": 3,
+            "explanation": "The Mountain That Rumbled"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "The brain does not help you move.",
+                "Plants eat food from soil only.",
+                "A story about volcanoes, lava, and sleeping mountains",
+                "Sound is fastest in outer space."
+            ],
+            "correct_index": 2,
+            "explanation": "A story about volcanoes, lava, and sleeping mountains"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Isla and Theo stood in front of a giant volcano model at the science museum",
+                "Plants eat food from soil only.",
+                "The brain does not help you move.",
+                "All germs are bad for you."
+            ],
+            "correct_index": 0,
+            "explanation": "Isla and Theo stood in front of a giant volcano model at the science museum"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "book_id": 67,
+    "title": "The Day Water Changed Its Mind",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Day Water Changed Its Mind\" mostly about?",
+            "choices": [
+                "Your heart pumps air through your body.",
+                "Sound is fastest in outer space.",
+                "Water can exist as a solid (ice), liquid (water), or gas (water vapor)",
+                "Fish breathe air like people do."
+            ],
+            "correct_index": 2,
+            "explanation": "Water can exist as a solid (ice), liquid (water), or gas (water vapor)"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "The Day Water Changed Its Mind A story about matter and its states Ms",
+                "The Moon makes its own light.",
+                "Sound is fastest in outer space.",
+                "Plants eat food from soil only."
+            ],
+            "correct_index": 0,
+            "explanation": "The Day Water Changed Its Mind A story about matter and its states Ms"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Plants eat food from soil only.",
+                "Gomez explained that matter can be a solid, a liquid, or a gas",
+                "The Moon makes its own light.",
+                "Fish breathe air like people do."
+            ],
+            "correct_index": 1,
+            "explanation": "Gomez explained that matter can be a solid, a liquid, or a gas"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Your heart pumps air through your body.",
+                "Plants eat food from soil only.",
+                "Ice is a solid because it keeps its shape",
+                "All germs are bad for you."
+            ],
+            "correct_index": 2,
+            "explanation": "Ice is a solid because it keeps its shape"
+        }
+    ]
+}

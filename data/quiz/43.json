@@ -1,0 +1,54 @@
+{
+    "book_id": 43,
+    "title": "The Sky That Started Spinning",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Sky That Started Spinning\" mostly about?",
+            "choices": [
+                "Earth spins on its axis, and the atmosphere moves with it",
+                "Plants eat food from soil only.",
+                "Sound is fastest in outer space.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 0,
+            "explanation": "Earth spins on its axis, and the atmosphere moves with it"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Plants eat food from soil only.",
+                "Fish breathe air like people do.",
+                "The Sky That Started Spinning A science story about tornadoes",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 2,
+            "explanation": "The Sky That Started Spinning A science story about tornadoes"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "Tall dark clouds rose in the distance",
+                "Plants eat food from soil only.",
+                "All germs are bad for you.",
+                "The brain does not help you move."
+            ],
+            "correct_index": 0,
+            "explanation": "Tall dark clouds rose in the distance"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Fish breathe air like people do.",
+                "Rivera called from the school door, “Everyone inside",
+                "Sound is fastest in outer space.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 1,
+            "explanation": "Rivera called from the school door, “Everyone inside"
+        }
+    ]
+}

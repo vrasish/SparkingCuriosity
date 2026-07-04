@@ -31,6 +31,8 @@ if (read_aloud_neural_available($bookId)) {
     $data['tts_speed'] = $tts['speed'];
 }
 
+$data['audio_pages'] = read_aloud_playable_pages($bookId);
+
 if (isset($data['pages']) && is_array($data['pages'])) {
     foreach ($data['pages'] as $index => $entry) {
         if (!is_array($entry)) {

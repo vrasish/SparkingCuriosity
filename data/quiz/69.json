@@ -1,0 +1,54 @@
+{
+    "book_id": 69,
+    "title": "The Mystery of the Heavy Little Cube",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Mystery of the Heavy Little Cube\" mostly about?",
+            "choices": [
+                "Your heart pumps air through your body.",
+                "Density describes how much mass is packed into a certain volume",
+                "Sound is fastest in outer space.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 1,
+            "explanation": "Density describes how much mass is packed into a certain volume"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Measuring mass and volume helps explain why some small objects feel surprisingly heavy",
+                "Rocks never change at all.",
+                "Plants eat food from soil only.",
+                "Fish breathe air like people do."
+            ],
+            "correct_index": 0,
+            "explanation": "Measuring mass and volume helps explain why some small objects feel surprisingly heavy"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "The Mystery of the Heavy Little Cube Next, Ms",
+                "Rocks never change at all.",
+                "Your heart pumps air through your body.",
+                "The Moon makes its own light."
+            ],
+            "correct_index": 0,
+            "explanation": "The Mystery of the Heavy Little Cube Next, Ms"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "Your heart pumps air through your body.",
+                "All germs are bad for you.",
+                "Romero placed the cubes on a balance",
+                "Rocks never change at all."
+            ],
+            "correct_index": 2,
+            "explanation": "Romero placed the cubes on a balance"
+        }
+    ]
+}

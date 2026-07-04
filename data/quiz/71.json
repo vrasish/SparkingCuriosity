@@ -1,0 +1,54 @@
+{
+    "book_id": 71,
+    "title": "The Mystery of Heat and Temperature",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Mystery of Heat and Temperature\" mostly about?",
+            "choices": [
+                "Fish breathe air like people do.",
+                "Heat is the transfer of thermal energy from warmer objects to cooler ones",
+                "The Moon makes its own light.",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 1,
+            "explanation": "Heat is the transfer of thermal energy from warmer objects to cooler ones"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Plants eat food from soil only.",
+                "All germs are bad for you.",
+                "Temperature measures how hot or cold something is—linked to how fast its particles move",
+                "The brain does not help you move."
+            ],
+            "correct_index": 2,
+            "explanation": "Temperature measures how hot or cold something is—linked to how fast its particles move"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "The Mystery of Heat and Temperature Ms",
+                "Fish breathe air like people do.",
+                "Rocks never change at all.",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 0,
+            "explanation": "The Mystery of Heat and Temperature Ms"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "All germs are bad for you.",
+                "The brain does not help you move.",
+                "Carter handed Mina one thermometer and Jay another",
+                "Plants eat food from soil only."
+            ],
+            "correct_index": 2,
+            "explanation": "Carter handed Mina one thermometer and Jay another"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "book_id": 75,
+    "title": "The Mystery of the Sunny Stone",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is \"The Mystery of the Sunny Stone\" mostly about?",
+            "choices": [
+                "Plants eat food from soil only.",
+                "Many animals are cold-blooded (ectotherms)",
+                "The Moon makes its own light.",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 1,
+            "explanation": "Many animals are cold-blooded (ectotherms)"
+        },
+        {
+            "id": 2,
+            "prompt": "Which answer is true?",
+            "choices": [
+                "Plants eat food from soil only.",
+                "meaning they rely on heat from their environment to warm their bodies",
+                "Sound is fastest in outer space.",
+                "Rocks never change at all."
+            ],
+            "correct_index": 1,
+            "explanation": "meaning they rely on heat from their environment to warm their bodies"
+        },
+        {
+            "id": 3,
+            "prompt": "What did you learn from this story?",
+            "choices": [
+                "The Moon makes its own light.",
+                "Plants eat food from soil only.",
+                "Your heart pumps air through your body.",
+                "The Mystery of the Sunny Stone Just then"
+            ],
+            "correct_index": 3,
+            "explanation": "The Mystery of the Sunny Stone Just then"
+        },
+        {
+            "id": 4,
+            "prompt": "Pick the best answer:",
+            "choices": [
+                "The Moon makes its own light.",
+                "All germs are bad for you.",
+                "a rabbit hopped out from behind a bush",
+                "Your heart pumps air through your body."
+            ],
+            "correct_index": 2,
+            "explanation": "a rabbit hopped out from behind a bush"
+        }
+    ]
+}
