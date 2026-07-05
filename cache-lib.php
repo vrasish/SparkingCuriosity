@@ -145,7 +145,7 @@ function explore_page_cache_set(string $topicFilter, string $searchQuery, array 
     ]);
 }
 
-/** @return array{books: list<array<string, mixed>>, ratings: array<int, array<string, mixed>>}|null */
+/** @return array{books: list<array<string, mixed>>, top_picks: list<array<string, mixed>>, ratings: array<int, array<string, mixed>>}|null */
 function home_page_cache_get(int $ttlSeconds = 600): ?array
 {
     $cached = stories_cache_get('home-featured', $ttlSeconds);
@@ -155,15 +155,18 @@ function home_page_cache_get(int $ttlSeconds = 600): ?array
 
     return [
         'books' => $cached['books'],
+        'top_picks' => is_array($cached['top_picks'] ?? null) ? $cached['top_picks'] : [],
         'ratings' => $cached['ratings'],
     ];
 }
 
 /** @param list<array<string, mixed>> $books */
-function home_page_cache_set(array $books, array $ratings): void
+/** @param list<array<string, mixed>> $topPicks */
+function home_page_cache_set(array $books, array $ratings, array $topPicks = []): void
 {
     stories_cache_set('home-featured', [
         'books' => $books,
+        'top_picks' => $topPicks,
         'ratings' => $ratings,
     ]);
 }

@@ -1,54 +1,67 @@
 {
     "book_id": 48,
     "title": "The Control Room Inside Your Head",
+    "intro": "This quiz follows Zara and Milo as they discover how the brain controls movement, senses, memories, emotions, and important body functions.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Control Room Inside Your Head\" mostly about?",
+            "prompt": "How does the brain tell the muscles to move?",
             "choices": [
-                "The brain does not help you move.",
-                "The Moon makes its own light.",
-                "All germs are bad for you.",
-                "The brain is the body's control center"
+                "It sends messages through the spinal cord and nerves",
+                "It sends blood directly to the muscles",
+                "It fills the muscles with air",
+                "It makes the bones move by themselves"
             ],
-            "correct_index": 3,
-            "explanation": "The brain is the body's control center"
+            "correct_index": 0,
+            "explanation": "The brain sends messages through the spinal cord and nerves to tell muscles to move."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What do the senses do before the brain helps us understand something?",
             "choices": [
-                "Plants eat food from soil only.",
-                "All germs are bad for you.",
-                "Different regions handle jobs like balance",
-                "Fish breathe air like people do."
+                "They make decisions for the brain",
+                "They gather information from around us",
+                "They store all our memories",
+                "They control the heartbeat"
             ],
-            "correct_index": 2,
-            "explanation": "Different regions handle jobs like balance"
+            "correct_index": 1,
+            "explanation": "The senses gather information from around us before the brain helps us understand it."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "Which group lists some jobs performed by different parts of the brain?",
             "choices": [
-                "All germs are bad for you.",
-                "Plants eat food from soil only.",
-                "your brain sends messages through your spinal cord and nerves",
-                "The brain does not help you move."
+                "Digestion, blood filtering, and bone growth",
+                "Thinking, remembering, movement, and balance",
+                "Making oxygen, water, and food",
+                "Growing hair, nails, and teeth"
             ],
-            "correct_index": 2,
-            "explanation": "your brain sends messages through your spinal cord and nerves"
+            "correct_index": 1,
+            "explanation": "Different parts of the brain help with thinking, remembering, movement, and balance."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What does the brain continue to do while a person is sleeping?",
             "choices": [
-                "All germs are bad for you.",
-                "Your senses gather information",
-                "Fish breathe air like people do.",
-                "The brain does not help you move."
+                "It stops working completely",
+                "It controls breathing and heartbeat and helps store memories",
+                "It turns off every nerve in the body",
+                "It prevents the body from resting"
             ],
             "correct_index": 1,
-            "explanation": "Your senses gather information"
+            "explanation": "While sleeping, the brain controls breathing and heartbeat and helps store memories."
+        },
+        {
+            "id": 5,
+            "prompt": "Why is the brain compared to a control room?",
+            "choices": [
+                "It is empty and quiet",
+                "It sends messages throughout the body and helps control many body functions",
+                "It stores food for the body",
+                "It pumps blood to every organ"
+            ],
+            "correct_index": 1,
+            "explanation": "The brain is like a control room because it sends messages throughout the body and helps control many body functions."
         }
     ]
 }

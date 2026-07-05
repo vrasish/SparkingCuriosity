@@ -407,8 +407,48 @@ function home_topic_tiles(): array
 /** Curated stories shown in the home page "Latest Stories" section. */
 function home_featured_story_ids(): array
 {
-    return [75, 54, 70, 39, 43, 41];
+    return [75, 54, 70, 5, 43, 41];
 }
+
+/** Curated editor picks shown between Latest Stories rows on the homepage. */
+function home_top_pick_story_ids(): array
+{
+    return [39, 78, 71];
+}
+
+/** @return list<array<string, mixed>> */
+function home_fetch_books_by_ids(PDO $pdo, array $bookIds): array
+{
+    $bookIds = array_values(array_filter(array_map('intval', $bookIds)));
+    if ($bookIds === []) {
+        return [];
+    }
+
+    $idList = implode(',', $bookIds);
+    $stmt = $pdo->prepare("
+        SELECT
+            b.book_id,
+            b.title,
+            b.author_name,
+            b.description,
+            b.cover_image_url,
+            b.age_group,
+            b.price_cents,
+            b.book_format,
+            GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
+        FROM books b
+        LEFT JOIN book_categories bc ON b.book_id = bc.book_id
+        LEFT JOIN categories c ON bc.category_id = c.category_id
+        WHERE b.status = 'approved'
+          AND b.book_id IN ({$idList})
+        GROUP BY b.book_id
+        ORDER BY FIELD(b.book_id, {$idList})
+    ");
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+}
+
 
 function status_class(string $status): string
 {

@@ -1,54 +1,67 @@
 {
     "book_id": 47,
     "title": "The Creatures of the Midnight Sea",
+    "intro": "This quiz follows Nila and Owen as they learn how deep-sea creatures survive in darkness, cold water, and high pressure.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Creatures of the Midnight Sea\" mostly about?",
+            "prompt": "What special feature does an anglerfish use to attract prey?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "The brain does not help you move.",
-                "Fish breathe air like people do.",
-                "hide from predators"
+                "A glowing lure on its head",
+                "Large colorful wings",
+                "A hard shell",
+                "A loud sound"
             ],
-            "correct_index": 3,
-            "explanation": "hide from predators"
+            "correct_index": 0,
+            "explanation": "An anglerfish uses a glowing lure on its head to attract prey."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What is bioluminescence?",
             "choices": [
-                "Fish breathe air like people do.",
-                "Your heart pumps air through your body.",
-                "The brain does not help you move.",
-                "The Creatures of the Midnight Sea"
+                "The ability of an animal to swim quickly",
+                "Light made by a living organism",
+                "Heat produced by the ocean",
+                "Sunlight reflected from fish scales"
             ],
-            "correct_index": 3,
-            "explanation": "The Creatures of the Midnight Sea"
+            "correct_index": 1,
+            "explanation": "Bioluminescence is light made by a living organism."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "Why do some deep-sea creatures produce light?",
             "choices": [
-                "All germs are bad for you.",
-                "Sound is fastest in outer space.",
-                "Plants eat food from soil only.",
-                "A story about glowing animals in the deep ocean"
+                "To warm the ocean",
+                "To attract food, scare predators, or find one another",
+                "To help plants grow",
+                "To make the water less salty"
             ],
-            "correct_index": 3,
-            "explanation": "A story about glowing animals in the deep ocean"
+            "correct_index": 1,
+            "explanation": "Some deep-sea creatures produce light to attract food, scare predators, or find one another."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What conditions are found in the deep sea?",
             "choices": [
-                "Maya and Leo stood at the aquarium glass",
-                "The brain does not help you move.",
-                "Plants eat food from soil only.",
-                "All germs are bad for you."
+                "Bright, warm, and dry",
+                "Dark, cold, and under high pressure",
+                "Sunny, windy, and shallow",
+                "Hot, sandy, and filled with trees"
+            ],
+            "correct_index": 1,
+            "explanation": "The deep sea is dark, cold, and under high pressure."
+        },
+        {
+            "id": 5,
+            "prompt": "Which adaptation helps some deep-sea animals survive?",
+            "choices": [
+                "Large eyes, stretchy mouths, soft bodies, or special ways to save energy",
+                "Feathers and wings",
+                "Thick fur and paws",
+                "Leaves that collect sunlight"
             ],
             "correct_index": 0,
-            "explanation": "Maya and Leo stood at the aquarium glass"
+            "explanation": "Large eyes, stretchy mouths, soft bodies, or special ways to save energy help some deep-sea animals survive."
         }
     ]
 }

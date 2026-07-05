@@ -353,6 +353,7 @@ function render_site_footer(bool $compact = false): void
     echo '<footer class="' . $class . '">';
     echo '<p class="site-footer-copyright">' . e(site_copyright_text()) . '</p>';
     echo '</footer>';
+    echo '<script src="' . e(asset_url('assets/site.js')) . '" defer></script>';
 }
 
 function render_site_header(string $variant = 'public', bool $homeNav = false): void
@@ -378,7 +379,11 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
         echo '</a>';
     }
 
-    echo '<nav class="nav-links">';
+    echo '<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">';
+    echo '<span class="nav-toggle-lines" aria-hidden="true"></span>';
+    echo '</button>';
+
+    echo '<nav class="nav-links" id="site-nav" aria-label="Main">';
 
     if ($isAdminNav) {
         echo '<a href="' . e(app_url('admin-stories.php')) . '">All Stories</a>';

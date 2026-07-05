@@ -1,54 +1,67 @@
 {
     "book_id": 46,
-    "title": "The Plant With Many Jobs",
+    "title": "The Plant with Many Jobs",
+    "intro": "This quiz follows Lina and Mateo as they learn how the different parts of a plant work together.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Plant With Many Jobs\" mostly about?",
+            "prompt": "What are the two important jobs of a plant's roots?",
             "choices": [
-                "Plants do more than grow",
-                "The Moon makes its own light.",
-                "Plants eat food from soil only.",
-                "All germs are bad for you."
+                "Making flowers and fruits",
+                "Absorbing water and minerals and holding the plant in place",
+                "Catching sunlight and making seeds",
+                "Moving insects away from the plant"
             ],
-            "correct_index": 0,
-            "explanation": "Plants do more than grow"
+            "correct_index": 1,
+            "explanation": "Roots absorb water and minerals and hold the plant in place."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "Why did Ms. Alvarez compare the stem to a delivery road?",
             "choices": [
-                "Rocks never change at all.",
-                "They produce oxygen",
-                "Sound is fastest in outer space.",
-                "All germs are bad for you."
+                "It carries water and food to different parts of the plant",
+                "It produces all the plant's seeds",
+                "It pulls sunlight into the soil",
+                "It protects the fruit from animals"
             ],
-            "correct_index": 1,
-            "explanation": "They produce oxygen"
+            "correct_index": 0,
+            "explanation": "The stem carries water and food to different parts of the plant."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What do leaves use to make food for the plant?",
             "choices": [
-                "Fish breathe air like people do.",
-                "Rocks never change at all.",
-                "The brain does not help you move.",
-                "provide food and shelter for animals"
+                "Sunlight, water, and carbon dioxide",
+                "Soil, fruit, and oxygen",
+                "Seeds, flowers, and insects",
+                "Wind, rocks, and minerals"
             ],
-            "correct_index": 3,
-            "explanation": "provide food and shelter for animals"
+            "correct_index": 0,
+            "explanation": "Leaves use sunlight, water, and carbon dioxide to make food for the plant."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What is one important job of a flower?",
             "choices": [
-                "prevent soil erosion",
-                "All germs are bad for you.",
-                "The brain does not help you move.",
-                "The Moon makes its own light."
+                "Holding the plant firmly in the soil",
+                "Helping the plant make seeds",
+                "Carrying water up the stem",
+                "Protecting the roots"
             ],
-            "correct_index": 0,
-            "explanation": "prevent soil erosion"
+            "correct_index": 1,
+            "explanation": "One important job of a flower is helping the plant make seeds."
+        },
+        {
+            "id": 5,
+            "prompt": "How do fruits help a plant?",
+            "choices": [
+                "They make sunlight",
+                "They absorb water from the soil",
+                "They protect seeds and help spread them to new places",
+                "They hold the leaves upright"
+            ],
+            "correct_index": 2,
+            "explanation": "Fruits protect seeds and help spread them to new places."
         }
     ]
 }

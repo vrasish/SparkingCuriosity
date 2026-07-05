@@ -1,54 +1,67 @@
 {
     "book_id": 50,
     "title": "The Earth with Hidden Layers",
+    "intro": "This quiz follows Isla and Theo as they discover the different layers hidden inside Earth.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Earth with Hidden Layers\" mostly about?",
+            "prompt": "Which layer of Earth do people live on?",
             "choices": [
-                "Earth is built in layers: the crust where we live",
-                "Fish breathe air like people do.",
-                "Sound is fastest in outer space.",
-                "Plants eat food from soil only."
+                "The mantle",
+                "The outer core",
+                "The crust",
+                "The inner core"
             ],
-            "correct_index": 0,
-            "explanation": "Earth is built in layers: the crust where we live"
+            "correct_index": 2,
+            "explanation": "People live on Earth's crust."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What is the mantle mostly made of?",
             "choices": [
-                "The brain does not help you move.",
-                "the liquid outer core",
-                "All germs are bad for you.",
-                "The Moon makes its own light."
+                "A thick layer of very hot rock",
+                "Cold liquid water",
+                "Solid ice",
+                "Loose soil and plants"
             ],
-            "correct_index": 1,
-            "explanation": "the liquid outer core"
+            "correct_index": 0,
+            "explanation": "The mantle is mostly a thick layer of very hot rock."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What is the outer core made of?",
             "choices": [
-                "The brain does not help you move.",
-                "All germs are bad for you.",
-                "Rocks never change at all.",
-                "These layers shape volcanoes"
+                "Solid rock",
+                "Liquid metal",
+                "Air and water",
+                "Sand and soil"
             ],
-            "correct_index": 3,
-            "explanation": "These layers shape volcanoes"
+            "correct_index": 1,
+            "explanation": "The outer core is made of liquid metal."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Why does the inner core remain solid even though it is extremely hot?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "The Earth with Hidden Layers",
-                "Rocks never change at all.",
-                "All germs are bad for you."
+                "It is surrounded by cold water",
+                "It receives no heat from the mantle",
+                "Enormous pressure at Earth's center keeps the metal solid",
+                "It is made only of stone"
             ],
-            "correct_index": 1,
-            "explanation": "The Earth with Hidden Layers"
+            "correct_index": 2,
+            "explanation": "Enormous pressure at Earth's center keeps the inner core solid even though it is extremely hot."
+        },
+        {
+            "id": 5,
+            "prompt": "Which list shows Earth's layers in the correct order from the outside to the center?",
+            "choices": [
+                "Crust → mantle → outer core → inner core",
+                "Mantle → crust → inner core → outer core",
+                "Inner core → outer core → mantle → crust",
+                "Crust → outer core → mantle → inner core"
+            ],
+            "correct_index": 0,
+            "explanation": "From the outside to the center, Earth's layers are crust, mantle, outer core, and inner core."
         }
     ]
 }

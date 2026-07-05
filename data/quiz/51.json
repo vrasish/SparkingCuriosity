@@ -1,54 +1,67 @@
 {
     "book_id": 51,
     "title": "The Mountain That Rumbled",
+    "intro": "This quiz follows Isla and Theo as they learn about volcanoes, magma, lava, and the difference between active and dormant volcanoes.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Mountain That Rumbled\" mostly about?",
+            "prompt": "What is magma?",
             "choices": [
-                "Fish breathe air like people do.",
-                "The brain does not help you move.",
-                "The Moon makes its own light.",
-                "Mountains can rumble when tectonic plates shift or magma moves beneath the surface"
+                "Melted rock underground",
+                "Water trapped inside a mountain",
+                "Smoke from a volcano",
+                "Hard rock on Earth's surface"
             ],
-            "correct_index": 3,
-            "explanation": "Mountains can rumble when tectonic plates shift or magma moves beneath the surface"
+            "correct_index": 0,
+            "explanation": "Magma is melted rock underground."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What is magma called after it reaches Earth's surface?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "All germs are bad for you.",
-                "Plants eat food from soil only.",
-                "The Mountain That Rumbled"
+                "Ash",
+                "Steam",
+                "Lava",
+                "Soil"
             ],
-            "correct_index": 3,
-            "explanation": "The Mountain That Rumbled"
+            "correct_index": 2,
+            "explanation": "Magma is called lava after it reaches Earth's surface."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "Besides lava, what else can a volcano release?",
             "choices": [
-                "The brain does not help you move.",
-                "Plants eat food from soil only.",
-                "A story about volcanoes, lava, and sleeping mountains",
-                "Sound is fastest in outer space."
+                "Snow, rain, and ice",
+                "Ash, steam, and gases",
+                "Sand, soil, and leaves",
+                "Only water"
             ],
-            "correct_index": 2,
-            "explanation": "A story about volcanoes, lava, and sleeping mountains"
+            "correct_index": 1,
+            "explanation": "Besides lava, a volcano can release ash, steam, and gases."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What does it mean when a volcano is active?",
             "choices": [
-                "Isla and Theo stood in front of a giant volcano model at the science museum",
-                "Plants eat food from soil only.",
-                "The brain does not help you move.",
-                "All germs are bad for you."
+                "It can never erupt again",
+                "It is erupting now, erupted recently, or may erupt again",
+                "It has completely disappeared",
+                "It is always covered with snow"
+            ],
+            "correct_index": 1,
+            "explanation": "An active volcano is erupting now, erupted recently, or may erupt again."
+        },
+        {
+            "id": 5,
+            "prompt": "What is a dormant volcano?",
+            "choices": [
+                "A volcano that is quiet now but may erupt again someday",
+                "A volcano that erupts every day",
+                "A volcano made only of ice",
+                "A mountain with no magma underneath it"
             ],
             "correct_index": 0,
-            "explanation": "Isla and Theo stood in front of a giant volcano model at the science museum"
+            "explanation": "A dormant volcano is quiet now but may erupt again someday."
         }
     ]
 }

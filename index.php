@@ -6,52 +6,80 @@ require_once __DIR__ . '/favorites-lib.php';
 $pageCache = home_page_cache_get();
 
 $latestBooks = [];
+$topPickBooks = [];
 $dbError = null;
 $ratingSummaries = [];
 
 if ($pageCache !== null) {
     $latestBooks = $pageCache['books'];
+    $topPickBooks = $pageCache['top_picks'];
     $ratingSummaries = $pageCache['ratings'];
 } else {
     cart_bootstrap();
 
     try {
-        $featuredIds = home_featured_story_ids();
-        $idList = implode(',', array_map('intval', $featuredIds));
-        $stmt = stories_connect()->prepare("
-            SELECT
-                b.book_id,
-                b.title,
-                b.author_name,
-                b.description,
-                b.cover_image_url,
-                b.age_group,
-                b.price_cents,
-                b.book_format,
-                GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
-            FROM books b
-            LEFT JOIN book_categories bc ON b.book_id = bc.book_id
-            LEFT JOIN categories c ON bc.category_id = c.category_id
-            WHERE b.status = 'approved'
-              AND b.book_id IN ({$idList})
-            GROUP BY b.book_id
-            ORDER BY FIELD(b.book_id, {$idList})
-        ");
-        $stmt->execute();
-        $latestBooks = $stmt->fetchAll();
+        $pdo = stories_connect();
+        $latestBooks = home_fetch_books_by_ids($pdo, home_featured_story_ids());
+        $topPickBooks = home_fetch_books_by_ids($pdo, home_top_pick_story_ids());
     } catch (PDOException $ex) {
         $dbError = 'Stories could not be loaded right now.';
         error_log($ex->getMessage());
     }
 
-    $ratingSummaries = get_book_rating_summaries(stories_connect(), array_column($latestBooks, 'book_id'));
-    home_page_cache_set($latestBooks, $ratingSummaries);
+    $allBookIds = array_merge(
+        array_column($latestBooks, 'book_id'),
+        array_column($topPickBooks, 'book_id')
+    );
+    $ratingSummaries = get_book_rating_summaries(stories_connect(), $allBookIds);
+    home_page_cache_set($latestBooks, $ratingSummaries, $topPickBooks);
 }
 
 cart_bootstrap();
 release_session_lock();
 
 $topicTiles = home_topic_tiles();
+$latestRowOne = array_slice($latestBooks, 0, 3);
+$latestRowTwo = array_slice($latestBooks, 3);
+
+/**
+ * @param array<string, mixed> $book
+ * @param array<int, array<string, mixed>> $ratingSummaries
+ */
+function render_home_story_card(array $book, array $ratingSummaries): void
+{
+    $cover = cover_image_src($book['cover_image_url'] ?? null, $book['title']);
+    $primaryCat = primary_category($book['categories'] ?? '');
+    $readMins = estimate_reading_minutes((string) ($book['description'] ?? ''));
+    ?>
+    <article class="home-story-card">
+        <div class="home-story-cover-wrap">
+            <?php render_story_favorite_button((int) $book['book_id'], app_url('index.php')); ?>
+            <a href="<?= e(app_url('book.php?id=' . (int) $book['book_id'])) ?>" class="home-story-cover-link">
+                <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="home-story-img" loading="lazy">
+            </a>
+        </div>
+        <div class="home-story-body">
+            <?php if ($primaryCat !== ''): ?>
+                <span class="home-story-tag topic-tag category-btn <?= e(topic_class($primaryCat)) ?>"><?= e(strtoupper($primaryCat)) ?></span>
+            <?php endif; ?>
+            <a href="<?= e(app_url('book.php?id=' . (int) $book['book_id'])) ?>" class="home-story-title"><?= e($book['title']) ?></a>
+            <p class="home-story-desc"><?= e($book['description']) ?></p>
+            <div class="home-story-card-footer">
+                <div class="home-story-meta">
+                    <span>Ages <?= e($book['age_group']) ?></span>
+                    <span><?= (int) $readMins ?> min</span>
+                </div>
+                <div class="home-story-actions">
+                    <?php
+                    $cardRating = $ratingSummaries[(int) $book['book_id']] ?? null;
+                    render_story_card_actions($book, $cardRating);
+                    ?>
+                </div>
+            </div>
+        </div>
+    </article>
+    <?php
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -92,41 +120,36 @@ $topicTiles = home_topic_tiles();
                 <p>No approved stories yet. Check back soon!</p>
             </div>
         <?php else: ?>
-            <div class="home-story-grid">
-                <?php foreach ($latestBooks as $book): ?>
-                    <?php
-                    $cover = cover_image_src($book['cover_image_url'] ?? null, $book['title']);
-                    $primaryCat = primary_category($book['categories'] ?? '');
-                    $readMins = estimate_reading_minutes((string) ($book['description'] ?? ''));
-                    ?>
-                    <article class="home-story-card">
-                        <div class="home-story-cover-wrap">
-                            <?php render_story_favorite_button((int) $book['book_id'], app_url('index.php')); ?>
-                            <a href="<?= e(app_url('book.php?id=' . (int) $book['book_id'])) ?>" class="home-story-cover-link">
-                                <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="home-story-img" loading="lazy">
-                            </a>
+            <div class="home-latest-rows">
+                <?php if ($latestRowOne !== []): ?>
+                    <div class="home-story-grid home-story-grid--row">
+                        <?php foreach ($latestRowOne as $book): ?>
+                            <?php render_home_story_card($book, $ratingSummaries); ?>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ($topPickBooks !== []): ?>
+                    <section class="home-top-picks" aria-label="Top Picks">
+                        <div class="home-top-picks-head">
+                            <h3 class="home-top-picks-title">Top Picks</h3>
+                            <p class="home-top-picks-lead">Stories kids love to read again and again</p>
                         </div>
-                        <div class="home-story-body">
-                            <?php if ($primaryCat !== ''): ?>
-                                <span class="home-story-tag topic-tag category-btn <?= e(topic_class($primaryCat)) ?>"><?= e(strtoupper($primaryCat)) ?></span>
-                            <?php endif; ?>
-                            <a href="<?= e(app_url('book.php?id=' . (int) $book['book_id'])) ?>" class="home-story-title"><?= e($book['title']) ?></a>
-                            <p class="home-story-desc"><?= e($book['description']) ?></p>
-                            <div class="home-story-card-footer">
-                                <div class="home-story-meta">
-                                    <span>Ages <?= e($book['age_group']) ?></span>
-                                    <span><?= (int) $readMins ?> min</span>
-                                </div>
-                                <div class="home-story-actions">
-                                    <?php
-                                    $cardRating = $ratingSummaries[(int) $book['book_id']] ?? null;
-                                    render_story_card_actions($book, $cardRating);
-                                    ?>
-                                </div>
-                            </div>
+                        <div class="home-story-grid home-story-grid--picks">
+                            <?php foreach ($topPickBooks as $book): ?>
+                                <?php render_home_story_card($book, $ratingSummaries); ?>
+                            <?php endforeach; ?>
                         </div>
-                    </article>
-                <?php endforeach; ?>
+                    </section>
+                <?php endif; ?>
+
+                <?php if ($latestRowTwo !== []): ?>
+                    <div class="home-story-grid home-story-grid--row">
+                        <?php foreach ($latestRowTwo as $book): ?>
+                            <?php render_home_story_card($book, $ratingSummaries); ?>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
     </section>

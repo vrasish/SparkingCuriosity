@@ -1,54 +1,67 @@
 {
     "book_id": 45,
     "title": "The Tree That Made Its Own Lunch",
+    "intro": "This quiz follows Asha and Noah as they discover how trees use photosynthesis to make food.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Tree That Made Its Own Lunch\" mostly about?",
+            "prompt": "What did Asha wonder while sitting under the maple tree?",
             "choices": [
-                "The brain does not help you move.",
-                "All germs are bad for you.",
-                "Your heart pumps air through your body.",
-                "Plants make their own food through photosynthesis"
+                "Whether the tree could walk",
+                "Whether the tree ate lunch",
+                "Whether the tree could talk",
+                "Whether the tree slept at night"
             ],
-            "correct_index": 3,
-            "explanation": "Plants make their own food through photosynthesis"
+            "correct_index": 1,
+            "explanation": "Asha wondered whether the tree ate lunch."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What did Mrs. Patel compare a leaf to?",
             "choices": [
-                "they produce sugars that fuel growth and release oxygen",
-                "The Moon makes its own light.",
-                "The brain does not help you move.",
-                "Fish breathe air like people do."
+                "A tiny food factory",
+                "A water bottle",
+                "A lunchbox",
+                "A small umbrella"
             ],
             "correct_index": 0,
-            "explanation": "they produce sugars that fuel growth and release oxygen"
+            "explanation": "Mrs. Patel compared a leaf to a tiny food factory."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What is the green substance in leaves that helps capture sunlight?",
             "choices": [
-                "Rocks never change at all.",
-                "All germs are bad for you.",
-                "Noah opened his sandwich",
-                "Sound is fastest in outer space."
+                "Oxygen",
+                "Chlorophyll",
+                "Sugar",
+                "Carbon dioxide"
             ],
-            "correct_index": 2,
-            "explanation": "Noah opened his sandwich"
+            "correct_index": 1,
+            "explanation": "Chlorophyll is the green substance in leaves that helps capture sunlight."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What three things does a tree use to make its food?",
             "choices": [
-                "All germs are bad for you.",
-                "Sound is fastest in outer space.",
-                "Asha opened her fruit box",
-                "The Moon makes its own light."
+                "Sunlight, water, and carbon dioxide",
+                "Soil, oxygen, and fruit",
+                "Rain, sugar, and wind",
+                "Sunlight, rocks, and oxygen"
             ],
-            "correct_index": 2,
-            "explanation": "Asha opened her fruit box"
+            "correct_index": 0,
+            "explanation": "A tree uses sunlight, water, and carbon dioxide to make its food."
+        },
+        {
+            "id": 5,
+            "prompt": "What does photosynthesis produce?",
+            "choices": [
+                "Sugar for the plant and oxygen for the air",
+                "Only water for the roots",
+                "Soil and sunlight",
+                "Carbon dioxide and rocks"
+            ],
+            "correct_index": 0,
+            "explanation": "Photosynthesis produces sugar for the plant and oxygen for the air."
         }
     ]
 }

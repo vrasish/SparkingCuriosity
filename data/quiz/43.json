@@ -1,54 +1,67 @@
 {
     "book_id": 43,
     "title": "The Sky That Started Spinning",
+    "intro": "This quiz follows Maya and Leo as they learn how tornadoes form and what to do during a tornado warning.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Sky That Started Spinning\" mostly about?",
+            "prompt": "What weather changes did Maya and Leo notice before the tornado warning?",
             "choices": [
-                "Earth spins on its axis, and the atmosphere moves with it",
-                "Plants eat food from soil only.",
-                "Sound is fastest in outer space.",
-                "The Moon makes its own light."
+                "The sky became clear and cold",
+                "Dark clouds appeared, the air felt warm and sticky, and a cool gust rushed past",
+                "Snow began falling quickly",
+                "The Sun became unusually bright"
             ],
-            "correct_index": 0,
-            "explanation": "Earth spins on its axis, and the atmosphere moves with it"
+            "correct_index": 1,
+            "explanation": "Dark clouds appeared, the air felt warm and sticky, and a cool gust rushed past."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What is a tornado?",
             "choices": [
-                "Plants eat food from soil only.",
-                "Fish breathe air like people do.",
-                "The Sky That Started Spinning A science story about tornadoes",
-                "The Moon makes its own light."
+                "A large ocean wave",
+                "A spinning column of air stretching from a storm cloud toward the ground",
+                "A cloud that produces only rain",
+                "A strong wind that always moves in a straight line"
             ],
-            "correct_index": 2,
-            "explanation": "The Sky That Started Spinning A science story about tornadoes"
+            "correct_index": 1,
+            "explanation": "A tornado is a spinning column of air stretching from a storm cloud toward the ground."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "How can air begin to rotate inside a thunderstorm?",
             "choices": [
-                "Tall dark clouds rose in the distance",
-                "Plants eat food from soil only.",
-                "All germs are bad for you.",
-                "The brain does not help you move."
+                "Warm and cool air remain completely still",
+                "Winds blow in different directions or at different speeds",
+                "The Sun pulls the clouds downward",
+                "Rain freezes inside the cloud"
             ],
-            "correct_index": 0,
-            "explanation": "Tall dark clouds rose in the distance"
+            "correct_index": 1,
+            "explanation": "Air can begin to rotate when winds blow in different directions or at different speeds."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Where did the class go during the tornado warning?",
             "choices": [
-                "Fish breathe air like people do.",
-                "Rivera called from the school door, “Everyone inside",
-                "Sound is fastest in outer space.",
-                "The Moon makes its own light."
+                "Outside to watch the storm",
+                "Beside the classroom windows",
+                "To an inside hallway away from windows",
+                "To the school playground"
             ],
-            "correct_index": 1,
-            "explanation": "Rivera called from the school door, “Everyone inside"
+            "correct_index": 2,
+            "explanation": "The class went to an inside hallway away from windows."
+        },
+        {
+            "id": 5,
+            "prompt": "What important lesson did Maya and Leo learn?",
+            "choices": [
+                "Tornado warnings can be ignored when the rain is light",
+                "Tornadoes form only during winter",
+                "Learning about weather and following safety instructions helps protect people",
+                "The safest place during a tornado is near a window"
+            ],
+            "correct_index": 2,
+            "explanation": "Learning about weather and following safety instructions helps protect people."
         }
     ]
 }

@@ -1,54 +1,67 @@
 {
     "book_id": 49,
     "title": "The Raindrop That Took a Trip",
+    "intro": "This quiz follows Kavya and Ben as they learn how water moves through the water cycle.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Raindrop That Took a Trip\" mostly about?",
+            "prompt": "What did Kavya notice sliding down the classroom window?",
             "choices": [
-                "The Moon makes its own light.",
-                "Plants eat food from soil only.",
-                "Water moves through the water cycle: it evaporates from lakes and oceans",
-                "The brain does not help you move."
+                "A snowflake",
+                "A raindrop",
+                "A leaf",
+                "A pebble"
             ],
-            "correct_index": 2,
-            "explanation": "Water moves through the water cycle: it evaporates from lakes and oceans"
+            "correct_index": 1,
+            "explanation": "Kavya noticed a raindrop sliding down the classroom window."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What is evaporation?",
             "choices": [
-                "Fish breathe air like people do.",
-                "falls as rain or snow",
-                "The brain does not help you move.",
-                "Rocks never change at all."
+                "Water vapor cooling into droplets",
+                "Water falling from clouds",
+                "Liquid water changing into water vapor and rising into the air",
+                "Water collecting in lakes and oceans"
             ],
-            "correct_index": 1,
-            "explanation": "falls as rain or snow"
+            "correct_index": 2,
+            "explanation": "Evaporation is when liquid water changes into water vapor and rises into the air."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What happens during condensation?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "The Raindrop That Took a Trip Just then, Ms",
-                "Sound is fastest in outer space.",
-                "The Moon makes its own light."
+                "Water vapor cools and changes into tiny liquid droplets",
+                "Water freezes deep underground",
+                "Rainwater flows into rivers",
+                "The Sun heats the ocean"
             ],
-            "correct_index": 1,
-            "explanation": "The Raindrop That Took a Trip Just then, Ms"
+            "correct_index": 0,
+            "explanation": "During condensation, water vapor cools and changes into tiny liquid droplets."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Which of these is an example of precipitation?",
             "choices": [
-                "Alvarez walked over with a smile",
-                "Sound is fastest in outer space.",
-                "Your heart pumps air through your body.",
-                "Fish breathe air like people do."
+                "Rain, snow, sleet, or hail falling from clouds",
+                "Water vapor rising into the air",
+                "Water soaking into the ground",
+                "Sunlight warming a lake"
             ],
             "correct_index": 0,
-            "explanation": "Alvarez walked over with a smile"
+            "explanation": "Precipitation includes rain, snow, sleet, or hail falling from clouds."
+        },
+        {
+            "id": 5,
+            "prompt": "Why does the water cycle continue again and again?",
+            "choices": [
+                "Water disappears after it rains",
+                "The Sun heats collected water, causing it to evaporate again",
+                "Clouds hold water forever",
+                "Rivers stop water from moving"
+            ],
+            "correct_index": 1,
+            "explanation": "The water cycle continues because the Sun heats collected water, causing it to evaporate again."
         }
     ]
 }
