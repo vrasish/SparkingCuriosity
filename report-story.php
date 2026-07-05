@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $book) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report Story | Sparking Curiosity</title>
+    <title><?= e(site_page_title('Report Story')) ?></title>
     <?php render_stylesheet(); ?>
 </head>
 <body class="<?= body_class() ?>">

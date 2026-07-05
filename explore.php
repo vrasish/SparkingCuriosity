@@ -88,7 +88,7 @@ $exploreRedirect = app_url('explore.php' . ($hasFilters ? '?' . http_build_query
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Stories | Sparking Curiosity</title>
+    <title><?= e(site_page_title('Explore Stories')) ?></title>
     <?php render_stylesheet(); ?>
 </head>
 <body class="<?= body_class('explore-library-page') ?>">

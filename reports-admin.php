@@ -49,7 +49,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reports Admin | Sparking Curiosity</title>
+    <title><?= e(site_page_title('Reports Admin')) ?></title>
     <?php render_stylesheet(); ?>
 </head>
 <body>

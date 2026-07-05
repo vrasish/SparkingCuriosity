@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stamp Sparking Curiosity logo (bottom-right) on every page."""
+"""Stamp Science Fables logo (bottom-right) on every page."""
 
 import os
 import sys

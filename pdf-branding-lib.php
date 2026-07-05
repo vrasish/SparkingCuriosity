@@ -2,19 +2,29 @@
 
 declare(strict_types=1);
 
+function site_brand_name(): string
+{
+    return 'Science Fables';
+}
+
+function site_page_title(string $pageName): string
+{
+    return $pageName . ' | ' . site_brand_name();
+}
+
 function site_copyright_text(): string
 {
-    return '© 2026 Sparking Curiosity. All rights reserved.';
+    return '© 2026 ' . site_brand_name() . '. All rights reserved.';
 }
 
 function site_logo_disk_path(): string
 {
-    return __DIR__ . '/assets/sparking-curiosity-logo.png';
+    return __DIR__ . '/assets/science-fables-logo.png';
 }
 
 function site_logo_url(): string
 {
-    return asset_url('assets/sparking-curiosity-logo.png');
+    return asset_url('assets/science-fables-logo.png');
 }
 
 function find_python_with_pymupdf(): ?string

@@ -9,3 +9,4 @@ uploads/ai-temp/*
 data/cache/*
 !data/cache/.gitkeep
 .DS_Store
+data/.favorites-schema-ready

@@ -344,7 +344,7 @@ function body_class(string $extra = ''): string
 function render_site_logo_icon(): void
 {
     $logoUrl = site_logo_url();
-    echo '<img src="' . e($logoUrl) . '" alt="Sparking Curiosity" class="site-logo-img" width="290" height="74">';
+    echo '<img src="' . e($logoUrl) . '" alt="' . e(site_brand_name()) . '" class="site-logo-img" width="290" height="74">';
 }
 
 function render_site_footer(bool $compact = false): void

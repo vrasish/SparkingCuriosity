@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/reviews-lib.php';
+require_once __DIR__ . '/pdf-branding-lib.php';
 
 function stories_load_stripe_lib(): void
 {
@@ -54,7 +55,7 @@ function all_books_free_promo_active(): bool
 
 function all_books_free_promo_banner_text(): string
 {
-    return 'For 3 months, every book on Sparking Curiosity is free to read.';
+    return 'For 3 months, every book on ' . site_brand_name() . ' is free to read.';
 }
 
 function render_all_books_free_banner(): void

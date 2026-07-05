@@ -67,7 +67,7 @@ function ai_is_configured(): bool
 function ai_system_prompt(): string
 {
     return <<<'PROMPT'
-You are the Sparking Curiosity AI Authoring Assistant — a creative writing partner like ChatGPT, specialized for children’s science fiction (ages 8–12).
+You are the Science Fables AI Authoring Assistant — a creative writing partner like ChatGPT, specialized for children’s science fiction (ages 8–12).
 
 How to behave:
 - Respond naturally to ANY message, even a single sentence. Never require forms, templates, or long briefs.
@@ -469,7 +469,7 @@ function ai_fetch_image_to_temp(string $url): ?string
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_FOLLOWLOCATION => true,
         CURLOPT_TIMEOUT => 20,
-        CURLOPT_USERAGENT => 'SparkingCuriosity/1.0',
+        CURLOPT_USERAGENT => 'ScienceFables/1.0',
     ]);
     $data = curl_exec($ch);
     $code = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -762,6 +762,7 @@ function ai_generate_story_pdf(array $story, array $images = []): array
     }
 
     require_once __DIR__ . '/lib/tcpdf/tcpdf.php';
+    require_once __DIR__ . '/pdf-branding-lib.php';
 
     $title = trim((string) ($story['title'] ?? 'Untitled Story'));
     $author = trim((string) ($story['author_name'] ?? 'Story Author'));
@@ -771,7 +772,7 @@ function ai_generate_story_pdf(array $story, array $images = []): array
     $pagePaths = $images['page_paths'] ?? [];
 
     $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-    $pdf->SetCreator('Sparking Curiosity');
+    $pdf->SetCreator(site_brand_name());
     $pdf->SetAuthor($author);
     $pdf->SetTitle($title);
     $pdf->setPrintHeader(false);
@@ -802,7 +803,7 @@ function ai_generate_story_pdf(array $story, array $images = []): array
     $pdf->MultiCell($contentW, 10, 'By ' . $author, 0, 'C');
     ai_pdf_set_body_text($pdf);
     $pdf->SetFont('helvetica', 'I', 14);
-    $pdf->MultiCell($contentW, 10, 'Ages 8–12 · Sparking Curiosity', 0, 'C');
+    $pdf->MultiCell($contentW, 10, 'Ages 8–12 · ' . site_brand_name(), 0, 'C');
     ai_pdf_set_body_text($pdf);
 
     foreach ($pages as $i => $page) {
@@ -860,7 +861,6 @@ function ai_generate_story_pdf(array $story, array $images = []): array
         $pdf->MultiCell($contentW, 10, $scienceElement, 0, 'L');
     }
 
-    require_once __DIR__ . '/pdf-branding-lib.php';
     brand_tcpdf_document($pdf);
 
     $uploadDir = books_upload_dir();

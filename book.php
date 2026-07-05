@@ -112,7 +112,7 @@ if ($book && !$preview && !$bookLocked) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $book ? e($book['title']) . ' | Sparking Curiosity' : 'Story | Sparking Curiosity' ?></title>
+    <title><?= $book ? e($book['title'] . ' | ' . site_brand_name()) : e(site_page_title('Story')) ?></title>
     <?php render_stylesheet(); ?>
 </head>
 <body class="<?= body_class() ?>">

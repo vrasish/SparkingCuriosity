@@ -24,7 +24,7 @@ release_session_lock();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Library | Sparking Curiosity</title>
+    <title><?= e(site_page_title('My Library')) ?></title>
     <?php render_stylesheet(); ?>
 </head>
 <body class="<?= body_class('explore-library-page my-library-page') ?>">

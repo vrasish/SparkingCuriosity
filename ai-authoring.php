@@ -16,7 +16,7 @@ $step = $workflow['step'] ?? 'idea';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Authoring Tool | Sparking Curiosity</title>
+    <title><?= e(site_page_title('AI Authoring Tool')) ?></title>
     <?php render_stylesheet(); ?>
 </head>
 <body class="<?= body_class('ai-authoring-body') ?>">

@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account | Sparking Curiosity</title>
+    <title><?= e(site_page_title('Create Account')) ?></title>
     <?php render_stylesheet(); ?>
 </head>
 <body class="<?= body_class('auth-page') ?>">
