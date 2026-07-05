@@ -122,7 +122,7 @@ if ($book && !$preview && !$bookLocked) {
 <main class="container page-main">
     <?php if ($error): ?>
         <div class="alert alert-error"><?= e($error) ?></div>
-        <a href="<?= e(app_url('explore.php')) ?>" class="btn btn-outline">Back to Explore</a>
+        <a href="<?= e(app_url('search.php')) ?>" class="btn btn-outline">Back to Search</a>
     <?php else: ?>
         <div class="page-section">
         <div class="book-header">
@@ -261,7 +261,7 @@ if ($book && !$preview && !$bookLocked) {
         <?php endif; ?>
 
         <div class="page-actions">
-            <a href="<?= e(app_url('explore.php')) ?>" class="btn btn-outline">&larr; Back to Explore</a>
+            <a href="<?= e(app_url('search.php')) ?>" class="btn btn-outline">&larr; Back to Search</a>
             <a href="<?= e(app_url('report-story.php?id=' . (int) $book['book_id'])) ?>" class="report-story-link"><span class="report-story-flag" aria-hidden="true">🚩</span> Report Story</a>
         </div>
         </div>

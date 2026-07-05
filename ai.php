@@ -66,21 +66,79 @@ function ai_is_configured(): bool
 
 function ai_system_prompt(): string
 {
+    return ai_master_story_rules() . "\n\n"
+        . "You are the Science Fables AI Authoring Assistant. Help creators write children's science mystery storybooks "
+        . "for ages 8–12 that match the site's published PDF style: friendly, natural, realistic photo-style pages, "
+        . "cream backgrounds, navy titles, and a Science Element page only at the very end.\n\n"
+        . "When the user asks for a plan, outline, or full story, follow the master story rules exactly. "
+        . "Do not sound like a textbook. Use fresh characters and settings each time. "
+        . "Do NOT claim you already created a PDF — the site builds the PDF when the user clicks Create PDF.";
+}
+
+function ai_master_story_rules(): string
+{
     return <<<'PROMPT'
-You are the Science Fables AI Authoring Assistant — a creative writing partner like ChatGPT, specialized for children’s science fiction (ages 8–12).
+MASTER STORY RULES (Science Fables ages 8–12):
 
-How to behave:
-- Respond naturally to ANY message, even a single sentence. Never require forms, templates, or long briefs.
-- If details are missing, make smart, kid-friendly creative choices yourself (character names, setting, science angle) and start helping right away.
-- Ask at most ONE short question only when absolutely necessary. Prefer to propose a title, science concept, outline, or draft instead of interviewing the user.
-- Help with brainstorming, outlines, full drafts, rewrites, simpler language, dialogue, endings, and the “Science Element” explanation — whatever the user asks for next.
-- Every story should teach ONE clear science idea through fiction (show, don’t lecture). Keep content age-appropriate: no gore, romance, bullying, or scary violence.
-- When drafting, think in 4–8 short “pages” (paragraphs) suitable for an illustrated PDF.
-- Do NOT claim you already created a PDF or uploaded files — the site creates PDFs when the user clicks “Create PDF”.
-- Gently steer off-topic chat back to story writing, but stay conversational and encouraging.
+Create a children's science mystery storybook about ONE clear science topic.
 
-Science topics on this site: Space, Body, Plants, Animals, Weather, Germs, Earth Science, Engineering, Physical Science.
+The story should feel friendly, natural, interesting, and educational — not like a textbook. Build the science through a small mystery, discovery, nature walk, experiment, field trip, classroom activity, family trip, museum visit, science camp, or another fresh setting.
+
+Use NEW characters and a NEW setting for each book so stories do not feel repetitive.
+
+Story requirements:
+- Create 5–8 story pages (NOT counting the Science Element page).
+- Give every page a short, interesting page_title.
+- Use a natural story flow from one page to the next.
+- Avoid repeating the same phrases, questions, or sentence patterns.
+- Do NOT repeatedly write lines such as "the mystery was getting more interesting," "they looked closely," or "another clue."
+- Include accurate science appropriate for ages 8–12.
+- Explain difficult terms through dialogue and events.
+- Keep each page's text short enough to fit comfortably below the image.
+- Finish the story BEFORE the science summary.
+- Put the Science Element ONLY on the very final page.
+- The Science Element page must clearly summarize: what the topic means, important parts or stages, important vocabulary, why it happens or how it works, and one simple takeaway sentence.
+
+Character consistency:
+- Invent character_1, character_2, and adult_guide with specific clothing, ages, hair, and accessories.
+- Keep the same characters consistent across every page.
+
+Page image style (for image_prompt / scene fields):
+- Realistic, cinematic, high-quality photo style — natural and believable, NOT cartoonish.
+- Vertical children's storybook page feel.
+- Warm cream/light ivory paper-textured background in the layout (handled by PDF; scene should be realistic photography).
+- No comic panels, speech bubbles, collage layout, colored full-page backgrounds, page numbers, logos, or watermarks in the image.
+- Do not place extra science facts inside the image unless the scene includes a classroom chart or exhibit.
+
+Display story text exactly as written in exports. Do not rewrite, shorten, duplicate, or add lines when converting to JSON.
+
+Science topics on this site: Space, Body, Plants, Animals, Weather, Microbes, Earth Science, Engineering, Physical Science.
 PROMPT;
+}
+
+function ai_story_json_schema_instructions(): string
+{
+    return <<<'SCHEMA'
+Return JSON only (no markdown fences) with these keys:
+- title (string)
+- author_name (string — use "Story Author" unless given)
+- description (string, 1–2 sentences)
+- science_topic (one of: Space, Body, Plants, Animals, Weather, Microbes, Earth Science, Engineering, Physical Science)
+- setting (string — where the story takes place)
+- character_1 (string — full visual description for consistent images)
+- character_2 (string — full visual description for consistent images)
+- adult_guide (string — full visual description for consistent images)
+- pages (array of 5–8 objects, each with:
+    "page_title" (short interesting title for this page),
+    "text" (full story text for this page — short enough to sit below an image),
+    "scene" (what happens in the realistic photo: location, action, science object, animal, or event),
+    "image_prompt" (optional — detailed realistic scene prompt; if omitted, scene is used)
+  )
+- science_element (string — full summary text for the FINAL page only)
+- science_element_scene (string — realistic scene for the Science Element page image: exhibit, diagram, poster, or nature-center sign)
+
+Do NOT put science_element content inside story pages. The Science Element is the last page only.
+SCHEMA;
 }
 
 /** @return list<array<string, string>> */
@@ -92,7 +150,7 @@ function ai_prompt_templates(): array
         ['id' => 'plant_mystery', 'title' => 'Plants', 'icon' => '🌱', 'starter' => 'Help me write a plant science story for kids ages 8–12.'],
         ['id' => 'animal_adventure', 'title' => 'Animals', 'icon' => '🐾', 'starter' => 'Help me write an animal science story for kids ages 8–12.'],
         ['id' => 'weather_watch', 'title' => 'Weather', 'icon' => '🌦️', 'starter' => 'Help me write a weather science story for kids ages 8–12.'],
-        ['id' => 'germ_detectives', 'title' => 'Germs', 'icon' => '🦠', 'starter' => 'Help me write a kid-friendly germs or hygiene story for ages 8–12.'],
+        ['id' => 'germ_detectives', 'title' => 'Microbes', 'icon' => '🦠', 'starter' => 'Help me write a kid-friendly microbes or bacteria story for ages 8–12.'],
         ['id' => 'earth_science', 'title' => 'Earth Science', 'icon' => '🌍', 'starter' => 'Help me write an earth science story about oceans, weather, or the atmosphere for kids ages 8–12.'],
         ['id' => 'engineering_build', 'title' => 'Engineering', 'icon' => '🔧', 'starter' => 'Help me write an engineering story for kids ages 8–12.'],
         ['id' => 'physical_science', 'title' => 'Physical Science', 'icon' => '⚛️', 'starter' => 'Help me write a physical science story about forces, energy, or matter for kids ages 8–12.'],
@@ -273,15 +331,27 @@ function ai_outline_display_from_story(array $story): string
             continue;
         }
         $n = $i + 1;
-        $caption = trim((string) ($page['image_caption'] ?? 'Page ' . $n));
-        $lines[] = '## Page ' . $n . ': ' . $caption;
+        $pageTitle = trim((string) ($page['page_title'] ?? $page['image_caption'] ?? 'Page ' . $n));
+        $lines[] = '## Page ' . $n . ': ' . $pageTitle;
         $lines[] = trim((string) ($page['text'] ?? ''));
+        $scene = trim((string) ($page['scene'] ?? ''));
+        if ($scene !== '') {
+            $lines[] = '';
+            $lines[] = '_Scene: ' . $scene . '_';
+        }
         $prompt = trim((string) ($page['image_prompt'] ?? ''));
         if ($prompt !== '') {
-            $lines[] = '';
-            $lines[] = '_Illustration: ' . $prompt . '_';
+            $lines[] = '_Image: ' . $prompt . '_';
         }
         $lines[] = '';
+    }
+
+    $lines[] = '## Science Element (final page only)';
+    $lines[] = trim((string) ($story['science_element'] ?? ''));
+    $scienceScene = trim((string) ($story['science_element_scene'] ?? ''));
+    if ($scienceScene !== '') {
+        $lines[] = '';
+        $lines[] = '_Scene: ' . $scienceScene . '_';
     }
 
     return trim(implode("\n", $lines));
@@ -300,16 +370,18 @@ function ai_generate_plan(string $idea): array
     $messages = [
         [
             'role' => 'user',
-            'content' => "Create a step-by-step PLAN for a children's science fiction story (ages 8–12) based on this idea:\n\n"
+            'content' => "Create a step-by-step PLAN for a children's science mystery storybook (ages 8–12) based on this idea:\n\n"
                 . $idea . "\n\n"
-                . "Write a clear, editable plan the author can review before we draft the story. Use markdown with these sections:\n"
-                . "1. **Working title** — suggest a kid-friendly title\n"
-                . "2. **Science topic & concept** — pick one site topic (Space, Body, Plants, Animals, Weather, Germs, Earth Science, Engineering, Physical Science) and one clear science idea\n"
-                . "3. **Characters & setting** — main character(s), where/when\n"
-                . "4. **Story arc** — beginning, problem, discovery, resolution (show science through fiction)\n"
-                . "5. **Page breakdown** — 4–6 pages; for each page, one bullet with what happens and what the reader learns\n"
-                . "6. **Illustration approach** — tone and visual style notes for a children's book\n\n"
-                . "Do NOT write the full story yet — only the plan. Be specific but concise.",
+                . ai_master_story_rules() . "\n\n"
+                . "Write a clear, editable plan the author can review before drafting. Use markdown with these sections:\n"
+                . "1. **Working title** — kid-friendly title\n"
+                . "2. **Science topic & concept** — one site topic and one clear science idea\n"
+                . "3. **Characters & setting** — character_1, character_2, adult_guide (with clothing/visual details), and a fresh setting\n"
+                . "4. **Story arc** — mystery, discovery, resolution through fiction (not lecture)\n"
+                . "5. **Page breakdown** — 5–8 story pages; each bullet: page_title, what happens, what the reader learns\n"
+                . "6. **Science Element page** — what the final summary page will cover (vocabulary, takeaway)\n"
+                . "7. **Realistic photo scenes** — note that pages will use cinematic realistic photos, cream storybook layout, navy titles\n\n"
+                . "Do NOT write the full story yet — only the plan.",
         ],
     ];
 
@@ -338,19 +410,10 @@ function ai_generate_outline(string $idea, string $plan): array
     $messages = [
         [
             'role' => 'user',
-            'content' => "Using this story idea and approved plan, produce a finished children's science story outline for ages 8–12.\n\n"
-                . "Return JSON only (no markdown fences) with keys:\n"
-                . "- title (string)\n"
-                . "- author_name (string — use \"Story Author\")\n"
-                . "- description (string, 1–2 sentences)\n"
-                . "- science_topic (one of: Space, Body, Plants, Animals, Weather, Germs, Earth Science, Engineering, Physical Science)\n"
-                . "- science_element (string, plain-language explanation for kids)\n"
-                . "- pages (array of 4–6 objects, each with:\n"
-                . "    \"text\" (full story paragraph for that page, ready for the PDF),\n"
-                . "    \"image_caption\" (short label),\n"
-                . "    \"image_prompt\" (detailed scene for an AI illustrator)\n"
-                . "  )\n\n"
-                . "Follow the plan closely. Fill in creative details where needed. Keep content age-appropriate.\n\n"
+            'content' => "Using this story idea and approved plan, produce a finished children's science mystery storybook outline for ages 8–12.\n\n"
+                . ai_master_story_rules() . "\n\n"
+                . ai_story_json_schema_instructions() . "\n\n"
+                . "Follow the plan closely. Invent fresh characters and a fresh setting if the plan is vague.\n\n"
                 . "Story idea:\n" . $idea . "\n\n"
                 . "Approved plan:\n" . $plan,
         ],
@@ -390,10 +453,9 @@ function ai_story_from_outline(string $idea, string $plan, string $outline): arr
         [
             'role' => 'user',
             'content' => "Convert this approved story outline into JSON for PDF generation (ages 8–12). Return JSON only (no markdown fences).\n\n"
-                . "Required keys:\n"
-                . "- title, author_name, description, science_topic, science_element\n"
-                . "- pages (array of 4–6 objects with text, image_caption, image_prompt)\n\n"
-                . "Respect any edits the author made to the outline. Keep one clear science concept.\n\n"
+                . ai_story_json_schema_instructions() . "\n\n"
+                . "Respect any edits the author made to the outline. Keep one clear science concept. "
+                . "Display story text exactly as written — do not rewrite, shorten, duplicate, or add lines.\n\n"
                 . "Story idea:\n" . $idea . "\n\n"
                 . "Plan:\n" . $plan . "\n\n"
                 . "Story outline:\n" . $outline,
@@ -562,21 +624,90 @@ function ai_pdf_fill_page(TCPDF $pdf, int $r, int $g, int $b): void
     $pdf->Rect(0, 0, $pdf->getPageWidth(), $pdf->getPageHeight(), 'F');
 }
 
-function ai_pdf_set_body_text(TCPDF $pdf): void
+function ai_pdf_navy_text(TCPDF $pdf): void
 {
-    $pdf->SetTextColor(0, 0, 0);
+    $pdf->SetTextColor(26, 35, 126);
+}
+
+function ai_pdf_body_text(TCPDF $pdf): void
+{
+    $pdf->SetTextColor(20, 20, 20);
+}
+
+function ai_pdf_draw_heart_footer(TCPDF $pdf, float $contentX, float $contentW, float $y): void
+{
+    $pdf->SetDrawColor(37, 99, 235);
+    $pdf->SetLineWidth(0.4);
+    $midX = $contentX + ($contentW / 2);
+    $heartW = 4.5;
+    $pdf->Line($contentX, $y, $midX - $heartW, $y);
+    $pdf->Line($midX + $heartW, $y, $contentX + $contentW, $y);
+    $pdf->SetFillColor(239, 68, 68);
+    $pdf->Circle($midX, $y, 1.2, 0, 360, 'F');
+}
+
+function ai_pdf_render_story_page(
+    TCPDF $pdf,
+    string $pageTitle,
+    string $text,
+    ?string $imgPath,
+    float $contentX,
+    float $contentW
+): void {
+    ai_pdf_fill_page($pdf, 255, 249, 240);
+
+    $pdf->SetY(18);
+    ai_pdf_navy_text($pdf);
+    $pdf->SetFont('times', 'B', 22);
+    $pdf->MultiCell($contentW, 10, $pageTitle, 0, 'C');
+    $pdf->Ln(4);
+
+    $imageTop = $pdf->GetY();
+    $footerY = $pdf->getPageHeight() - 18;
+    $available = $footerY - $imageTop - 28;
+    $imageMaxH = min($available * 0.58, 118);
+
+    $textTop = $imageTop;
+    if ($imgPath !== null && is_file($imgPath)) {
+        $imageBottom = ai_pdf_add_image_fit($pdf, $imgPath, $contentX, $imageTop, $contentW, $imageMaxH);
+        if ($imageBottom !== null) {
+            $textTop = $imageBottom + 5;
+        }
+    }
+
+    ai_pdf_body_text($pdf);
+    $pdf->SetXY($contentX, $textTop);
+    $pdf->SetFont('times', '', 13);
+    $textHeight = max(24, $footerY - $textTop - 8);
+    $pdf->MultiCell($contentW, 6.5, $text, 0, 'L', false, 1, $contentX, $textTop, true, 0, false, true, $textHeight, 'T');
+
+    ai_pdf_draw_heart_footer($pdf, $contentX, $contentW, $footerY);
 }
 
 function ai_illustration_style(): string
 {
-    return 'Warm, colorful children\'s book illustration for ages 8–12. Friendly cartoon style, soft lighting, '
-        . 'clear characters, science-themed but fun. No text, letters, watermarks, or scary elements.';
+    return 'Realistic, cinematic, high-quality photograph for a vertical children\'s science storybook page. '
+        . 'Natural lighting, believable people, animals, and environments — NOT cartoon, NOT illustrated, NOT anime. '
+        . 'No text, letters, speech bubbles, comic panels, watermarks, logos, or page numbers in the image.';
+}
+
+function ai_character_block(array $story): string
+{
+    $parts = [];
+    foreach (['character_1', 'character_2', 'adult_guide'] as $key) {
+        $val = trim((string) ($story[$key] ?? ''));
+        if ($val !== '') {
+            $parts[] = $val;
+        }
+    }
+
+    return $parts === [] ? '' : 'Keep these characters consistent: ' . implode('; ', $parts) . '. ';
 }
 
 /**
  * @return array{ok: bool, path: string, error: string}
  */
-function ai_generate_illustration(string $scenePrompt): array
+function ai_generate_illustration(string $scenePrompt, string $size = '1024x1536'): array
 {
     if (!ai_is_configured()) {
         return ['ok' => false, 'path' => '', 'error' => 'OpenAI API key not configured.'];
@@ -589,7 +720,7 @@ function ai_generate_illustration(string $scenePrompt): array
         'model' => $config['openai_image_model'] ?? 'gpt-image-1',
         'prompt' => $prompt,
         'n' => 1,
-        'size' => '1024x1024',
+        'size' => $size,
     ];
 
     $ch = curl_init('https://api.openai.com/v1/images/generations');
@@ -644,6 +775,7 @@ function ai_export_init_session(): void
         'story' => null,
         'cover_path' => null,
         'page_paths' => [],
+        'science_element_path' => null,
         'temp_files' => [],
     ];
 }
@@ -702,6 +834,13 @@ function ai_export_set_page_image(int $index, string $path): void
     ai_export_track_temp($path);
 }
 
+function ai_export_set_science_element(string $path): void
+{
+    ai_init_session();
+    $_SESSION['ai_export']['science_element_path'] = $path;
+    ai_export_track_temp($path);
+}
+
 /**
  * @param list<array{role: string, content: string}> $messages
  * @return array{ok: bool, story: array<string, mixed>|null, error: string}
@@ -717,20 +856,11 @@ function ai_extract_story_for_pdf(array $messages): array
     $extractMessages = [
         [
             'role' => 'user',
-            'content' => "From this writing session, produce a finished children's science story for ages 8–12 as JSON only (no markdown fences).\n\n"
-                . "If the conversation is brief (even one sentence from the author), invent a complete, coherent story that fits their idea.\n"
-                . "Fill in missing details creatively while keeping one clear science concept and kid-friendly tone.\n\n"
-                . "Required JSON keys:\n"
-                . "- title (string)\n"
-                . "- author_name (string — use \"Story Author\" if unknown)\n"
-                . "- description (string, 1–2 sentences)\n"
-                . "- science_topic (one of: Space, Body, Plants, Animals, Weather, Germs, Earth Science, Engineering, Physical Science)\n"
-                . "- science_element (string, plain-language explanation for kids)\n"
-                . "- pages (array of 4–6 objects, each with:\n"
-                . "    \"text\" (story paragraph for that page),\n"
-                . "    \"image_caption\" (short label),\n"
-                . "    \"image_prompt\" (detailed scene description for an AI illustrator — characters, setting, action, mood)\n"
-                . "  )\n\n"
+            'content' => "From this writing session, produce a finished children's science mystery storybook for ages 8–12 as JSON only (no markdown fences).\n\n"
+                . ai_master_story_rules() . "\n\n"
+                . ai_story_json_schema_instructions() . "\n\n"
+                . "If the conversation is brief, invent a complete story with fresh characters and setting.\n"
+                . "Display story text exactly as written — do not rewrite, shorten, duplicate, or add lines.\n\n"
                 . "Conversation:\n" . $transcript,
         ],
     ];
@@ -753,7 +883,7 @@ function ai_extract_story_for_pdf(array $messages): array
 
 /**
  * @param array<string, mixed> $story
- * @param array{cover_path?: string|null, page_paths?: array<int, string>} $images
+ * @param array{cover_path?: string|null, page_paths?: array<int, string>, science_element_path?: string|null} $images
  */
 function ai_generate_story_pdf(array $story, array $images = []): array
 {
@@ -764,12 +894,12 @@ function ai_generate_story_pdf(array $story, array $images = []): array
     require_once __DIR__ . '/lib/tcpdf/tcpdf.php';
     require_once __DIR__ . '/pdf-branding-lib.php';
 
-    $title = trim((string) ($story['title'] ?? 'Untitled Story'));
     $author = trim((string) ($story['author_name'] ?? 'Story Author'));
+    $title = trim((string) ($story['title'] ?? 'Untitled Story'));
     $scienceElement = trim((string) ($story['science_element'] ?? ''));
     $pages = $story['pages'] ?? [];
-    $coverPath = $images['cover_path'] ?? null;
     $pagePaths = $images['page_paths'] ?? [];
+    $scienceElementPath = $images['science_element_path'] ?? null;
 
     $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
     $pdf->SetCreator(site_brand_name());
@@ -777,34 +907,11 @@ function ai_generate_story_pdf(array $story, array $images = []): array
     $pdf->SetTitle($title);
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
-    $pdf->SetMargins(20, 20, 20);
-    $pdf->SetAutoPageBreak(true, 22);
+    $pdf->SetMargins(20, 16, 20);
+    $pdf->SetAutoPageBreak(false);
 
-    $tempFiles = [];
     $contentW = ai_pdf_content_width($pdf);
     $contentX = ai_pdf_left_margin($pdf);
-
-    // Cover page — soft lavender storybook feel
-    $pdf->AddPage();
-    ai_pdf_fill_page($pdf, 237, 233, 254);
-    ai_pdf_set_body_text($pdf);
-
-    if ($coverPath && is_file($coverPath)) {
-        ai_pdf_add_image_fit($pdf, $coverPath, $contentX, 26, $contentW, 200);
-    } else {
-        $pdf->SetFillColor(124, 58, 237);
-        $pdf->RoundedRect($contentX, 26, $contentW, 200, 8, '1111', 'F');
-    }
-
-    $pdf->SetY(232);
-    $pdf->SetFont('helvetica', 'B', 28);
-    $pdf->MultiCell($contentW, 14, $title, 0, 'C');
-    $pdf->SetFont('helvetica', '', 18);
-    $pdf->MultiCell($contentW, 10, 'By ' . $author, 0, 'C');
-    ai_pdf_set_body_text($pdf);
-    $pdf->SetFont('helvetica', 'I', 14);
-    $pdf->MultiCell($contentW, 10, 'Ages 8–12 · ' . site_brand_name(), 0, 'C');
-    ai_pdf_set_body_text($pdf);
 
     foreach ($pages as $i => $page) {
         if (!is_array($page)) {
@@ -815,50 +922,18 @@ function ai_generate_story_pdf(array $story, array $images = []): array
             continue;
         }
 
-        $pdf->AddPage();
-        ai_pdf_fill_page($pdf, 255, 249, 240);
-        ai_pdf_set_body_text($pdf);
-
-        $pdf->SetFillColor(124, 58, 237);
-        $pdf->SetTextColor(255, 255, 255);
-        $pdf->SetFont('helvetica', 'B', 14);
-        $pdf->Cell($contentW, 11, 'Page ' . ($i + 1), 0, 1, 'L', true);
-        $pdf->Ln(3);
-
-        $imageTop = $pdf->GetY();
-        $pageBottom = $pdf->getPageHeight() - $pdf->getBreakMargin();
-        $available = $pageBottom - $imageTop;
-        $imageMaxH = $available * 0.54;
-        $textMinH = $available * 0.38;
-
+        $pageTitle = trim((string) ($page['page_title'] ?? $page['image_caption'] ?? 'Page ' . ($i + 1)));
         $imgPath = $pagePaths[$i] ?? ($page['image_path'] ?? null);
-        $textTop = $imageTop;
-        if (is_string($imgPath) && is_file($imgPath)) {
-            $imageBottom = ai_pdf_add_image_fit($pdf, $imgPath, $contentX, $imageTop, $contentW, $imageMaxH);
-            if ($imageBottom !== null) {
-                $textTop = $imageBottom + 6;
-            }
-        }
+        $imgPath = is_string($imgPath) && is_file($imgPath) ? $imgPath : null;
 
-        $textHeight = max($textMinH, $pageBottom - $textTop);
-        $pdf->SetXY($contentX, $textTop);
-        $pdf->SetFont('helvetica', '', 16);
-        $pdf->MultiCell($contentW, 10, $text, 0, 'L', false, 1, $contentX, $textTop, true, 0, false, true, $textHeight, 'T');
+        $pdf->AddPage();
+        ai_pdf_render_story_page($pdf, $pageTitle, $text, $imgPath, $contentX, $contentW);
     }
 
     if ($scienceElement !== '') {
         $pdf->AddPage();
-        ai_pdf_fill_page($pdf, 255, 249, 240);
-        ai_pdf_set_body_text($pdf);
-
-        $pdf->SetFillColor(124, 58, 237);
-        $pdf->SetTextColor(255, 255, 255);
-        $pdf->SetFont('helvetica', 'B', 20);
-        $pdf->Cell($contentW, 14, '  Science Element', 0, 1, 'L', true);
-        $pdf->Ln(6);
-        ai_pdf_set_body_text($pdf);
-        $pdf->SetFont('helvetica', '', 16);
-        $pdf->MultiCell($contentW, 10, $scienceElement, 0, 'L');
+        $scienceImg = is_string($scienceElementPath) && is_file($scienceElementPath) ? $scienceElementPath : null;
+        ai_pdf_render_story_page($pdf, 'Science Element', $scienceElement, $scienceImg, $contentX, $contentW);
     }
 
     brand_tcpdf_document($pdf);
@@ -872,12 +947,6 @@ function ai_generate_story_pdf(array $story, array $images = []): array
     $fullPath = __DIR__ . '/' . $relativePath;
 
     $pdf->Output($fullPath, 'F');
-
-    foreach ($tempFiles as $tmp) {
-        if (is_file($tmp)) {
-            @unlink($tmp);
-        }
-    }
 
     if (!is_file($fullPath)) {
         return ['ok' => false, 'path' => '', 'error' => 'PDF file could not be saved.'];
@@ -898,7 +967,7 @@ function ai_save_book_from_story(PDO $pdo, array $story, string $pdfPath, int $u
     $description = trim((string) ($story['description'] ?? ''));
     $scienceElement = trim((string) ($story['science_element'] ?? ''));
     $topic = trim((string) ($story['science_topic'] ?? 'Space'));
-    $allowedTopics = ['Space', 'Body', 'Plants', 'Animals', 'Weather', 'Germs', 'Earth Science', 'Engineering', 'Physical Science'];
+    $allowedTopics = ['Space', 'Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science'];
     if (!in_array($topic, $allowedTopics, true)) {
         $topic = 'Space';
     }
@@ -967,24 +1036,52 @@ function ai_save_book_from_story(PDO $pdo, array $story, string $pdfPath, int $u
     }
 }
 
-function ai_page_image_prompt(array $page, string $storyTitle): string
+function ai_page_image_prompt(array $page, string $storyTitle, array $story = []): string
 {
-    $prompt = trim((string) ($page['image_prompt'] ?? ''));
-    if ($prompt !== '') {
-        return $prompt;
+    $custom = trim((string) ($page['image_prompt'] ?? ''));
+    $scene = trim((string) ($page['scene'] ?? ''));
+    if ($custom !== '') {
+        $scene = $custom;
     }
-    $caption = trim((string) ($page['image_caption'] ?? 'Story scene'));
-    return 'Illustration for the children\'s book "' . $storyTitle . '": ' . $caption;
+    if ($scene === '') {
+        $scene = trim((string) ($page['image_caption'] ?? 'Story scene'));
+    }
+
+    $pageTitle = trim((string) ($page['page_title'] ?? ''));
+    $setting = trim((string) ($story['setting'] ?? ''));
+
+    return ai_character_block($story)
+        . ($setting !== '' ? 'Setting: ' . $setting . '. ' : '')
+        . ($pageTitle !== '' ? 'Page titled "' . $pageTitle . '". ' : '')
+        . 'Story: "' . $storyTitle . '". Scene: ' . $scene;
+}
+
+function ai_science_element_image_prompt(array $story): string
+{
+    $topic = trim((string) ($story['science_topic'] ?? 'science'));
+    $scene = trim((string) ($story['science_element_scene'] ?? ''));
+    if ($scene === '') {
+        $scene = 'The same characters learning from a realistic science display, diagram, model, exhibit, poster, or nature-center sign about '
+            . $topic . '.';
+    }
+
+    return ai_character_block($story) . $scene;
 }
 
 function ai_cover_image_prompt(array $story): string
 {
     $title = trim((string) ($story['title'] ?? 'Science Story'));
     $topic = trim((string) ($story['science_topic'] ?? 'science'));
-    $description = trim((string) ($story['description'] ?? ''));
-    return 'Book cover art for "' . $title . '", a kids science story about ' . $topic . '. '
-        . ($description !== '' ? $description . ' ' : '')
-        . 'Hero character in an exciting scene, vibrant cover illustration.';
+    $setting = trim((string) ($story['setting'] ?? ''));
+    $firstPage = is_array($story['pages'][0] ?? null) ? $story['pages'][0] : [];
+    $scene = trim((string) ($firstPage['scene'] ?? ''));
+    if ($scene === '') {
+        $scene = 'An exciting realistic scene introducing a kids science mystery about ' . $topic;
+    }
+
+    return ai_character_block($story)
+        . ($setting !== '' ? 'Setting: ' . $setting . '. ' : '')
+        . 'Book cover photo for "' . $title . '". ' . $scene;
 }
 
 function ai_chat_has_user_messages(array $messages): bool

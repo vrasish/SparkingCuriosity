@@ -45,7 +45,7 @@ release_session_lock();
     <?php if ($books === []): ?>
         <div class="empty-state empty-state-compact my-library-empty">
             <p>You have not saved any stories yet.</p>
-            <p>Browse <a href="<?= e(app_url('explore.php')) ?>">Explore</a> and tap the red heart on stories you want to keep.</p>
+            <p>Browse <a href="<?= e(app_url('search.php')) ?>">Search</a> and tap the red heart on stories you want to keep.</p>
         </div>
     <?php else: ?>
         <div class="story-grid story-grid-compact">

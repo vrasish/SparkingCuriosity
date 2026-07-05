@@ -1,54 +1,67 @@
 {
     "book_id": 5,
     "title": "The Message in the Blood Drop",
+    "intro": "This quiz follows Mia and Ruby as they discover how blood and its tiny helpers work inside the body.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Message in the Blood Drop\" mostly about?",
+            "prompt": "Who was Ruby?",
             "choices": [
-                "Sound is fastest in outer space.",
-                "Blood travels through the body carrying oxygen",
-                "Plants eat food from soil only.",
-                "Fish breathe air like people do."
+                "A white blood cell",
+                "A red blood cell",
+                "A platelet",
+                "A germ"
             ],
             "correct_index": 1,
-            "explanation": "Blood travels through the body carrying oxygen"
+            "explanation": "Ruby was a red blood cell."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What is the heart's main job in the circulatory system?",
             "choices": [
-                "Sound is fastest in outer space.",
-                "Fish breathe air like people do.",
-                "Rocks never change at all.",
-                "The heart pumps blood"
+                "To make oxygen",
+                "To digest food",
+                "To pump blood around the body",
+                "To close cuts"
             ],
-            "correct_index": 3,
-            "explanation": "The heart pumps blood"
+            "correct_index": 2,
+            "explanation": "The heart's main job is to pump blood around the body."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "Where do red blood cells pick up fresh oxygen?",
             "choices": [
-                "All germs are bad for you.",
-                "red blood cells deliver oxygen",
-                "The brain does not help you move.",
-                "Fish breathe air like people do."
+                "In the stomach",
+                "In the lungs",
+                "In the kidneys",
+                "In the bones"
             ],
             "correct_index": 1,
-            "explanation": "red blood cells deliver oxygen"
+            "explanation": "Red blood cells pick up fresh oxygen in the lungs."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "How did Captain Wally and the white blood cells help Mia?",
             "choices": [
-                "Plants eat food from soil only.",
-                "Sound is fastest in outer space.",
-                "white blood cells help fight germs",
-                "Fish breathe air like people do."
+                "They carried oxygen",
+                "They helped her run faster",
+                "They protected her body from germs entering through the cut",
+                "They pumped blood through her heart"
             ],
             "correct_index": 2,
-            "explanation": "white blood cells help fight germs"
+            "explanation": "Captain Wally and the white blood cells protected Mia's body from germs entering through the cut."
+        },
+        {
+            "id": 5,
+            "prompt": "What do platelets do when the body gets a cut?",
+            "choices": [
+                "Carry oxygen to the muscles",
+                "Help close the cut so the body can heal",
+                "Destroy red blood cells",
+                "Turn blood into water"
+            ],
+            "correct_index": 1,
+            "explanation": "Platelets help close the cut so the body can heal."
         }
     ]
 }

@@ -344,7 +344,7 @@ function body_class(string $extra = ''): string
 function render_site_logo_icon(): void
 {
     $logoUrl = site_logo_url();
-    echo '<img src="' . e($logoUrl) . '" alt="' . e(site_brand_name()) . '" class="site-logo-img" width="290" height="74">';
+    echo '<img src="' . e($logoUrl) . '" alt="' . e(site_brand_name()) . '" class="site-logo-img" width="110" height="48">';
 }
 
 function render_site_footer(bool $compact = false): void
@@ -385,10 +385,10 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
         echo '<a href="' . e(app_url('admin-review.php')) . '">Story Review</a>';
         echo '<a href="' . e(app_url('admin-sales.php')) . '">Library Sales</a>';
         echo '<a href="' . e(app_url('reports-admin.php')) . '">Reports</a>';
-        echo '<a href="' . e(app_url('explore.php')) . '">Public Site</a>';
+        echo '<a href="' . e(app_url('index.php')) . '">Public Site</a>';
     } else {
         echo '<a href="' . e(app_url('index.php')) . '">Home</a>';
-        echo '<a href="' . e(app_url('explore.php')) . '">Explore</a>';
+        echo '<a href="' . e(app_url('search.php')) . '">Search</a>';
         if ($user) {
             echo '<a href="' . e(app_url('my-library.php')) . '">My Library</a>';
         }

@@ -46,7 +46,7 @@ $ownedBooks = $loggedIn ? owned_books($pdo) : [];
         <?php if (empty($items)): ?>
             <div class="empty-state">
                 <p>Your cart is empty.</p>
-                <p class="mt-2"><a href="<?= e(app_url('explore.php')) ?>" class="btn btn-primary">Browse Stories</a></p>
+                <p class="mt-2"><a href="<?= e(app_url('search.php')) ?>" class="btn btn-primary">Browse Stories</a></p>
             </div>
         <?php else: ?>
             <div class="cart-panel">

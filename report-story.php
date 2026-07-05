@@ -78,10 +78,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $book) {
     <div class="page-section">
     <?php if ($message): ?>
         <div class="alert alert-success"><?= e($message) ?></div>
-        <a href="<?= e(app_url('explore.php')) ?>" class="btn btn-outline">Back to Explore</a>
+        <a href="<?= e(app_url('search.php')) ?>" class="btn btn-outline">Back to Search</a>
     <?php elseif ($error && !$book): ?>
         <div class="alert alert-error"><?= e($error) ?></div>
-        <a href="<?= e(app_url('explore.php')) ?>" class="btn btn-outline">Back to Explore</a>
+        <a href="<?= e(app_url('search.php')) ?>" class="btn btn-outline">Back to Search</a>
     <?php else: ?>
         <p class="mb-2">Reporting: <strong><?= e($book['title']) ?></strong></p>
         <?php if ($error): ?>

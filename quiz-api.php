@@ -26,5 +26,6 @@ $data = quiz_story_data($bookId);
 echo json_encode([
     'book_id' => $bookId,
     'title' => (string) ($data['title'] ?? ''),
+    'intro' => (string) ($data['intro'] ?? ''),
     'questions' => $questions,
 ], JSON_UNESCAPED_UNICODE);

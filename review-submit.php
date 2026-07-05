@@ -6,12 +6,12 @@ require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/reviews-lib.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: ' . app_url('explore.php'));
+    header('Location: ' . app_url('search.php'));
     exit;
 }
 
 $bookId = isset($_POST['book_id']) ? (int) $_POST['book_id'] : 0;
-require_login($bookId > 0 ? 'book.php?id=' . $bookId . '#reviews' : 'explore.php');
+require_login($bookId > 0 ? 'book.php?id=' . $bookId . '#reviews' : 'search.php');
 $rating = isset($_POST['rating']) ? (int) $_POST['rating'] : 0;
 $reviewText = trim((string) ($_POST['review_text'] ?? ''));
 $redirect = trim((string) ($_POST['redirect'] ?? ''));
@@ -21,7 +21,7 @@ if ($redirect === '' || !preg_match('#^book(\.php)?\?id=#', $redirect)) {
 }
 
 if ($bookId <= 0) {
-    header('Location: ' . app_url('explore.php'));
+    header('Location: ' . app_url('search.php'));
     exit;
 }
 
@@ -36,7 +36,7 @@ try {
 }
 
 if (!$book || ($book['status'] ?? '') !== 'approved') {
-    header('Location: ' . app_url('explore.php'));
+    header('Location: ' . app_url('search.php'));
     exit;
 }
 

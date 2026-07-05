@@ -167,3 +167,11 @@ function home_page_cache_set(array $books, array $ratings): void
         'ratings' => $ratings,
     ]);
 }
+
+function home_page_cache_clear(): void
+{
+    $path = stories_cache_dir() . '/home-featured.json';
+    if (is_file($path)) {
+        @unlink($path);
+    }
+}

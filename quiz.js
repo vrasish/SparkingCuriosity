@@ -9,6 +9,7 @@
         sidebarEl: null,
         ctaEl: null,
         questions: [],
+        quizIntro: '',
         currentIndex: 0,
         score: 0,
         answered: false,
@@ -130,6 +131,9 @@
             '<section class="story-quiz" aria-labelledby="story-quiz-title">' +
             '  <div class="story-quiz-header">' +
             '    <h2 id="story-quiz-title">📝 Story Quiz</h2>' +
+            (state.quizIntro
+                ? '    <p class="story-quiz-intro">' + escapeHtml(state.quizIntro) + '</p>'
+                : '') +
             '    <p class="story-quiz-lead">Answer all ' + total + ' fun questions!</p>' +
             '    <div class="story-quiz-progress" aria-hidden="true">' +
             '      <span class="story-quiz-progress-fill" style="width:' +
@@ -210,9 +214,9 @@
                 if (input && input.checked) {
                     label.classList.add('is-selected');
                 }
-                if (index === question.correct_index) {
+                if (isCorrect && input && input.checked) {
                     label.classList.add('is-correct');
-                } else if (input && input.checked) {
+                } else if (!isCorrect && input && input.checked) {
                     label.classList.add('is-incorrect');
                 }
                 if (input) {
@@ -224,11 +228,9 @@
             feedbackEl.hidden = false;
             feedbackEl.className =
                 'story-quiz-feedback ' + (isCorrect ? 'is-correct' : 'is-incorrect');
-            feedbackEl.innerHTML =
-                '<strong>' +
-                (isCorrect ? 'Great job!' : 'Nice try!') +
-                '</strong> ' +
-                escapeHtml(question.explanation || '');
+            feedbackEl.innerHTML = isCorrect
+                ? '<strong>Great job!</strong> <span class="story-quiz-tick" aria-hidden="true">✓</span>'
+                : '<strong>Nice try!</strong> Keep going.';
 
             checkBtn.textContent =
                 state.currentIndex + 1 >= state.questions.length ? 'See Results' : 'Next Question';
@@ -414,6 +416,7 @@
             })
             .then(function (data) {
                 state.questions = Array.isArray(data.questions) ? data.questions : [];
+                state.quizIntro = typeof data.intro === 'string' ? data.intro.trim() : '';
                 if (!state.questions.length) {
                     renderEmpty('Quiz coming soon for this story.');
                     return;

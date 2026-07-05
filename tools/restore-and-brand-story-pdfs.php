@@ -104,7 +104,7 @@ function find_source_pdf_in_downloads(string $title, string $downloadsDir): ?str
 
     $candidates = glob($downloadsDir . '/*.pdf') ?: [];
     $bestPath = null;
-    $bestScore = 0.0;
+    $bestScore = -1.0;
 
     foreach ($candidates as $path) {
         $name = strtolower((string) pathinfo($path, PATHINFO_FILENAME));
@@ -122,14 +122,52 @@ function find_source_pdf_in_downloads(string $title, string $downloadsDir): ?str
             continue;
         }
 
-        $score = $matched / count($titleWords);
+        $titleScore = $matched / count($titleWords);
+        if ($titleScore < 0.75) {
+            continue;
+        }
+
+        $score = $titleScore * 100 + source_pdf_preference_bonus($path);
+
         if ($score > $bestScore) {
             $bestScore = $score;
             $bestPath = $path;
         }
     }
 
-    return $bestScore >= 0.75 ? $bestPath : null;
+    return $bestPath;
+}
+
+function source_pdf_preference_bonus(string $path): float
+{
+    $name = strtolower((string) pathinfo($path, PATHINFO_FILENAME));
+    $bonus = 0.0;
+
+    if (str_contains($name, 'realistic')) {
+        $bonus += 25;
+    }
+    if (str_contains($name, 'images_as_is') || str_contains($name, 'images as is')) {
+        $bonus += 20;
+    }
+    if (str_contains($name, 'images_only') || str_contains($name, 'images only')) {
+        $bonus += 20;
+    }
+    if (str_contains($name, 'storytelling')) {
+        $bonus += 10;
+    }
+    if (str_contains($name, 'final')) {
+        $bonus += 8;
+    }
+    if (str_contains($name, 'redo')) {
+        $bonus += 5;
+    }
+
+    // Deprefer short hyphenated exports that are often already site-branded copies.
+    if (preg_match('/^[a-z0-9]+(-[a-z0-9]+){3,}$/i', (string) pathinfo($path, PATHINFO_FILENAME))) {
+        $bonus -= 15;
+    }
+
+    return $bonus;
 }
 
 /** @return list<string> */

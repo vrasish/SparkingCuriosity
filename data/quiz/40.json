@@ -1,54 +1,67 @@
 {
     "book_id": 40,
     "title": "The Seed That Slept Underground",
+    "intro": "This quiz covers Asha's discovery of how a seed germinates and grows into a young plant.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Seed That Slept Underground\" mostly about?",
+            "prompt": "What did Asha do after placing the seed in the soil?",
             "choices": [
-                "Fish breathe air like people do.",
-                "Your heart pumps air through your body.",
-                "Seeds can stay dormant underground until they get the right conditions — warmth",
-                "Sound is fastest in outer space."
+                "She covered it with rocks",
+                "She gave it water and gently patted the soil",
+                "She immediately pulled it back out",
+                "She placed it in a freezer"
             ],
-            "correct_index": 2,
-            "explanation": "Seeds can stay dormant underground until they get the right conditions — warmth"
+            "correct_index": 1,
+            "explanation": "Asha gave the seed water and gently patted the soil."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What happened first when the seed received water?",
             "choices": [
-                "Sound is fastest in outer space.",
-                "A Seed in the Garden Asha knelt in the school garden with a tiny bean seed in her palm",
-                "Rocks never change at all.",
-                "All germs are bad for you."
+                "It produced a flower",
+                "Its coat softened, and the tiny plant inside began to stir",
+                "Its leaves turned green",
+                "It grew fruit"
             ],
             "correct_index": 1,
-            "explanation": "A Seed in the Garden Asha knelt in the school garden with a tiny bean seed in her palm"
+            "explanation": "The seed's coat softened, and the tiny plant inside began to stir."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What three things did the seed need to begin germinating?",
             "choices": [
-                "The brain does not help you move.",
-                "Rocks never change at all.",
-                "Plants eat food from soil only.",
-                "She tucked the seed into the soil"
+                "Water, air, and warmth",
+                "Snow, darkness, and rocks",
+                "Sugar, salt, and wind",
+                "Flowers, insects, and fruit"
             ],
-            "correct_index": 3,
-            "explanation": "She tucked the seed into the soil"
+            "correct_index": 0,
+            "explanation": "The seed needed water, air, and warmth to begin germinating."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Which part of the plant grew first?",
             "choices": [
-                "The Moon makes its own light.",
-                "gave it a drink of water",
-                "Rocks never change at all.",
-                "Fish breathe air like people do."
+                "A flower",
+                "A leaf",
+                "A root",
+                "A fruit"
             ],
-            "correct_index": 1,
-            "explanation": "gave it a drink of water"
+            "correct_index": 2,
+            "explanation": "A root grew first."
+        },
+        {
+            "id": 5,
+            "prompt": "What does germination mean?",
+            "choices": [
+                "The moment a seed begins to grow into a new plant",
+                "The time when a plant loses its leaves",
+                "The process of picking fruit",
+                "The movement of pollen between flowers"
+            ],
+            "correct_index": 0,
+            "explanation": "Germination is the moment a seed begins to grow into a new plant."
         }
     ]
 }

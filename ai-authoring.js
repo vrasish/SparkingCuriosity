@@ -215,7 +215,7 @@
 
         if (
             !confirm(
-                'Create an illustrated PDF from this outline?\n\nThe AI will generate artwork for each page and submit the book for admin review. This takes a few minutes.'
+                'Create a PDF from this outline?\n\nChatGPT will write realistic photo-style pages matching your published storybooks, plus a Science Element page at the end. This takes a few minutes.'
             )
         ) {
             return;
@@ -231,28 +231,37 @@
                 outline: outline,
             });
             const pageCount = prep.page_count || 0;
-            const totalImages = prep.total_images || pageCount + 1;
+            const totalImages = prep.total_images || pageCount + 2;
             let doneImages = 0;
 
-            setProgress(true, 15, 'Step 2/3 — Creating cover art…');
+            setProgress(true, 15, 'Step 2/3 — Creating library cover photo…');
             await postJson({ action: 'export_image', kind: 'cover' });
             doneImages += 1;
-            setProgress(true, 15 + (doneImages / totalImages) * 70, 'Step 2/3 — Cover art ready.');
+            setProgress(true, 15 + (doneImages / totalImages) * 70, 'Step 2/3 — Cover photo ready.');
 
             for (let i = 0; i < pageCount; i += 1) {
                 setProgress(
                     true,
                     15 + (doneImages / totalImages) * 70,
-                    'Step 2/3 — Creating illustration ' + (i + 1) + ' of ' + pageCount + '…'
+                    'Step 2/3 — Creating realistic photo ' + (i + 1) + ' of ' + pageCount + '…'
                 );
                 await postJson({ action: 'export_image', kind: 'page', page_index: i });
                 doneImages += 1;
                 setProgress(
                     true,
                     15 + (doneImages / totalImages) * 70,
-                    'Step 2/3 — Illustration ' + (i + 1) + ' of ' + pageCount + ' done.'
+                    'Step 2/3 — Page photo ' + (i + 1) + ' of ' + pageCount + ' done.'
                 );
             }
+
+            setProgress(
+                true,
+                15 + (doneImages / totalImages) * 70,
+                'Step 2/3 — Creating Science Element page photo…'
+            );
+            await postJson({ action: 'export_image', kind: 'science_element' });
+            doneImages += 1;
+            setProgress(true, 15 + (doneImages / totalImages) * 70, 'Step 2/3 — Science Element photo ready.');
 
             setProgress(true, 92, 'Step 3/3 — Building your PDF…');
             const done = await postJson({ action: 'export_finalize' });

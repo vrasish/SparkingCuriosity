@@ -1,54 +1,67 @@
 {
     "book_id": 6,
     "title": "The Town That Forgot the Stars",
+    "intro": "This quiz covers Nia and Ben's investigation into light pollution and the night sky.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Town That Forgot the Stars\" mostly about?",
+            "prompt": "What did Nia and Ben notice when they looked at the night sky?",
             "choices": [
-                "The brain does not help you move.",
-                "Sound is fastest in outer space.",
-                "Light pollution occurs when too much artificial light shines upward or sideways",
-                "All germs are bad for you."
+                "The Moon had disappeared",
+                "Only a few faint stars were visible",
+                "The stars were moving quickly",
+                "The sky had turned green"
             ],
-            "correct_index": 2,
-            "explanation": "Light pollution occurs when too much artificial light shines upward or sideways"
+            "correct_index": 1,
+            "explanation": "Nia and Ben noticed only a few faint stars were visible in the night sky."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What was hiding the stars above the town?",
             "choices": [
-                "The Moon makes its own light.",
-                "Sound is fastest in outer space.",
-                "making the night sky brighter and hiding the stars",
-                "Rocks never change at all."
+                "Thick clouds",
+                "Smoke from a volcano",
+                "Too much artificial light",
+                "A large rainstorm"
             ],
             "correct_index": 2,
-            "explanation": "making the night sky brighter and hiding the stars"
+            "explanation": "Too much artificial light was hiding the stars above the town."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What did Nia and Ben compare in their schoolyard experiment?",
             "choices": [
-                "warm-colored lights that point downward help reduce skyglow and make more stars visible",
-                "All germs are bad for you.",
-                "Rocks never change at all.",
-                "The brain does not help you move."
+                "A flashlight and a candle",
+                "A bright bare lamp and a shielded lamp",
+                "A warm bulb and the Sun",
+                "A telescope and binoculars"
             ],
-            "correct_index": 0,
-            "explanation": "warm-colored lights that point downward help reduce skyglow and make more stars visible"
+            "correct_index": 1,
+            "explanation": "They compared a bright bare lamp and a shielded lamp in their schoolyard experiment."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Which change did Nia and Ben suggest to the town council?",
             "choices": [
-                "The Moon makes its own light.",
-                "something felt wrong",
-                "Your heart pumps air through your body.",
-                "Rocks never change at all."
+                "Turning on brighter signs all night",
+                "Removing every streetlight",
+                "Using shielded lamps, warm bulbs, and timers",
+                "Painting all the lamps blue"
             ],
-            "correct_index": 1,
-            "explanation": "something felt wrong"
+            "correct_index": 2,
+            "explanation": "They suggested using shielded lamps, warm bulbs, and timers."
+        },
+        {
+            "id": 5,
+            "prompt": "What happened during the town's first Star Night?",
+            "choices": [
+                "Dozens of stars became visible in the darker sky",
+                "Everyone stayed inside because of rain",
+                "The town added more bright lights",
+                "The stars completely disappeared"
+            ],
+            "correct_index": 0,
+            "explanation": "During the town's first Star Night, dozens of stars became visible in the darker sky."
         }
     ]
 }

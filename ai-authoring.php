@@ -26,7 +26,7 @@ $step = $workflow['step'] ?? 'idea';
 <main class="container page-main page-main-compact ai-authoring-page">
     <header class="ai-page-header">
         <h1 class="ai-page-title">AI Authoring Tool</h1>
-        <p class="ai-page-lead">Describe your idea, review the AI plan, edit the story outline, then create an illustrated PDF for submission.</p>
+        <p class="ai-page-lead">Describe your science topic and the AI will draft a mystery storybook like your published PDFs — realistic photo pages, cream layout, navy titles, and a Science Element page at the end.</p>
     </header>
 
     <?php if (!$configured): ?>
@@ -65,7 +65,7 @@ $step = $workflow['step'] ?? 'idea';
         <!-- Step 1: Idea + Plan -->
         <section class="ai-workflow-stage" id="ai-stage-idea">
             <h2 class="ai-panel-title">Your story idea</h2>
-            <p class="ai-panel-hint">One sentence is enough. The AI will draft a plan you can edit before writing the outline.</p>
+            <p class="ai-panel-hint">One sentence is enough — e.g. a science topic or mystery setting. The AI will draft a 5–8 page storybook plan with fresh characters.</p>
             <textarea id="ai-idea-input" class="form-control ai-workflow-textarea ai-idea-input" rows="3" placeholder="Example: A girl finds a glowing seed that only grows in moonlight…"><?= e($workflow['idea'] ?? '') ?></textarea>
 
             <details class="ai-starters-details">
@@ -97,7 +97,7 @@ $step = $workflow['step'] ?? 'idea';
         <!-- Step 2: Story outline -->
         <section class="ai-workflow-stage<?= trim((string) ($workflow['outline'] ?? '')) === '' ? ' ai-stage-hidden' : '' ?>" id="ai-stage-outline">
             <h2 class="ai-panel-title">Story outline</h2>
-            <p class="ai-panel-hint">Page-by-page story draft. Edit the text, then create your illustrated PDF.</p>
+            <p class="ai-panel-hint">Page-by-page story with titles, scenes, and text. Edit anything, then create your realistic photo PDF.</p>
             <textarea id="ai-outline-input" class="form-control ai-workflow-textarea" rows="18" placeholder="Your story outline will appear here…"><?= e($workflow['outline'] ?? '') ?></textarea>
             <div class="ai-stage-actions">
                 <button type="button" class="btn btn-outline" id="ai-regenerate-outline-btn">Regenerate outline</button>

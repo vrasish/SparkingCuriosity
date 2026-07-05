@@ -22,6 +22,13 @@ function site_logo_disk_path(): string
     return __DIR__ . '/assets/science-fables-logo.png';
 }
 
+function site_logo_pdf_disk_path(): string
+{
+    $transparent = __DIR__ . '/assets/science-fables-logo-transparent.png';
+
+    return is_file($transparent) ? $transparent : site_logo_disk_path();
+}
+
 function site_logo_url(): string
 {
     return asset_url('assets/science-fables-logo.png');
@@ -41,14 +48,19 @@ function find_python_with_pymupdf(): ?string
     return null;
 }
 
-function brand_pdf_file(string $absolutePath): bool
+function pdf_compact_brand_book_ids(): array
+{
+    return [54]; // The Stem That Carried a River
+}
+
+function brand_pdf_file(string $absolutePath, bool $compact = false): bool
 {
     $absolutePath = trim($absolutePath);
     if ($absolutePath === '' || !is_file($absolutePath)) {
         return false;
     }
 
-    $logoPath = site_logo_disk_path();
+    $logoPath = site_logo_pdf_disk_path();
     if (!is_file($logoPath)) {
         return false;
     }
@@ -63,11 +75,14 @@ function brand_pdf_file(string $absolutePath): bool
         return false;
     }
 
+    $mode = $compact ? 'compact' : 'standard';
+
     $cmd = escapeshellarg($python) . ' '
         . escapeshellarg($scriptPath) . ' '
         . escapeshellarg($absolutePath) . ' '
         . escapeshellarg($logoPath) . ' '
-        . escapeshellarg(site_copyright_text());
+        . escapeshellarg(site_copyright_text()) . ' '
+        . escapeshellarg($mode);
 
     exec($cmd, $output, $code);
 
@@ -79,7 +94,7 @@ function brand_pdf_file(string $absolutePath): bool
  */
 function brand_tcpdf_document(TCPDF $pdf): void
 {
-    $logoPath = site_logo_disk_path();
+    $logoPath = site_logo_pdf_disk_path();
     if (!is_file($logoPath)) {
         return;
     }
@@ -94,17 +109,14 @@ function brand_tcpdf_document(TCPDF $pdf): void
 
         $pageW = $pdf->getPageWidth();
         $pageH = $pdf->getPageHeight();
-        $margin = 5.0;
-        $logoW = min(56.0, $pageW * 0.22);
+        $sideMargin = 12.0;
+        $bottomMargin = 16.0;
+        $logoW = min(32.0, $pageW * 0.14);
         $info = @getimagesize($logoPath);
-        $aspect = ($info && (int) $info[0] > 0) ? ((float) $info[1] / (float) $info[0]) : 0.35;
+        $aspect = ($info && (int) $info[0] > 0) ? ((float) $info[1] / (float) $info[0]) : 0.44;
         $logoH = $logoW * $aspect;
-        $logoX = $pageW - $margin - $logoW;
-        $logoY = $pageH - $margin - $logoH;
-        $pad = 1.5;
-
-        $pdf->SetFillColor(255, 255, 255);
-        $pdf->Rect($logoX - $pad, $logoY - $pad, $logoW + (2 * $pad), $logoH + (2 * $pad), 'F');
+        $logoX = $pageW - $sideMargin - $logoW;
+        $logoY = $pageH - $bottomMargin - $logoH;
 
         @$pdf->Image($logoPath, $logoX, $logoY, $logoW, 0, 'PNG');
     }

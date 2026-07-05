@@ -440,12 +440,14 @@ main.page-main.container {
 }
 
 .public-page .logo-tagline {
-    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    font-size: clamp(0.62rem, 0.9vw, 0.72rem);
+    margin-top: 0;
+    line-height: 1.1;
 }
 
 .public-page .nav-links a {
-    font-size: 1.15rem;
-    padding: 8px 14px;
+    font-size: 0.95rem;
+    padding: 4px 10px;
 }
 
 .public-page .nav-user-name {
@@ -454,7 +456,7 @@ main.page-main.container {
 }
 
 .public-page .site-header .container {
-    padding: 8px var(--page-gutter);
+    padding: 2px var(--page-gutter);
 }
 
 .public-page main.page-main.page-main-compact {
@@ -462,7 +464,7 @@ main.page-main.container {
     border-radius: var(--radius-lg);
     border: 2px solid rgba(255, 255, 255, 0.95);
     box-shadow: 0 6px 20px rgba(124, 58, 237, 0.08);
-    min-height: calc(100dvh - 80px);
+    min-height: calc(100dvh - 58px);
     flex: 1;
     margin-left: var(--page-gutter);
     margin-right: var(--page-gutter);
@@ -527,7 +529,7 @@ main.page-main.container {
 
 @media (min-width: 900px) {
     .public-page .site-header .container {
-        padding: 4px var(--page-gutter);
+        padding: 2px var(--page-gutter);
     }
 }
 
@@ -609,27 +611,28 @@ main.page-main.container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    min-height: 60px;
+    gap: 8px;
+    min-height: 46px;
     flex-wrap: nowrap;
-    padding: 8px 0;
+    padding: 2px 0;
 }
 
 .site-brand {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 0;
     flex-shrink: 0;
     min-width: 0;
+    line-height: 1;
 }
 
 .logo-tagline {
-    font-size: 0.8rem;
+    font-size: 0.68rem;
     font-weight: 600;
     color: var(--color-text);
     margin: 0;
-    line-height: 1.25;
-    padding-left: 2px;
+    line-height: 1.1;
+    padding: 0;
 }
 
 .logo {
@@ -643,18 +646,19 @@ main.page-main.container {
     white-space: nowrap;
     flex-shrink: 0;
     text-decoration: none;
+    line-height: 0;
 }
 
 .site-logo-img {
     display: block;
-    height: 68px;
+    height: 46px;
     width: auto;
-    max-width: min(320px, 55vw);
+    max-width: min(220px, 42vw);
     object-fit: contain;
 }
 
 .public-page .site-logo-img {
-    height: 74px;
+    height: 48px;
 }
 
 .admin-header .site-logo-img {
@@ -691,9 +695,9 @@ main.page-main.container {
 
 .nav-links a {
     font-weight: 700;
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     color: var(--color-text);
-    padding: 6px 11px;
+    padding: 4px 9px;
     border-radius: 999px;
     background: transparent;
     border: 2px solid transparent;
@@ -711,9 +715,9 @@ main.page-main.container {
 .nav-auth {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin-left: 4px;
-    padding-left: 8px;
+    gap: 6px;
+    margin-left: 2px;
+    padding-left: 6px;
     border-left: 2px solid rgba(124, 58, 237, 0.15);
     flex-shrink: 0;
 }
@@ -3441,9 +3445,138 @@ tr:hover td {
 
 @media (min-width: 900px) {
     .home-page {
-        min-height: 100dvh;
-        height: auto;
-        overflow: visible;
+        height: 100dvh;
+        max-height: 100dvh;
+        overflow: hidden;
+        font-size: 0.92rem;
+    }
+
+    .home-page main.page-main.container {
+        padding: 4px var(--page-gutter) 2px;
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .home-main {
+        overflow: hidden;
+        padding: 2px 0 0;
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .home-shell {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+        gap: 8px;
+    }
+
+    .home-topics {
+        padding: 4px 8px;
+    }
+
+    .home-topic-grid {
+        gap: 4px;
+    }
+
+    .home-topic-tile {
+        padding: 5px 6px;
+        font-size: 0.72rem;
+    }
+
+    .home-topic-icon-glyph {
+        font-size: 0.95rem;
+    }
+
+    .home-latest {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+        padding: 10px 14px 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .home-section-head {
+        margin-bottom: 6px;
+    }
+
+    .home-section-title {
+        font-size: 1.1rem;
+    }
+
+    .home-view-all {
+        font-size: 0.82rem;
+    }
+
+    .home-story-grid {
+        flex: 1;
+        min-height: 0;
+        gap: 10px;
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+
+    .home-story-card {
+        min-height: 0;
+    }
+
+    .home-story-body {
+        padding: 8px 10px;
+        gap: 3px;
+    }
+
+    .home-story-title {
+        font-size: 0.92rem;
+        line-height: 1.2;
+    }
+
+    .home-story-desc {
+        font-size: 0.72rem;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .home-story-tag {
+        font-size: 0.62rem;
+        padding: 2px 7px;
+    }
+
+    .home-story-meta {
+        font-size: 0.68rem;
+        gap: 8px;
+    }
+
+    .home-story-img {
+        min-height: 0;
+    }
+
+    .home-story-actions .btn-sm {
+        padding: 4px 10px;
+        font-size: 0.72rem;
+    }
+
+    .home-story-actions .story-card-badges .badge-free,
+    .home-story-actions .story-card-badges .badge-owned,
+    .home-story-actions .story-card-badges .badge-format-pdf {
+        font-size: 0.62rem;
+        padding: 2px 7px;
+    }
+
+    .home-story-actions .story-card-footer {
+        padding-top: 4px;
+    }
+
+    .home-page .site-footer-compact {
+        padding: 4px 12px 6px;
+        font-size: 0.72rem;
     }
 }
 
@@ -3465,33 +3598,19 @@ tr:hover td {
 }
 
 .home-main {
-    padding: 12px 0 24px;
+    padding: 8px 0 16px;
     gap: 0;
     flex: 1;
     min-height: 0;
     width: 100%;
 }
 
-@media (min-width: 900px) {
-    .home-main {
-        overflow: visible;
-    }
-}
-
 .home-shell {
     width: 100%;
-    min-height: calc(100dvh - 64px);
+    min-height: calc(100dvh - 58px);
     display: flex;
     flex-direction: column;
-    gap: 16px;
-}
-
-@media (min-width: 900px) {
-    .home-shell {
-        min-height: 0;
-        flex: 1;
-        overflow: visible;
-    }
+    gap: 12px;
 }
 
 .home-hero {
@@ -3861,40 +3980,50 @@ tr:hover td {
 
 @media (min-width: 900px) and (max-height: 820px) {
     .home-page {
-        font-size: 1.15rem;
+        font-size: 0.85rem;
     }
 
-    .home-hero {
-        padding: 6px 14px;
-    }
-
-    .home-hero h1 {
-        font-size: clamp(1.65rem, 3.2vw, 2.25rem);
-    }
-
-    .home-hero-tagline {
-        font-size: 1rem;
+    .home-topics {
+        padding: 3px 6px;
     }
 
     .home-topic-tile {
-        padding: 4px 6px;
-        font-size: 0.78rem;
+        padding: 3px 5px;
+        font-size: 0.66rem;
     }
 
-    .home-topic-icon-glyph {
-        font-size: 1.1rem;
+    .home-latest {
+        padding: 8px 12px 8px;
+    }
+
+    .home-section-title {
+        font-size: 1rem;
+    }
+
+    .home-story-grid {
+        gap: 8px;
+    }
+
+    .home-story-body {
+        padding: 6px 8px;
     }
 
     .home-story-title {
-        font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+        font-size: 0.85rem;
     }
 
     .home-story-desc {
-        font-size: clamp(1.1rem, 1.55vw, 1.3rem);
+        font-size: 0.68rem;
+        -webkit-line-clamp: 2;
     }
 
     .home-story-meta {
-        font-size: 0.9rem;
+        font-size: 0.62rem;
+    }
+
+    .home-page .site-footer-compact {
+        padding: 2px 10px 4px;
+        font-size: 0.68rem;
     }
 }
 
@@ -4296,6 +4425,13 @@ tr:hover td {
     color: var(--purple);
 }
 
+.story-quiz-intro {
+    margin: 0 0 8px;
+    color: var(--color-text-muted);
+    font-size: var(--text-base);
+    line-height: 1.5;
+}
+
 .story-quiz-lead {
     margin: 0 0 16px;
     color: var(--color-text-muted);
@@ -4380,6 +4516,22 @@ tr:hover td {
 .story-quiz-choice.is-correct {
     border-color: #16a34a;
     background: rgba(22, 163, 74, 0.1);
+}
+
+.story-quiz-choice.is-correct .story-quiz-choice-text::after {
+    content: ' ✓';
+    color: #16a34a;
+    font-weight: 800;
+    margin-left: 6px;
+}
+
+.story-quiz-tick {
+    display: inline-block;
+    margin-left: 6px;
+    color: #16a34a;
+    font-size: 1.35em;
+    font-weight: 800;
+    line-height: 1;
 }
 
 .story-quiz-choice.is-incorrect {

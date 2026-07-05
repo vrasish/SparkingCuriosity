@@ -1,54 +1,67 @@
 {
     "book_id": 41,
     "title": "The Planetary Adventure",
+    "intro": "This quiz follows Max's journey through the solar system and the special features he discovers on each planet.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Planetary Adventure\" mostly about?",
+            "prompt": "Why did Max call Mercury the fastest planet?",
             "choices": [
-                "Plants eat food from soil only.",
-                "The brain does not help you move.",
-                "The Moon makes its own light.",
-                "The solar system has eight planets that orbit the Sun"
+                "It spins faster than every other planet",
+                "It travels around the Sun faster than the other planets",
+                "It has the strongest winds",
+                "It has the fastest storms"
             ],
-            "correct_index": 3,
-            "explanation": "The solar system has eight planets that orbit the Sun"
+            "correct_index": 1,
+            "explanation": "Mercury travels around the Sun faster than the other planets."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What makes Venus extremely hot?",
             "choices": [
-                "Plants eat food from soil only.",
-                "All germs are bad for you.",
-                "Rocks never change at all.",
-                "Each planet has different sizes"
+                "It is covered by thick clouds that trap heat",
+                "It is made entirely of fire",
+                "It has many active volcanoes",
+                "It is the largest planet"
             ],
-            "correct_index": 3,
-            "explanation": "Each planet has different sizes"
+            "correct_index": 0,
+            "explanation": "Venus is extremely hot because thick clouds trap heat."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What did Max notice about Earth?",
             "choices": [
-                "Sound is fastest in outer space.",
-                "The brain does not help you move.",
-                "The Planetary Adventure: Join Max",
-                "Your heart pumps air through your body."
+                "It was dusty, dry, and red",
+                "It had only ice and rocks",
+                "It had oceans, clouds, land, air, and life",
+                "It was surrounded by enormous rings"
             ],
             "correct_index": 2,
-            "explanation": "The Planetary Adventure: Join Max"
+            "explanation": "Earth had oceans, clouds, land, air, and life."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Which planet is the largest and has a giant storm bigger than Earth?",
             "choices": [
-                "Fish breathe air like people do.",
-                "Sound is fastest in outer space.",
-                "Plants eat food from soil only.",
-                "a curious young astronaut"
+                "Mars",
+                "Jupiter",
+                "Saturn",
+                "Neptune"
             ],
-            "correct_index": 3,
-            "explanation": "a curious young astronaut"
+            "correct_index": 1,
+            "explanation": "Jupiter is the largest planet and has a giant storm bigger than Earth."
+        },
+        {
+            "id": 5,
+            "prompt": "Which statement correctly describes Uranus and Neptune?",
+            "choices": [
+                "Uranus spins on its side, and Neptune has very strong winds",
+                "Uranus is red, and Neptune has large rings",
+                "Uranus is the hottest planet, and Neptune is closest to the Sun",
+                "Uranus has life, and Neptune is covered with forests"
+            ],
+            "correct_index": 0,
+            "explanation": "Uranus spins on its side, and Neptune has very strong winds."
         }
     ]
 }

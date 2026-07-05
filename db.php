@@ -313,6 +313,7 @@ function topic_class(string $name): string
         'Plants & Animals' => 'topic-plants',
         'Animals' => 'topic-animals',
         'Weather' => 'topic-weather',
+        'Microbes' => 'topic-germs',
         'Germs' => 'topic-germs',
         'Earth Science' => 'topic-earth-science',
         'Weather and Atmosphere' => 'topic-earth-science',
@@ -398,7 +399,7 @@ function home_topic_tiles(): array
         ['label' => 'Animals', 'slug' => 'Animals', 'icon' => '🐾', 'class' => 'topic-animals'],
         ['label' => 'Earth Science', 'slug' => 'Earth Science', 'icon' => '🌍', 'class' => 'topic-earth-science'],
         ['label' => 'Human Body', 'slug' => 'Body', 'icon' => '🫀', 'class' => 'topic-body'],
-        ['label' => 'Microbes', 'slug' => 'Germs', 'icon' => '🦠', 'class' => 'topic-germs'],
+        ['label' => 'Microbes', 'slug' => 'Microbes', 'icon' => '🦠', 'class' => 'topic-germs'],
         ['label' => 'Physical Science', 'slug' => 'Physical Science', 'icon' => '⚛️', 'class' => 'topic-physical-science'],
     ];
 }
@@ -406,7 +407,7 @@ function home_topic_tiles(): array
 /** Curated stories shown in the home page "Latest Stories" section. */
 function home_featured_story_ids(): array
 {
-    return [75, 54, 70, 64, 43, 41];
+    return [75, 54, 70, 39, 43, 41];
 }
 
 function status_class(string $status): string
@@ -477,7 +478,7 @@ function admin_story_statuses(): array
 /** @return list<string> */
 function admin_science_topics(): array
 {
-    return ['Space', 'Body', 'Plants', 'Animals', 'Weather', 'Germs', 'Earth Science', 'Engineering', 'Physical Science'];
+    return ['Space', 'Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science'];
 }
 
 function delete_book_files(array $book): void

@@ -53,7 +53,8 @@ foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $book) {
     }
 
     echo "Branding book #{$bookId}: {$book['title']}\n";
-    if (!brand_pdf_file($diskPath)) {
+    $compact = in_array($bookId, pdf_compact_brand_book_ids(), true);
+    if (!brand_pdf_file($diskPath, $compact)) {
         fwrite(STDERR, "Failed to brand book #{$bookId}\n");
         continue;
     }

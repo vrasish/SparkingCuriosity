@@ -1,13 +1,9 @@
 <?php
 require_once __DIR__ . '/cache-lib.php';
-
-$pageCache = home_page_cache_get();
-if ($pageCache !== null) {
-    define('STORIES_SKIP_DB', true);
-}
-
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/favorites-lib.php';
+
+$pageCache = home_page_cache_get();
 
 $latestBooks = [];
 $dbError = null;
@@ -75,7 +71,7 @@ $topicTiles = home_topic_tiles();
         <h2 class="home-section-title home-topics-title">Explore by Topic</h2>
         <div class="home-topic-grid">
             <?php foreach ($topicTiles as $tile): ?>
-                <a href="<?= e(app_url('explore.php?topic=' . rawurlencode($tile['slug']))) ?>" class="home-topic-tile category-btn <?= e($tile['class']) ?>">
+                <a href="<?= e(app_url('search.php?topic=' . rawurlencode($tile['slug']))) ?>" class="home-topic-tile category-btn <?= e($tile['class']) ?>">
                     <span class="home-topic-icon" aria-hidden="true"><span class="home-topic-icon-glyph"><?= $tile['icon'] ?></span></span>
                     <span class="home-topic-label"><?= e($tile['label']) ?></span>
                 </a>
@@ -86,7 +82,7 @@ $topicTiles = home_topic_tiles();
     <section class="home-latest">
         <div class="home-section-head">
             <h2 class="home-section-title">Latest Stories</h2>
-            <a href="<?= e(app_url('explore.php')) ?>" class="home-view-all">View all stories</a>
+            <a href="<?= e(app_url('search.php')) ?>" class="home-view-all">View all stories</a>
         </div>
 
         <?php if ($dbError): ?>
@@ -137,6 +133,6 @@ $topicTiles = home_topic_tiles();
 
 </div>
 </main>
-<?php render_site_footer(); ?>
+<?php render_site_footer(true); ?>
 </body>
 </html>

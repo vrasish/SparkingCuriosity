@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $action = (string) ($_POST['action'] ?? '');
 $bookId = (int) ($_POST['book_id'] ?? 0);
-$redirect = 'explore.php';
+$redirect = 'search.php';
 
 if ($action === 'add') {
     $result = add_book_to_cart($bookId, $pdo);
@@ -21,7 +21,7 @@ if ($action === 'add') {
     } else {
         $_SESSION['cart_flash_success'] = 'Added to cart.';
     }
-    $redirect = safe_redirect_path($_POST['redirect'] ?? null, 'explore.php');
+    $redirect = safe_redirect_path($_POST['redirect'] ?? null, 'search.php');
 }
 
 if ($action === 'remove') {

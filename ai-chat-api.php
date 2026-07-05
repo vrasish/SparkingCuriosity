@@ -187,11 +187,12 @@ if ($action === 'export_prepare') {
     ai_set_workflow(['step' => 'ready', 'story' => $story]);
 
     $pageCount = count($story['pages'] ?? []);
+    $hasScienceElement = trim((string) ($story['science_element'] ?? '')) !== '';
     ai_json_response([
         'ok' => true,
         'title' => (string) ($story['title'] ?? 'Untitled Story'),
         'page_count' => $pageCount,
-        'total_images' => $pageCount + 1,
+        'total_images' => $pageCount + 1 + ($hasScienceElement ? 1 : 0),
     ]);
 }
 
@@ -217,13 +218,23 @@ if ($action === 'export_image') {
         ai_json_response(['ok' => true, 'kind' => 'cover']);
     }
 
+    if ($kind === 'science_element') {
+        $prompt = ai_science_element_image_prompt($story);
+        $image = ai_generate_illustration($prompt);
+        if (!$image['ok']) {
+            ai_json_response(['ok' => false, 'error' => $image['error']], 502);
+        }
+        ai_export_set_science_element($image['path']);
+        ai_json_response(['ok' => true, 'kind' => 'science_element']);
+    }
+
     $pageIndex = (int) ($input['page_index'] ?? -1);
     $pages = $story['pages'] ?? [];
     if ($pageIndex < 0 || $pageIndex >= count($pages) || !is_array($pages[$pageIndex])) {
         ai_json_response(['ok' => false, 'error' => 'Invalid page index.'], 400);
     }
 
-    $prompt = ai_page_image_prompt($pages[$pageIndex], $title);
+    $prompt = ai_page_image_prompt($pages[$pageIndex], $title, $story);
     $image = ai_generate_illustration($prompt);
     if (!$image['ok']) {
         ai_json_response(['ok' => false, 'error' => $image['error']], 502);
@@ -249,6 +260,7 @@ if ($action === 'export_finalize') {
     $pdf = ai_generate_story_pdf($story, [
         'cover_path' => $export['cover_path'] ?? null,
         'page_paths' => $export['page_paths'] ?? [],
+        'science_element_path' => $export['science_element_path'] ?? null,
     ]);
     if (!$pdf['ok']) {
         ai_json_response(['ok' => false, 'error' => $pdf['error']], 500);
@@ -310,16 +322,22 @@ if ($action === 'export_pdf') {
         if (!is_array($page)) {
             continue;
         }
-        $img = ai_generate_illustration(ai_page_image_prompt($page, (string) ($story['title'] ?? 'Story')));
+        $img = ai_generate_illustration(ai_page_image_prompt($page, (string) ($story['title'] ?? 'Story'), $story));
         if ($img['ok']) {
             ai_export_set_page_image((int) $i, $img['path']);
         }
+    }
+
+    $scienceImg = ai_generate_illustration(ai_science_element_image_prompt($story));
+    if ($scienceImg['ok']) {
+        ai_export_set_science_element($scienceImg['path']);
     }
 
     $export = ai_export_state() ?? [];
     $pdf = ai_generate_story_pdf($story, [
         'cover_path' => $export['cover_path'] ?? null,
         'page_paths' => $export['page_paths'] ?? [],
+        'science_element_path' => $export['science_element_path'] ?? null,
     ]);
     if (!$pdf['ok']) {
         ai_export_clear_session();
