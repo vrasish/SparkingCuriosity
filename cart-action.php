@@ -2,6 +2,11 @@
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/cart-lib.php';
 
+if (!cart_enabled()) {
+    header('Location: ' . app_url('index.php'));
+    exit;
+}
+
 ensure_book_pricing_schema($pdo);
 cart_bootstrap();
 

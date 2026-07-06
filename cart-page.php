@@ -2,6 +2,11 @@
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/stripe-lib.php';
 
+if (!cart_enabled()) {
+    header('Location: ' . app_url('index.php'));
+    exit;
+}
+
 ensure_purchase_schema($pdo);
 cart_bootstrap();
 

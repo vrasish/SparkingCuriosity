@@ -416,7 +416,7 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
     }
 
     echo '<span class="nav-auth">';
-    if (!$isAdminNav) {
+    if (!$isAdminNav && cart_enabled()) {
         cart_bootstrap();
         $cartCount = cart_item_count();
         echo '<a href="' . e(app_url('cart-page.php')) . '" class="nav-cart" aria-label="Shopping cart">';

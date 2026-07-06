@@ -85,8 +85,8 @@ $isPdfBook = $book && !$bookLocked && ($book['book_format'] ?? 'pages') === 'pdf
 $pdfUrl = $isPdfBook ? pdf_reader_url($bookId, $preview) : '';
 $pdfDownloadUrl = $isPdfBook ? pdf_download_url($bookId, $preview) : '';
 $pdfExists = $isPdfBook && is_file(__DIR__ . '/' . ($book['pdf_file_path'] ?? ''));
-$inCart = $book && in_array($bookId, cart_book_ids(), true);
-$bookOwned = $book && is_book_purchased($bookId) && !is_book_free($book);
+$inCart = cart_enabled() && $book && in_array($bookId, cart_book_ids(), true);
+$bookOwned = $book && cart_enabled() && is_book_purchased($bookId) && !is_book_free($book);
 
 $ratingSummary = $book ? get_book_rating_summary($pdo, $bookId) : null;
 $bookReviews = $book ? get_book_reviews($pdo, $bookId) : [];
@@ -153,6 +153,7 @@ if ($book && !$preview && !$bookLocked) {
                 <p class="mt-2"><?= e($book['description']) ?></p>
                 <?php if ($bookLocked): ?>
                     <div class="book-purchase-cta mt-2">
+                        <?php if (cart_enabled()): ?>
                         <p class="page-lead">Purchase this story to read the full book.</p>
                         <?php if ($inCart): ?>
                             <a href="<?= e(app_url('cart-page.php')) ?>" class="btn btn-primary">View Cart</a>
@@ -163,6 +164,10 @@ if ($book && !$preview && !$bookLocked) {
                                 <input type="hidden" name="redirect" value="<?= e(app_url('book.php?id=' . $bookId)) ?>">
                                 <button type="submit" class="btn btn-primary">Add to Cart — <?= e(format_book_price($book)) ?></button>
                             </form>
+                        <?php endif; ?>
+                        <?php else: ?>
+                        <p class="page-lead">This story is not available to read right now.</p>
+                        <a href="<?= e(app_url('search.php')) ?>" class="btn btn-primary">Browse Stories</a>
                         <?php endif; ?>
                     </div>
                 <?php elseif ($bookOwned): ?>
@@ -183,7 +188,12 @@ if ($book && !$preview && !$bookLocked) {
         <div class="page-section book-content<?= $isPdfBook ? ' book-content-pdf' : ' book-content-text' ?>"<?= !$isPdfBook && !$bookLocked ? ' data-book-id="' . (int) $bookId . '" data-quiz-api="' . e(app_api_url('quiz-api.php')) . '"' : '' ?>>
         <?php if ($bookLocked): ?>
             <div class="empty-state">
+                <?php if (cart_enabled()): ?>
                 <p>This story is locked. Add it to your cart and purchase for <?= e(format_book_price($book)) ?> to read.</p>
+                <?php else: ?>
+                <p>This story is not available to read right now.</p>
+                <p class="mt-2"><a href="<?= e(app_url('search.php')) ?>" class="btn btn-primary">Browse Stories</a></p>
+                <?php endif; ?>
             </div>
         <?php elseif ($isPdfBook): ?>
             <?php if ($pdfExists): ?>

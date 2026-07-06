@@ -17,6 +17,11 @@ function stories_load_stripe_lib(): void
     $loaded = true;
 }
 
+function cart_enabled(): bool
+{
+    return false;
+}
+
 function cart_bootstrap(): void
 {
     if (session_status() === PHP_SESSION_ACTIVE) {
