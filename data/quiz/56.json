@@ -1,54 +1,67 @@
 {
     "book_id": 56,
     "title": "The Trees That Let Go",
+    "intro": "This quiz follows Zara and Eli as they learn why deciduous trees shed their leaves and prepare for winter.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Trees That Let Go\" mostly about?",
+            "prompt": "What is a deciduous tree?",
             "choices": [
-                "Deciduous trees lose their leaves in fall to save water and energy during cold months",
-                "Sound is fastest in outer space.",
-                "The Moon makes its own light.",
-                "All germs are bad for you."
+                "A tree that never grows leaves",
+                "A tree that sheds its leaves each year",
+                "A tree that grows only in deserts",
+                "A tree that stays green throughout every season"
             ],
-            "correct_index": 0,
-            "explanation": "Deciduous trees lose their leaves in fall to save water and energy during cold months"
+            "correct_index": 1,
+            "explanation": "A deciduous tree sheds its leaves each year."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "Which group contains only deciduous trees mentioned in the story?",
             "choices": [
-                "Fish breathe air like people do.",
-                "The brain does not help you move.",
-                "All germs are bad for you.",
-                "Before leaves drop"
+                "Pine, fir, spruce, cedar, and redwood",
+                "Oak, maple, elm, ash, and birch",
+                "Palm, cactus, bamboo, and fern",
+                "Apple, orange, lemon, and coconut"
             ],
-            "correct_index": 3,
-            "explanation": "Before leaves drop"
+            "correct_index": 1,
+            "explanation": "Oak, maple, elm, ash, and birch are deciduous trees mentioned in the story."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "Why do deciduous trees drop their leaves before winter?",
             "choices": [
-                "All germs are bad for you.",
-                "The Moon makes its own light.",
-                "chlorophyll breaks down and other pigments create red",
-                "Fish breathe air like people do."
+                "To attract more insects",
+                "To save water and energy during the cold season",
+                "To make their branches longer",
+                "To stop their roots from growing"
             ],
-            "correct_index": 2,
-            "explanation": "chlorophyll breaks down and other pigments create red"
+            "correct_index": 1,
+            "explanation": "Deciduous trees drop their leaves before winter to save water and energy during the cold season."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What conditions make it harder for trees to keep their leaves during winter?",
             "choices": [
-                "Rocks never change at all.",
-                "New leaves grow back in spring",
-                "Your heart pumps air through your body.",
-                "The Moon makes its own light."
+                "Stronger sunlight and more water",
+                "Longer days and warmer air",
+                "Weaker sunlight and less available water",
+                "More flowers and insects"
             ],
-            "correct_index": 1,
-            "explanation": "New leaves grow back in spring"
+            "correct_index": 2,
+            "explanation": "Weaker sunlight and less available water make it harder for trees to keep their leaves during winter."
+        },
+        {
+            "id": 5,
+            "prompt": "What was resting inside the tiny buds on the branches?",
+            "choices": [
+                "The beginnings of next spring's leaves",
+                "Small insects waiting for summer",
+                "Pieces of fallen bark",
+                "Drops of rainwater"
+            ],
+            "correct_index": 0,
+            "explanation": "The tiny buds held the beginnings of next spring's leaves."
         }
     ]
 }

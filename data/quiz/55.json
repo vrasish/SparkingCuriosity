@@ -1,54 +1,67 @@
 {
     "book_id": 55,
     "title": "The Forest That Stayed Green",
+    "intro": "This quiz follows Aria and Mateo as they learn why evergreen trees stay green and how their leaves help them survive tough weather.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Forest That Stayed Green\" mostly about?",
+            "prompt": "Why do evergreen trees stay green throughout the year?",
             "choices": [
-                "The brain does not help you move.",
-                "Sound is fastest in outer space.",
-                "Deciduous trees lose their leaves in fall to save water and energy",
-                "Fish breathe air like people do."
+                "They grow new leaves every morning",
+                "They keep many of their leaves for several years",
+                "They do not need leaves",
+                "Their leaves are made of wood"
             ],
-            "correct_index": 2,
-            "explanation": "Deciduous trees lose their leaves in fall to save water and energy"
+            "correct_index": 1,
+            "explanation": "Evergreen trees stay green because they keep many of their leaves for several years."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "Which group contains only evergreen trees mentioned in the story?",
             "choices": [
-                "Plants eat food from soil only.",
-                "The Forest That Stayed Green: A story about evergreen trees Aria and Mateo followed Ms",
-                "Your heart pumps air through your body.",
-                "The Moon makes its own light."
+                "Pine, spruce, fir, cedar, and redwood",
+                "Maple, oak, apple, and cherry",
+                "Palm, cactus, grass, and fern",
+                "Birch, willow, peach, and elm"
             ],
-            "correct_index": 1,
-            "explanation": "The Forest That Stayed Green: A story about evergreen trees Aria and Mateo followed Ms"
+            "correct_index": 0,
+            "explanation": "Pine, spruce, fir, cedar, and redwood are evergreen trees mentioned in the story."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "How are spruce needles described in the story?",
             "choices": [
-                "The brain does not help you move.",
-                "Lin along the trail",
-                "Rocks never change at all.",
-                "Your heart pumps air through your body."
+                "Long and growing in bundles",
+                "Flat and soft",
+                "Shorter and sharper",
+                "Wide and round"
             ],
-            "correct_index": 1,
-            "explanation": "Lin along the trail"
+            "correct_index": 2,
+            "explanation": "Spruce needles are described as shorter and sharper."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What is special about cedar leaves?",
             "choices": [
-                "Some trees nearby were bare, but the pine trees were still green",
-                "Sound is fastest in outer space.",
-                "The brain does not help you move.",
-                "Your heart pumps air through your body."
+                "They look like tiny green scales",
+                "They are shaped like flowers",
+                "They fall off every winter",
+                "They grow only underwater"
             ],
             "correct_index": 0,
-            "explanation": "Some trees nearby were bare, but the pine trees were still green"
+            "explanation": "Cedar leaves look like tiny green scales."
+        },
+        {
+            "id": 5,
+            "prompt": "How do narrow needles and a waxy coating help evergreen trees?",
+            "choices": [
+                "They help the trees catch insects",
+                "They help the trees save water and survive cold or dry weather",
+                "They make the trees grow fruit",
+                "They help the trees change color in autumn"
+            ],
+            "correct_index": 1,
+            "explanation": "Narrow needles and a waxy coating help evergreen trees save water and survive cold or dry weather."
         }
     ]
 }

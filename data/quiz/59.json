@@ -1,54 +1,67 @@
 {
     "book_id": 59,
     "title": "The Body's Hidden Frame",
+    "intro": "This quiz follows the story's exploration of the skeleton and how bones support, protect, and help the body move.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Body's Hidden Frame\" mostly about?",
+            "prompt": "What is the skeleton's main job?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "All germs are bad for you.",
-                "Sound is fastest in outer space.",
-                "The human skeleton is made of 206 bones that provide structure"
+                "To digest food",
+                "To support and give shape to the body",
+                "To pump blood",
+                "To carry oxygen"
             ],
-            "correct_index": 3,
-            "explanation": "The human skeleton is made of 206 bones that provide structure"
+            "correct_index": 1,
+            "explanation": "The skeleton's main job is to support and give shape to the body."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "Which bones protect the brain?",
             "choices": [
-                "Sound is fastest in outer space.",
-                "Fish breathe air like people do.",
-                "protect organs like the brain and heart",
-                "Plants eat food from soil only."
+                "The ribs",
+                "The spine",
+                "The skull",
+                "The pelvis"
             ],
             "correct_index": 2,
-            "explanation": "protect organs like the brain and heart"
+            "explanation": "The skull protects the brain."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What important organs are protected by the rib cage?",
             "choices": [
-                "Plants eat food from soil only.",
-                "The brain does not help you move.",
-                "The Moon makes its own light.",
-                "Bones also store minerals and produce blood cells in their marrow"
+                "The stomach and kidneys",
+                "The heart and lungs",
+                "The brain and eyes",
+                "The hands and feet"
             ],
-            "correct_index": 3,
-            "explanation": "Bones also store minerals and produce blood cells in their marrow"
+            "correct_index": 1,
+            "explanation": "The rib cage protects the heart and lungs."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "How do bones help the body move?",
             "choices": [
-                "Fish breathe air like people do.",
-                "Rocks never change at all.",
-                "They stacked it higher and higher",
-                "The brain does not help you move."
+                "Bones work with muscles and joints",
+                "Bones move without any help",
+                "Bones fill with air",
+                "Bones turn into muscles"
             ],
-            "correct_index": 2,
-            "explanation": "They stacked it higher and higher"
+            "correct_index": 0,
+            "explanation": "Bones help the body move by working with muscles and joints."
+        },
+        {
+            "id": 5,
+            "prompt": "What is a joint?",
+            "choices": [
+                "A place where two or more bones meet",
+                "A type of muscle",
+                "A layer of skin",
+                "A blood vessel inside a bone"
+            ],
+            "correct_index": 0,
+            "explanation": "A joint is a place where two or more bones meet."
         }
     ]
 }

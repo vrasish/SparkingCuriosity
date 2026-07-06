@@ -1,54 +1,67 @@
 {
     "book_id": 74,
     "title": "The Energy That Made Everything Happen",
+    "intro": "This quiz follows Mira and Jay as they discover different forms of energy and how energy can change from one form into another.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Energy That Made Everything Happen\" mostly about?",
+            "prompt": "What is energy?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "The Moon makes its own light.",
-                "Energy is the ability to make things happen—like moving",
-                "Fish breathe air like people do."
+                "The amount of space an object takes up",
+                "The ability to do work or cause change",
+                "The weight of an object",
+                "A type of matter"
             ],
-            "correct_index": 2,
-            "explanation": "Energy is the ability to make things happen—like moving"
+            "correct_index": 1,
+            "explanation": "Energy is the ability to do work or cause change."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What type of energy is stored in a battery?",
             "choices": [
-                "It can be stored in food",
-                "The Moon makes its own light.",
-                "Rocks never change at all.",
-                "All germs are bad for you."
+                "Sound energy",
+                "Chemical energy",
+                "Motion energy",
+                "Light energy"
             ],
-            "correct_index": 0,
-            "explanation": "It can be stored in food"
+            "correct_index": 1,
+            "explanation": "Chemical energy is stored in a battery."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What happens to the chemical energy in a battery when it powers a device?",
             "choices": [
-                "Energy changes form",
-                "The Moon makes its own light.",
-                "Plants eat food from soil only.",
-                "Rocks never change at all."
+                "It changes into electrical energy",
+                "It changes only into sound energy",
+                "It disappears completely",
+                "It turns into gravitational energy"
             ],
             "correct_index": 0,
-            "explanation": "Energy changes form"
+            "explanation": "The chemical energy in a battery changes into electrical energy when it powers a device."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Why did the raised book have gravitational potential energy?",
             "choices": [
-                "The Moon makes its own light.",
-                "Fish breathe air like people do.",
-                "Sound is fastest in outer space.",
-                "such as chemical energy in a battery becoming electrical energy"
+                "It was warm",
+                "It was making sound",
+                "It was held high above the table",
+                "It was connected to a battery"
             ],
-            "correct_index": 3,
-            "explanation": "such as chemical energy in a battery becoming electrical energy"
+            "correct_index": 2,
+            "explanation": "The raised book had gravitational potential energy because it was held high above the table."
+        },
+        {
+            "id": 5,
+            "prompt": "Which sequence correctly describes the energy changes in a flashlight?",
+            "choices": [
+                "Light energy → chemical energy → electrical energy",
+                "Chemical energy → electrical energy → light and some heat energy",
+                "Sound energy → motion energy → light energy",
+                "Heat energy → chemical energy → sound energy"
+            ],
+            "correct_index": 1,
+            "explanation": "In a flashlight, chemical energy changes into electrical energy, which then becomes light and some heat energy."
         }
     ]
 }

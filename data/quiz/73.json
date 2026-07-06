@@ -1,54 +1,67 @@
 {
     "book_id": 73,
     "title": "The Backpack That Felt Lighter",
+    "intro": "This quiz follows Noor and Eli as they learn the difference between mass and weight and why objects weigh less on the Moon.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Backpack That Felt Lighter\" mostly about?",
+            "prompt": "What is mass?",
             "choices": [
-                "Rocks never change at all.",
-                "Weight is the force of gravity pulling on an object's mass",
-                "Fish breathe air like people do.",
-                "Sound is fastest in outer space."
+                "The force pulling an object downward",
+                "The amount of matter in an object",
+                "The amount of space around an object",
+                "The speed at which an object falls"
             ],
             "correct_index": 1,
-            "explanation": "Weight is the force of gravity pulling on an object's mass"
+            "explanation": "Mass is the amount of matter in an object."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What is weight?",
             "choices": [
-                "The same backpack has the same mass",
-                "Rocks never change at all.",
-                "Plants eat food from soil only.",
-                "The brain does not help you move."
+                "The amount of matter in an object",
+                "The size of an object",
+                "The force of gravity pulling on an object",
+                "The temperature of an object"
             ],
-            "correct_index": 0,
-            "explanation": "The same backpack has the same mass"
+            "correct_index": 2,
+            "explanation": "Weight is the force of gravity pulling on an object."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What would happen to Noor's backpack on the Moon?",
             "choices": [
-                "Sound is fastest in outer space.",
-                "All germs are bad for you.",
-                "The Moon makes its own light.",
-                "The Backpack That Felt Lighter: A story about mass and weight Ms"
+                "Its mass and weight would both increase",
+                "Its mass would decrease, but its weight would stay the same",
+                "Its mass would stay the same, but it would weigh less",
+                "It would have no mass or weight"
             ],
-            "correct_index": 3,
-            "explanation": "The Backpack That Felt Lighter: A story about mass and weight Ms"
+            "correct_index": 2,
+            "explanation": "Its mass would stay the same, but it would weigh less on the Moon."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Why would the backpack feel lighter on the Moon?",
             "choices": [
-                "The brain does not help you move.",
-                "Bennett placed the backpack on one side of a balance scale",
-                "Your heart pumps air through your body.",
-                "The Moon makes its own light."
+                "The Moon has a weaker gravitational pull than Earth",
+                "The backpack would lose some of its books",
+                "The Moon has no gravity at all",
+                "The air on the Moon would push it upward"
+            ],
+            "correct_index": 0,
+            "explanation": "The Moon has a weaker gravitational pull than Earth."
+        },
+        {
+            "id": 5,
+            "prompt": "Which tool is commonly used to measure mass?",
+            "choices": [
+                "A thermometer",
+                "A balance or scale",
+                "A ruler",
+                "A stopwatch"
             ],
             "correct_index": 1,
-            "explanation": "Bennett placed the backpack on one side of a balance scale"
+            "explanation": "A balance or scale is commonly used to measure mass."
         }
     ]
 }

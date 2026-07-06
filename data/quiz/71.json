@@ -1,54 +1,67 @@
 {
     "book_id": 71,
     "title": "The Mystery of Heat and Temperature",
+    "intro": "This quiz explores the difference between heat and temperature and how thermometers measure temperature.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Mystery of Heat and Temperature\" mostly about?",
+            "prompt": "What does temperature measure?",
             "choices": [
-                "Fish breathe air like people do.",
-                "Heat is the transfer of thermal energy from warmer objects to cooler ones",
-                "The Moon makes its own light.",
-                "Your heart pumps air through your body."
+                "How much space an object takes up",
+                "How hot or cold something is",
+                "How heavy an object is",
+                "How quickly an object moves across a room"
             ],
             "correct_index": 1,
-            "explanation": "Heat is the transfer of thermal energy from warmer objects to cooler ones"
+            "explanation": "Temperature measures how hot or cold something is."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "Which instrument is used to measure temperature?",
             "choices": [
-                "Plants eat food from soil only.",
-                "All germs are bad for you.",
-                "Temperature measures how hot or cold something is—linked to how fast its particles move",
-                "The brain does not help you move."
+                "A ruler",
+                "A balance",
+                "A thermometer",
+                "A measuring cup"
             ],
             "correct_index": 2,
-            "explanation": "Temperature measures how hot or cold something is—linked to how fast its particles move"
+            "explanation": "A thermometer is used to measure temperature."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What is heat?",
             "choices": [
-                "The Mystery of Heat and Temperature Ms",
-                "Fish breathe air like people do.",
-                "Rocks never change at all.",
-                "Your heart pumps air through your body."
+                "The transfer of thermal energy from a warmer object to a cooler object",
+                "The amount of matter inside an object",
+                "The space occupied by an object",
+                "The color produced by a hot object"
             ],
             "correct_index": 0,
-            "explanation": "The Mystery of Heat and Temperature Ms"
+            "explanation": "Heat is the transfer of thermal energy from a warmer object to a cooler object."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What happens when a warm object touches a cooler object?",
             "choices": [
-                "All germs are bad for you.",
-                "The brain does not help you move.",
-                "Carter handed Mina one thermometer and Jay another",
-                "Plants eat food from soil only."
+                "Heat moves from the cooler object to the warmer object",
+                "Heat moves from the warmer object to the cooler object",
+                "Both objects immediately freeze",
+                "Their temperatures can never change"
             ],
-            "correct_index": 2,
-            "explanation": "Carter handed Mina one thermometer and Jay another"
+            "correct_index": 1,
+            "explanation": "When a warm object touches a cooler object, heat moves from the warmer object to the cooler object."
+        },
+        {
+            "id": 5,
+            "prompt": "Which statement correctly explains the difference between heat and temperature?",
+            "choices": [
+                "Heat and temperature always mean exactly the same thing",
+                "Temperature measures hotness or coldness, while heat is energy moving between objects",
+                "Heat is measured with a ruler, while temperature is measured with a scale",
+                "Temperature moves between objects, but heat stays still"
+            ],
+            "correct_index": 1,
+            "explanation": "Temperature measures hotness or coldness, while heat is energy moving between objects."
         }
     ]
 }

@@ -1,54 +1,67 @@
 {
     "book_id": 72,
     "title": "The Heat That Traveled Three Ways",
+    "intro": "This quiz follows Nina and Omar as they discover the three ways heat moves: conduction, convection, and radiation.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Heat That Traveled Three Ways\" mostly about?",
+            "prompt": "What is conduction?",
             "choices": [
-                "Rocks never change at all.",
-                "Sound is fastest in outer space.",
-                "Plants eat food from soil only.",
-                "Heat moves in three main ways"
+                "Heat moving through direct contact",
+                "Heat moving only through space",
+                "Heat moving because warm air rises",
+                "Heat disappearing from an object"
             ],
-            "correct_index": 3,
-            "explanation": "Heat moves in three main ways"
+            "correct_index": 0,
+            "explanation": "Conduction is heat moving through direct contact."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "Why did the spoon handle become warm in the hot tea?",
             "choices": [
-                "Fish breathe air like people do.",
-                "Conduction transfers heat through direct contact",
-                "Your heart pumps air through your body.",
-                "Rocks never change at all."
+                "Radiation from the Sun warmed it",
+                "Conduction moved heat through the spoon",
+                "Cooler air sank around it",
+                "The spoon made its own heat"
             ],
             "correct_index": 1,
-            "explanation": "Conduction transfers heat through direct contact"
+            "explanation": "Conduction moved heat through the spoon, warming the handle in the hot tea."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What happens during convection?",
             "choices": [
-                "Plants eat food from soil only.",
-                "like a metal spoon warming in hot soup",
-                "Rocks never change at all.",
-                "All germs are bad for you."
+                "Warm liquids or gases rise while cooler parts sink",
+                "Heat moves only through solid objects",
+                "Heat travels through empty space as waves",
+                "Heat stops moving completely"
             ],
-            "correct_index": 1,
-            "explanation": "like a metal spoon warming in hot soup"
+            "correct_index": 0,
+            "explanation": "During convection, warm liquids or gases rise while cooler parts sink."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "How did the Sun warm the metal bench?",
             "choices": [
-                "The Moon makes its own light.",
-                "Radiation sends heat through empty space as invisible waves",
-                "Plants eat food from soil only.",
-                "Fish breathe air like people do."
+                "By conduction",
+                "By convection",
+                "By radiation",
+                "By evaporation"
             ],
-            "correct_index": 1,
-            "explanation": "Radiation sends heat through empty space as invisible waves"
+            "correct_index": 2,
+            "explanation": "The Sun warmed the metal bench by radiation."
+        },
+        {
+            "id": 5,
+            "prompt": "Which statement correctly matches all three types of heat transfer?",
+            "choices": [
+                "Conduction uses direct contact, convection happens in liquids and gases, and radiation travels as waves",
+                "Conduction happens only in air, convection needs no matter, and radiation uses direct contact",
+                "Conduction and convection happen only in space",
+                "Radiation happens only in water"
+            ],
+            "correct_index": 0,
+            "explanation": "Conduction uses direct contact, convection happens in liquids and gases, and radiation travels as waves."
         }
     ]
 }

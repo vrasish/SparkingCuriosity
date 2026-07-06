@@ -1,54 +1,67 @@
 {
     "book_id": 76,
     "title": "The Mystery of Day and Night Animals",
+    "intro": "This quiz follows Mia and Leo as they learn why some animals are active during the day, while others are active at night.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Mystery of Day and Night Animals\" mostly about?",
+            "prompt": "What is a diurnal animal?",
             "choices": [
-                "Animals have different activity patterns",
-                "Plants eat food from soil only.",
-                "Rocks never change at all.",
-                "Your heart pumps air through your body."
+                "An animal that is active mainly during the day",
+                "An animal that sleeps throughout the year",
+                "An animal that is active only underwater",
+                "An animal that comes out only in winter"
             ],
             "correct_index": 0,
-            "explanation": "Animals have different activity patterns"
+            "explanation": "A diurnal animal is active mainly during the day."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What is a nocturnal animal?",
             "choices": [
-                "Sound is fastest in outer space.",
-                "Diurnal animals are active during the day",
-                "Your heart pumps air through your body.",
-                "All germs are bad for you."
+                "An animal that is active mainly at night",
+                "An animal that is active only in summer",
+                "An animal that cannot see in darkness",
+                "An animal that sleeps only during the day and night"
             ],
-            "correct_index": 1,
-            "explanation": "Diurnal animals are active during the day"
+            "correct_index": 0,
+            "explanation": "A nocturnal animal is active mainly at night."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "Which animal in the story was active during the daytime?",
             "choices": [
-                "Rocks never change at all.",
-                "The brain does not help you move.",
-                "Night animals often have adaptations like large eyes",
-                "The Moon makes its own light."
+                "The owl",
+                "The squirrel",
+                "The bat",
+                "The moth"
             ],
-            "correct_index": 2,
-            "explanation": "Night animals often have adaptations like large eyes"
+            "correct_index": 1,
+            "explanation": "The squirrel was active during the daytime."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Which adaptation can help an owl hunt at night?",
             "choices": [
-                "Fish breathe air like people do.",
-                "The Moon makes its own light.",
-                "The Mystery of Day and Night Animals In the bright morning light",
-                "Your heart pumps air through your body."
+                "Brightly colored feathers",
+                "Large eyes, sensitive hearing, and quiet flight",
+                "Thick scales and a long tail",
+                "Gills and fins"
             ],
-            "correct_index": 2,
-            "explanation": "The Mystery of Day and Night Animals In the bright morning light"
+            "correct_index": 1,
+            "explanation": "Large eyes, sensitive hearing, and quiet flight can help an owl hunt at night."
+        },
+        {
+            "id": 5,
+            "prompt": "Why are different animals active at different times?",
+            "choices": [
+                "It helps them find food, avoid danger, and survive in their habitats",
+                "All animals choose their schedules randomly",
+                "Daytime animals cannot sleep",
+                "Night animals are afraid of sunlight"
+            ],
+            "correct_index": 0,
+            "explanation": "Different animals are active at different times because it helps them find food, avoid danger, and survive in their habitats."
         }
     ]
 }

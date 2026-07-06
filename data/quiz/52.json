@@ -1,54 +1,67 @@
 {
     "book_id": 52,
     "title": "The Flower That Sent a Message",
+    "intro": "This quiz follows Mira and Jonah as they learn how pollination helps plants make seeds and how seeds travel to new places.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Flower That Sent a Message\" mostly about?",
+            "prompt": "What powder do flowers produce that can help them make seeds?",
             "choices": [
-                "The brain does not help you move.",
-                "Your heart pumps air through your body.",
-                "Flowers attract pollinators with signals like bright petals",
-                "Plants eat food from soil only."
+                "Nectar",
+                "Pollen",
+                "Soil",
+                "Sap"
             ],
-            "correct_index": 2,
-            "explanation": "Flowers attract pollinators with signals like bright petals"
+            "correct_index": 1,
+            "explanation": "Flowers produce pollen, which can help them make seeds."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "How did the bee help pollinate the flowers?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "All germs are bad for you.",
-                "The Moon makes its own light.",
-                "they carry pollen from flower to flower"
+                "It carried pollen from one flower to another",
+                "It watered the flowers",
+                "It planted seeds in the soil",
+                "It protected the flowers from wind"
             ],
-            "correct_index": 3,
-            "explanation": "they carry pollen from flower to flower"
+            "correct_index": 0,
+            "explanation": "The bee helped pollinate the flowers by carrying pollen from one flower to another."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "Which of these can move pollen between flowers?",
             "choices": [
-                "helping plants make seeds",
-                "All germs are bad for you.",
-                "Your heart pumps air through your body.",
-                "Sound is fastest in outer space."
+                "Bees, butterflies, birds, bats, and wind",
+                "Only bees",
+                "Rocks and soil",
+                "Rain and snow only"
             ],
             "correct_index": 0,
-            "explanation": "helping plants make seeds"
+            "explanation": "Bees, butterflies, birds, bats, and wind can move pollen between flowers."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Why is seed dispersal important?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "Fish breathe air like people do.",
-                "The Flower That Sent a Message: A story about pollination and seed dispersal",
-                "Rocks never change at all."
+                "It keeps every seed beside the parent plant",
+                "It helps seeds find space, sunlight, water, and soil to grow",
+                "It prevents seeds from growing",
+                "It changes seeds into pollen"
+            ],
+            "correct_index": 1,
+            "explanation": "Seed dispersal helps seeds find space, sunlight, water, and soil to grow."
+        },
+        {
+            "id": 5,
+            "prompt": "Which is an example of seed dispersal by animals?",
+            "choices": [
+                "Dandelion seeds blowing in the wind",
+                "Coconuts floating in water",
+                "Burrs sticking to fur or clothing",
+                "Seed pods bursting open"
             ],
             "correct_index": 2,
-            "explanation": "The Flower That Sent a Message: A story about pollination and seed dispersal"
+            "explanation": "Burrs sticking to fur or clothing is an example of seed dispersal by animals."
         }
     ]
 }

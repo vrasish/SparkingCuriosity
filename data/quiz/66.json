@@ -1,54 +1,67 @@
 {
     "book_id": 66,
     "title": "The Matter Mystery",
+    "intro": "This quiz follows Nia and Caleb as they discover what matter is and how solids, liquids, and gases behave.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Matter Mystery\" mostly about?",
+            "prompt": "What is matter?",
             "choices": [
-                "Fish breathe air like people do.",
-                "The Moon makes its own light.",
-                "Plants eat food from soil only.",
-                "Matter is anything that has mass and takes up space"
+                "Anything that gives off light",
+                "Anything that has mass and takes up space",
+                "Only things that can be seen",
+                "Only solids and liquids"
             ],
-            "correct_index": 3,
-            "explanation": "Matter is anything that has mass and takes up space"
+            "correct_index": 1,
+            "explanation": "Matter is anything that has mass and takes up space."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "Which property describes a solid?",
             "choices": [
-                "It exists as solids",
-                "Fish breathe air like people do.",
-                "Rocks never change at all.",
-                "All germs are bad for you."
+                "It spreads out to fill all available space",
+                "It takes the shape of its container",
+                "It keeps its own shape",
+                "It has no mass"
             ],
-            "correct_index": 0,
-            "explanation": "It exists as solids"
+            "correct_index": 2,
+            "explanation": "A solid keeps its own shape."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What happens when water is poured from a tall glass into a short cup?",
             "choices": [
-                "All germs are bad for you.",
-                "Plants eat food from soil only.",
-                "Fish breathe air like people do.",
-                "The Matter Mystery — A Story About Matter Nia looked around the room"
+                "It keeps the shape of the tall glass",
+                "It takes the shape of the short cup",
+                "It becomes a gas",
+                "It stops being matter"
             ],
-            "correct_index": 3,
-            "explanation": "The Matter Mystery — A Story About Matter Nia looked around the room"
+            "correct_index": 1,
+            "explanation": "When water is poured into a short cup, it takes the shape of the short cup."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "How does a gas behave?",
             "choices": [
-                "All germs are bad for you.",
-                "Rocks never change at all.",
-                "You may not see it easily",
-                "The Moon makes its own light."
+                "It keeps a fixed shape",
+                "It stays only at the bottom of a container",
+                "It spreads out to fill the space around it",
+                "It cannot move"
             ],
             "correct_index": 2,
-            "explanation": "You may not see it easily"
+            "explanation": "A gas spreads out to fill the space around it."
+        },
+        {
+            "id": 5,
+            "prompt": "Which statement correctly describes a change of state?",
+            "choices": [
+                "Ice can melt into liquid water",
+                "Water stops being matter when it evaporates",
+                "Gas cannot change back into a liquid",
+                "A solid can never change form"
+            ],
+            "correct_index": 0,
+            "explanation": "Ice can melt into liquid water, which is a change of state."
         }
     ]
 }

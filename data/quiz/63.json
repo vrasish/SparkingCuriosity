@@ -1,54 +1,67 @@
 {
     "book_id": 63,
     "title": "The Food Tunnel Adventure",
+    "intro": "This quiz follows Nora and Jayden as they learn how food travels through the digestive system.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Food Tunnel Adventure\" mostly about?",
+            "prompt": "Where does digestion begin?",
             "choices": [
-                "The digestive system breaks food into nutrients the body can use",
-                "All germs are bad for you.",
-                "Plants eat food from soil only.",
-                "Your heart pumps air through your body."
+                "In the stomach",
+                "In the mouth",
+                "In the small intestine",
+                "In the large intestine"
             ],
-            "correct_index": 0,
-            "explanation": "The digestive system breaks food into nutrients the body can use"
+            "correct_index": 1,
+            "explanation": "Digestion begins in the mouth."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What do teeth and saliva do in the mouth?",
             "choices": [
-                "Food travels through the mouth",
-                "Rocks never change at all.",
-                "The Moon makes its own light.",
-                "Plants eat food from soil only."
+                "Teeth absorb nutrients, and saliva forms waste",
+                "Teeth mash food, and saliva softens it and begins breaking it down",
+                "Teeth move food to the stomach, and saliva absorbs water",
+                "Teeth make vitamins, and saliva carries oxygen"
             ],
-            "correct_index": 0,
-            "explanation": "Food travels through the mouth"
+            "correct_index": 1,
+            "explanation": "Teeth mash food, and saliva softens it and begins breaking it down."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What is the job of the esophagus?",
             "choices": [
-                "The Moon makes its own light.",
-                "The brain does not help you move.",
-                "where enzymes and acids help break it down before nutrients are absorbed into the blood",
-                "All germs are bad for you."
+                "To push food from the mouth to the stomach",
+                "To absorb most nutrients",
+                "To form solid waste",
+                "To make saliva"
             ],
-            "correct_index": 2,
-            "explanation": "where enzymes and acids help break it down before nutrients are absorbed into the blood"
+            "correct_index": 0,
+            "explanation": "The esophagus pushes food from the mouth to the stomach."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Where are most nutrients absorbed into the blood?",
             "choices": [
-                "They were ready to follow the food on its adventure",
-                "Rocks never change at all.",
-                "Plants eat food from soil only.",
-                "Sound is fastest in outer space."
+                "In the mouth",
+                "In the stomach",
+                "In the small intestine",
+                "In the large intestine"
             ],
-            "correct_index": 0,
-            "explanation": "They were ready to follow the food on its adventure"
+            "correct_index": 2,
+            "explanation": "Most nutrients are absorbed into the blood in the small intestine."
+        },
+        {
+            "id": 5,
+            "prompt": "Which order correctly shows the path food takes?",
+            "choices": [
+                "Mouth → stomach → esophagus → large intestine → small intestine",
+                "Mouth → esophagus → stomach → small intestine → large intestine",
+                "Stomach → mouth → esophagus → small intestine → large intestine",
+                "Mouth → small intestine → stomach → esophagus → large intestine"
+            ],
+            "correct_index": 1,
+            "explanation": "Food travels from the mouth through the esophagus, stomach, small intestine, and large intestine."
         }
     ]
 }

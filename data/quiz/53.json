@@ -1,54 +1,67 @@
 {
     "book_id": 53,
     "title": "The Web in the Meadow",
+    "intro": "This quiz follows Nina and Eli as they learn how food chains connect to form food webs in an ecosystem.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Web in the Meadow\" mostly about?",
+            "prompt": "Where do many food chains begin?",
             "choices": [
-                "A meadow is an ecosystem where plants",
-                "All germs are bad for you.",
-                "Fish breathe air like people do.",
-                "Rocks never change at all."
+                "With hawks",
+                "With snakes",
+                "With plants",
+                "With fungi"
             ],
-            "correct_index": 0,
-            "explanation": "A meadow is an ecosystem where plants"
+            "correct_index": 2,
+            "explanation": "Many food chains begin with plants."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "Which food chain did Ms. Romero draw in the dirt?",
             "choices": [
-                "The brain does not help you move.",
-                "Spiders build webs to catch prey",
-                "Rocks never change at all.",
-                "Sound is fastest in outer space."
+                "Grass → grasshopper → frog → snake → hawk",
+                "Flower → bee → rabbit → fox",
+                "Grass → bird → butterfly → snake",
+                "Tree → mouse → grasshopper → hawk"
             ],
-            "correct_index": 1,
-            "explanation": "Spiders build webs to catch prey"
+            "correct_index": 0,
+            "explanation": "Ms. Romero drew: grass → grasshopper → frog → snake → hawk."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What is the main difference between a food chain and a food web?",
             "choices": [
-                "Sound is fastest in outer space.",
-                "Rocks never change at all.",
-                "pollinators visit flowers",
-                "The Moon makes its own light."
+                "A food chain includes plants, but a food web does not",
+                "A food chain shows one path, while a food web shows many connected paths",
+                "A food web contains only animals",
+                "A food chain is always longer than a food web"
             ],
-            "correct_index": 2,
-            "explanation": "pollinators visit flowers"
+            "correct_index": 1,
+            "explanation": "A food chain shows one path, while a food web shows many connected paths."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Why are plants called producers?",
             "choices": [
-                "Rocks never change at all.",
-                "Fish breathe air like people do.",
-                "the meadow no longer looked quiet and ordinary",
-                "Your heart pumps air through your body."
+                "They hunt other animals",
+                "They break down dead organisms",
+                "They make their own food using sunlight",
+                "They eat insects and small animals"
             ],
             "correct_index": 2,
-            "explanation": "the meadow no longer looked quiet and ordinary"
+            "explanation": "Plants are called producers because they make their own food using sunlight."
+        },
+        {
+            "id": 5,
+            "prompt": "What do decomposers such as fungi and bacteria do?",
+            "choices": [
+                "Make sunlight for plants",
+                "Break down dead living things and return nutrients to the soil",
+                "Carry pollen between flowers",
+                "Eat only large animals"
+            ],
+            "correct_index": 1,
+            "explanation": "Decomposers such as fungi and bacteria break down dead living things and return nutrients to the soil."
         }
     ]
 }

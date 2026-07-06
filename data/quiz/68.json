@@ -1,54 +1,67 @@
 {
     "book_id": 68,
     "title": "The Water That Wouldn't Stay Still",
+    "intro": "This quiz follows Mira and Jay as they learn about evaporation, condensation, sublimation, and boiling.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Water That Wouldn't Stay Still\" mostly about?",
+            "prompt": "What happens during evaporation?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "Plants eat food from soil only.",
-                "Liquids are a state of matter that flow and take the shape of their container",
-                "Rocks never change at all."
+                "Water vapor changes into liquid",
+                "Liquid water changes into water vapor at the surface",
+                "Ice changes directly into liquid",
+                "Water freezes into ice"
             ],
-            "correct_index": 2,
-            "explanation": "Liquids are a state of matter that flow and take the shape of their container"
+            "correct_index": 1,
+            "explanation": "During evaporation, liquid water changes into water vapor at the surface."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What is condensation?",
             "choices": [
-                "Water molecules in a liquid move past one another",
-                "Plants eat food from soil only.",
-                "Rocks never change at all.",
-                "Sound is fastest in outer space."
+                "Water vapor cooling and changing into liquid droplets",
+                "Liquid water changing into gas",
+                "Ice melting into water",
+                "Water boiling rapidly"
             ],
             "correct_index": 0,
-            "explanation": "Water molecules in a liquid move past one another"
+            "explanation": "Condensation is when water vapor cools and changes into liquid droplets."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What happened to the frost in the story?",
             "choices": [
-                "Plants eat food from soil only.",
-                "Rocks never change at all.",
-                "Fish breathe air like people do.",
-                "which is why water spills"
+                "It melted into a puddle first",
+                "It changed directly from solid ice into water vapor",
+                "It became rain",
+                "It froze into thicker ice"
             ],
-            "correct_index": 3,
-            "explanation": "which is why water spills"
+            "correct_index": 1,
+            "explanation": "The frost changed directly from solid ice into water vapor."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What is sublimation?",
             "choices": [
-                "The brain does not help you move.",
-                "liquids do not keep a fixed shape—but unlike gases",
-                "Fish breathe air like people do.",
-                "Rocks never change at all."
+                "A liquid changing into a solid",
+                "A gas changing into a liquid",
+                "A solid changing directly into a gas",
+                "A liquid changing into a gas only at boiling point"
             ],
-            "correct_index": 1,
-            "explanation": "liquids do not keep a fixed shape—but unlike gases"
+            "correct_index": 2,
+            "explanation": "Sublimation is when a solid changes directly into a gas."
+        },
+        {
+            "id": 5,
+            "prompt": "How is boiling different from evaporation?",
+            "choices": [
+                "Boiling happens throughout the liquid, while evaporation happens only at the surface",
+                "Evaporation is faster than boiling",
+                "Boiling can happen at any temperature",
+                "Evaporation creates bubbles throughout the water"
+            ],
+            "correct_index": 0,
+            "explanation": "Boiling happens throughout the liquid, while evaporation happens only at the surface."
         }
     ]
 }

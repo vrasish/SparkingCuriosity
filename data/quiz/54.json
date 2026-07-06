@@ -1,54 +1,67 @@
 {
     "book_id": 54,
     "title": "The Stem That Carried a River",
+    "intro": "This quiz follows Lina and Mateo as they discover how a plant's stem transports water, minerals, and food.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Stem That Carried a River\" mostly about?",
+            "prompt": "Why was the sunflower drooping after the hot morning?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "All germs are bad for you.",
-                "Plants move water through their stems in tubes called xylem",
-                "Fish breathe air like people do."
+                "It had received too much sunlight",
+                "It needed more water",
+                "Its roots had disappeared",
+                "Its flower was too heavy"
             ],
-            "correct_index": 2,
-            "explanation": "Plants move water through their stems in tubes called xylem"
+            "correct_index": 1,
+            "explanation": "The sunflower was drooping because it needed more water."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What did the blue-water flower experiment demonstrate?",
             "choices": [
-                "Fish breathe air like people do.",
-                "Rocks never change at all.",
-                "The Moon makes its own light.",
-                "Water is pulled up from the roots to the leaves"
+                "Water moves upward through the stem",
+                "Flowers make blue water",
+                "Roots change the color of petals",
+                "Leaves send water into the soil"
             ],
-            "correct_index": 3,
-            "explanation": "Water is pulled up from the roots to the leaves"
+            "correct_index": 0,
+            "explanation": "The blue-water flower experiment demonstrated that water moves upward through the stem."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What is the job of the xylem?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "All germs are bad for you.",
-                "where it helps with photosynthesis and can escape as water vapor through transpiration",
-                "The Moon makes its own light."
+                "To carry food from the leaves",
+                "To produce seeds",
+                "To carry water and minerals upward from the roots",
+                "To attract insects to the flower"
             ],
             "correct_index": 2,
-            "explanation": "where it helps with photosynthesis and can escape as water vapor through transpiration"
+            "explanation": "The xylem carries water and minerals upward from the roots."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What is the job of the phloem?",
             "choices": [
-                "The Moon makes its own light.",
-                "Sound is fastest in outer space.",
-                "Rocks never change at all.",
-                "The Stem That Carried a River: A story about stems"
+                "To carry food made in the leaves to the rest of the plant",
+                "To soak up water directly from the air",
+                "To hold the plant firmly in the soil",
+                "To make sunlight for the leaves"
             ],
-            "correct_index": 3,
-            "explanation": "The Stem That Carried a River: A story about stems"
+            "correct_index": 0,
+            "explanation": "The phloem carries food made in the leaves to the rest of the plant."
+        },
+        {
+            "id": 5,
+            "prompt": "Why is the stem compared to a transportation system?",
+            "choices": [
+                "It allows the plant to move from place to place",
+                "It carries water, minerals, and food to different parts of the plant",
+                "It produces all the plant's flowers",
+                "It protects the plant from every insect"
+            ],
+            "correct_index": 1,
+            "explanation": "The stem is like a transportation system because it carries water, minerals, and food to different parts of the plant."
         }
     ]
 }

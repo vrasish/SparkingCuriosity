@@ -1,54 +1,67 @@
 {
     "book_id": 60,
     "title": "The Breath That Took a Journey",
+    "intro": "This quiz follows one breath of air as it travels through the respiratory system and helps the body receive oxygen.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Breath That Took a Journey\" mostly about?",
+            "prompt": "Where does air usually enter the body?",
             "choices": [
-                "air travels through the nose or mouth",
-                "Sound is fastest in outer space.",
-                "Your heart pumps air through your body.",
-                "Fish breathe air like people do."
+                "Through the stomach",
+                "Through the nose or mouth",
+                "Through the heart",
+                "Through the skin"
             ],
-            "correct_index": 0,
-            "explanation": "air travels through the nose or mouth"
+            "correct_index": 1,
+            "explanation": "Air usually enters the body through the nose or mouth."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What tube carries air from the throat toward the lungs?",
             "choices": [
-                "Sound is fastest in outer space.",
-                "Fish breathe air like people do.",
-                "Rocks never change at all.",
-                "Oxygen passes from tiny air sacs called alveoli into the blood"
+                "The esophagus",
+                "The trachea",
+                "The artery",
+                "The ureter"
             ],
-            "correct_index": 3,
-            "explanation": "Oxygen passes from tiny air sacs called alveoli into the blood"
+            "correct_index": 1,
+            "explanation": "The trachea carries air from the throat toward the lungs."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What happens in the tiny air sacs called alveoli?",
             "choices": [
-                "Plants eat food from soil only.",
-                "Your heart pumps air through your body.",
-                "Sound is fastest in outer space.",
-                "This gas exchange fuels cells throughout the body"
+                "Food is broken down",
+                "Oxygen moves into the blood, and carbon dioxide moves out",
+                "Blood cells are made",
+                "Water is stored"
             ],
-            "correct_index": 3,
-            "explanation": "This gas exchange fuels cells throughout the body"
+            "correct_index": 1,
+            "explanation": "In the alveoli, oxygen moves into the blood and carbon dioxide moves out."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What does the diaphragm do when you breathe in?",
             "choices": [
-                "Plants eat food from soil only.",
-                "“Oxygen is a gas in the air your body needs it to make energy.” Saanvi touched her nose",
-                "The brain does not help you move.",
-                "Sound is fastest in outer space."
+                "It moves downward and gives the lungs more room to expand",
+                "It closes the trachea",
+                "It pumps blood into the lungs",
+                "It pushes air out of the nose"
             ],
-            "correct_index": 1,
-            "explanation": "“Oxygen is a gas in the air your body needs it to make energy.” Saanvi touched her nose"
+            "correct_index": 0,
+            "explanation": "When you breathe in, the diaphragm moves downward and gives the lungs more room to expand."
+        },
+        {
+            "id": 5,
+            "prompt": "Why do we breathe out carbon dioxide?",
+            "choices": [
+                "The body makes it as a waste gas and needs to remove it",
+                "The body uses it to strengthen bones",
+                "It helps the stomach digest food",
+                "It turns into oxygen inside the nose"
+            ],
+            "correct_index": 0,
+            "explanation": "We breathe out carbon dioxide because the body makes it as a waste gas and needs to remove it."
         }
     ]
 }

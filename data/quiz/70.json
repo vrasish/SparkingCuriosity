@@ -1,54 +1,67 @@
 {
     "book_id": 70,
     "title": "The Ship That Wouldn't Sink",
+    "intro": "This quiz follows Lila and Ben as they learn about buoyancy, density, and why large steel ships can float.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Ship That Wouldn't Sink\" mostly about?",
+            "prompt": "What is buoyancy?",
             "choices": [
-                "An object floats when the upward buoyant force from displaced water equals its weight",
-                "Your heart pumps air through your body.",
-                "Fish breathe air like people do.",
-                "Sound is fastest in outer space."
+                "The downward pull of gravity",
+                "The upward force that water exerts on an object",
+                "The amount of metal in an object",
+                "The speed at which an object moves"
             ],
-            "correct_index": 0,
-            "explanation": "An object floats when the upward buoyant force from displaced water equals its weight"
+            "correct_index": 1,
+            "explanation": "Buoyancy is the upward force that water exerts on an object."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "Why did the lump of clay sink at first?",
             "choices": [
-                "Sound is fastest in outer space.",
-                "All germs are bad for you.",
-                "Fish breathe air like people do.",
-                "Ships are made of dense materials but spread their mass over a large volume"
+                "It was too cold",
+                "It did not displace enough water to create a strong enough upward push",
+                "It was made of wood",
+                "It contained too much air"
             ],
-            "correct_index": 3,
-            "explanation": "Ships are made of dense materials but spread their mass over a large volume"
+            "correct_index": 1,
+            "explanation": "The lump of clay sank because it did not displace enough water to create a strong enough upward push."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "Why did the same clay float after it was shaped like a small boat?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "Sound is fastest in outer space.",
-                "Plants eat food from soil only.",
-                "displacing enough water to stay afloat"
+                "It became lighter",
+                "It spread out and pushed aside more water",
+                "It changed into a different material",
+                "It absorbed water"
             ],
-            "correct_index": 3,
-            "explanation": "displacing enough water to stay afloat"
+            "correct_index": 1,
+            "explanation": "The clay floated when shaped like a boat because it spread out and pushed aside more water."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Why can a large steel ship float?",
             "choices": [
-                "Gomez gave Lila and Ben a pebble, a toy boat, and a lump of clay",
-                "Sound is fastest in outer space.",
-                "The Moon makes its own light.",
-                "The brain does not help you move."
+                "Steel is lighter than water",
+                "Its wide, hollow shape gives it a lower average density and helps it displace a lot of water",
+                "Its engine holds it above the water",
+                "The cargo pulls it upward"
             ],
-            "correct_index": 0,
-            "explanation": "Gomez gave Lila and Ben a pebble, a toy boat, and a lump of clay"
+            "correct_index": 1,
+            "explanation": "A large steel ship can float because its wide, hollow shape gives it a lower average density and helps it displace a lot of water."
+        },
+        {
+            "id": 5,
+            "prompt": "Why can overloading a ship be dangerous?",
+            "choices": [
+                "The ship becomes too warm",
+                "The ship may sink too low and lose its safe balance with the water's upward push",
+                "The steel turns into clay",
+                "The water stops producing buoyancy"
+            ],
+            "correct_index": 1,
+            "explanation": "Overloading a ship can be dangerous because it may sink too low and lose its safe balance with the water's upward push."
         }
     ]
 }

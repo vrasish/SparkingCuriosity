@@ -1,54 +1,67 @@
 {
     "book_id": 81,
     "title": "The Feather Trail",
+    "intro": "This quiz follows Nia, Kai, and Meera as they learn what makes birds special and how feathers, wings, beaks, and hollow bones help them survive.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Feather Trail\" mostly about?",
+            "prompt": "Which feature is found on every bird?",
             "choices": [
-                "The brain does not help you move.",
-                "Fish breathe air like people do.",
-                "Birds can be identified by their feathers",
-                "The Moon makes its own light."
+                "Fur",
+                "Feathers",
+                "Scales only",
+                "Sharp teeth"
             ],
-            "correct_index": 2,
-            "explanation": "Birds can be identified by their feathers"
+            "correct_index": 1,
+            "explanation": "Feathers are found on every bird."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "How do feathers help birds?",
             "choices": [
-                "Plants eat food from soil only.",
-                "All germs are bad for you.",
-                "Feathers keep birds warm",
-                "Your heart pumps air through your body."
+                "They help with flight, warmth, and protection",
+                "They help birds breathe underwater",
+                "They make birds heavier",
+                "They replace the bird's bones"
             ],
-            "correct_index": 2,
-            "explanation": "Feathers keep birds warm"
+            "correct_index": 0,
+            "explanation": "Feathers help birds with flight, warmth, and protection."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "Why are many bird bones hollow?",
             "choices": [
-                "Plants eat food from soil only.",
-                "The Feather Trail The next clue waited in the garden",
-                "Sound is fastest in outer space.",
-                "The brain does not help you move."
+                "To store food",
+                "To make the body lighter for flight",
+                "To hold water",
+                "To keep the bird warmer"
             ],
             "correct_index": 1,
-            "explanation": "The Feather Trail The next clue waited in the garden"
+            "explanation": "Many bird bones are hollow to make the body lighter for flight."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Why do different birds have different kinds of beaks?",
             "choices": [
-                "A hummingbird hovered like a tiny jewel",
-                "The Moon makes its own light.",
-                "Rocks never change at all.",
-                "All germs are bad for you."
+                "Their beaks are shaped for the kinds of food they eat",
+                "Beaks change color every day",
+                "All birds use their beaks in exactly the same way",
+                "Beaks help birds breathe"
             ],
             "correct_index": 0,
-            "explanation": "A hummingbird hovered like a tiny jewel"
+            "explanation": "Different birds have different kinds of beaks because their beaks are shaped for the kinds of food they eat."
+        },
+        {
+            "id": 5,
+            "prompt": "Which statement about birds is correct?",
+            "choices": [
+                "All birds can fly",
+                "Birds are mammals because they are warm-blooded",
+                "Birds have feathers, lay eggs, and are warm-blooded vertebrates",
+                "Birds have no backbones"
+            ],
+            "correct_index": 2,
+            "explanation": "Birds have feathers, lay eggs, and are warm-blooded vertebrates."
         }
     ]
 }

@@ -1,54 +1,67 @@
 {
     "book_id": 75,
     "title": "The Mystery of the Sunny Stone",
+    "intro": "This quiz follows Mia and Leo as they discover why a lizard rests on a sunny stone and how ectothermic animals regulate their body temperature.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Mystery of the Sunny Stone\" mostly about?",
+            "prompt": "Why was the lizard sitting very still on the sunny stone?",
             "choices": [
-                "Plants eat food from soil only.",
-                "Many animals are cold-blooded (ectotherms)",
-                "The Moon makes its own light.",
-                "Your heart pumps air through your body."
+                "It was hiding food",
+                "It was using the Sun's warmth to heat its body",
+                "It was waiting for rain",
+                "It was building a nest"
             ],
             "correct_index": 1,
-            "explanation": "Many animals are cold-blooded (ectotherms)"
+            "explanation": "The lizard was using the Sun's warmth to heat its body."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What does ectothermic mean?",
             "choices": [
-                "Plants eat food from soil only.",
-                "meaning they rely on heat from their environment to warm their bodies",
-                "Sound is fastest in outer space.",
-                "Rocks never change at all."
+                "An animal makes all its body heat internally",
+                "An animal depends mainly on its surroundings for body heat",
+                "An animal can live only in cold places",
+                "An animal never changes body temperature"
             ],
             "correct_index": 1,
-            "explanation": "meaning they rely on heat from their environment to warm their bodies"
+            "explanation": "Ectothermic means an animal depends mainly on its surroundings for body heat."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What might the lizard do if it became too hot?",
             "choices": [
-                "The Moon makes its own light.",
-                "Plants eat food from soil only.",
-                "Your heart pumps air through your body.",
-                "The Mystery of the Sunny Stone Just then"
+                "Move into the shade",
+                "Stay on the hottest rock",
+                "Grow thicker fur",
+                "Stop breathing"
             ],
-            "correct_index": 3,
-            "explanation": "The Mystery of the Sunny Stone Just then"
+            "correct_index": 0,
+            "explanation": "If the lizard became too hot, it might move into the shade."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Why might an ectothermic animal move more slowly on a cold morning?",
             "choices": [
-                "The Moon makes its own light.",
-                "All germs are bad for you.",
-                "a rabbit hopped out from behind a bush",
-                "Your heart pumps air through your body."
+                "Its body has not warmed up enough yet",
+                "It has forgotten how to move",
+                "It becomes heavier in cold weather",
+                "Its bones disappear temporarily"
             ],
-            "correct_index": 2,
-            "explanation": "a rabbit hopped out from behind a bush"
+            "correct_index": 0,
+            "explanation": "An ectothermic animal might move more slowly on a cold morning because its body has not warmed up enough yet."
+        },
+        {
+            "id": 5,
+            "prompt": "Which group contains animals that are generally ectothermic?",
+            "choices": [
+                "Birds and mammals",
+                "Reptiles, amphibians, and most fish",
+                "Only insects",
+                "Humans and dogs"
+            ],
+            "correct_index": 1,
+            "explanation": "Reptiles, amphibians, and most fish are generally ectothermic."
         }
     ]
 }

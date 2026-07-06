@@ -1,54 +1,67 @@
 {
     "book_id": 64,
-    "title": "The Body's Tiny Defense System",
+    "title": "The Body's Tiny Defense Team",
+    "intro": "This quiz follows Zara and Eli as they learn how the immune system protects the body from cold viruses and other germs.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Body's Tiny Defense System\" mostly about?",
+            "prompt": "What causes the common cold?",
             "choices": [
-                "The immune system protects the body from germs and illness",
-                "Plants eat food from soil only.",
-                "Fish breathe air like people do.",
-                "The Moon makes its own light."
+                "Cold weather by itself",
+                "Tiny germs called viruses",
+                "Drinking cold water",
+                "Not wearing a jacket"
             ],
-            "correct_index": 0,
-            "explanation": "The immune system protects the body from germs and illness"
+            "correct_index": 1,
+            "explanation": "The common cold is caused by tiny germs called viruses."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "How can cold viruses spread?",
             "choices": [
-                "The Body's Tiny Defense Team A story about the immune system Ms",
-                "The Moon makes its own light.",
-                "Plants eat food from soil only.",
-                "Your heart pumps air through your body."
+                "Through droplets from coughs and sneezes or from contaminated hands",
+                "Only through food",
+                "Only through insect bites",
+                "Through sunlight"
             ],
             "correct_index": 0,
-            "explanation": "The Body's Tiny Defense Team A story about the immune system Ms"
+            "explanation": "Cold viruses can spread through droplets from coughs and sneezes or from contaminated hands."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "Which are part of the body's first line of defense?",
             "choices": [
-                "The brain does not help you move.",
-                "The Moon makes its own light.",
-                "Lopez explained that colds are caused by tiny germs called viruses",
-                "Sound is fastest in outer space."
+                "Mucus, cilia, tears, saliva, and skin",
+                "Bones, muscles, and joints",
+                "The heart and lungs only",
+                "Hair and fingernails only"
             ],
-            "correct_index": 2,
-            "explanation": "Lopez explained that colds are caused by tiny germs called viruses"
+            "correct_index": 0,
+            "explanation": "Mucus, cilia, tears, saliva, and skin are part of the body's first line of defense."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What do neutrophils and macrophages do?",
             "choices": [
-                "Plants eat food from soil only.",
-                "Sound is fastest in outer space.",
-                "They travel in droplets from coughs and sneezes",
-                "Fish breathe air like people do."
+                "Carry oxygen through the body",
+                "Find, surround, and help destroy invading germs",
+                "Digest food in the stomach",
+                "Make the body taller"
             ],
-            "correct_index": 2,
-            "explanation": "They travel in droplets from coughs and sneezes"
+            "correct_index": 1,
+            "explanation": "Neutrophils and macrophages find, surround, and help destroy invading germs."
+        },
+        {
+            "id": 5,
+            "prompt": "Why might a person sneeze, make extra mucus, or develop a mild fever during a cold?",
+            "choices": [
+                "These are signs that the immune system is fighting the germs",
+                "The bones are growing",
+                "The body is becoming weaker forever",
+                "The lungs have stopped working"
+            ],
+            "correct_index": 0,
+            "explanation": "Sneezing, extra mucus, or a mild fever are signs that the immune system is fighting the germs."
         }
     ]
 }

@@ -1,54 +1,67 @@
 {
     "book_id": 69,
     "title": "The Mystery of the Heavy Little Cube",
+    "intro": "This quiz follows Zara and Eli as they learn about mass, volume, and density.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Mystery of the Heavy Little Cube\" mostly about?",
+            "prompt": "Why was the silver cube heavier than the wooden cube even though they were the same size?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "Density describes how much mass is packed into a certain volume",
-                "Sound is fastest in outer space.",
-                "The Moon makes its own light."
+                "The silver cube had more mass packed into the same volume",
+                "The wooden cube was hollow",
+                "The silver cube had a larger volume",
+                "The wooden cube contained more matter"
             ],
-            "correct_index": 1,
-            "explanation": "Density describes how much mass is packed into a certain volume"
+            "correct_index": 0,
+            "explanation": "The silver cube was heavier because it had more mass packed into the same volume."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What does volume measure?",
             "choices": [
-                "Measuring mass and volume helps explain why some small objects feel surprisingly heavy",
-                "Rocks never change at all.",
-                "Plants eat food from soil only.",
-                "Fish breathe air like people do."
+                "How heavy an object feels",
+                "How much space an object takes up",
+                "How quickly an object moves",
+                "How much water an object contains"
             ],
-            "correct_index": 0,
-            "explanation": "Measuring mass and volume helps explain why some small objects feel surprisingly heavy"
+            "correct_index": 1,
+            "explanation": "Volume measures how much space an object takes up."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What does mass describe?",
             "choices": [
-                "The Mystery of the Heavy Little Cube Next, Ms",
-                "Rocks never change at all.",
-                "Your heart pumps air through your body.",
-                "The Moon makes its own light."
+                "The amount of matter in an object",
+                "The shape of an object",
+                "The color of an object",
+                "The amount of space around an object"
             ],
             "correct_index": 0,
-            "explanation": "The Mystery of the Heavy Little Cube Next, Ms"
+            "explanation": "Mass describes the amount of matter in an object."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "How is density calculated?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "All germs are bad for you.",
-                "Romero placed the cubes on a balance",
-                "Rocks never change at all."
+                "Density = volume ÷ mass",
+                "Density = mass × volume",
+                "Density = mass ÷ volume",
+                "Density = mass + volume"
             ],
             "correct_index": 2,
-            "explanation": "Romero placed the cubes on a balance"
+            "explanation": "Density is calculated as mass divided by volume."
+        },
+        {
+            "id": 5,
+            "prompt": "Why did the wooden block float while the rock sank?",
+            "choices": [
+                "The wooden block was colder than the rock",
+                "The wooden block was less dense than water, while the rock was denser",
+                "The rock had no volume",
+                "The water pushed only on the wooden block"
+            ],
+            "correct_index": 1,
+            "explanation": "The wooden block floated because it was less dense than water, while the rock was denser."
         }
     ]
 }

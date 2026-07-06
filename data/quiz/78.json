@@ -1,54 +1,67 @@
 {
     "book_id": 78,
     "title": "The Pond Puzzle",
+    "intro": "This quiz follows Maya and Theo as they learn about the frog life cycle and metamorphosis.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Pond Puzzle\" mostly about?",
+            "prompt": "Where do frogs begin their life cycle?",
             "choices": [
-                "All germs are bad for you.",
-                "The Moon makes its own light.",
-                "A pond is a small ecosystem where many animals and plants interact",
-                "Sound is fastest in outer space."
+                "In a tree",
+                "In water",
+                "Underground",
+                "Inside a nest"
             ],
-            "correct_index": 2,
-            "explanation": "A pond is a small ecosystem where many animals and plants interact"
+            "correct_index": 1,
+            "explanation": "Frogs begin their life cycle in water."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What protects the developing frog embryos inside the eggs?",
             "choices": [
-                "The Moon makes its own light.",
-                "From eggs to tadpoles to adult frogs",
-                "All germs are bad for you.",
-                "The brain does not help you move."
+                "A hard shell",
+                "A layer of fur",
+                "Jelly surrounding the eggs",
+                "A leaf covering"
             ],
-            "correct_index": 1,
-            "explanation": "From eggs to tadpoles to adult frogs"
+            "correct_index": 2,
+            "explanation": "Jelly surrounding the eggs protects the developing frog embryos."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "How do tadpoles breathe underwater?",
             "choices": [
-                "The Moon makes its own light.",
-                "life cycles connect every creature to the water they share",
-                "Rocks never change at all.",
-                "Sound is fastest in outer space."
+                "With lungs",
+                "Through their skin only",
+                "Using gills",
+                "Through their tails"
             ],
-            "correct_index": 1,
-            "explanation": "life cycles connect every creature to the water they share"
+            "correct_index": 2,
+            "explanation": "Tadpoles breathe underwater using gills."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What major changes happen as a tadpole becomes a froglet?",
             "choices": [
-                "The brain does not help you move.",
-                "Fish breathe air like people do.",
-                "Sound is fastest in outer space.",
-                "The Pond Puzzle Ms"
+                "It grows wings and loses its legs",
+                "It grows legs, develops lungs, and its tail becomes smaller",
+                "It grows fur and leaves the water immediately",
+                "It becomes larger but keeps the same body shape"
             ],
-            "correct_index": 3,
-            "explanation": "The Pond Puzzle Ms"
+            "correct_index": 1,
+            "explanation": "As a tadpole becomes a froglet, it grows legs, develops lungs, and its tail becomes smaller."
+        },
+        {
+            "id": 5,
+            "prompt": "What is metamorphosis?",
+            "choices": [
+                "The process of laying eggs",
+                "A major change in body form as an animal grows",
+                "The way frogs catch insects",
+                "The movement of frogs between ponds"
+            ],
+            "correct_index": 1,
+            "explanation": "Metamorphosis is a major change in body form as an animal grows."
         }
     ]
 }

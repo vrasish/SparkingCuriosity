@@ -101,11 +101,10 @@ $searchRedirect = app_url('search.php' . ($hasFilters ? '?' . http_build_query(a
     <?php if ($searchLocked): ?>
         <div class="empty-state empty-state-compact explore-locked-state" role="status">
             <p class="explore-locked-message">
-                All Stories are Locked.
+                To explore more stories,
                 <a href="<?= e(app_url('register.php?redirect=' . rawurlencode($searchRedirect))) ?>">Sign up</a>
                 or
-                <a href="<?= e(app_url('login.php?redirect=' . rawurlencode($searchRedirect))) ?>">login</a>
-                to search them.
+                <a href="<?= e(app_url('login.php?redirect=' . rawurlencode($searchRedirect))) ?>">login</a>.
             </p>
         </div>
     <?php else: ?>

@@ -1,54 +1,67 @@
 {
     "book_id": 61,
     "title": "The Message Highway Inside You",
+    "intro": "This quiz follows the journey of messages through the brain, spinal cord, and nerves inside the nervous system.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Message Highway Inside You\" mostly about?",
+            "prompt": "What carries messages between the brain and the rest of the body?",
             "choices": [
-                "The Moon makes its own light.",
-                "Rocks never change at all.",
-                "Sound is fastest in outer space.",
-                "The nervous system is the body's communication network"
+                "Bones",
+                "Nerves",
+                "Lungs",
+                "Muscles"
             ],
-            "correct_index": 3,
-            "explanation": "The nervous system is the body's communication network"
+            "correct_index": 1,
+            "explanation": "Nerves carry messages between the brain and the rest of the body."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What is the main job of the brain in the nervous system?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "All germs are bad for you.",
-                "Plants eat food from soil only.",
-                "This rapid signal travel lets you react to the world in milliseconds"
+                "To pump blood",
+                "To control the body and process information",
+                "To digest food",
+                "To filter waste"
             ],
-            "correct_index": 3,
-            "explanation": "This rapid signal travel lets you react to the world in milliseconds"
+            "correct_index": 1,
+            "explanation": "The brain's main job is to control the body and process information."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What does the spinal cord do?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "Plants eat food from soil only.",
-                "As Ari reached for it, his fingers brushed something cold and dusty",
-                "The Moon makes its own light."
+                "It carries messages between the brain and nerves throughout the body",
+                "It produces oxygen",
+                "It stores food",
+                "It protects the lungs"
             ],
-            "correct_index": 2,
-            "explanation": "As Ari reached for it, his fingers brushed something cold and dusty"
+            "correct_index": 0,
+            "explanation": "The spinal cord carries messages between the brain and nerves throughout the body."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Why might a person pull their hand away quickly after touching something hot?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "The brain does not help you move.",
-                "sensory nerves carry that message to your brain,” Ms",
-                "Plants eat food from soil only."
+                "The muscles make the decision without receiving a message",
+                "A quick reflex helps protect the body from injury",
+                "The skin becomes cold",
+                "The heart stops sending blood"
             ],
-            "correct_index": 2,
-            "explanation": "sensory nerves carry that message to your brain,” Ms"
+            "correct_index": 1,
+            "explanation": "A quick reflex helps protect the body from injury when something hot is touched."
+        },
+        {
+            "id": 5,
+            "prompt": "Which order correctly shows how the body may respond to touching something hot?",
+            "choices": [
+                "Muscle moves → skin feels heat → nerve sends message",
+                "Skin senses heat → nerves send a message → body pulls away",
+                "Brain sleeps → bones move → skin cools",
+                "Heart pumps → lungs breathe → hand moves"
+            ],
+            "correct_index": 1,
+            "explanation": "The skin senses heat, nerves send a message, and the body pulls away."
         }
     ]
 }

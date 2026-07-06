@@ -1,54 +1,67 @@
 {
     "book_id": 67,
     "title": "The Day Water Changed Its Mind",
+    "intro": "This quiz explores how water changes between solid, liquid, and gas when heat is added or removed.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Day Water Changed Its Mind\" mostly about?",
+            "prompt": "What happens when ice absorbs enough heat?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "Sound is fastest in outer space.",
-                "Water can exist as a solid (ice), liquid (water), or gas (water vapor)",
-                "Fish breathe air like people do."
+                "It freezes",
+                "It melts into liquid water",
+                "It turns directly into snow",
+                "It becomes colder"
             ],
-            "correct_index": 2,
-            "explanation": "Water can exist as a solid (ice), liquid (water), or gas (water vapor)"
+            "correct_index": 1,
+            "explanation": "When ice absorbs enough heat, it melts into liquid water."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What is evaporation?",
             "choices": [
-                "The Day Water Changed Its Mind A story about matter and its states Ms",
-                "The Moon makes its own light.",
-                "Sound is fastest in outer space.",
-                "Plants eat food from soil only."
+                "Liquid water changing into water vapor",
+                "Water vapor changing into liquid water",
+                "Liquid water changing into ice",
+                "Ice changing into liquid water"
             ],
             "correct_index": 0,
-            "explanation": "The Day Water Changed Its Mind A story about matter and its states Ms"
+            "explanation": "Evaporation is when liquid water changes into water vapor."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What happens during condensation?",
             "choices": [
-                "Plants eat food from soil only.",
-                "Gomez explained that matter can be a solid, a liquid, or a gas",
-                "The Moon makes its own light.",
-                "Fish breathe air like people do."
+                "Water freezes into ice",
+                "Liquid water boils",
+                "Water vapor cools and becomes liquid droplets",
+                "Ice absorbs heat and melts"
             ],
-            "correct_index": 1,
-            "explanation": "Gomez explained that matter can be a solid, a liquid, or a gas"
+            "correct_index": 2,
+            "explanation": "During condensation, water vapor cools and becomes liquid droplets."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Which change happens when liquid water loses enough heat?",
             "choices": [
-                "Your heart pumps air through your body.",
-                "Plants eat food from soil only.",
-                "Ice is a solid because it keeps its shape",
-                "All germs are bad for you."
+                "Melting",
+                "Evaporation",
+                "Freezing",
+                "Boiling"
             ],
             "correct_index": 2,
-            "explanation": "Ice is a solid because it keeps its shape"
+            "explanation": "When liquid water loses enough heat, it freezes."
+        },
+        {
+            "id": 5,
+            "prompt": "What remains the same when water changes from ice to liquid or water vapor?",
+            "choices": [
+                "It is still made of water particles",
+                "It always keeps the same shape",
+                "It always stays at the same temperature",
+                "It stops being matter"
+            ],
+            "correct_index": 0,
+            "explanation": "When water changes state, it is still made of water particles."
         }
     ]
 }

@@ -1,54 +1,67 @@
 {
     "book_id": 86,
     "title": "The Dancing Lights in the Sky",
+    "intro": "This quiz follows Maya and Leo as they discover how the Northern Lights form and why they appear in different colors.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Dancing Lights in the Sky\" mostly about?",
+            "prompt": "What are the Northern Lights also called?",
             "choices": [
-                "All germs are bad for you.",
-                "they collide with gas molecules and make them glow in colors like green",
-                "Sound is fastest in outer space.",
-                "The Moon makes its own light."
+                "Solar clouds",
+                "Aurora borealis",
+                "Moon ribbons",
+                "Polar rainbows"
             ],
             "correct_index": 1,
-            "explanation": "they collide with gas molecules and make them glow in colors like green"
+            "explanation": "The Northern Lights are also called aurora borealis."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "Where do the charged particles that help create the Northern Lights come from?",
             "choices": [
-                "Rocks never change at all.",
-                "The brain does not help you move.",
-                "The lights seem to dance because the solar wind and magnetic field keep shifting",
-                "Sound is fastest in outer space."
+                "The Moon",
+                "Earth's oceans",
+                "The Sun",
+                "Distant stars"
             ],
             "correct_index": 2,
-            "explanation": "The lights seem to dance because the solar wind and magnetic field keep shifting"
+            "explanation": "The charged particles that help create the Northern Lights come from the Sun."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "What helps guide the charged particles toward Earth's polar regions?",
             "choices": [
-                "Plants eat food from soil only.",
-                "The Dancing Lights in the Sky Page 2 Page 3 Page 4 Page 5 Page 6 Page 7 Page 8 Page 9",
-                "Rocks never change at all.",
-                "Your heart pumps air through your body."
+                "Earth's magnetic field",
+                "Ocean currents",
+                "Gravity from the Moon",
+                "Strong winds in the atmosphere"
             ],
-            "correct_index": 1,
-            "explanation": "The Dancing Lights in the Sky Page 2 Page 3 Page 4 Page 5 Page 6 Page 7 Page 8 Page 9"
+            "correct_index": 0,
+            "explanation": "Earth's magnetic field helps guide the charged particles toward the polar regions."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "What happens when charged particles collide with gases in Earth's atmosphere?",
             "choices": [
-                "The brain does not help you move.",
-                "The Dancing Lights in the Sky Page 2 Page 3 Page 4 Page 5 Page 6 Page 7 Page 8 Page 9",
-                "The Moon makes its own light.",
-                "Rocks never change at all."
+                "The gases freeze",
+                "The gases release light",
+                "The sky produces rain",
+                "The particles turn into clouds"
             ],
             "correct_index": 1,
-            "explanation": "The Dancing Lights in the Sky Page 2 Page 3 Page 4 Page 5 Page 6 Page 7 Page 8 Page 9"
+            "explanation": "When charged particles collide with gases in Earth's atmosphere, the gases release light."
+        },
+        {
+            "id": 5,
+            "prompt": "Which gas commonly produces green and red auroras?",
+            "choices": [
+                "Hydrogen",
+                "Oxygen",
+                "Carbon dioxide",
+                "Helium"
+            ],
+            "correct_index": 1,
+            "explanation": "Oxygen commonly produces green and red auroras."
         }
     ]
 }

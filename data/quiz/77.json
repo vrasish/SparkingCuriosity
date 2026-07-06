@@ -1,54 +1,67 @@
 {
     "book_id": 77,
     "title": "The Backbone Clue",
+    "intro": "This quiz follows Asha and Ben as they learn how animals are grouped into vertebrates and invertebrates.",
     "questions": [
         {
             "id": 1,
-            "prompt": "What is \"The Backbone Clue\" mostly about?",
+            "prompt": "What is a vertebrate?",
             "choices": [
-                "Animals are grouped by whether they have a backbone (vertebrates) or not (invertebrates)",
-                "Rocks never change at all.",
-                "Fish breathe air like people do.",
-                "Sound is fastest in outer space."
+                "An animal with a backbone",
+                "An animal without bones",
+                "An animal that lives only in water",
+                "An animal with a shell"
             ],
             "correct_index": 0,
-            "explanation": "Animals are grouped by whether they have a backbone (vertebrates) or not (invertebrates)"
+            "explanation": "A vertebrate is an animal with a backbone."
         },
         {
             "id": 2,
-            "prompt": "Which answer is true?",
+            "prompt": "What are the small bones that make up the backbone called?",
             "choices": [
-                "Rocks never change at all.",
-                "Vertebrates—including fish",
-                "Plants eat food from soil only.",
-                "The brain does not help you move."
+                "Ribs",
+                "Vertebrae",
+                "Joints",
+                "Muscles"
             ],
             "correct_index": 1,
-            "explanation": "Vertebrates—including fish"
+            "explanation": "The small bones that make up the backbone are called vertebrae."
         },
         {
             "id": 3,
-            "prompt": "What did you learn from this story?",
+            "prompt": "Which group contains only vertebrates?",
             "choices": [
-                "The Moon makes its own light.",
-                "Invertebrates like insects",
-                "Your heart pumps air through your body.",
-                "The brain does not help you move."
+                "Fish, amphibians, reptiles, birds, and mammals",
+                "Jellyfish, sea stars, crabs, and octopuses",
+                "Insects, worms, and spiders",
+                "Snails, clams, and jellyfish"
             ],
-            "correct_index": 1,
-            "explanation": "Invertebrates like insects"
+            "correct_index": 0,
+            "explanation": "Fish, amphibians, reptiles, birds, and mammals are all vertebrates."
         },
         {
             "id": 4,
-            "prompt": "Pick the best answer:",
+            "prompt": "Which animal in the story is an invertebrate?",
             "choices": [
-                "Fish breathe air like people do.",
-                "The Moon makes its own light.",
-                "Your heart pumps air through your body.",
-                "such as exoskeletons or tough outer skin"
+                "Fish",
+                "Turtle",
+                "Jellyfish",
+                "Bird"
             ],
-            "correct_index": 3,
-            "explanation": "such as exoskeletons or tough outer skin"
+            "correct_index": 2,
+            "explanation": "The jellyfish is an invertebrate."
+        },
+        {
+            "id": 5,
+            "prompt": "What clue did Asha and Ben use to classify the animals?",
+            "choices": [
+                "Where the animal lived",
+                "Whether the animal had a backbone",
+                "The animal's color",
+                "The animal's size"
+            ],
+            "correct_index": 1,
+            "explanation": "Asha and Ben classified the animals by whether they had a backbone."
         }
     ]
 }
