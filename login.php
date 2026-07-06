@@ -13,15 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = attempt_login($pdo, $_POST['email'] ?? '', $_POST['password'] ?? '');
     if ($result['ok']) {
         $role = $result['role'];
-        if (!empty($_POST['creator_account']) && $role === 'reader') {
-            $user = current_user();
-            if ($user !== null) {
-                $upgrade = upgrade_reader_to_creator($pdo, (int) $user['user_id']);
-                if ($upgrade['ok']) {
-                    $role = $upgrade['role'];
-                }
-            }
-        }
         $redirect = safe_redirect_path($_POST['redirect'] ?? null, login_redirect_for_role($role));
         header('Location: ' . $redirect);
         exit;
@@ -61,12 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" class="form-control" required autocomplete="current-password">
-            </div>
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" name="creator_account" value="1"<?= !empty($_POST['creator_account']) ? ' checked' : '' ?>>
-                    I want to publish stories (creator account)
-                </label>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </form>

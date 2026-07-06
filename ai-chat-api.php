@@ -1,11 +1,18 @@
 <?php
 require_once __DIR__ . '/auth.php';
+
+header('Content-Type: application/json; charset=utf-8');
+
+if (!ai_authoring_enabled()) {
+    http_response_code(403);
+    echo json_encode(['ok' => false, 'error' => 'AI Authoring is temporarily unavailable.']);
+    exit;
+}
+
 require_once __DIR__ . '/ai.php';
 
 require_creator_login();
 ai_init_session();
-
-header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     ai_json_response(['ok' => false, 'error' => 'POST required'], 405);

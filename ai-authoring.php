@@ -1,5 +1,11 @@
 <?php
 require_once __DIR__ . '/auth.php';
+
+if (!ai_authoring_enabled()) {
+    header('Location: ' . app_url('index.php'));
+    exit;
+}
+
 require_once __DIR__ . '/ai.php';
 
 require_creator_login();
@@ -32,10 +38,10 @@ $step = $workflow['step'] ?? 'idea';
     <?php if (!$configured): ?>
         <div class="alert alert-error ai-setup-alert">
             <strong>One more step to enable the AI:</strong>
-            Add your OpenAI API key to
+            Add your ChatGPT API key and master prompt to
             <code>/Applications/XAMPP/xamppfiles/private/sparking-ai.config.php</code>
             (outside the website folder, not reachable by browser).
-            <br><small>Get a key at <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com/api-keys</a> — then reload this page.</small>
+            <br><small>Set <code>chatgpt_api_key</code> and <code>master_prompt</code> — copy from <code>sparking-ai.config.example.php</code>, then reload this page.</small>
         </div>
     <?php endif; ?>
 

@@ -68,6 +68,11 @@ function is_creator_user(): bool
     return $user !== null && ($user['role'] ?? '') === 'creator';
 }
 
+function ai_authoring_enabled(): bool
+{
+    return false;
+}
+
 function login_redirect_for_role(string $role): string
 {
     if ($role === 'admin') {
@@ -398,7 +403,9 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
             echo '<a href="' . e(app_url('my-library.php')) . '">My Library</a>';
         }
         if ($user && is_creator_user()) {
-            echo '<a href="' . e(app_url('ai-authoring.php')) . '">AI Authoring Tool</a>';
+            if (ai_authoring_enabled()) {
+                echo '<a href="' . e(app_url('ai-authoring.php')) . '">AI Authoring Tool</a>';
+            }
             echo '<a href="' . e(app_url('upload-book.php')) . '">Upload PDF</a>';
             echo '<a href="' . e(app_url('creator-dashboard.php')) . '">Creator Dashboard</a>';
             echo '<a href="' . e(app_url('creator-sales.php')) . '">Creator Sales</a>';

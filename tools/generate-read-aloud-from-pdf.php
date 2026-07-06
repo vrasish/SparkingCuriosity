@@ -26,7 +26,7 @@ $force = isset($options['force']);
 $skipTts = isset($options['skip-tts']);
 
 if (!ai_is_configured()) {
-    fwrite(STDERR, "OpenAI API key not configured.\n");
+    fwrite(STDERR, "ChatGPT API key not configured.\n");
     exit(1);
 }
 
@@ -205,7 +205,7 @@ function transcribe_page_image(string $imagePath, int $pageNum): string
         : 'Transcribe ALL story text on this children\'s book page in exact reading order. Include narration and dialogue. If the page has a large title or section heading above the story text, put a blank line between the heading and the body. Return only the words to read aloud — no image descriptions, labels, or page numbers.';
 
     $payload = [
-        'model' => 'gpt-4o-mini',
+        'model' => ai_chat_model(),
         'temperature' => 0,
         'messages' => [
             [
@@ -234,7 +234,7 @@ function transcribe_page_image(string $imagePath, int $pageNum): string
         curl_setopt_array($ch, [
             CURLOPT_POST => true,
             CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer ' . $config['openai_api_key'],
+                'Authorization: Bearer ' . ai_api_key(),
                 'Content-Type: application/json',
             ],
             CURLOPT_POSTFIELDS => $encoded,

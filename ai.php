@@ -12,15 +12,19 @@ function ai_config(): array
     }
 
     $defaults = [
-        'openai_api_key' => '',
-        'openai_model' => 'gpt-4o-mini',
-        'openai_image_model' => 'gpt-image-1',
+        'chatgpt_api_key' => '',
+        'chatgpt_model' => 'gpt-4o-mini',
+        'chatgpt_image_model' => 'gpt-image-1',
+        'master_prompt' => '',
         'read_aloud_tts_speed' => 0.9,
     ];
 
-    $envKey = getenv('OPENAI_API_KEY');
+    $envKey = getenv('CHATGPT_API_KEY');
+    if (!is_string($envKey) || $envKey === '') {
+        $envKey = getenv('OPENAI_API_KEY');
+    }
     if (is_string($envKey) && $envKey !== '') {
-        $config = array_merge($defaults, ['openai_api_key' => $envKey]);
+        $config = array_merge($defaults, ['chatgpt_api_key' => $envKey]);
     } else {
         $config = $defaults;
     }
@@ -40,12 +44,64 @@ function ai_config(): array
         }
     }
 
+    return ai_normalize_config($config);
+}
+
+function ai_normalize_config(array $config): array
+{
+    if (trim((string) ($config['chatgpt_api_key'] ?? '')) === ''
+        && trim((string) ($config['openai_api_key'] ?? '')) !== '') {
+        $config['chatgpt_api_key'] = $config['openai_api_key'];
+    }
+    if (trim((string) ($config['chatgpt_model'] ?? '')) === ''
+        && trim((string) ($config['openai_model'] ?? '')) !== '') {
+        $config['chatgpt_model'] = $config['openai_model'];
+    }
+    if (trim((string) ($config['chatgpt_image_model'] ?? '')) === ''
+        && trim((string) ($config['openai_image_model'] ?? '')) !== '') {
+        $config['chatgpt_image_model'] = $config['openai_image_model'];
+    }
+
     return $config;
+}
+
+function ai_api_key_placeholders(): array
+{
+    return ['', 'PUT_CHATGPT_API_KEY_HERE', 'PUT_OPENAI_API_KEY_HERE', 'sk-your-key-here'];
+}
+
+function ai_api_key(): string
+{
+    $config = ai_config();
+    foreach (['chatgpt_api_key', 'openai_api_key'] as $key) {
+        $value = trim((string) ($config[$key] ?? ''));
+        if ($value !== '' && !in_array($value, ai_api_key_placeholders(), true)) {
+            return $value;
+        }
+    }
+
+    return '';
+}
+
+function ai_chat_model(): string
+{
+    $config = ai_config();
+    $model = trim((string) ($config['chatgpt_model'] ?? $config['openai_model'] ?? ''));
+
+    return $model !== '' ? $model : 'gpt-4o-mini';
+}
+
+function ai_image_model(): string
+{
+    $config = ai_config();
+    $model = trim((string) ($config['chatgpt_image_model'] ?? $config['openai_image_model'] ?? ''));
+
+    return $model !== '' ? $model : 'gpt-image-1';
 }
 
 function ai_merge_config(array $base, array $override): array
 {
-    $emptyValues = ['', 'PUT_OPENAI_API_KEY_HERE', 'sk-your-key-here'];
+    $emptyValues = ai_api_key_placeholders();
 
     foreach ($override as $key => $value) {
         if (is_string($value) && in_array(trim($value), $emptyValues, true)) {
@@ -59,9 +115,9 @@ function ai_merge_config(array $base, array $override): array
 
 function ai_is_configured(): bool
 {
-    $key = ai_config()['openai_api_key'] ?? '';
-    $placeholders = ['', 'PUT_OPENAI_API_KEY_HERE', 'sk-your-key-here'];
-    return !in_array($key, $placeholders, true) && str_starts_with($key, 'sk-');
+    $key = ai_api_key();
+
+    return $key !== '' && str_starts_with($key, 'sk-');
 }
 
 function ai_system_prompt(): string
@@ -77,43 +133,12 @@ function ai_system_prompt(): string
 
 function ai_master_story_rules(): string
 {
-    return <<<'PROMPT'
-MASTER STORY RULES (Science Fables ages 8–12):
+    $custom = trim((string) (ai_config()['master_prompt'] ?? ''));
+    if ($custom !== '') {
+        return $custom;
+    }
 
-Create a children's science mystery storybook about ONE clear science topic.
-
-The story should feel friendly, natural, interesting, and educational — not like a textbook. Build the science through a small mystery, discovery, nature walk, experiment, field trip, classroom activity, family trip, museum visit, science camp, or another fresh setting.
-
-Use NEW characters and a NEW setting for each book so stories do not feel repetitive.
-
-Story requirements:
-- Create 5–8 story pages (NOT counting the Science Element page).
-- Give every page a short, interesting page_title.
-- Use a natural story flow from one page to the next.
-- Avoid repeating the same phrases, questions, or sentence patterns.
-- Do NOT repeatedly write lines such as "the mystery was getting more interesting," "they looked closely," or "another clue."
-- Include accurate science appropriate for ages 8–12.
-- Explain difficult terms through dialogue and events.
-- Keep each page's text short enough to fit comfortably below the image.
-- Finish the story BEFORE the science summary.
-- Put the Science Element ONLY on the very final page.
-- The Science Element page must clearly summarize: what the topic means, important parts or stages, important vocabulary, why it happens or how it works, and one simple takeaway sentence.
-
-Character consistency:
-- Invent character_1, character_2, and adult_guide with specific clothing, ages, hair, and accessories.
-- Keep the same characters consistent across every page.
-
-Page image style (for image_prompt / scene fields):
-- Realistic, cinematic, high-quality photo style — natural and believable, NOT cartoonish.
-- Vertical children's storybook page feel.
-- Warm cream/light ivory paper-textured background in the layout (handled by PDF; scene should be realistic photography).
-- No comic panels, speech bubbles, collage layout, colored full-page backgrounds, page numbers, logos, or watermarks in the image.
-- Do not place extra science facts inside the image unless the scene includes a classroom chart or exhibit.
-
-Display story text exactly as written in exports. Do not rewrite, shorten, duplicate, or add lines when converting to JSON.
-
-Science topics on this site: Space, Body, Plants, Animals, Weather, Microbes, Earth Science, Engineering, Physical Science.
-PROMPT;
+    return (string) require __DIR__ . '/ai-master-prompt.php';
 }
 
 function ai_story_json_schema_instructions(): string
@@ -250,13 +275,13 @@ function ai_call_openai(array $messages): array
         return [
             'ok' => false,
             'content' => '',
-            'error' => 'OpenAI API key not configured. Copy ai.config.example.php to ai.config.php and add your key.',
+            'error' => 'ChatGPT API key not configured. Add chatgpt_api_key to sparking-ai.config.php.',
         ];
     }
 
     $config = ai_config();
     $payload = [
-        'model' => $config['openai_model'] ?? 'gpt-4o-mini',
+        'model' => ai_chat_model(),
         'messages' => array_merge(
             [['role' => 'system', 'content' => ai_system_prompt()]],
             $messages
@@ -270,7 +295,7 @@ function ai_call_openai(array $messages): array
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => [
             'Content-Type: application/json',
-            'Authorization: Bearer ' . $config['openai_api_key'],
+            'Authorization: Bearer ' . ai_api_key(),
         ],
         CURLOPT_POSTFIELDS => json_encode($payload),
         CURLOPT_TIMEOUT => 90,
@@ -710,14 +735,13 @@ function ai_character_block(array $story): string
 function ai_generate_illustration(string $scenePrompt, string $size = '1024x1536'): array
 {
     if (!ai_is_configured()) {
-        return ['ok' => false, 'path' => '', 'error' => 'OpenAI API key not configured.'];
+        return ['ok' => false, 'path' => '', 'error' => 'ChatGPT API key not configured.'];
     }
 
-    $config = ai_config();
     $prompt = ai_illustration_style() . ' Scene: ' . trim($scenePrompt);
 
     $payload = [
-        'model' => $config['openai_image_model'] ?? 'gpt-image-1',
+        'model' => ai_image_model(),
         'prompt' => $prompt,
         'n' => 1,
         'size' => $size,
@@ -729,7 +753,7 @@ function ai_generate_illustration(string $scenePrompt, string $size = '1024x1536
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => [
             'Content-Type: application/json',
-            'Authorization: Bearer ' . $config['openai_api_key'],
+            'Authorization: Bearer ' . ai_api_key(),
         ],
         CURLOPT_POSTFIELDS => json_encode($payload),
         CURLOPT_TIMEOUT => 180,

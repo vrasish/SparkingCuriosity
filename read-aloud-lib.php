@@ -389,7 +389,7 @@ function read_aloud_generate_audio_openai(int $bookId, int $page, string $prepar
         curl_setopt_array($ch, [
             CURLOPT_POST => true,
             CURLOPT_HTTPHEADER => [
-                'Authorization: Bearer ' . $config['openai_api_key'],
+                'Authorization: Bearer ' . ai_api_key(),
                 'Content-Type: application/json',
             ],
             CURLOPT_POSTFIELDS => $payload,

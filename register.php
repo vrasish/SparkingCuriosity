@@ -14,7 +14,7 @@ $redirect = safe_redirect_path($_GET['redirect'] ?? null, 'index.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $redirect = safe_redirect_path($_POST['redirect'] ?? null, 'index.php');
-    $role = !empty($_POST['creator_account']) ? 'creator' : 'reader';
+    $role = 'reader';
     $result = register_user(
         $pdo,
         $_POST['full_name'] ?? '',
@@ -73,12 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" class="form-control" required minlength="6"
                     autocomplete="new-password">
-            </div>
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" name="creator_account" value="1"<?= !empty($_POST['creator_account']) ? ' checked' : '' ?>>
-                    I want to publish stories (creator account)
-                </label>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Create Account</button>
         </form>

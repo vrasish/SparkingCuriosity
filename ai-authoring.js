@@ -135,7 +135,7 @@
     function requireConfigured() {
         if (!window.AI_CONFIGURED) {
             setStatus(
-                'Add your OpenAI API key in /Applications/XAMPP/xamppfiles/private/sparking-ai.config.php, reload, then try again.',
+                'Add your ChatGPT API key in /Applications/XAMPP/xamppfiles/private/sparking-ai.config.php (chatgpt_api_key), reload, then try again.',
                 true
             );
             return false;

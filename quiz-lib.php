@@ -403,7 +403,7 @@ function quiz_generate_for_book(PDO $pdo, int $bookId): array
     $title = trim((string) ($book['title'] ?? ''));
 
     if (!ai_is_configured()) {
-        return ['ok' => false, 'error' => 'OpenAI API key not configured.'];
+        return ['ok' => false, 'error' => 'ChatGPT API key not configured.'];
     }
 
     $system = <<<'PROMPT'
@@ -438,7 +438,7 @@ PROMPT;
 
     $config = ai_config();
     $payload = [
-        'model' => $config['openai_model'] ?? 'gpt-4o-mini',
+        'model' => ai_chat_model(),
         'messages' => [
             ['role' => 'system', 'content' => $system],
             ['role' => 'user', 'content' => $user],
@@ -453,7 +453,7 @@ PROMPT;
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => [
             'Content-Type: application/json',
-            'Authorization: Bearer ' . $config['openai_api_key'],
+            'Authorization: Bearer ' . ai_api_key(),
         ],
         CURLOPT_POSTFIELDS => json_encode($payload),
         CURLOPT_TIMEOUT => 90,
