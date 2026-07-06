@@ -148,6 +148,7 @@ function asset_url(string $file): string
 
 function render_stylesheet(): void
 {
+    require __DIR__ . '/header.php';
     echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
     echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
     echo '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" media="print" onload="this.media=\'all\'">' . "\n";
