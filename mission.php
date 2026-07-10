@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/auth.php';
 
-$partnerEmail = 'chantibds@gmail.com';
+$partnerEmail = 'scifables2026@gmail.com';
 $formMessage = '';
 $formError = '';
 $formSuccess = false;
