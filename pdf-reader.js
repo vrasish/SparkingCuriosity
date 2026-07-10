@@ -5,21 +5,30 @@
     }
 
     var loadingEl = container.querySelector('.pdf-reader-loading');
+    var loadingTextEl = container.querySelector('.pdf-reader-loading-text');
 
     function setLoadingMessage(message) {
-        if (loadingEl) {
-            loadingEl.textContent = message;
+        if (loadingTextEl) {
+            loadingTextEl.textContent = message;
         }
     }
 
+    function setLoadingError(message) {
+        if (loadingEl) {
+            loadingEl.classList.add('pdf-reader-loading--error');
+            loadingEl.setAttribute('aria-busy', 'false');
+        }
+        setLoadingMessage(message);
+    }
+
     if (typeof pdfjsLib === 'undefined') {
-        setLoadingMessage('Could not load the PDF viewer. Try opening the PDF in a new tab below.');
+        setLoadingError('Could not load the PDF viewer. Try opening the PDF in a new tab below.');
         return;
     }
 
     var url = container.getAttribute('data-pdf-url');
     if (!url) {
-        setLoadingMessage('PDF link is missing for this story.');
+        setLoadingError('PDF link is missing for this story.');
         return;
     }
 
@@ -27,7 +36,7 @@
         try {
             url = new URL(url, window.location.href).href;
         } catch (error) {
-            setLoadingMessage('Could not load this PDF. Try opening it in a new tab below.');
+            setLoadingError('Could not load this PDF. Try opening it in a new tab below.');
             return;
         }
     }
@@ -104,23 +113,34 @@
             });
     }
 
-    function renderDocument(pdf) {
+    function removeLoadingState() {
         if (loadingEl) {
             loadingEl.remove();
+            loadingEl = null;
+            loadingTextEl = null;
         }
+    }
+
+    function renderDocument(pdf) {
+        setLoadingMessage('Drawing pages…');
 
         var chain = Promise.resolve();
         for (var pageNum = 1; pageNum <= pdf.numPages; pageNum += 1) {
             (function (num) {
                 chain = chain.then(function () {
                     return pdf.getPage(num).then(function (page) {
-                        return renderPage(page, num);
+                        return renderPage(page, num).then(function () {
+                            if (num === 1) {
+                                removeLoadingState();
+                            }
+                        });
                     });
                 });
             })(pageNum);
         }
 
         return chain.then(function () {
+            removeLoadingState();
             container.dispatchEvent(
                 new CustomEvent('pdf-reader:ready', {
                     bubbles: true,
@@ -150,16 +170,17 @@
 
         loadingTask.onProgress = function (progress) {
             if (!progress || !progress.total) {
+                setLoadingMessage('Opening your story…');
                 return;
             }
             var percent = Math.min(100, Math.round((progress.loaded / progress.total) * 100));
-            setLoadingMessage('Loading pages… ' + percent + '%');
+            setLoadingMessage('Opening your story… ' + percent + '%');
         };
 
         loadingTask.promise
             .then(renderDocument)
             .catch(function () {
-                setLoadingMessage('Could not load this PDF. Try opening it in a new tab below.');
+                setLoadingError('Could not load this PDF. Try opening it in a new tab below.');
             });
     }
 

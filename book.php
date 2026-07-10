@@ -212,7 +212,10 @@ if ($book && !$preview && !$bookLocked) {
                                 data-read-aloud-api="<?= e(app_api_url('read-aloud-api.php')) ?>"
                                 data-quiz-api="<?= e(app_api_url('quiz-api.php')) ?>"
                             >
-                                <p class="pdf-reader-loading">Loading pages…</p>
+                                <div class="pdf-reader-loading" role="status" aria-live="polite" aria-busy="true">
+                                    <div class="pdf-reader-loading-spinner" aria-hidden="true"></div>
+                                    <p class="pdf-reader-loading-text">Opening your story…</p>
+                                </div>
                             </div>
                         </div>
                         <aside class="pdf-viewer-sidebar" id="pdf-quiz-sidebar" aria-label="Story quiz"></aside>
