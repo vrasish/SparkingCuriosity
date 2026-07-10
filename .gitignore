@@ -8,5 +8,6 @@ uploads/ai-temp/*
 !uploads/covers/.gitkeep
 data/cache/*
 !data/cache/.gitkeep
+data/partnership-inquiries.jsonl
 .DS_Store
 data/.favorites-schema-ready
