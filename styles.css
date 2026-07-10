@@ -5223,6 +5223,117 @@ tr:hover td {
     text-underline-offset: 3px;
 }
 
+.mission-receive-list {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.mission-receive-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 14px;
+    background: #f8f5ff;
+    border: 2px solid rgba(124, 58, 237, 0.12);
+    border-radius: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.mission-receive-list li span {
+    flex-shrink: 0;
+    line-height: 1.4;
+}
+
+.mission-promise-line {
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+    color: var(--purple-dark) !important;
+    font-weight: 700;
+}
+
+.mission-join .mission-partner-form {
+    margin-top: 18px;
+    text-align: left;
+}
+
+.mission-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+@media (min-width: 700px) {
+    .mission-form-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.mission-interest-fieldset {
+    border: 2px solid rgba(124, 58, 237, 0.14);
+    border-radius: var(--radius);
+    padding: 16px 16px 10px;
+    margin: 0 0 18px;
+    background: #faf8ff;
+}
+
+.mission-interest-fieldset legend {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--purple-dark);
+    padding: 0 6px;
+    font-size: 1.05rem;
+}
+
+.mission-interest-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.mission-interest-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: #fff;
+    border: 2px solid rgba(124, 58, 237, 0.1);
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+    line-height: 1.4;
+}
+
+.mission-interest-option:hover {
+    border-color: rgba(124, 58, 237, 0.28);
+}
+
+.mission-interest-option input {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--purple);
+    flex-shrink: 0;
+}
+
+.mission-form-note {
+    margin: 14px 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.98rem;
+}
+
+.mission-form-note a {
+    color: var(--purple-dark);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
 @media (max-width: 640px) {
     .mission-hero,
     .mission-section {

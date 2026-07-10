@@ -1,9 +1,93 @@
 <?php
 require_once __DIR__ . '/auth.php';
 
-$partnerEmail = 'partnerships@scifables.com';
-$mailtoPartner = 'mailto:' . $partnerEmail . '?subject=' . rawurlencode('Science Fables Partnership');
-$mailtoSchedule = 'mailto:' . $partnerEmail . '?subject=' . rawurlencode('Schedule a Conversation — Science Fables');
+$partnerEmail = 'chantibds@gmail.com';
+$formMessage = '';
+$formError = '';
+$formSuccess = false;
+
+$partnershipOptions = [
+    'share_families' => 'Share Science Fables with the children and families we serve',
+    'classrooms' => 'Use Science Fables in our classrooms',
+    'after_school' => 'Use Science Fables in our after-school program',
+    'reading_program' => 'Include Science Fables in our reading program',
+    'newsletter' => 'Feature Science Fables in our newsletter or website',
+    'stem_initiative' => 'Collaborate on a STEM reading initiative',
+    'storytelling_event' => 'Organize a science storytelling event',
+    'other' => "I'd like to discuss another partnership",
+];
+
+$postedName = '';
+$postedOrg = '';
+$postedEmail = '';
+$postedRole = '';
+$postedMessage = '';
+$postedInterests = [];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $postedName = trim((string) ($_POST['full_name'] ?? ''));
+    $postedOrg = trim((string) ($_POST['organization'] ?? ''));
+    $postedEmail = trim((string) ($_POST['email'] ?? ''));
+    $postedRole = trim((string) ($_POST['role'] ?? ''));
+    $postedMessage = trim((string) ($_POST['message'] ?? ''));
+    $rawInterests = $_POST['interests'] ?? [];
+    if (!is_array($rawInterests)) {
+        $rawInterests = [];
+    }
+    foreach ($rawInterests as $key) {
+        $key = (string) $key;
+        if (isset($partnershipOptions[$key])) {
+            $postedInterests[] = $key;
+        }
+    }
+
+    if ($postedName === '' || $postedOrg === '' || $postedEmail === '') {
+        $formError = 'Please enter your name, organization, and email.';
+    } elseif (!filter_var($postedEmail, FILTER_VALIDATE_EMAIL)) {
+        $formError = 'Please enter a valid email address.';
+    } elseif ($postedInterests === []) {
+        $formError = 'Please select at least one way you would like to partner.';
+    } else {
+        $interestLines = [];
+        foreach ($postedInterests as $key) {
+            $interestLines[] = '- ' . $partnershipOptions[$key];
+        }
+
+        $body = "New Science Fables partnership inquiry\n\n"
+            . "Name: {$postedName}\n"
+            . "Organization: {$postedOrg}\n"
+            . "Email: {$postedEmail}\n"
+            . "Role / Title: " . ($postedRole !== '' ? $postedRole : '(not provided)') . "\n\n"
+            . "How they would like to partner:\n"
+            . implode("\n", $interestLines) . "\n\n"
+            . "Message:\n"
+            . ($postedMessage !== '' ? $postedMessage : '(none)') . "\n\n"
+            . "Submitted: " . date('Y-m-d H:i:s T') . "\n"
+            . "IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'unknown') . "\n";
+
+        $subject = 'Science Fables partnership inquiry from ' . $postedOrg;
+        $headers = [
+            'From: Science Fables <noreply@scifables.com>',
+            'Reply-To: ' . $postedEmail,
+            'Content-Type: text/plain; charset=UTF-8',
+            'X-Mailer: PHP/' . PHP_VERSION,
+        ];
+
+        $sent = @mail($partnerEmail, $subject, $body, implode("\r\n", $headers));
+        if ($sent) {
+            $formSuccess = true;
+            $formMessage = 'Thank you! Your partnership note is on its way. We will reply soon.';
+            $postedName = '';
+            $postedOrg = '';
+            $postedEmail = '';
+            $postedRole = '';
+            $postedMessage = '';
+            $postedInterests = [];
+        } else {
+            $formError = 'We could not send your message right now. Please email ' . $partnerEmail . ' directly.';
+        }
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +121,7 @@ $mailtoSchedule = 'mailto:' . $partnerEmail . '?subject=' . rawurlencode('Schedu
         </p>
         <div class="mission-cta-row">
             <a href="<?= e(app_url('search.php')) ?>" class="btn btn-primary">Explore Stories</a>
-            <a href="#partnerships" class="btn btn-outline">Become a Partner</a>
+            <a href="#join-mission" class="btn btn-outline">🤝 Join Our Mission</a>
         </div>
     </header>
 
@@ -99,6 +183,30 @@ $mailtoSchedule = 'mailto:' . $partnerEmail . '?subject=' . rawurlencode('Schedu
         <p>As Science Fables grows, premium features may be introduced, but we are committed to keeping a rich library of stories freely available.</p>
     </section>
 
+    <section class="mission-section" aria-labelledby="receive-heading">
+        <h2 id="receive-heading">What Organizations Receive</h2>
+        <p class="mission-list-intro">As a Science Fables Partner, you'll receive:</p>
+        <ul class="mission-receive-list">
+            <li><span aria-hidden="true">📚</span> Free access to our complete library of science stories</li>
+            <li><span aria-hidden="true">🔬</span> New science stories as they are published</li>
+            <li><span aria-hidden="true">🖨️</span> Printable PDFs for classrooms and reading programs</li>
+            <li><span aria-hidden="true">📩</span> Early access to new collections</li>
+            <li><span aria-hidden="true">🌍</span> Opportunities to collaborate on STEM literacy initiatives</li>
+        </ul>
+    </section>
+
+    <section class="mission-section" aria-labelledby="ask-heading">
+        <h2 id="ask-heading">What We Ask in Return</h2>
+        <p>We don't charge organizations to use Science Fables.</p>
+        <p class="mission-list-intro">Instead, we ask our partners to help us reach more children by:</p>
+        <ul class="mission-checklist">
+            <li>Sharing Science Fables with students and families</li>
+            <li>Including our website in newsletters or resource pages</li>
+            <li>Recommending our stories to educators</li>
+            <li>Providing feedback so we can continue improving</li>
+        </ul>
+    </section>
+
     <section class="mission-section" aria-labelledby="use-heading">
         <h2 id="use-heading">How Organizations Can Use Science Fables</h2>
         <p>Organizations are welcome to use Science Fables to support their educational programs.</p>
@@ -115,43 +223,11 @@ $mailtoSchedule = 'mailto:' . $partnerEmail . '?subject=' . rawurlencode('Schedu
         </ul>
     </section>
 
-    <section class="mission-section" id="partnerships" aria-labelledby="partner-heading">
-        <h2 id="partner-heading">Partnership Opportunities</h2>
-        <p>We'd love to collaborate with organizations in ways such as:</p>
-        <div class="mission-partner-grid">
-            <article class="mission-partner-card">
-                <span class="mission-partner-icon" aria-hidden="true">📖</span>
-                <h3>Resource Partner</h3>
-                <p>Share Science Fables with your students, families, or members.</p>
-            </article>
-            <article class="mission-partner-card">
-                <span class="mission-partner-icon" aria-hidden="true">🏫</span>
-                <h3>Education Partner</h3>
-                <p>Integrate stories into your educational programs or curriculum.</p>
-            </article>
-            <article class="mission-partner-card">
-                <span class="mission-partner-icon" aria-hidden="true">🌍</span>
-                <h3>Community Partner</h3>
-                <p>Co-host STEM reading events or science literacy initiatives.</p>
-            </article>
-            <article class="mission-partner-card">
-                <span class="mission-partner-icon" aria-hidden="true">🤝</span>
-                <h3>Content Partner</h3>
-                <p>Collaborate on new stories or educational resources aligned with your mission.</p>
-            </article>
-        </div>
-    </section>
-
-    <section class="mission-section" aria-labelledby="why-partner-heading">
-        <h2 id="why-partner-heading">Why Partner With Science Fables?</h2>
-        <ul class="mission-benefits">
-            <li>Free educational resource</li>
-            <li>Story-based STEM learning</li>
-            <li>Encourages reading and curiosity</li>
-            <li>Supports educators and families</li>
-            <li>Suitable for classrooms and community programs</li>
-            <li>Easy to access online</li>
-        </ul>
+    <section class="mission-section" aria-labelledby="promise-heading">
+        <h2 id="promise-heading">Our Promise</h2>
+        <p>Science Fables is committed to keeping a growing library of science stories freely available for children, educators, libraries, and nonprofit organizations.</p>
+        <p class="mission-highlight">Our goal is simple:</p>
+        <p class="mission-promise-line">Inspire curiosity. Encourage reading. Make science accessible to every child.</p>
     </section>
 
     <section class="mission-section" aria-labelledby="impact-heading">
@@ -166,23 +242,65 @@ $mailtoSchedule = 'mailto:' . $partnerEmail . '?subject=' . rawurlencode('Schedu
         </ul>
     </section>
 
-    <section class="mission-section mission-contact" aria-labelledby="together-heading">
-        <h2 id="together-heading">Let's Work Together</h2>
-        <p>If your organization shares our passion for inspiring young learners, we'd love to hear from you.</p>
-        <div class="mission-contact-details">
-            <p>
-                <span aria-hidden="true">📧</span>
-                <a href="<?= e($mailtoPartner) ?>"><?= e($partnerEmail) ?></a>
+    <section class="mission-section mission-join" id="join-mission" aria-labelledby="join-heading">
+        <h2 id="join-heading">🤝 Join Our Mission</h2>
+        <p>Tell us a little about your organization and how you'd like to partner. Your note will come straight to us.</p>
+
+        <?php if ($formSuccess): ?>
+            <div class="alert alert-success"><?= e($formMessage) ?></div>
+        <?php endif; ?>
+        <?php if ($formError !== ''): ?>
+            <div class="alert alert-error"><?= e($formError) ?></div>
+        <?php endif; ?>
+
+        <form method="post" action="<?= e(app_url('mission.php')) ?>#join-mission" class="mission-partner-form">
+            <div class="mission-form-grid">
+                <div class="form-group">
+                    <label for="full_name">Your name *</label>
+                    <input type="text" id="full_name" name="full_name" class="form-control" required
+                        value="<?= e($postedName) ?>" autocomplete="name">
+                </div>
+                <div class="form-group">
+                    <label for="organization">Organization *</label>
+                    <input type="text" id="organization" name="organization" class="form-control" required
+                        value="<?= e($postedOrg) ?>" autocomplete="organization">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" class="form-control" required
+                        value="<?= e($postedEmail) ?>" autocomplete="email">
+                </div>
+                <div class="form-group">
+                    <label for="role">Role / title</label>
+                    <input type="text" id="role" name="role" class="form-control"
+                        value="<?= e($postedRole) ?>" autocomplete="organization-title">
+                </div>
+            </div>
+
+            <fieldset class="mission-interest-fieldset">
+                <legend>How would you like to partner with Science Fables? *</legend>
+                <div class="mission-interest-list">
+                    <?php foreach ($partnershipOptions as $key => $label): ?>
+                        <label class="mission-interest-option">
+                            <input type="checkbox" name="interests[]" value="<?= e($key) ?>"
+                                <?= in_array($key, $postedInterests, true) ? 'checked' : '' ?>>
+                            <span><?= e($label) ?></span>
+                        </label>
+                    <?php endforeach; ?>
+                </div>
+            </fieldset>
+
+            <div class="form-group">
+                <label for="message">Anything else you'd like to share?</label>
+                <textarea id="message" name="message" class="form-control" rows="4"><?= e($postedMessage) ?></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg">Send Partnership Note</button>
+            <p class="mission-form-note">
+                Or email us directly at
+                <a href="mailto:<?= e($partnerEmail) ?>?subject=<?= e(rawurlencode('Science Fables Partnership')) ?>"><?= e($partnerEmail) ?></a>
             </p>
-            <p>
-                <span aria-hidden="true">🌐</span>
-                <a href="https://www.scifables.com" rel="noopener">www.scifables.com</a>
-            </p>
-        </div>
-        <div class="mission-cta-row">
-            <a href="<?= e($mailtoPartner) ?>" class="btn btn-primary">Contact Us</a>
-            <a href="<?= e($mailtoSchedule) ?>" class="btn btn-outline">Schedule a Conversation</a>
-        </div>
+        </form>
     </section>
 </main>
 <?php render_site_footer(true); ?>
