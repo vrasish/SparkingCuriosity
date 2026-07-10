@@ -4982,8 +4982,13 @@ tr:hover td {
 }
 
 /* —— Our Mission / Partnerships —— */
+.mission-page {
+    font-size: 1.2rem;
+}
+
 .mission-main {
     gap: 20px;
+    font-size: 1.2rem;
 }
 
 .mission-impact-badge {
@@ -5006,14 +5011,14 @@ tr:hover td {
     display: block;
     color: var(--purple-dark);
     font-family: var(--font-display);
-    font-size: 1.05rem;
+    font-size: 1.2rem;
     margin-bottom: 4px;
 }
 
 .mission-impact-badge p {
     margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.98rem;
+    font-size: 1.1rem;
     line-height: 1.55;
 }
 
@@ -5030,14 +5035,14 @@ tr:hover td {
     margin: 0 0 8px;
     color: var(--purple);
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
 }
 
 .mission-hero-title {
     font-family: var(--font-display);
-    font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+    font-size: clamp(2rem, 4.5vw, 2.9rem);
     color: var(--purple-dark);
     line-height: 1.2;
     margin: 0 0 14px;
@@ -5049,10 +5054,11 @@ tr:hover td {
     max-width: 720px;
     color: var(--color-text-muted);
     line-height: 1.65;
+    font-size: 1.2rem;
 }
 
 .mission-hero-lead {
-    font-size: 1.15rem;
+    font-size: 1.28rem;
     color: var(--color-text);
 }
 
@@ -5126,14 +5132,14 @@ tr:hover td {
 .mission-section h2 {
     font-family: var(--font-display);
     color: var(--purple-dark);
-    font-size: clamp(1.45rem, 3vw, 1.9rem);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
     margin: 0 0 12px;
 }
 
 .mission-section h3 {
     font-family: var(--font-display);
     color: var(--purple-dark);
-    font-size: 1.15rem;
+    font-size: 1.28rem;
     margin: 0 0 6px;
 }
 
@@ -5141,16 +5147,19 @@ tr:hover td {
     margin: 0 0 12px;
     color: var(--color-text);
     line-height: 1.65;
+    font-size: 1.2rem;
 }
 
 .mission-list-intro {
     font-weight: 700;
     color: var(--purple-dark) !important;
+    font-size: 1.22rem !important;
 }
 
 .mission-highlight {
     font-weight: 700;
     color: var(--purple-dark) !important;
+    font-size: 1.22rem !important;
 }
 
 .mission-checklist {
@@ -5158,6 +5167,7 @@ tr:hover td {
     padding-left: 1.25rem;
     color: var(--color-text);
     line-height: 1.7;
+    font-size: 1.2rem;
 }
 
 .mission-checklist li + li {
