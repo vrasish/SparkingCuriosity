@@ -4633,6 +4633,30 @@ tr:hover td {
         --page-inner-padding: 20px;
     }
 
+    body,
+    .public-page {
+        min-height: auto;
+    }
+
+    main.page-main,
+    .public-page main.page-main.page-main-compact {
+        flex: 0 1 auto;
+        min-height: 0;
+        padding-bottom: 12px;
+    }
+
+    .home-shell {
+        min-height: 0;
+    }
+
+    .site-footer {
+        padding: 16px var(--page-gutter-mobile) max(16px, env(safe-area-inset-bottom, 0px));
+    }
+
+    .site-footer-compact {
+        padding: 10px var(--page-gutter-mobile) max(12px, env(safe-area-inset-bottom, 0px));
+    }
+
     .container {
         padding-left: var(--page-gutter-mobile);
         padding-right: var(--page-gutter-mobile);
@@ -4810,7 +4834,16 @@ tr:hover td {
     }
 
     .book-content {
-        padding: 12px var(--page-inner-padding-mobile) 32px;
+        padding: 12px var(--page-inner-padding-mobile) 16px;
+    }
+
+    .pdf-reader-loading {
+        min-height: 160px;
+        padding: 32px 16px;
+    }
+
+    .page-actions {
+        margin-bottom: 0;
     }
 
     .home-story-grid {
