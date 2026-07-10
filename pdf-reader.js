@@ -1,18 +1,39 @@
 (function () {
     var container = document.getElementById('pdf-reader');
-    if (!container || typeof pdfjsLib === 'undefined') {
+    if (!container) {
+        return;
+    }
+
+    var loadingEl = container.querySelector('.pdf-reader-loading');
+
+    function setLoadingMessage(message) {
+        if (loadingEl) {
+            loadingEl.textContent = message;
+        }
+    }
+
+    if (typeof pdfjsLib === 'undefined') {
+        setLoadingMessage('Could not load the PDF viewer. Try opening the PDF in a new tab below.');
         return;
     }
 
     var url = container.getAttribute('data-pdf-url');
     if (!url) {
+        setLoadingMessage('PDF link is missing for this story.');
         return;
+    }
+
+    if (!/^https?:\/\//i.test(url)) {
+        try {
+            url = new URL(url, window.location.href).href;
+        } catch (error) {
+            setLoadingMessage('Could not load this PDF. Try opening it in a new tab below.');
+            return;
+        }
     }
 
     pdfjsLib.GlobalWorkerOptions.workerSrc =
         'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-    var loadingEl = container.querySelector('.pdf-reader-loading');
 
     function cssSize(name, fallback) {
         var raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -20,10 +41,16 @@
         return Number.isFinite(value) && value > 0 ? value : fallback;
     }
 
-    function setLoadingMessage(message) {
-        if (loadingEl) {
-            loadingEl.textContent = message;
-        }
+    function isIosDevice() {
+        return (
+            /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+            (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+        );
+    }
+
+    function isSafariBrowser() {
+        var ua = navigator.userAgent;
+        return /Safari/i.test(ua) && !/Chrome|CriOS|FxiOS|EdgiOS/i.test(ua);
     }
 
     function getAvailableWidth() {
@@ -32,8 +59,8 @@
             return width - 8;
         }
 
-        var gutter = cssSize('--page-gutter', 200);
-        return Math.max(window.innerWidth - gutter * 2 - 48, 280);
+        var gutter = cssSize('--page-gutter-mobile', cssSize('--page-gutter', 16));
+        return Math.max(window.innerWidth - gutter * 2 - 24, 280);
     }
 
     function getDisplayScale(unscaled) {
@@ -43,7 +70,7 @@
     }
 
     function renderPage(page, pageNum) {
-        var pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        var pixelRatio = Math.min(window.devicePixelRatio || 1, isIosDevice() ? 1.25 : 2);
         var unscaled = page.getViewport({ scale: 1 });
         var displayScale = getDisplayScale(unscaled);
         var displayViewport = page.getViewport({ scale: displayScale });
@@ -103,17 +130,45 @@
         });
     }
 
+    function getDocumentOptions() {
+        var options = {
+            url: url,
+            withCredentials: true,
+        };
+
+        if (isIosDevice() || isSafariBrowser()) {
+            options.disableRange = true;
+            options.disableStream = true;
+            options.disableAutoFetch = true;
+        }
+
+        return options;
+    }
+
     function startRender() {
-        pdfjsLib
-            .getDocument({ url: url, withCredentials: true })
-            .promise.then(renderDocument)
+        var loadingTask = pdfjsLib.getDocument(getDocumentOptions());
+
+        loadingTask.onProgress = function (progress) {
+            if (!progress || !progress.total) {
+                return;
+            }
+            var percent = Math.min(100, Math.round((progress.loaded / progress.total) * 100));
+            setLoadingMessage('Loading pages… ' + percent + '%');
+        };
+
+        loadingTask.promise
+            .then(renderDocument)
             .catch(function () {
                 setLoadingMessage('Could not load this PDF. Try opening it in a new tab below.');
             });
     }
 
+    var layoutAttempts = 0;
+    var maxLayoutAttempts = 180;
+
     function waitForLayout() {
-        if (container.getBoundingClientRect().width > 16) {
+        layoutAttempts += 1;
+        if (container.getBoundingClientRect().width > 16 || layoutAttempts >= maxLayoutAttempts) {
             startRender();
             return;
         }
