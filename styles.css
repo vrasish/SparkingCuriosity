@@ -4645,6 +4645,11 @@ tr:hover td {
         padding-bottom: 12px;
     }
 
+    .public-page.auth-page main.page-main.page-main-compact.auth-main {
+        min-height: auto;
+        margin-bottom: 16px;
+    }
+
     .home-shell {
         min-height: 0;
     }
