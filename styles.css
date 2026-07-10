@@ -5101,7 +5101,7 @@ tr:hover td {
 
 .mission-founder-name {
     font-family: var(--font-display);
-    font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+    font-size: clamp(1.5rem, 2.5vw, 1.85rem);
     color: var(--purple-dark) !important;
     font-weight: 700;
     margin-bottom: 4px !important;
@@ -5228,7 +5228,7 @@ tr:hover td {
 .mission-partner-card p {
     margin: 0;
     color: var(--color-text-muted);
-    font-size: 0.98rem;
+    font-size: 1.12rem;
 }
 
 .mission-benefits {
@@ -5247,6 +5247,7 @@ tr:hover td {
     border-radius: 14px;
     color: var(--color-text);
     font-weight: 600;
+    font-size: 1.15rem;
 }
 
 .mission-benefits li::before {
@@ -5302,6 +5303,7 @@ tr:hover td {
     border-radius: 14px;
     font-weight: 600;
     color: var(--color-text);
+    font-size: 1.15rem;
 }
 
 .mission-receive-list li span {
@@ -5347,7 +5349,7 @@ tr:hover td {
     font-weight: 700;
     color: var(--purple-dark);
     padding: 0 6px;
-    font-size: 1.05rem;
+    font-size: 1.18rem;
 }
 
 .mission-interest-list {
@@ -5368,6 +5370,7 @@ tr:hover td {
     font-weight: 600;
     color: var(--color-text);
     line-height: 1.4;
+    font-size: 1.12rem;
 }
 
 .mission-interest-option:hover {
