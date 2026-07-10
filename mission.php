@@ -53,6 +53,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $interestLines[] = '- ' . $partnershipOptions[$key];
         }
 
+        $inquiry = [
+            'submitted_at' => date('c'),
+            'full_name' => $postedName,
+            'organization' => $postedOrg,
+            'email' => $postedEmail,
+            'role' => $postedRole,
+            'interests' => array_map(static fn(string $key): string => $partnershipOptions[$key], $postedInterests),
+            'message' => $postedMessage,
+            'ip' => (string) ($_SERVER['REMOTE_ADDR'] ?? ''),
+        ];
+
+        $logDir = __DIR__ . '/data';
+        if (!is_dir($logDir)) {
+            @mkdir($logDir, 0775, true);
+        }
+        $logFile = $logDir . '/partnership-inquiries.jsonl';
+        $saved = @file_put_contents($logFile, json_encode($inquiry, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX) !== false;
+
         $body = "New Science Fables partnership inquiry\n\n"
             . "Name: {$postedName}\n"
             . "Organization: {$postedOrg}\n"
@@ -74,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ];
 
         $sent = @mail($partnerEmail, $subject, $body, implode("\r\n", $headers));
-        if ($sent) {
+        if ($sent || $saved) {
             $formSuccess = true;
             $formMessage = 'Thank you! Your partnership note is on its way. We will reply soon.';
             $postedName = '';
