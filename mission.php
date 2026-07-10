@@ -143,6 +143,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </header>
 
+    <section class="mission-section mission-founder" aria-labelledby="founder-heading">
+        <h2 id="founder-heading">Meet the Founder</h2>
+        <div class="mission-founder-layout">
+            <img
+                src="<?= e(asset_url('assets/vaishnavi-renduchintala.jpg')) ?>"
+                alt="Vaishnavi Renduchintala, founder of Science Fables"
+                class="mission-founder-photo"
+                width="240"
+                height="300"
+            >
+            <div class="mission-founder-copy">
+                <p class="mission-founder-name">Vaishnavi Renduchintala</p>
+                <p class="mission-founder-role">14-year-old founder of Science Fables</p>
+                <p>
+                    My name is Vaishnavi Renduchintala and I am the 14-year-old founder of Science Fables.
+                    I have always loved science and storytelling, so I decided to combine them into something fun for kids.
+                    That's how SciFables was born.
+                </p>
+                <p>
+                    My goal is to help children discover amazing science concepts through exciting stories that spark curiosity and make learning feel like an adventure.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <section class="mission-section" aria-labelledby="mission-heading">
         <h2 id="mission-heading">Our Mission</h2>
         <p>We believe every child deserves the opportunity to fall in love with science.</p>

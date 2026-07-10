@@ -5056,6 +5056,57 @@ tr:hover td {
     color: var(--color-text);
 }
 
+.mission-founder-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+@media (min-width: 700px) {
+    .mission-founder-layout {
+        grid-template-columns: 200px 1fr;
+        gap: 28px;
+        align-items: start;
+    }
+}
+
+.mission-founder-photo {
+    display: block;
+    width: 180px;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 22px;
+    border: 4px solid #fff;
+    box-shadow: 0 10px 28px rgba(124, 58, 237, 0.2);
+    margin: 0 auto;
+}
+
+@media (min-width: 700px) {
+    .mission-founder-photo {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.mission-founder-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2.5vw, 1.7rem);
+    color: var(--purple-dark) !important;
+    font-weight: 700;
+    margin-bottom: 4px !important;
+}
+
+.mission-founder-role {
+    color: var(--purple) !important;
+    font-weight: 700;
+    margin-bottom: 14px !important;
+}
+
 .mission-cta-row {
     display: flex;
     flex-wrap: wrap;
