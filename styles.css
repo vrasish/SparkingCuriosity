@@ -436,27 +436,27 @@ main.page-main.container {
 }
 
 .public-page .logo {
-    font-size: 1.75rem;
+    font-size: 2rem;
 }
 
 .public-page .logo-tagline {
-    font-size: clamp(0.62rem, 0.9vw, 0.72rem);
-    margin-top: 0;
-    line-height: 1.1;
+    font-size: clamp(0.78rem, 1.05vw, 0.92rem);
+    margin-top: 2px;
+    line-height: 1.2;
 }
 
 .public-page .nav-links a {
-    font-size: 0.95rem;
-    padding: 4px 10px;
+    font-size: 1.12rem;
+    padding: 8px 14px;
 }
 
 .public-page .nav-user-name {
-    font-size: 1.05rem;
-    max-width: 140px;
+    font-size: 1.12rem;
+    max-width: 160px;
 }
 
 .public-page .site-header .container {
-    padding: 2px var(--page-gutter);
+    padding: 6px var(--page-gutter);
 }
 
 .public-page main.page-main.page-main-compact {
@@ -611,10 +611,10 @@ main.page-main.container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    min-height: 46px;
+    gap: 12px;
+    min-height: 64px;
     flex-wrap: nowrap;
-    padding: 2px 0;
+    padding: 6px 0;
 }
 
 .site-brand {
@@ -627,22 +627,22 @@ main.page-main.container {
 }
 
 .logo-tagline {
-    font-size: 0.68rem;
+    font-size: 0.82rem;
     font-weight: 600;
     color: var(--color-text);
     margin: 0;
-    line-height: 1.1;
+    line-height: 1.2;
     padding: 0;
 }
 
 .logo {
     font-family: var(--font-display);
-    font-size: 1.35rem;
+    font-size: 1.55rem;
     font-weight: 700;
     color: var(--color-text);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     white-space: nowrap;
     flex-shrink: 0;
     text-decoration: none;
@@ -651,19 +651,19 @@ main.page-main.container {
 
 .site-logo-img {
     display: block;
-    height: 46px;
+    height: 58px;
     width: auto;
-    max-width: min(220px, 42vw);
+    max-width: min(280px, 48vw);
     object-fit: contain;
 }
 
 .public-page .site-logo-img {
-    height: 48px;
+    height: 64px;
 }
 
 .admin-header .site-logo-img {
-    height: 58px;
-    max-width: 300px;
+    height: 64px;
+    max-width: 320px;
 }
 
 .logo-icon {
@@ -686,7 +686,7 @@ main.page-main.container {
 .nav-links {
     display: flex;
     flex-wrap: nowrap;
-    gap: 4px;
+    gap: 6px;
     align-items: center;
     justify-content: flex-end;
     flex: 1;
@@ -695,9 +695,9 @@ main.page-main.container {
 
 .nav-links a {
     font-weight: 700;
-    font-size: 0.88rem;
+    font-size: 1.05rem;
     color: var(--color-text);
-    padding: 4px 9px;
+    padding: 8px 12px;
     border-radius: 999px;
     background: transparent;
     border: 2px solid transparent;
@@ -715,18 +715,18 @@ main.page-main.container {
 .nav-auth {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    margin-left: 2px;
-    padding-left: 6px;
+    gap: 8px;
+    margin-left: 4px;
+    padding-left: 10px;
     border-left: 2px solid rgba(124, 58, 237, 0.15);
     flex-shrink: 0;
 }
 
 .nav-user-name {
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 1rem;
     color: var(--purple-dark);
-    max-width: 100px;
+    max-width: 120px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -744,6 +744,8 @@ main.page-main.container {
     border: 2px solid var(--purple) !important;
     box-shadow: none;
     font-weight: 800;
+    font-size: 1.05rem;
+    padding: 8px 16px;
     text-shadow: none;
 }
 
@@ -4748,7 +4750,8 @@ tr:hover td {
         flex-wrap: wrap;
         align-items: center;
         gap: 10px;
-        padding: 8px 0;
+        padding: 10px 0;
+        min-height: 58px;
     }
 
     .site-brand {
@@ -4774,8 +4777,8 @@ tr:hover td {
 
     .nav-links a {
         white-space: normal;
-        padding: 10px 12px;
-        font-size: 1rem;
+        padding: 12px 14px;
+        font-size: 1.12rem;
         border-radius: 10px;
     }
 
@@ -4966,7 +4969,11 @@ tr:hover td {
     }
 
     .site-logo-img {
-        height: 40px;
+        height: 52px;
+    }
+
+    .public-page .site-logo-img {
+        height: 52px;
     }
 
     body {
