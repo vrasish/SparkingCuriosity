@@ -41,6 +41,7 @@ if (!$searchLocked) {
                     b.age_group,
                     b.book_format,
                     b.price_cents,
+                    b.story_topic,
                     GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
                 FROM books b
                 LEFT JOIN book_categories bc ON b.book_id = bc.book_id
@@ -176,7 +177,7 @@ $searchRedirect = app_url('search.php' . ($hasFilters ? '?' . http_build_query(a
                 <article class="story-card story-card-compact">
                     <?php render_story_card_cover((int) $book['book_id'], $cover, (string) $book['title'], $searchRedirect); ?>
                     <div class="story-card-content">
-                        <?php render_topic_tags($book['categories'] ?? ''); ?>
+                        <?php render_topic_tags($book['categories'] ?? '', $book['story_topic'] ?? null); ?>
                         <h3 class="story-card-title"><?= e($book['title']) ?></h3>
                         <p class="story-card-desc"><?= e($book['description']) ?></p>
                         <div class="story-card-bottom">
@@ -195,5 +196,29 @@ $searchRedirect = app_url('search.php' . ($hasFilters ? '?' . http_build_query(a
 </main>
 
 <?php render_site_footer(true); ?>
+<?php if (!$searchLocked && $hasFilters): ?>
+<script>
+(function () {
+    if (!window.posthog) { return; }
+    <?php if ($searchQuery !== '' && $topicFilter !== ''): ?>
+    posthog.capture('story_searched', {
+        query: <?= json_encode($searchQuery) ?>,
+        topic: <?= json_encode($topicFilter) ?>,
+        result_count: <?= count($books) ?>,
+    });
+    <?php elseif ($searchQuery !== ''): ?>
+    posthog.capture('story_searched', {
+        query: <?= json_encode($searchQuery) ?>,
+        result_count: <?= count($books) ?>,
+    });
+    <?php elseif ($topicFilter !== ''): ?>
+    posthog.capture('topic_filtered', {
+        topic: <?= json_encode($topicFilter) ?>,
+        result_count: <?= count($books) ?>,
+    });
+    <?php endif; ?>
+}());
+</script>
+<?php endif; ?>
 </body>
 </html>

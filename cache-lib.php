@@ -54,7 +54,7 @@ function stories_cache_set(string $key, array $data): void
 
 function explore_cache_key(string $topicFilter, string $searchQuery): string
 {
-    return 'explore-v2-' . md5($topicFilter . '|' . $searchQuery);
+    return 'explore-v3-' . md5($topicFilter . '|' . $searchQuery);
 }
 
 /** @return list<string> */
@@ -102,6 +102,7 @@ function explore_books_filter_by_search(array $books, string $searchQuery): arra
             (string) ($book['description'] ?? ''),
             (string) ($book['author_name'] ?? ''),
             (string) ($book['categories'] ?? ''),
+            (string) ($book['story_topic'] ?? ''),
             (string) ($book['science_element'] ?? ''),
             read_aloud_story_full_text((int) ($book['book_id'] ?? 0)),
         ]));

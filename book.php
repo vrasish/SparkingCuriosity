@@ -35,6 +35,7 @@ if ($bookId <= 0) {
                 b.book_format,
                 b.pdf_file_path,
                 b.price_cents,
+                b.story_topic,
                 GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
             FROM books b
             LEFT JOIN book_categories bc ON b.book_id = bc.book_id
@@ -131,7 +132,7 @@ if ($book && !$preview && !$bookLocked) {
                 <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="book-cover">
             </div>
             <div>
-                <?php render_topic_tags($book['categories'] ?? ''); ?>
+                <?php render_topic_tags($book['categories'] ?? '', $book['story_topic'] ?? null); ?>
                 <h1><?= e($book['title']) ?></h1>
                 <div class="book-meta-row">
                     <span class="book-meta-item story-card-meta">By <?= e($book['author_name']) ?> · Ages <?= e($book['age_group']) ?></span>
@@ -281,5 +282,42 @@ if ($book && !$preview && !$bookLocked) {
     <?php endif; ?>
 </main>
 <?php render_site_footer(); ?>
+<?php if ($book && !$error): ?>
+<script>
+(function () {
+    if (!window.posthog) { return; }
+
+    posthog.capture('story_viewed', {
+        story_id: <?= (int) $book['book_id'] ?>,
+        title: <?= json_encode($book['title']) ?>,
+        age_group: <?= json_encode($book['age_group'] ?? '') ?>,
+        categories: <?= json_encode($book['categories'] ?? '') ?>,
+        is_locked: <?= $bookLocked ? 'true' : 'false' ?>,
+        is_pdf: <?= $isPdfBook ? 'true' : 'false' ?>,
+    });
+
+    <?php if ($reviewSaved): ?>
+    posthog.capture('review_submitted', {
+        story_id: <?= (int) $book['book_id'] ?>,
+    });
+    <?php endif; ?>
+
+    var addToCartForm = document.querySelector('form .btn-primary[type="submit"]');
+    var cartForms = document.querySelectorAll('form[action*="cart-action"]');
+    cartForms.forEach(function (form) {
+        var actionInput = form.querySelector('input[name="action"]');
+        if (actionInput && actionInput.value === 'add') {
+            form.addEventListener('submit', function () {
+                posthog.capture('story_add_to_cart_clicked', {
+                    story_id: <?= (int) $book['book_id'] ?>,
+                    title: <?= json_encode($book['title']) ?>,
+                    price_cents: <?= (int) ($book['price_cents'] ?? 0) ?>,
+                });
+            });
+        }
+    });
+}());
+</script>
+<?php endif; ?>
 </body>
 </html>

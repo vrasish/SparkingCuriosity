@@ -11,3 +11,5 @@ data/cache/*
 data/partnership-inquiries.jsonl
 .DS_Store
 data/.favorites-schema-ready
+data/.story-topic-schema-ready
+.env

@@ -6,3 +6,4 @@ gtag('js', new Date());
 
 gtag('config', 'G-5YVR8L8TK3');
 </script>
+<?php require_once __DIR__ . '/posthog-lib.php'; posthog_render_snippet(); ?>

@@ -48,7 +48,6 @@ $latestRowTwo = array_slice($latestBooks, 3);
 function render_home_story_card(array $book, array $ratingSummaries): void
 {
     $cover = cover_image_src($book['cover_image_url'] ?? null, $book['title']);
-    $primaryCat = primary_category($book['categories'] ?? '');
     $readMins = estimate_reading_minutes((string) ($book['description'] ?? ''));
     ?>
     <article class="home-story-card">
@@ -59,9 +58,7 @@ function render_home_story_card(array $book, array $ratingSummaries): void
             </a>
         </div>
         <div class="home-story-body">
-            <?php if ($primaryCat !== ''): ?>
-                <span class="home-story-tag topic-tag category-btn <?= e(topic_class($primaryCat)) ?>"><?= e(strtoupper($primaryCat)) ?></span>
-            <?php endif; ?>
+            <?php render_story_card_bubbles($book['categories'] ?? '', $book['story_topic'] ?? null, true); ?>
             <a href="<?= e(app_url('book.php?id=' . (int) $book['book_id'])) ?>" class="home-story-title"><?= e($book['title']) ?></a>
             <p class="home-story-desc"><?= e($book['description']) ?></p>
             <div class="home-story-card-footer">

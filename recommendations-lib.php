@@ -23,6 +23,7 @@ function get_recommended_books(PDO $pdo, int $bookId, int $limit = 3): array
             b.age_group,
             b.book_format,
             b.price_cents,
+            b.story_topic,
             GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
         FROM books b
         LEFT JOIN book_categories bc ON b.book_id = bc.book_id
@@ -131,7 +132,7 @@ function render_book_recommendations(array $books, array $ratingSummaries): void
         echo '<article class="story-card story-card-compact">';
         render_story_card_cover($recId, $recCover, (string) ($recBook['title'] ?? ''), app_url('book.php?id=' . $recId));
         echo '<div class="story-card-content">';
-        render_topic_tags($recBook['categories'] ?? '');
+        render_topic_tags($recBook['categories'] ?? '', $recBook['story_topic'] ?? null);
         echo '<h3 class="story-card-title">' . e($recBook['title']) . '</h3>';
         echo '<p class="story-card-desc">' . e($recBook['description']) . '</p>';
         echo '<div class="story-card-bottom">';

@@ -108,6 +108,7 @@ function favorite_books_for_user(PDO $pdo, int $userId): array
                 b.age_group,
                 b.book_format,
                 b.price_cents,
+                b.story_topic,
                 GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
             FROM user_favorites uf
             INNER JOIN books b ON b.book_id = uf.book_id

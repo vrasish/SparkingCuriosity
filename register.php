@@ -80,5 +80,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </main>
 <?php render_site_footer(); ?>
+<script>
+(function () {
+    var form = document.querySelector('.auth-form');
+    if (form && window.posthog) {
+        form.addEventListener('submit', function () {
+            posthog.capture('user_signed_up');
+        });
+    }
+}());
+</script>
 </body>
 </html>

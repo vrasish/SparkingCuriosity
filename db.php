@@ -67,7 +67,64 @@ function stories_connect(): PDO
         die('Database connection failed: ' . $msg);
     }
 
+    ensure_story_topic_schema($pdo);
+
     return $pdo;
+}
+
+function ensure_story_topic_schema(PDO $pdo): void
+{
+    static $checked = false;
+    if ($checked) {
+        return;
+    }
+
+    $readyFlag = __DIR__ . '/data/.story-topic-schema-ready';
+    $needsSeed = !is_file($readyFlag);
+
+    $stmt = $pdo->query("
+        SELECT COLUMN_NAME
+        FROM INFORMATION_SCHEMA.COLUMNS
+        WHERE TABLE_SCHEMA = DATABASE()
+          AND TABLE_NAME = 'books'
+          AND COLUMN_NAME = 'story_topic'
+    ");
+    if (!$stmt->fetchColumn()) {
+        $pdo->exec('ALTER TABLE books ADD COLUMN story_topic VARCHAR(255) NULL');
+        $needsSeed = true;
+    }
+
+    if ($needsSeed) {
+        seed_story_topics($pdo);
+        if (!is_dir(dirname($readyFlag))) {
+            mkdir(dirname($readyFlag), 0775, true);
+        }
+        file_put_contents($readyFlag, date('c') . "\n");
+    }
+
+    $checked = true;
+}
+
+function seed_story_topics(PDO $pdo): void
+{
+    require_once __DIR__ . '/story-topics-data.php';
+    $topicsByTitle = story_topics_by_title();
+    if ($topicsByTitle === []) {
+        return;
+    }
+
+    $stmt = $pdo->prepare('UPDATE books SET story_topic = :story_topic WHERE title = :title');
+    foreach ($topicsByTitle as $title => $topic) {
+        $stmt->execute([
+            'story_topic' => $topic,
+            'title' => $title,
+        ]);
+    }
+
+    if (is_file(__DIR__ . '/cache-lib.php')) {
+        require_once __DIR__ . '/cache-lib.php';
+        home_page_cache_clear();
+    }
 }
 
 if (!defined('STORIES_SKIP_DB') || !STORIES_SKIP_DB) {
@@ -376,18 +433,51 @@ function format_story_description_html(string $description, int $wordsPerLine = 
     return format_text_word_break_html($description, $wordsPerLine);
 }
 
-function render_topic_tags(?string $categories): void
+function render_topic_tags(?string $categories, ?string $storyTopic = null): void
 {
-    if (empty($categories)) {
+    render_story_card_bubbles($categories, $storyTopic, false);
+}
+
+function render_story_card_bubbles(?string $categories, ?string $storyTopic = null, bool $homeStyle = false): void
+{
+    $storyTopic = trim((string) ($storyTopic ?? ''));
+    $categoryParts = [];
+    if ($categories !== null && $categories !== '') {
+        foreach (array_map('trim', explode(',', $categories)) as $cat) {
+            if ($cat !== '') {
+                $categoryParts[] = $cat;
+            }
+        }
+    }
+
+    if ($categoryParts === [] && $storyTopic === '') {
         return;
     }
-    echo '<div class="topic-tags">';
-    foreach (array_map('trim', explode(',', $categories)) as $cat) {
+
+    $wrapperClass = $homeStyle ? 'story-card-bubbles story-card-bubbles-home' : 'topic-tags';
+    echo '<div class="' . $wrapperClass . '">';
+
+    $catsToShow = $homeStyle ? [primary_category($categories)] : $categoryParts;
+    foreach ($catsToShow as $cat) {
         if ($cat === '') {
             continue;
         }
-        echo '<span class="topic-tag category-btn ' . topic_class($cat) . '">' . e($cat) . '</span>';
+        $tagClass = 'topic-tag category-btn ' . topic_class($cat);
+        if ($homeStyle) {
+            $tagClass = 'home-story-tag ' . $tagClass;
+        }
+        $label = $homeStyle ? strtoupper($cat) : $cat;
+        echo '<span class="' . $tagClass . '">' . e($label) . '</span>';
     }
+
+    if ($storyTopic !== '') {
+        $tagClass = 'topic-tag story-topic-tag';
+        if ($homeStyle) {
+            $tagClass = 'home-story-tag ' . $tagClass;
+        }
+        echo '<span class="' . $tagClass . '">' . e($storyTopic) . '</span>';
+    }
+
     echo '</div>';
 }
 
@@ -436,6 +526,7 @@ function home_fetch_books_by_ids(PDO $pdo, array $bookIds): array
             b.age_group,
             b.price_cents,
             b.book_format,
+            b.story_topic,
             GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
         FROM books b
         LEFT JOIN book_categories bc ON b.book_id = bc.book_id

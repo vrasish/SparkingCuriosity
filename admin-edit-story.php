@@ -27,6 +27,7 @@ if ($bookId <= 0) {
                 b.description,
                 b.cover_image_url,
                 b.science_element,
+                b.story_topic,
                 b.status,
                 b.book_format,
                 b.pdf_file_path,
@@ -67,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $book) {
     $scienceTopic = trim($_POST['science_topic'] ?? '');
     $description = trim($_POST['description'] ?? '');
     $scienceElement = trim($_POST['science_element'] ?? '');
+    $storyTopicLabel = trim($_POST['story_topic'] ?? '');
     $status = trim($_POST['status'] ?? '');
     $coverImageUrl = trim($_POST['cover_image_url'] ?? '');
     if ($coverImageUrl !== '') {
@@ -107,6 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $book) {
                     description = :description,
                     cover_image_url = :cover_image_url,
                     science_element = :science_element,
+                    story_topic = :story_topic,
                     status = :status
                 WHERE book_id = :book_id
             ");
@@ -116,6 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $book) {
                 'description' => $description,
                 'cover_image_url' => $coverImageUrl !== '' ? $coverImageUrl : null,
                 'science_element' => $scienceElement,
+                'story_topic' => $storyTopicLabel !== '' ? $storyTopicLabel : null,
                 'status' => $status,
                 'book_id' => $bookId,
             ]);
@@ -161,6 +165,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $book) {
             $book['author_name'] = $authorName;
             $book['description'] = $description;
             $book['science_element'] = $scienceElement;
+            $book['story_topic'] = $storyTopicLabel !== '' ? $storyTopicLabel : null;
             $book['status'] = $status;
             $book['cover_image_url'] = $coverImageUrl;
             $book['categories'] = $scienceTopic;
@@ -231,6 +236,10 @@ if ($book) {
                                 <option value="<?= e($topic) ?>" <?= $currentTopic === $topic ? 'selected' : '' ?>><?= e($topic) ?></option>
                             <?php endforeach; ?>
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="story_topic">Story Topic</label>
+                        <input type="text" id="story_topic" name="story_topic" class="form-control" maxlength="255" placeholder="e.g. Photosynthesis, Immune system" value="<?= e((string) ($book['story_topic'] ?? '')) ?>">
                     </div>
                     <div class="form-group">
                         <label for="status">Status *</label>

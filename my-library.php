@@ -54,7 +54,7 @@ release_session_lock();
                 <article class="story-card story-card-compact">
                     <?php render_story_card_cover((int) $book['book_id'], $cover, (string) $book['title'], $redirect); ?>
                     <div class="story-card-content">
-                        <?php render_topic_tags($book['categories'] ?? ''); ?>
+                        <?php render_topic_tags($book['categories'] ?? '', $book['story_topic'] ?? null); ?>
                         <h3 class="story-card-title"><?= e($book['title']) ?></h3>
                         <p class="story-card-desc"><?= e($book['description']) ?></p>
                         <div class="story-card-bottom">

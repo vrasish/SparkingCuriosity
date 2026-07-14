@@ -243,6 +243,15 @@
             return;
         }
 
+        if (global.posthog) {
+            global.posthog.capture('quiz_completed', {
+                story_id: state.bookId,
+                score: state.score,
+                total: state.questions.length,
+                percent: Math.round((state.score / state.questions.length) * 100),
+            });
+        }
+
         var total = state.questions.length;
         var percent = Math.round((state.score / total) * 100);
         var message = 'Great job exploring this story!';
@@ -359,6 +368,12 @@
             global.ReadAloud.stopCurrentAudio();
         }
         state.revealed = true;
+        if (global.posthog) {
+            global.posthog.capture('quiz_started', {
+                story_id: state.bookId,
+                question_count: state.questions.length,
+            });
+        }
         state.mountTarget.hidden = false;
         if (state.ctaEl) {
             state.ctaEl.hidden = true;

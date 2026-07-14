@@ -134,5 +134,24 @@ $ownedBooks = $loggedIn ? owned_books($pdo) : [];
     </div>
 </main>
 <?php render_site_footer(); ?>
+<script>
+(function () {
+    if (!window.posthog) { return; }
+
+    <?php if ($flashSuccess !== ''): ?>
+    posthog.capture('purchase_completed');
+    <?php endif; ?>
+
+    var checkoutForms = document.querySelectorAll('form[action*="stripe-checkout"]');
+    checkoutForms.forEach(function (form) {
+        form.addEventListener('submit', function () {
+            posthog.capture('checkout_initiated', {
+                item_count: <?= count($items) ?>,
+                total_cents: <?= (int) $totalCents ?>,
+            });
+        });
+    });
+}());
+</script>
 </body>
 </html>
