@@ -2,110 +2,6 @@
 require_once __DIR__ . '/auth.php';
 
 $partnerEmail = 'scifables2026@gmail.com';
-$formMessage = '';
-$formError = '';
-$formSuccess = false;
-
-$partnershipOptions = [
-    'share_families' => 'Share Science Fables with the children and families we serve',
-    'classrooms' => 'Use Science Fables in our classrooms',
-    'after_school' => 'Use Science Fables in our after-school program',
-    'reading_program' => 'Include Science Fables in our reading program',
-    'newsletter' => 'Feature Science Fables in our newsletter or website',
-    'stem_initiative' => 'Collaborate on a STEM reading initiative',
-    'storytelling_event' => 'Organize a science storytelling event',
-    'other' => "I'd like to discuss another partnership",
-];
-
-$postedName = '';
-$postedOrg = '';
-$postedEmail = '';
-$postedRole = '';
-$postedMessage = '';
-$postedInterests = [];
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $postedName = trim((string) ($_POST['full_name'] ?? ''));
-    $postedOrg = trim((string) ($_POST['organization'] ?? ''));
-    $postedEmail = trim((string) ($_POST['email'] ?? ''));
-    $postedRole = trim((string) ($_POST['role'] ?? ''));
-    $postedMessage = trim((string) ($_POST['message'] ?? ''));
-    $rawInterests = $_POST['interests'] ?? [];
-    if (!is_array($rawInterests)) {
-        $rawInterests = [];
-    }
-    foreach ($rawInterests as $key) {
-        $key = (string) $key;
-        if (isset($partnershipOptions[$key])) {
-            $postedInterests[] = $key;
-        }
-    }
-
-    if ($postedName === '' || $postedOrg === '' || $postedEmail === '') {
-        $formError = 'Please enter your name, organization, and email.';
-    } elseif (!filter_var($postedEmail, FILTER_VALIDATE_EMAIL)) {
-        $formError = 'Please enter a valid email address.';
-    } elseif ($postedInterests === []) {
-        $formError = 'Please select at least one way you would like to partner.';
-    } else {
-        $interestLines = [];
-        foreach ($postedInterests as $key) {
-            $interestLines[] = '- ' . $partnershipOptions[$key];
-        }
-
-        $inquiry = [
-            'submitted_at' => date('c'),
-            'full_name' => $postedName,
-            'organization' => $postedOrg,
-            'email' => $postedEmail,
-            'role' => $postedRole,
-            'interests' => array_map(static fn(string $key): string => $partnershipOptions[$key], $postedInterests),
-            'message' => $postedMessage,
-            'ip' => (string) ($_SERVER['REMOTE_ADDR'] ?? ''),
-        ];
-
-        $logDir = __DIR__ . '/data';
-        if (!is_dir($logDir)) {
-            @mkdir($logDir, 0775, true);
-        }
-        $logFile = $logDir . '/partnership-inquiries.jsonl';
-        $saved = @file_put_contents($logFile, json_encode($inquiry, JSON_UNESCAPED_UNICODE) . "\n", FILE_APPEND | LOCK_EX) !== false;
-
-        $body = "New Science Fables partnership inquiry\n\n"
-            . "Name: {$postedName}\n"
-            . "Organization: {$postedOrg}\n"
-            . "Email: {$postedEmail}\n"
-            . "Role / Title: " . ($postedRole !== '' ? $postedRole : '(not provided)') . "\n\n"
-            . "How they would like to partner:\n"
-            . implode("\n", $interestLines) . "\n\n"
-            . "Message:\n"
-            . ($postedMessage !== '' ? $postedMessage : '(none)') . "\n\n"
-            . "Submitted: " . date('Y-m-d H:i:s T') . "\n"
-            . "IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'unknown') . "\n";
-
-        $subject = 'Science Fables partnership inquiry from ' . $postedOrg;
-        $headers = [
-            'From: Science Fables <noreply@scifables.com>',
-            'Reply-To: ' . $postedEmail,
-            'Content-Type: text/plain; charset=UTF-8',
-            'X-Mailer: PHP/' . PHP_VERSION,
-        ];
-
-        $sent = @mail($partnerEmail, $subject, $body, implode("\r\n", $headers));
-        if ($sent || $saved) {
-            $formSuccess = true;
-            $formMessage = 'Thank you! Your partnership note is on its way. We will reply soon.';
-            $postedName = '';
-            $postedOrg = '';
-            $postedEmail = '';
-            $postedRole = '';
-            $postedMessage = '';
-            $postedInterests = [];
-        } else {
-            $formError = 'We could not send your message right now. Please email ' . $partnerEmail . ' directly.';
-        }
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -286,63 +182,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <section class="mission-section mission-join" id="join-mission" aria-labelledby="join-heading">
         <h2 id="join-heading">🤝 Join Our Mission</h2>
-        <p>Tell us a little about your organization and how you'd like to partner. Your note will come straight to us.</p>
-
-        <?php if ($formSuccess): ?>
-            <div class="alert alert-success"><?= e($formMessage) ?></div>
-        <?php endif; ?>
-        <?php if ($formError !== ''): ?>
-            <div class="alert alert-error"><?= e($formError) ?></div>
-        <?php endif; ?>
-
-        <form method="post" action="<?= e(app_url('mission.php')) ?>#join-mission" class="mission-partner-form">
-            <div class="mission-form-grid">
-                <div class="form-group">
-                    <label for="full_name">Your name *</label>
-                    <input type="text" id="full_name" name="full_name" class="form-control" required
-                        value="<?= e($postedName) ?>" autocomplete="name">
-                </div>
-                <div class="form-group">
-                    <label for="organization">Organization *</label>
-                    <input type="text" id="organization" name="organization" class="form-control" required
-                        value="<?= e($postedOrg) ?>" autocomplete="organization">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" class="form-control" required
-                        value="<?= e($postedEmail) ?>" autocomplete="email">
-                </div>
-                <div class="form-group">
-                    <label for="role">Role / title</label>
-                    <input type="text" id="role" name="role" class="form-control"
-                        value="<?= e($postedRole) ?>" autocomplete="organization-title">
-                </div>
-            </div>
-
-            <fieldset class="mission-interest-fieldset">
-                <legend>How would you like to partner with Science Fables? *</legend>
-                <div class="mission-interest-list">
-                    <?php foreach ($partnershipOptions as $key => $label): ?>
-                        <label class="mission-interest-option">
-                            <input type="checkbox" name="interests[]" value="<?= e($key) ?>"
-                                <?= in_array($key, $postedInterests, true) ? 'checked' : '' ?>>
-                            <span><?= e($label) ?></span>
-                        </label>
-                    <?php endforeach; ?>
-                </div>
-            </fieldset>
-
-            <div class="form-group">
-                <label for="message">Anything else you'd like to share?</label>
-                <textarea id="message" name="message" class="form-control" rows="4"><?= e($postedMessage) ?></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-lg">Send Partnership Note</button>
-            <p class="mission-form-note">
-                Or email us directly at
-                <a href="mailto:<?= e($partnerEmail) ?>?subject=<?= e(rawurlencode('Science Fables Partnership')) ?>"><?= e($partnerEmail) ?></a>
-            </p>
-        </form>
+        <p>Interested in partnering with Science Fables? We'd love to hear from you.</p>
+        <p class="mission-form-note">
+            Email us at
+            <a href="mailto:<?= e($partnerEmail) ?>?subject=<?= e(rawurlencode('Science Fables Partnership')) ?>"><?= e($partnerEmail) ?></a>
+        </p>
     </section>
 </main>
 <?php render_site_footer(true); ?>
