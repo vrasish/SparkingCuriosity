@@ -11,6 +11,9 @@ function mail_config(): array
     }
 
     $keys = [
+        'MAIL_API_PROVIDER',
+        'MAIL_API_KEY',
+        'SENDGRID_API_KEY',
         'MAIL_SMTP_HOST',
         'MAIL_SMTP_PORT',
         'MAIL_SMTP_USER',
@@ -38,14 +41,24 @@ function mail_config(): array
             }
             [$name, $val] = explode('=', $line, 2);
             $name = trim($name);
-            if (!in_array($name, $keys, true) || $values[$name] !== '') {
+            if (!in_array($name, $keys, true)) {
                 continue;
             }
-            $values[$name] = trim($val, " \t\"'");
+            if ($values[$name] === '') {
+                $values[$name] = trim($val, " \t\"'");
+            }
         }
     }
 
+    $apiKey = $values['MAIL_API_KEY'] !== '' ? $values['MAIL_API_KEY'] : $values['SENDGRID_API_KEY'];
+    $apiProvider = strtolower(trim($values['MAIL_API_PROVIDER']));
+    if ($apiProvider === '' && $apiKey !== '') {
+        $apiProvider = 'sendgrid';
+    }
+
     $cfg = [
+        'api_provider' => $apiProvider,
+        'api_key' => $apiKey,
         'smtp_host' => $values['MAIL_SMTP_HOST'],
         'smtp_port' => $values['MAIL_SMTP_PORT'] !== '' ? $values['MAIL_SMTP_PORT'] : '587',
         'smtp_user' => $values['MAIL_SMTP_USER'],
@@ -58,6 +71,16 @@ function mail_config(): array
     return $cfg;
 }
 
+function mail_is_configured(): bool
+{
+    $cfg = mail_config();
+    if ($cfg['api_provider'] !== '' && $cfg['api_key'] !== '') {
+        return true;
+    }
+
+    return $cfg['smtp_host'] !== '' && $cfg['smtp_user'] !== '' && $cfg['smtp_password'] !== '';
+}
+
 function mail_send(string $to, string $subject, string $bodyPlain, ?string $replyTo = null): bool
 {
     $to = trim($to);
@@ -66,11 +89,78 @@ function mail_send(string $to, string $subject, string $bodyPlain, ?string $repl
     }
 
     $cfg = mail_config();
+    if ($cfg['api_provider'] === 'sendgrid' && $cfg['api_key'] !== '') {
+        return mail_send_sendgrid($to, $subject, $bodyPlain, $replyTo, $cfg);
+    }
+
     if ($cfg['smtp_host'] !== '' && $cfg['smtp_user'] !== '' && $cfg['smtp_password'] !== '') {
         return mail_send_smtp($to, $subject, $bodyPlain, $replyTo, $cfg);
     }
 
     return mail_send_php_mail($to, $subject, $bodyPlain, $replyTo, $cfg);
+}
+
+/** @param array<string, string> $cfg */
+function mail_send_sendgrid(string $to, string $subject, string $bodyPlain, ?string $replyTo, array $cfg): bool
+{
+    $payload = [
+        'personalizations' => [[
+            'to' => [['email' => $to]],
+        ]],
+        'from' => [
+            'email' => $cfg['from'],
+            'name' => $cfg['from_name'],
+        ],
+        'subject' => $subject,
+        'content' => [[
+            'type' => 'text/plain',
+            'value' => $bodyPlain,
+        ]],
+    ];
+
+    if ($replyTo !== null && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
+        $payload['reply_to'] = ['email' => $replyTo];
+    }
+
+    $json = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    if ($json === false) {
+        error_log('SendGrid payload encode failed');
+        return false;
+    }
+
+    $ch = curl_init('https://api.sendgrid.com/v3/mail/send');
+    if ($ch === false) {
+        error_log('SendGrid curl init failed');
+        return false;
+    }
+
+    curl_setopt_array($ch, [
+        CURLOPT_POST => true,
+        CURLOPT_HTTPHEADER => [
+            'Authorization: Bearer ' . $cfg['api_key'],
+            'Content-Type: application/json',
+        ],
+        CURLOPT_POSTFIELDS => $json,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 20,
+    ]);
+
+    $response = curl_exec($ch);
+    $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlError = curl_error($ch);
+    curl_close($ch);
+
+    if ($curlError !== '') {
+        error_log('SendGrid curl error: ' . $curlError);
+        return false;
+    }
+
+    if ($httpCode >= 200 && $httpCode < 300) {
+        return true;
+    }
+
+    error_log('SendGrid send failed HTTP ' . $httpCode . ': ' . (string) $response);
+    return false;
 }
 
 /** @param array<string, string> $cfg */

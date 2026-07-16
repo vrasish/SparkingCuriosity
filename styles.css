@@ -2111,6 +2111,10 @@ tr:hover td {
     align-items: center;
 }
 
+.topic-request-resend-form {
+    margin-top: 8px;
+}
+
 .topic-request-status-form .form-control {
     width: auto;
     min-width: 140px;
