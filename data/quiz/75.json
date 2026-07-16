@@ -1,67 +1,67 @@
 {
     "book_id": 75,
     "title": "The Mystery of the Sunny Stone",
-    "intro": "This quiz follows Mia and Leo as they discover why a lizard rests on a sunny stone and how ectothermic animals regulate their body temperature.",
+    "intro": "This quiz follows the story of a lizard on a sunny stone and how warm-blooded and cold-blooded animals stay active.",
     "questions": [
         {
             "id": 1,
-            "prompt": "Why was the lizard sitting very still on the sunny stone?",
+            "prompt": "Why was the lizard sitting still on the stone?",
             "choices": [
-                "It was hiding food",
-                "It was using the Sun's warmth to heat its body",
-                "It was waiting for rain",
-                "It was building a nest"
+                "It was sleeping.",
+                "It was waiting to get warmer.",
+                "It was eating lunch.",
+                "It was hiding from the rabbit."
             ],
             "correct_index": 1,
-            "explanation": "The lizard was using the Sun's warmth to heat its body."
+            "explanation": "The lizard was sitting still on the stone because it was waiting to get warmer."
         },
         {
             "id": 2,
-            "prompt": "What does ectothermic mean?",
+            "prompt": "Which animal in the story is a mammal?",
             "choices": [
-                "An animal makes all its body heat internally",
-                "An animal depends mainly on its surroundings for body heat",
-                "An animal can live only in cold places",
-                "An animal never changes body temperature"
+                "Lizard",
+                "Snake",
+                "Rabbit",
+                "Frog"
             ],
-            "correct_index": 1,
-            "explanation": "Ectothermic means an animal depends mainly on its surroundings for body heat."
+            "correct_index": 2,
+            "explanation": "The rabbit is a mammal."
         },
         {
             "id": 3,
-            "prompt": "What might the lizard do if it became too hot?",
+            "prompt": "What helps warm-blooded animals stay active on cold days?",
             "choices": [
-                "Move into the shade",
-                "Stay on the hottest rock",
-                "Grow thicker fur",
-                "Stop breathing"
+                "The sun warms them.",
+                "They make heat inside their bodies.",
+                "They never get cold.",
+                "They hide under rocks."
             ],
-            "correct_index": 0,
-            "explanation": "If the lizard became too hot, it might move into the shade."
+            "correct_index": 1,
+            "explanation": "Warm-blooded animals stay active on cold days because they make heat inside their bodies."
         },
         {
             "id": 4,
-            "prompt": "Why might an ectothermic animal move more slowly on a cold morning?",
+            "prompt": "Where do cold-blooded animals get most of their heat?",
             "choices": [
-                "Its body has not warmed up enough yet",
-                "It has forgotten how to move",
-                "It becomes heavier in cold weather",
-                "Its bones disappear temporarily"
+                "From inside their bodies.",
+                "From food.",
+                "From the air and sunlight around them.",
+                "From drinking water."
             ],
-            "correct_index": 0,
-            "explanation": "An ectothermic animal might move more slowly on a cold morning because its body has not warmed up enough yet."
+            "correct_index": 2,
+            "explanation": "Cold-blooded animals get most of their heat from the air and sunlight around them."
         },
         {
             "id": 5,
-            "prompt": "Which group contains animals that are generally ectothermic?",
+            "prompt": "What happened when the sun shined on the lizard?",
             "choices": [
-                "Birds and mammals",
-                "Reptiles, amphibians, and most fish",
-                "Only insects",
-                "Humans and dogs"
+                "It fell asleep.",
+                "It started to swim.",
+                "It warmed up and ran away.",
+                "It turned into a rabbit."
             ],
-            "correct_index": 1,
-            "explanation": "Reptiles, amphibians, and most fish are generally ectothermic."
+            "correct_index": 2,
+            "explanation": "When the sun shined on the lizard, it warmed up and ran away."
         }
     ]
 }

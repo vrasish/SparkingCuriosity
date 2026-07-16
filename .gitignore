@@ -12,4 +12,6 @@ data/partnership-inquiries.jsonl
 .DS_Store
 data/.favorites-schema-ready
 data/.story-topic-schema-ready
+data/.topic-requests-schema-ready
+data/topic-request-submissions.jsonl
 .env

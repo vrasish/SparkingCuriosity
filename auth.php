@@ -393,6 +393,7 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
     if ($isAdminNav) {
         echo '<a href="' . e(app_url('admin-stories.php')) . '">All Stories</a>';
         echo '<a href="' . e(app_url('admin-review.php')) . '">Story Review</a>';
+        echo '<a href="' . e(app_url('admin-topic-requests.php')) . '">Topic Requests</a>';
         echo '<a href="' . e(app_url('admin-sales.php')) . '">Library Sales</a>';
         echo '<a href="' . e(app_url('reports-admin.php')) . '">Reports</a>';
         echo '<a href="' . e(app_url('index.php')) . '">Public Site</a>';
@@ -400,6 +401,7 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
         echo '<a href="' . e(app_url('index.php')) . '">Home</a>';
         echo '<a href="' . e(app_url('search.php')) . '">Search</a>';
         echo '<a href="' . e(app_url('mission.php')) . '">Our Mission</a>';
+        echo '<a href="' . e(app_url('request-topic.php')) . '">Request a Topic</a>';
         if ($user) {
             echo '<a href="' . e(app_url('my-library.php')) . '">My Library</a>';
         }

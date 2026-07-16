@@ -2087,6 +2087,41 @@ tr:hover td {
 .status-reviewed { background: #fef08a; color: #854d0e; }
 .status-resolved { background: #bbf7d0; color: #166534; }
 .status-dismissed { background: #e2e8f0; color: #475569; }
+.status-new { background: #dbeafe; color: #1d4ed8; }
+.status-in_progress { background: #fef08a; color: #854d0e; }
+.status-completed { background: #bbf7d0; color: #166534; }
+
+.topic-request-panel {
+    max-width: 720px;
+}
+
+.topic-request-account-note {
+    margin: 0 0 18px;
+    color: var(--color-text-muted, #64748b);
+}
+
+.topic-request-form .btn-primary {
+    margin-top: 4px;
+}
+
+.topic-request-status-form {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.topic-request-status-form .form-control {
+    width: auto;
+    min-width: 140px;
+    padding: 6px 10px;
+    font-size: 0.875rem;
+}
+
+.topic-request-details-cell {
+    max-width: 260px;
+    white-space: pre-wrap;
+}
 
 /* —— Book reader —— */
 .book-header {

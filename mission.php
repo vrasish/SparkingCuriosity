@@ -76,6 +76,15 @@ $partnerEmail = 'scifables2026@gmail.com';
         </ul>
     </section>
 
+    <section class="mission-section" aria-labelledby="creative-process-heading">
+        <h2 id="creative-process-heading">Our Creative Process</h2>
+        <p>SciFables was founded by Vaishnavi Renduchintala with the goal of helping children discover science through engaging storytelling.</p>
+        <p>Every story begins with an original science topic, educational objective, and storyline developed by Vaishnavi. She researches the science concepts, designs the learning experience, reviews every story for scientific accuracy, and ensures that each story is age-appropriate and aligned with the intended educational goals.</p>
+        <p>To make the creative process more efficient, SciFables uses AI-assisted tools for tasks such as brainstorming, editing, grammar improvements, illustration generation, and design assistance.</p>
+        <p class="mission-highlight">AI is used as a creative assistant—not as the author. Every story, quiz, and science explanation is reviewed, edited, and approved by Vaishnavi before publication.</p>
+        <p>SciFables is committed to providing accurate, engaging, and responsible educational content for children.</p>
+    </section>
+
     <section class="mission-section" aria-labelledby="serve-heading">
         <h2 id="serve-heading">Who We Serve</h2>
         <div class="mission-audience-grid">

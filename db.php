@@ -498,13 +498,13 @@ function home_topic_tiles(): array
 /** Curated stories shown in the home page "Latest Stories" section. */
 function home_featured_story_ids(): array
 {
-    return [75, 54, 70, 5, 43, 41];
+    return [39, 54, 70, 5, 43, 41];
 }
 
 /** Curated editor picks shown between Latest Stories rows on the homepage. */
 function home_top_pick_story_ids(): array
 {
-    return [39, 78, 71];
+    return [75, 44, 71];
 }
 
 /** @return list<array<string, mixed>> */
