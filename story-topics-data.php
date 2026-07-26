@@ -39,6 +39,7 @@ function story_topics_by_title(): array
         'The Mystery of the Heavy Little Cube' => 'Density',
         'The Air that Loved to Climb' => 'Why warm air rises and cool air sinks',
         'The Wind That Came and Went' => 'Sea Breeze and Land Breeze',
+        'The Forest Mystery' => 'Producers, Consumers, and Decomposers',
         "The Water That Wouldn't Stay Still" => 'Evaporation vs. Boiling',
         'The Day Water Changed Its Mind' => 'States of matter',
         'The Matter Mystery' => 'What is Matter?',

@@ -1,0 +1,67 @@
+{
+    "book_id": 89,
+    "title": "The Forest Mystery",
+    "intro": "This quiz follows two curious kids and Dr. Kim as they discover how producers, consumers, and decomposers work together in a forest.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What are plants called because they make their own food?",
+            "choices": [
+                "Consumers",
+                "Producers",
+                "Decomposers",
+                "Recyclers"
+            ],
+            "correct_index": 1,
+            "explanation": "Plants are called producers because they make their own food."
+        },
+        {
+            "id": 2,
+            "prompt": "What do plants use to make their own food?",
+            "choices": [
+                "Sunlight, water, and carbon dioxide",
+                "Rocks, soil, and animals",
+                "Wind, mushrooms, and leaves",
+                "Insects, rain, and branches"
+            ],
+            "correct_index": 0,
+            "explanation": "Plants use sunlight, water, and carbon dioxide to make their own food."
+        },
+        {
+            "id": 3,
+            "prompt": "Why is the rabbit called a consumer?",
+            "choices": [
+                "It makes its own food",
+                "It breaks down dead plants",
+                "It eats plants to get energy",
+                "It returns nutrients to the soil"
+            ],
+            "correct_index": 2,
+            "explanation": "The rabbit is called a consumer because it eats plants to get energy."
+        },
+        {
+            "id": 4,
+            "prompt": "What do decomposers do?",
+            "choices": [
+                "Make sunlight",
+                "Break down dead plants and animals",
+                "Eat only green leaves",
+                "Stop new plants from growing"
+            ],
+            "correct_index": 1,
+            "explanation": "Decomposers break down dead plants and animals."
+        },
+        {
+            "id": 5,
+            "prompt": "How do decomposers help new plants grow?",
+            "choices": [
+                "They return nutrients to the soil",
+                "They block the sunlight",
+                "They eat all the plants",
+                "They remove water from the soil"
+            ],
+            "correct_index": 0,
+            "explanation": "Decomposers help new plants grow by returning nutrients to the soil."
+        }
+    ]
+}
