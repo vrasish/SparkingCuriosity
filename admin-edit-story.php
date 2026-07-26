@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/cache-lib.php';
 
 require_admin_login();
 ensure_book_pdf_schema($pdo);
@@ -159,6 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $book) {
                 ->execute([$status, $bookId]);
 
             $pdo->commit();
+            stories_page_cache_clear();
             $message = 'Story saved.';
 
             $book['title'] = $title;

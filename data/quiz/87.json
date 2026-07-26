@@ -1,0 +1,67 @@
+{
+    "book_id": 87,
+    "title": "The Air that Loved to Climb",
+    "intro": "This quiz follows Ava and Liam as they discover why warm air rises and cool air sinks.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What did Ava notice floating above the trees?",
+            "choices": [
+                "A large kite",
+                "A hot air balloon",
+                "A helicopter",
+                "A cloud"
+            ],
+            "correct_index": 1,
+            "explanation": "Ava noticed a hot air balloon floating above the trees."
+        },
+        {
+            "id": 2,
+            "prompt": "What happens to air particles when the air becomes warmer?",
+            "choices": [
+                "They stop moving",
+                "They move slower and closer together",
+                "They move faster and spread farther apart",
+                "They disappear"
+            ],
+            "correct_index": 2,
+            "explanation": "When air becomes warmer, its particles move faster and spread farther apart."
+        },
+        {
+            "id": 3,
+            "prompt": "Why does cool air sink?",
+            "choices": [
+                "Cool air is more dense",
+                "Cool air is brighter",
+                "Cool air moves faster",
+                "Cool air has no particles"
+            ],
+            "correct_index": 0,
+            "explanation": "Cool air is more dense, so it sinks."
+        },
+        {
+            "id": 4,
+            "prompt": "What happens when warm air rises?",
+            "choices": [
+                "The air stops moving",
+                "Cooler air moves in to take its place",
+                "All the clouds disappear",
+                "The ground becomes warmer"
+            ],
+            "correct_index": 1,
+            "explanation": "When warm air rises, cooler air moves in to take its place."
+        },
+        {
+            "id": 5,
+            "prompt": "Why did the hot air balloon rise?",
+            "choices": [
+                "The wind pushed it downward",
+                "The basket was empty",
+                "The air inside was warmer and lighter than the cooler air outside",
+                "The balloon was filled with cool water"
+            ],
+            "correct_index": 2,
+            "explanation": "The balloon rose because the air inside was warmer and lighter than the cooler air outside."
+        }
+    ]
+}

@@ -179,3 +179,19 @@ function home_page_cache_clear(): void
         @unlink($path);
     }
 }
+
+function explore_page_cache_clear(): void
+{
+    $dir = stories_cache_dir();
+    foreach (glob($dir . '/explore-*.json') ?: [] as $path) {
+        if (is_file($path)) {
+            @unlink($path);
+        }
+    }
+}
+
+function stories_page_cache_clear(): void
+{
+    home_page_cache_clear();
+    explore_page_cache_clear();
+}

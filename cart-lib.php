@@ -89,6 +89,47 @@ function book_price_cents(array $book): int
     return max(0, (int) ($book['price_cents'] ?? 0));
 }
 
+/** @return list<int> */
+function guest_open_story_ids(): array
+{
+    return [
+        39, // Good Bacteria Club
+        54, // The Stem That Carried a River
+    ];
+}
+
+function is_guest_open_story(int $bookId): bool
+{
+    return in_array($bookId, guest_open_story_ids(), true);
+}
+
+function story_requires_signup(int $bookId): bool
+{
+    return !is_logged_in() && !is_guest_open_story($bookId);
+}
+
+function story_book_url(int $bookId): string
+{
+    if (story_requires_signup($bookId)) {
+        $target = app_url('book.php?id=' . $bookId);
+
+        return app_url('register.php?redirect=' . rawurlencode($target));
+    }
+
+    return app_url('book.php?id=' . $bookId);
+}
+
+function redirect_guest_to_signup_for_story(int $bookId): void
+{
+    if (!story_requires_signup($bookId)) {
+        return;
+    }
+
+    $target = app_url('book.php?id=' . $bookId);
+    header('Location: ' . app_url('register.php?redirect=' . rawurlencode($target)));
+    exit;
+}
+
 function is_book_free(array $book): bool
 {
     if (all_books_free_promo_active()) {
@@ -169,16 +210,15 @@ function can_read_book(array $book, bool $preview = false): bool
         return false;
     }
 
-    if (is_book_free($book) || is_book_purchased($bookId)) {
-        return true;
+    if (is_logged_in()) {
+        if (is_admin_user()) {
+            return true;
+        }
+
+        return is_book_free($book) || is_book_purchased($bookId);
     }
 
-    $user = current_user();
-    if ($user && is_admin_user()) {
-        return true;
-    }
-
-    return false;
+    return is_guest_open_story($bookId);
 }
 
 function cart_item_count(): int
@@ -441,7 +481,7 @@ function render_story_card_actions(array $book, ?array $ratingSummary = null): v
 
     echo '</span>';
     echo '<span class="story-card-buttons">';
-    echo '<a href="' . e(app_url('book.php?id=' . $bookId)) . '" class="btn btn-view-more btn-sm">View More</a>';
+    echo '<a href="' . e(story_book_url($bookId)) . '" class="btn btn-view-more btn-sm">View More</a>';
     echo '</span>';
     echo '</div>';
 }

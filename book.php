@@ -53,6 +53,8 @@ if ($bookId <= 0) {
             http_response_code(403);
             $error = 'This story is not available for public reading yet.';
             $book = null;
+        } elseif (!$preview && story_requires_signup($bookId)) {
+            redirect_guest_to_signup_for_story($bookId);
         } elseif (!$preview && !can_read_book($book)) {
             $bookLocked = true;
             $pages = [];
@@ -98,6 +100,18 @@ if ($book && is_logged_in()) {
 $canSubmitReview = $book && !$preview && !$bookLocked && is_logged_in();
 $reviewSaved = isset($_GET['review_saved']);
 $reviewError = trim((string) ($_GET['review_error'] ?? ''));
+$showStoryRating = $book && !$error && !$bookLocked && !$preview;
+$storyRatingAttrs = '';
+if ($showStoryRating) {
+    $storyRatingLoginRedirect = app_url('book.php?id=' . $bookId);
+    $storyRatingAttrs =
+        ' data-story-rating="1"'
+        . ' data-book-id="' . $bookId . '"'
+        . ' data-rating-api="' . e(app_api_url('review-api.php')) . '"'
+        . ' data-can-submit="' . ($canSubmitReview ? '1' : '0') . '"'
+        . ' data-login-url="' . e(app_url('login.php?redirect=' . rawurlencode($storyRatingLoginRedirect))) . '"'
+        . ' data-existing-rating="' . (int) ($userReview['rating'] ?? 0) . '"';
+}
 
 $recommendedBooks = [];
 $recommendedRatingSummaries = [];
@@ -186,7 +200,7 @@ if ($book && !$preview && !$bookLocked) {
         </div>
         </div>
 
-        <div class="page-section book-content<?= $isPdfBook ? ' book-content-pdf' : ' book-content-text' ?>"<?= !$isPdfBook && !$bookLocked ? ' data-book-id="' . (int) $bookId . '" data-quiz-api="' . e(app_api_url('quiz-api.php')) . '"' : '' ?>>
+        <div class="page-section book-content<?= $isPdfBook ? ' book-content-pdf' : ' book-content-text' ?>"<?= !$isPdfBook && !$bookLocked ? ' data-book-id="' . (int) $bookId . '" data-quiz-api="' . e(app_api_url('quiz-api.php')) . '"' . $storyRatingAttrs : '' ?>>
         <?php if ($bookLocked): ?>
             <div class="empty-state">
                 <?php if (cart_enabled()): ?>
@@ -212,6 +226,7 @@ if ($book && !$preview && !$bookLocked) {
                                 data-story-id="<?= (int) $bookId ?>"
                                 data-read-aloud-api="<?= e(app_api_url('read-aloud-api.php')) ?>"
                                 data-quiz-api="<?= e(app_api_url('quiz-api.php')) ?>"
+                                <?= $storyRatingAttrs ?>
                             >
                                 <div class="pdf-reader-loading" role="status" aria-live="polite" aria-busy="true">
                                     <div class="pdf-reader-loading-spinner" aria-hidden="true"></div>
@@ -226,6 +241,7 @@ if ($book && !$preview && !$bookLocked) {
                 <script src="<?= e(asset_url('pdf-reader.js')) ?>"></script>
                 <script src="<?= e(asset_url('read-aloud.js')) ?>"></script>
                 <script src="<?= e(asset_url('quiz.js')) ?>"></script>
+                <script src="<?= e(asset_url('story-rating.js')) ?>"></script>
             <?php else: ?>
                 <div class="alert alert-error">PDF file not found on the server.</div>
             <?php endif; ?>
@@ -252,6 +268,7 @@ if ($book && !$preview && !$bookLocked) {
             <?php endforeach; ?>
             <?php render_book_recommendations($recommendedBooks, $recommendedRatingSummaries); ?>
             <script src="<?= e(asset_url('quiz.js')) ?>"></script>
+            <script src="<?= e(asset_url('story-rating.js')) ?>"></script>
         <?php endif; ?>
 
         <?php if (!$bookLocked && !empty($book['science_element'])): ?>

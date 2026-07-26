@@ -8,13 +8,16 @@
 </FilesMatch>
 
 RewriteEngine On
-RewriteBase /stories/
 
-# Redirect .php URLs to extensionless URLs
+# Redirect .php URLs to extensionless URLs (local XAMPP under /stories/)
 RewriteCond %{THE_REQUEST} \s/stories/([^\s?]+)\.php[\s?] [NC]
 RewriteRule ^ /stories/%1 [R=301,L]
 
-# Internally rewrite extensionless URLs to .php
+# Redirect .php URLs to extensionless URLs (production at domain root)
+RewriteCond %{THE_REQUEST} \s/([^\s?/]+)\.php[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Internally rewrite extensionless URLs to .php (works at root and under /stories/)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.+?)/?$ $1.php [L]

@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/db.php';
-require_once __DIR__ . '/cart-lib.php';
+require_once __DIR__ . '/auth.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -43,6 +42,9 @@ if (($book['status'] ?? '') !== 'approved' && !$preview) {
 }
 
 if (!$preview && !can_read_book($book, $preview)) {
+    if (story_requires_signup($bookId)) {
+        redirect_guest_to_signup_for_story($bookId);
+    }
     http_response_code(403);
     exit('Purchase this story to read it.');
 }

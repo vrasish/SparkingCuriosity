@@ -25,16 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['request_id'], $_POST[
     $request = topic_request_get($pdo, $requestId);
     if ($request === null) {
         $flashError = 'Request not found.';
-    } else {
+    } elseif (!mail_is_configured()) {
+        $flashError = 'SendGrid is not configured. Add SENDGRID_API_KEY to .env on the server.';
+    } elseif (topic_request_send_admin_notification($pdo, $request)) {
         $mailCfg = mail_config();
-        $sendgridReady = $mailCfg['api_provider'] === 'sendgrid' && $mailCfg['api_key'] !== '';
-        if (!$sendgridReady) {
-            $flashError = 'SendGrid is not configured. Add SENDGRID_API_KEY to .env on the server.';
-        } elseif (topic_request_send_admin_notification($request)) {
-            $flash = 'Notification email sent to ' . $mailCfg['notify_to'] . '.';
-        } else {
-            $flashError = 'Could not send notification email. Verify your SendGrid sender and API key.';
-        }
+        $flash = 'Notification email sent to ' . $mailCfg['admin_email'] . '.';
+    } else {
+        $flashError = 'Could not send notification email. Verify your SendGrid sender and API key.';
     }
 }
 
@@ -48,8 +45,8 @@ try {
     error_log($ex->getMessage());
 }
 
+$sendgridReady = mail_is_configured();
 $mailCfg = mail_config();
-$sendgridReady = $mailCfg['api_provider'] === 'sendgrid' && $mailCfg['api_key'] !== '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,9 +66,10 @@ $sendgridReady = $mailCfg['api_provider'] === 'sendgrid' && $mailCfg['api_key'] 
     <div class="page-section">
         <?php if (!$sendgridReady): ?>
             <div class="alert alert-error">
-                Topic request emails need SendGrid on the production server (Gmail SMTP ports are blocked).
-                Add <code>MAIL_API_PROVIDER=sendgrid</code> and <code>SENDGRID_API_KEY</code> to <code>.env</code>,
-                and verify <code><?= e($mailCfg['from']) ?></code> as a Single Sender in SendGrid.
+                Topic request emails require SendGrid on the production server (SMTP ports are blocked).
+                Add <code>SENDGRID_API_KEY</code>, <code>ADMIN_EMAIL</code>, <code>FROM_EMAIL</code>, and
+                <code>FROM_NAME</code> to <code>.env</code>, and verify
+                <code><?= e($mailCfg['from_email']) ?></code> as a sender in SendGrid.
             </div>
         <?php endif; ?>
 
@@ -104,7 +102,7 @@ $sendgridReady = $mailCfg['api_provider'] === 'sendgrid' && $mailCfg['api_key'] 
                         <?php foreach ($requests as $request): ?>
                             <?php
                             $status = (string) ($request['status'] ?? 'new');
-                            $emailSent = !empty($request['completion_email_sent_at']);
+                            $notified = !empty($request['notified_at']);
                             ?>
                             <tr>
                                 <td><strong><?= e((string) $request['science_topic']) ?></strong></td>
@@ -116,7 +114,7 @@ $sendgridReady = $mailCfg['api_provider'] === 'sendgrid' && $mailCfg['api_key'] 
                                 <td class="topic-request-details-cell"><?= e((string) ($request['additional_details'] ?? '')) !== '' ? e((string) $request['additional_details']) : '—' ?></td>
                                 <td>
                                     <span class="status-tag status-<?= e($status) ?>"><?= e(topic_request_status_label($status)) ?></span>
-                                    <?php if ($emailSent): ?>
+                                    <?php if ($notified): ?>
                                         <div class="story-card-meta">Completion email sent</div>
                                     <?php endif; ?>
                                 </td>
@@ -136,7 +134,7 @@ $sendgridReady = $mailCfg['api_provider'] === 'sendgrid' && $mailCfg['api_key'] 
                                     <form method="post" action="<?= e(app_url('admin-topic-requests.php')) ?>" class="topic-request-resend-form">
                                         <input type="hidden" name="request_id" value="<?= (int) $request['request_id'] ?>">
                                         <input type="hidden" name="action" value="resend_notification">
-                                        <button type="submit" class="btn btn-outline btn-sm">Resend Email</button>
+                                        <button type="submit" class="btn btn-outline btn-sm">Resend Admin Email</button>
                                     </form>
                                 </td>
                             </tr>

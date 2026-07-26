@@ -1,0 +1,67 @@
+{
+    "book_id": 88,
+    "title": "The Wind That Came and Went",
+    "intro": "This quiz follows two curious kids at the beach as they discover how sea breezes and land breezes form.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is a breeze?",
+            "choices": [
+                "A strong storm",
+                "A gentle, pleasant wind",
+                "A large ocean wave",
+                "A warm cloud"
+            ],
+            "correct_index": 1,
+            "explanation": "A breeze is a gentle, pleasant wind."
+        },
+        {
+            "id": 2,
+            "prompt": "During the day, which heats up faster?",
+            "choices": [
+                "The sea",
+                "The clouds",
+                "The land",
+                "The wind"
+            ],
+            "correct_index": 2,
+            "explanation": "During the day, the land heats up faster than the sea."
+        },
+        {
+            "id": 3,
+            "prompt": "In which direction does a sea breeze blow?",
+            "choices": [
+                "From the land to the sea",
+                "From the sea to the land",
+                "From the sky to the ground",
+                "From north to south"
+            ],
+            "correct_index": 1,
+            "explanation": "A sea breeze blows from the sea to the land."
+        },
+        {
+            "id": 4,
+            "prompt": "What happens to the air above the sea at night?",
+            "choices": [
+                "It becomes warmer and rises",
+                "It freezes immediately",
+                "It stops moving",
+                "It moves toward the land"
+            ],
+            "correct_index": 0,
+            "explanation": "At night, the air above the sea becomes warmer and rises."
+        },
+        {
+            "id": 5,
+            "prompt": "Why does wind begin?",
+            "choices": [
+                "Warm air sinks and cool air rises",
+                "The sea pushes the land",
+                "Warm air rises and cool air moves in to replace it",
+                "Trees create moving air"
+            ],
+            "correct_index": 2,
+            "explanation": "Wind begins when warm air rises and cool air moves in to replace it."
+        }
+    ]
+}

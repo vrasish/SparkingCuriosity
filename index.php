@@ -53,13 +53,13 @@ function render_home_story_card(array $book, array $ratingSummaries): void
     <article class="home-story-card">
         <div class="home-story-cover-wrap">
             <?php render_story_favorite_button((int) $book['book_id'], app_url('index.php')); ?>
-            <a href="<?= e(app_url('book.php?id=' . (int) $book['book_id'])) ?>" class="home-story-cover-link">
+            <a href="<?= e(story_book_url((int) $book['book_id'])) ?>" class="home-story-cover-link">
                 <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="home-story-img" loading="lazy">
             </a>
         </div>
         <div class="home-story-body">
             <?php render_story_card_bubbles($book['categories'] ?? '', $book['story_topic'] ?? null, true); ?>
-            <a href="<?= e(app_url('book.php?id=' . (int) $book['book_id'])) ?>" class="home-story-title"><?= e($book['title']) ?></a>
+            <a href="<?= e(story_book_url((int) $book['book_id'])) ?>" class="home-story-title"><?= e($book['title']) ?></a>
             <p class="home-story-desc"><?= e($book['description']) ?></p>
             <div class="home-story-card-footer">
                 <div class="home-story-meta">

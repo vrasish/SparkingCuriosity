@@ -411,7 +411,6 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
             }
             echo '<a href="' . e(app_url('upload-book.php')) . '">Upload PDF</a>';
             echo '<a href="' . e(app_url('creator-dashboard.php')) . '">Creator Dashboard</a>';
-            echo '<a href="' . e(app_url('creator-sales.php')) . '">Creator Sales</a>';
         }
         if ($user && is_admin_user()) {
             echo '<a href="' . e(app_url('admin-review.php')) . '">Admin</a>';

@@ -2,7 +2,11 @@
 
 declare(strict_types=1);
 
-/** @return array<string, string> */
+require_once __DIR__ . '/vendor/autoload.php';
+
+use SendGrid\Mail\Mail;
+
+/** @return array{api_key: string, admin_email: string, from_email: string, from_name: string} */
 function mail_config(): array
 {
     static $cfg = null;
@@ -11,16 +15,10 @@ function mail_config(): array
     }
 
     $keys = [
-        'MAIL_API_PROVIDER',
-        'MAIL_API_KEY',
         'SENDGRID_API_KEY',
-        'MAIL_SMTP_HOST',
-        'MAIL_SMTP_PORT',
-        'MAIL_SMTP_USER',
-        'MAIL_SMTP_PASSWORD',
-        'MAIL_FROM',
-        'MAIL_FROM_NAME',
-        'MAIL_NOTIFY_TO',
+        'ADMIN_EMAIL',
+        'FROM_EMAIL',
+        'FROM_NAME',
     ];
     $values = array_fill_keys($keys, '');
 
@@ -50,22 +48,11 @@ function mail_config(): array
         }
     }
 
-    $apiKey = $values['MAIL_API_KEY'] !== '' ? $values['MAIL_API_KEY'] : $values['SENDGRID_API_KEY'];
-    $apiProvider = strtolower(trim($values['MAIL_API_PROVIDER']));
-    if ($apiProvider === '' && $apiKey !== '') {
-        $apiProvider = 'sendgrid';
-    }
-
     $cfg = [
-        'api_provider' => $apiProvider,
-        'api_key' => $apiKey,
-        'smtp_host' => $values['MAIL_SMTP_HOST'],
-        'smtp_port' => $values['MAIL_SMTP_PORT'] !== '' ? $values['MAIL_SMTP_PORT'] : '587',
-        'smtp_user' => $values['MAIL_SMTP_USER'],
-        'smtp_password' => $values['MAIL_SMTP_PASSWORD'],
-        'from' => $values['MAIL_FROM'] !== '' ? $values['MAIL_FROM'] : 'scifables2026@gmail.com',
-        'from_name' => $values['MAIL_FROM_NAME'] !== '' ? $values['MAIL_FROM_NAME'] : 'SciFables',
-        'notify_to' => $values['MAIL_NOTIFY_TO'] !== '' ? $values['MAIL_NOTIFY_TO'] : 'scifables2026@gmail.com',
+        'api_key' => $values['SENDGRID_API_KEY'],
+        'admin_email' => $values['ADMIN_EMAIL'] !== '' ? $values['ADMIN_EMAIL'] : 'scifables2026@gmail.com',
+        'from_email' => $values['FROM_EMAIL'] !== '' ? $values['FROM_EMAIL'] : 'notifications@scifables.com',
+        'from_name' => $values['FROM_NAME'] !== '' ? $values['FROM_NAME'] : 'SciFables',
     ];
 
     return $cfg;
@@ -73,258 +60,64 @@ function mail_config(): array
 
 function mail_is_configured(): bool
 {
-    $cfg = mail_config();
-    if ($cfg['api_provider'] !== '' && $cfg['api_key'] !== '') {
-        return true;
-    }
-
-    return $cfg['smtp_host'] !== '' && $cfg['smtp_user'] !== '' && $cfg['smtp_password'] !== '';
+    return mail_config()['api_key'] !== '';
 }
 
-function mail_send(string $to, string $subject, string $bodyPlain, ?string $replyTo = null): bool
+function mail_send(string $to, string $subject, string $bodyPlain, ?string $replyTo = null, ?string $toName = null): bool
 {
     $to = trim($to);
     if ($to === '' || !filter_var($to, FILTER_VALIDATE_EMAIL)) {
+        mail_log_error('Invalid recipient email address.');
         return false;
     }
 
     $cfg = mail_config();
-    if ($cfg['api_provider'] === 'sendgrid' && $cfg['api_key'] !== '') {
-        return mail_send_sendgrid($to, $subject, $bodyPlain, $replyTo, $cfg);
-    }
-
-    if ($cfg['smtp_host'] !== '' && $cfg['smtp_user'] !== '' && $cfg['smtp_password'] !== '') {
-        return mail_send_smtp($to, $subject, $bodyPlain, $replyTo, $cfg);
-    }
-
-    return mail_send_php_mail($to, $subject, $bodyPlain, $replyTo, $cfg);
-}
-
-/** @param array<string, string> $cfg */
-function mail_send_sendgrid(string $to, string $subject, string $bodyPlain, ?string $replyTo, array $cfg): bool
-{
-    $payload = [
-        'personalizations' => [[
-            'to' => [['email' => $to]],
-        ]],
-        'from' => [
-            'email' => $cfg['from'],
-            'name' => $cfg['from_name'],
-        ],
-        'subject' => $subject,
-        'content' => [[
-            'type' => 'text/plain',
-            'value' => $bodyPlain,
-        ]],
-    ];
-
-    if ($replyTo !== null && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
-        $payload['reply_to'] = ['email' => $replyTo];
-    }
-
-    $json = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    if ($json === false) {
-        error_log('SendGrid payload encode failed');
+    if ($cfg['api_key'] === '') {
+        mail_log_error('SendGrid API key is not configured.');
         return false;
     }
-
-    $ch = curl_init('https://api.sendgrid.com/v3/mail/send');
-    if ($ch === false) {
-        error_log('SendGrid curl init failed');
-        return false;
-    }
-
-    curl_setopt_array($ch, [
-        CURLOPT_POST => true,
-        CURLOPT_HTTPHEADER => [
-            'Authorization: Bearer ' . $cfg['api_key'],
-            'Content-Type: application/json',
-        ],
-        CURLOPT_POSTFIELDS => $json,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 20,
-    ]);
-
-    $response = curl_exec($ch);
-    $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    $curlError = curl_error($ch);
-    curl_close($ch);
-
-    if ($curlError !== '') {
-        error_log('SendGrid curl error: ' . $curlError);
-        return false;
-    }
-
-    if ($httpCode >= 200 && $httpCode < 300) {
-        return true;
-    }
-
-    error_log('SendGrid send failed HTTP ' . $httpCode . ': ' . (string) $response);
-    return false;
-}
-
-/** @param array<string, string> $cfg */
-function mail_send_php_mail(string $to, string $subject, string $bodyPlain, ?string $replyTo, array $cfg): bool
-{
-    $from = $cfg['from'];
-    $fromName = $cfg['from_name'];
-    $headers = [
-        'From: ' . mail_format_address($from, $fromName),
-        'Content-Type: text/plain; charset=UTF-8',
-        'MIME-Version: 1.0',
-        'X-Mailer: SciFables',
-    ];
-    if ($replyTo !== null && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
-        $headers[] = 'Reply-To: ' . $replyTo;
-    }
-
-    return @mail($to, mail_encode_subject($subject), $bodyPlain, implode("\r\n", $headers));
-}
-
-/** @param array<string, string> $cfg */
-function mail_send_smtp(string $to, string $subject, string $bodyPlain, ?string $replyTo, array $cfg): bool
-{
-    $host = $cfg['smtp_host'];
-    $port = (int) $cfg['smtp_port'];
-    $user = $cfg['smtp_user'];
-    $pass = $cfg['smtp_password'];
-    $from = $cfg['from'];
-    $fromName = $cfg['from_name'];
-
-    $socket = @stream_socket_client(
-        'tcp://' . $host . ':' . $port,
-        $errno,
-        $errstr,
-        20
-    );
-    if ($socket === false) {
-        error_log('SMTP connect failed: ' . $errstr);
-        return false;
-    }
-
-    stream_set_timeout($socket, 20);
 
     try {
-        if (!mail_smtp_expect($socket, [220])) {
-            throw new RuntimeException('SMTP greeting failed');
-        }
-        mail_smtp_cmd($socket, 'EHLO scifables.local');
-        if (!mail_smtp_expect($socket, [250])) {
-            throw new RuntimeException('SMTP EHLO failed');
-        }
+        $email = new Mail();
+        $email->setFrom($cfg['from_email'], $cfg['from_name']);
+        $email->setSubject($subject);
+        $email->addTo($to, $toName ?? '');
+        $email->addContent('text/plain', $bodyPlain);
 
-        if (!mail_smtp_starttls($socket, $host)) {
-            throw new RuntimeException('SMTP STARTTLS failed');
-        }
-
-        mail_smtp_cmd($socket, 'EHLO scifables.local');
-        if (!mail_smtp_expect($socket, [250])) {
-            throw new RuntimeException('SMTP EHLO after TLS failed');
-        }
-
-        mail_smtp_cmd($socket, 'AUTH LOGIN');
-        if (!mail_smtp_expect($socket, [334])) {
-            throw new RuntimeException('SMTP AUTH failed');
-        }
-        mail_smtp_cmd($socket, base64_encode($user));
-        if (!mail_smtp_expect($socket, [334])) {
-            throw new RuntimeException('SMTP username rejected');
-        }
-        mail_smtp_cmd($socket, base64_encode($pass));
-        if (!mail_smtp_expect($socket, [235])) {
-            throw new RuntimeException('SMTP password rejected');
-        }
-
-        mail_smtp_cmd($socket, 'MAIL FROM:<' . $from . '>');
-        if (!mail_smtp_expect($socket, [250])) {
-            throw new RuntimeException('SMTP MAIL FROM failed');
-        }
-        mail_smtp_cmd($socket, 'RCPT TO:<' . $to . '>');
-        if (!mail_smtp_expect($socket, [250, 251])) {
-            throw new RuntimeException('SMTP RCPT TO failed');
-        }
-        mail_smtp_cmd($socket, 'DATA');
-        if (!mail_smtp_expect($socket, [354])) {
-            throw new RuntimeException('SMTP DATA failed');
-        }
-
-        $message = 'From: ' . mail_format_address($from, $fromName) . "\r\n";
-        $message .= 'To: <' . $to . ">\r\n";
         if ($replyTo !== null && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) {
-            $message .= 'Reply-To: ' . $replyTo . "\r\n";
-        }
-        $message .= 'Subject: ' . mail_encode_subject($subject) . "\r\n";
-        $message .= "MIME-Version: 1.0\r\n";
-        $message .= "Content-Type: text/plain; charset=UTF-8\r\n";
-        $message .= "\r\n";
-        $message .= str_replace(["\r\n.", "\n."], ["\r\n..", "\n.."], str_replace("\n", "\r\n", $bodyPlain));
-        $message .= "\r\n.\r\n";
-
-        fwrite($socket, $message);
-        if (!mail_smtp_expect($socket, [250])) {
-            throw new RuntimeException('SMTP message rejected');
+            $email->setReplyTo($replyTo);
         }
 
-        mail_smtp_cmd($socket, 'QUIT');
-        mail_smtp_expect($socket, [221]);
-        fclose($socket);
+        $sendgrid = new \SendGrid($cfg['api_key']);
+        $response = $sendgrid->send($email);
+        $statusCode = $response->statusCode();
 
-        return true;
+        if ($statusCode >= 200 && $statusCode < 300) {
+            return true;
+        }
+
+        mail_log_error('SendGrid HTTP ' . $statusCode . ': ' . mail_sanitize_log((string) $response->body()));
+        return false;
     } catch (Throwable $ex) {
-        error_log($ex->getMessage());
-        @fclose($socket);
+        mail_log_error('SendGrid send failed: ' . mail_sanitize_log($ex->getMessage()));
         return false;
     }
 }
 
-function mail_format_address(string $email, string $name): string
+function mail_log_error(string $message): void
 {
-    $email = trim($email);
-    $name = trim(str_replace(["\r", "\n"], '', $name));
-    if ($name === '') {
-        return $email;
+    $cfg = mail_config();
+    $safe = mail_sanitize_log($message);
+    if ($cfg['api_key'] !== '') {
+        $safe = str_replace($cfg['api_key'], '[REDACTED]', $safe);
     }
 
-    return '"' . addcslashes($name, '"\\') . '" <' . $email . '>';
+    error_log('[SciFables mail] ' . $safe);
 }
 
-function mail_encode_subject(string $subject): string
+function mail_sanitize_log(string $message): string
 {
-    return '=?UTF-8?B?' . base64_encode($subject) . '?=';
-}
-
-/** @param resource $socket */
-function mail_smtp_cmd($socket, string $command): void
-{
-    fwrite($socket, $command . "\r\n");
-}
-
-/** @param resource $socket */
-/** @param list<int> $codes */
-function mail_smtp_expect($socket, array $codes): bool
-{
-    $response = '';
-    while (($line = fgets($socket, 515)) !== false) {
-        $response .= $line;
-        if (isset($line[3]) && $line[3] === ' ') {
-            break;
-        }
-    }
-
-    $code = (int) substr(trim($response), 0, 3);
-    return in_array($code, $codes, true);
-}
-
-/** @param resource $socket */
-function mail_smtp_starttls($socket, string $host): bool
-{
-    mail_smtp_cmd($socket, 'STARTTLS');
-    if (!mail_smtp_expect($socket, [220])) {
-        return false;
-    }
-
-    $crypto = stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT);
-    return $crypto === true;
+    return preg_replace('/Bearer\s+\S+/i', 'Bearer [REDACTED]', $message) ?? $message;
 }
 
 function mail_first_name(string $fullName): string

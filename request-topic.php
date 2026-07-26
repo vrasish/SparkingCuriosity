@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result['ok']) {
         $request = topic_request_get($pdo, $result['request_id']);
         if ($request !== null) {
-            topic_request_send_admin_notification($request);
+            topic_request_send_admin_notification($pdo, $request);
         }
         $success = true;
         $postedTopic = '';

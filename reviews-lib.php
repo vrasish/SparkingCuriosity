@@ -191,6 +191,9 @@ function save_book_review(PDO $pdo, int $bookId, int $userId, int $rating, strin
         $reviewText !== '' ? $reviewText : null,
     ]);
 
+    require_once __DIR__ . '/cache-lib.php';
+    stories_page_cache_clear();
+
     return ['ok' => true, 'error' => ''];
 }
 
