@@ -1,0 +1,67 @@
+{
+    "book_id": 91,
+    "title": "The Secret Beneath the Roots",
+    "intro": "This quiz follows Zoe and Ethan in Grandma Rosa's garden as they discover how nitrogen-fixing bacteria help bean plants grow.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What did Zoe and Ethan notice about the two rows of bean plants?",
+            "choices": [
+                "Both rows looked exactly the same",
+                "One row was healthy, while the other looked pale and weak",
+                "Both rows had no flowers",
+                "One row received no sunlight"
+            ],
+            "correct_index": 1,
+            "explanation": "Zoe and Ethan noticed that one row of bean plants was healthy, while the other looked pale and weak."
+        },
+        {
+            "id": 2,
+            "prompt": "What were the small, round bumps on the bean roots called?",
+            "choices": [
+                "Seeds",
+                "Flowers",
+                "Nodules",
+                "Leaves"
+            ],
+            "correct_index": 2,
+            "explanation": "The small, round bumps on the bean roots are called nodules."
+        },
+        {
+            "id": 3,
+            "prompt": "Which helpful bacteria lived inside the root nodules?",
+            "choices": [
+                "Rhizobium",
+                "Algae",
+                "Fungi",
+                "Yeast"
+            ],
+            "correct_index": 0,
+            "explanation": "Rhizobium bacteria lived inside the root nodules."
+        },
+        {
+            "id": 4,
+            "prompt": "What do Rhizobium bacteria do with nitrogen from the air?",
+            "choices": [
+                "They remove it from the soil",
+                "They change it into a form the plant can use",
+                "They turn it into sunlight",
+                "They store it inside flowers"
+            ],
+            "correct_index": 1,
+            "explanation": "Rhizobium bacteria change nitrogen from the air into a form the plant can use."
+        },
+        {
+            "id": 5,
+            "prompt": "What does the plant give the Rhizobium bacteria in return?",
+            "choices": [
+                "Sugar and a safe home",
+                "Extra sunlight and rain",
+                "Leaves and flowers",
+                "Water and soil"
+            ],
+            "correct_index": 0,
+            "explanation": "In return, the plant gives the Rhizobium bacteria sugar and a safe home."
+        }
+    ]
+}

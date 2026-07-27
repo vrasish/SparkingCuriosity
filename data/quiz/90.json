@@ -1,0 +1,67 @@
+{
+    "book_id": 90,
+    "title": "The Green Lake Mystery",
+    "intro": "This quiz follows two curious kids and Grandma June as they discover what algae are and why algal blooms happen.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What are algae?",
+            "choices": [
+                "Tiny organisms that grow in water",
+                "Large animals that live on land",
+                "Rocks found at the bottom of lakes",
+                "Plants that only grow in deserts"
+            ],
+            "correct_index": 0,
+            "explanation": "Algae are tiny organisms that grow in water."
+        },
+        {
+            "id": 2,
+            "prompt": "What do algae use to make their own food?",
+            "choices": [
+                "Sunlight, water, and carbon dioxide",
+                "Soil, insects, and rocks",
+                "Fish, oxygen, and sand",
+                "Rain, wind, and fertilizer only"
+            ],
+            "correct_index": 0,
+            "explanation": "Algae use sunlight, water, and carbon dioxide to make their own food."
+        },
+        {
+            "id": 3,
+            "prompt": "What is an algal bloom?",
+            "choices": [
+                "When all algae disappear",
+                "When algae grow much faster than normal",
+                "When flowers grow around a lake",
+                "When lake water freezes"
+            ],
+            "correct_index": 1,
+            "explanation": "An algal bloom happens when algae grow much faster than normal."
+        },
+        {
+            "id": 4,
+            "prompt": "Why can algal blooms harm fish?",
+            "choices": [
+                "They make the water too cold",
+                "They remove all the plants from the shore",
+                "They can reduce oxygen in the water",
+                "They make fish grow too quickly"
+            ],
+            "correct_index": 2,
+            "explanation": "Algal blooms can harm fish because they can reduce oxygen in the water."
+        },
+        {
+            "id": 5,
+            "prompt": "How can people help prevent algal blooms?",
+            "choices": [
+                "Use more fertilizer near lakes",
+                "Add phosphate directly to the water",
+                "Keep fertilizer away from waterways and use less phosphate",
+                "Remove all algae from every lake"
+            ],
+            "correct_index": 2,
+            "explanation": "People can help prevent algal blooms by keeping fertilizer away from waterways and using less phosphate."
+        }
+    ]
+}

@@ -40,6 +40,8 @@ function story_topics_by_title(): array
         'The Air that Loved to Climb' => 'Why warm air rises and cool air sinks',
         'The Wind That Came and Went' => 'Sea Breeze and Land Breeze',
         'The Forest Mystery' => 'Producers, Consumers, and Decomposers',
+        'The Green Lake Mystery' => 'Algae & Algal Blooms',
+        'The Secret Beneath the Roots' => 'Nitrogen fixation',
         "The Water That Wouldn't Stay Still" => 'Evaporation vs. Boiling',
         'The Day Water Changed Its Mind' => 'States of matter',
         'The Matter Mystery' => 'What is Matter?',
