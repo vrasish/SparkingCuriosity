@@ -7,6 +7,7 @@ $topicAliases = [
     'Weather and Atmosphere' => 'Earth Science',
     'Plants & Animals' => 'Plants',
     'Germs' => 'Microbes',
+    'Body' => 'Human Body',
 ];
 if (isset($topicAliases[$topicFilter])) {
     $topicFilter = $topicAliases[$topicFilter];

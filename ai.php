@@ -148,7 +148,7 @@ Return JSON only (no markdown fences) with these keys:
 - title (string)
 - author_name (string — use "Story Author" unless given)
 - description (string, 1–2 sentences)
-- science_topic (one of: Space, Body, Plants, Animals, Weather, Microbes, Earth Science, Engineering, Physical Science)
+- science_topic (one of: Space, Human Body, Plants, Animals, Weather, Microbes, Earth Science, Engineering, Physical Science)
 - setting (string — where the story takes place)
 - character_1 (string — full visual description for consistent images)
 - character_2 (string — full visual description for consistent images)
@@ -171,7 +171,7 @@ function ai_prompt_templates(): array
 {
     return [
         ['id' => 'space_adventure', 'title' => 'Space', 'icon' => '🪐', 'starter' => 'Help me write a space science fiction story for kids ages 8–12.'],
-        ['id' => 'body_journey', 'title' => 'Body', 'icon' => '🫀', 'starter' => 'Help me write a story about the human body for kids ages 8–12.'],
+        ['id' => 'body_journey', 'title' => 'Human Body', 'icon' => '🫀', 'starter' => 'Help me write a story about the human body for kids ages 8–12.'],
         ['id' => 'plant_mystery', 'title' => 'Plants', 'icon' => '🌱', 'starter' => 'Help me write a plant science story for kids ages 8–12.'],
         ['id' => 'animal_adventure', 'title' => 'Animals', 'icon' => '🐾', 'starter' => 'Help me write an animal science story for kids ages 8–12.'],
         ['id' => 'weather_watch', 'title' => 'Weather', 'icon' => '🌦️', 'starter' => 'Help me write a weather science story for kids ages 8–12.'],
@@ -991,7 +991,7 @@ function ai_save_book_from_story(PDO $pdo, array $story, string $pdfPath, int $u
     $description = trim((string) ($story['description'] ?? ''));
     $scienceElement = trim((string) ($story['science_element'] ?? ''));
     $topic = trim((string) ($story['science_topic'] ?? 'Space'));
-    $allowedTopics = ['Space', 'Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science'];
+    $allowedTopics = ['Space', 'Human Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science'];
     if (!in_array($topic, $allowedTopics, true)) {
         $topic = 'Space';
     }

@@ -367,6 +367,7 @@ function topic_class(string $name): string
     $map = [
         'Space' => 'topic-space',
         'Body' => 'topic-body',
+        'Human Body' => 'topic-body',
         'Plants' => 'topic-plants',
         'Plants & Animals' => 'topic-plants',
         'Animals' => 'topic-animals',
@@ -489,7 +490,7 @@ function home_topic_tiles(): array
         ['label' => 'Plants', 'slug' => 'Plants', 'icon' => '🌱', 'class' => 'topic-plants'],
         ['label' => 'Animals', 'slug' => 'Animals', 'icon' => '🐾', 'class' => 'topic-animals'],
         ['label' => 'Earth Science', 'slug' => 'Earth Science', 'icon' => '🌍', 'class' => 'topic-earth-science'],
-        ['label' => 'Human Body', 'slug' => 'Body', 'icon' => '🫀', 'class' => 'topic-body'],
+        ['label' => 'Human Body', 'slug' => 'Human Body', 'icon' => '🫀', 'class' => 'topic-body'],
         ['label' => 'Microbes', 'slug' => 'Microbes', 'icon' => '🦠', 'class' => 'topic-germs'],
         ['label' => 'Physical Science', 'slug' => 'Physical Science', 'icon' => '⚛️', 'class' => 'topic-physical-science'],
     ];
@@ -610,7 +611,7 @@ function admin_story_statuses(): array
 /** @return list<string> */
 function admin_science_topics(): array
 {
-    return ['Space', 'Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science'];
+    return ['Space', 'Human Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science'];
 }
 
 function delete_book_files(array $book): void

@@ -2,7 +2,7 @@
 require_once __DIR__ . '/auth.php';
 require_creator_login();
 
-$topics = ['Space', 'Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science'];
+$topics = ['Space', 'Human Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science'];
 $message = '';
 $error = '';
 
