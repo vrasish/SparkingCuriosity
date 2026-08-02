@@ -49,7 +49,7 @@
     --topic-physical-science: #eab308;
 
     --content-max-width: 100%;
-    --page-gutter: 200px;
+    --page-gutter: clamp(24px, 5vw, 200px);
     --page-gutter-mobile: 16px;
     --page-inner-padding: 64px;
     --page-inner-padding-mobile: 16px;
@@ -3840,12 +3840,12 @@ tr:hover td {
 .home-story-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
+    gap: clamp(16px, 2vw, 24px);
     width: 100%;
     align-items: stretch;
 }
 
-@media (max-width: 959px) {
+@media (max-width: 1199px) {
     .home-story-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 20px;
@@ -3962,7 +3962,7 @@ tr:hover td {
 
 .home-story-title {
     font-family: var(--font-display);
-    font-size: 1.85rem;
+    font-size: clamp(1.35rem, 1.5vw + 0.6rem, 1.85rem);
     font-weight: 700;
     line-height: 1.3;
     margin: 0;
@@ -4127,6 +4127,39 @@ tr:hover td {
     }
 }
 
+@media (max-width: 1499px) {
+    /* Laptop / mid screens: stack image above text so covers stay proportional */
+    .home-story-grid--row,
+    .home-story-grid--picks {
+        grid-auto-rows: auto;
+        align-items: stretch;
+    }
+
+    .home-story-card {
+        flex-direction: column;
+        min-height: 0;
+        height: auto;
+    }
+
+    .home-story-cover-wrap {
+        flex: none;
+        width: 100%;
+    }
+
+    .home-story-cover-link {
+        height: clamp(160px, 22vw, 220px);
+    }
+
+    .home-story-img {
+        min-height: 0;
+        height: 100%;
+    }
+
+    .home-story-desc {
+        flex: 0 1 auto;
+    }
+}
+
 @media (max-width: 640px) {
     .home-page .container {
         padding: 0 var(--page-gutter-mobile);
@@ -4151,21 +4184,7 @@ tr:hover td {
         gap: 20px;
     }
 
-    .home-story-card {
-        flex-direction: column;
-        min-height: 0;
-    }
-
-    .home-story-cover-wrap {
-        flex: none;
-    }
-
     .home-story-cover-link {
-        height: 180px;
-    }
-
-    .home-story-img {
-        min-height: 180px;
         height: 180px;
     }
 }

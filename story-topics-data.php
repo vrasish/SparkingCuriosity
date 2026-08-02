@@ -43,6 +43,7 @@ function story_topics_by_title(): array
         'The Forest Team' => 'Biotic & Abiotic Factors',
         'The Green Lake Mystery' => 'Algae & Algal Blooms',
         'The Secret Beneath the Roots' => 'Nitrogen fixation',
+        "The River That Couldn't Smile" => 'Plastic pollution',
         "The Water That Wouldn't Stay Still" => 'Evaporation vs. Boiling',
         'The Day Water Changed Its Mind' => 'States of matter',
         'The Matter Mystery' => 'What is Matter?',
