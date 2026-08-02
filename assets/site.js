@@ -36,9 +36,46 @@
         });
     }
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initMobileNav);
-    } else {
+    var QUIZ_DONE_STORAGE_KEY = 'scifables_quiz_done';
+
+    function getQuizDoneMap() {
+        try {
+            var raw = window.localStorage.getItem(QUIZ_DONE_STORAGE_KEY);
+            var parsed = raw ? JSON.parse(raw) : {};
+            return parsed && typeof parsed === 'object' ? parsed : {};
+        } catch (err) {
+            return {};
+        }
+    }
+
+    function applyQuizDoneBadges() {
+        var map = getQuizDoneMap();
+        document.querySelectorAll('.topic-tags[data-book-id], .story-card-bubbles[data-book-id]').forEach(function (el) {
+            var id = el.getAttribute('data-book-id');
+            if (!id || !map[String(id)] || el.querySelector('.quiz-done-tag')) {
+                return;
+            }
+            var span = document.createElement('span');
+            span.className = 'topic-tag quiz-done-tag' + (el.classList.contains('story-card-bubbles-home') ? ' home-story-tag' : '');
+            span.title = 'Quiz completed';
+            span.textContent = 'Quiz done ✓';
+            el.appendChild(span);
+        });
+    }
+
+    window.SciFablesQuizDone = {
+        applyBadges: applyQuizDoneBadges,
+        getMap: getQuizDoneMap,
+    };
+
+    function boot() {
         initMobileNav();
+        applyQuizDoneBadges();
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+    } else {
+        boot();
     }
 })();

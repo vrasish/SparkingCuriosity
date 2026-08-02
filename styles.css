@@ -1823,6 +1823,26 @@ h1, h2, h3, h4 {
     font-weight: 700;
 }
 
+.quiz-done-tag {
+    background: #ecfdf5;
+    color: #047857;
+    border: 1px solid #6ee7b7;
+    text-transform: none;
+    letter-spacing: 0.01em;
+    font-weight: 800;
+}
+
+.story-card-bubbles-home .quiz-done-tag,
+.home-story-tag.quiz-done-tag {
+    font-size: 0.95rem;
+    padding: 5px 12px;
+}
+
+.book-header .quiz-done-tag {
+    font-size: 0.8rem;
+}
+
+
 .story-card-bubbles {
     display: flex;
     flex-wrap: wrap;

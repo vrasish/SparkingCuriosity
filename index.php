@@ -58,7 +58,7 @@ function render_home_story_card(array $book, array $ratingSummaries): void
             </a>
         </div>
         <div class="home-story-body">
-            <?php render_story_card_bubbles($book['categories'] ?? '', $book['story_topic'] ?? null, true); ?>
+            <?php render_story_card_bubbles($book['categories'] ?? '', $book['story_topic'] ?? null, true, (int) $book['book_id']); ?>
             <a href="<?= e(story_book_url((int) $book['book_id'])) ?>" class="home-story-title"><?= e($book['title']) ?></a>
             <p class="home-story-desc"><?= e($book['description']) ?></p>
             <div class="home-story-card-footer">

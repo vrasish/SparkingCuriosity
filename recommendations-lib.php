@@ -132,7 +132,7 @@ function render_book_recommendations(array $books, array $ratingSummaries): void
         echo '<article class="story-card story-card-compact">';
         render_story_card_cover($recId, $recCover, (string) ($recBook['title'] ?? ''), app_url('book.php?id=' . $recId));
         echo '<div class="story-card-content">';
-        render_topic_tags($recBook['categories'] ?? '', $recBook['story_topic'] ?? null);
+        render_topic_tags($recBook['categories'] ?? '', $recBook['story_topic'] ?? null, (int) ($recBook['book_id'] ?? 0));
         echo '<h3 class="story-card-title">' . e($recBook['title']) . '</h3>';
         echo '<p class="story-card-desc">' . e($recBook['description']) . '</p>';
         echo '<div class="story-card-bottom">';

@@ -1,0 +1,67 @@
+{
+    "book_id": 96,
+    "title": "The Race Around the Park: Speed and Velocity",
+    "intro": "This quiz follows Emma, Noah, and Dad at the park as they learn the difference between speed and velocity—and how distance and displacement fit in.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What does speed tell us?",
+            "choices": [
+                "How far away something is",
+                "How fast something moves",
+                "Which direction something moves",
+                "Where something started"
+            ],
+            "correct_index": 1,
+            "explanation": "Speed tells us how fast something moves."
+        },
+        {
+            "id": 2,
+            "prompt": "Which formula is used to calculate speed?",
+            "choices": [
+                "Speed = Time ÷ Distance",
+                "Speed = Distance + Time",
+                "Speed = Distance ÷ Time",
+                "Speed = Distance × Time"
+            ],
+            "correct_index": 2,
+            "explanation": "Speed is calculated as distance divided by time."
+        },
+        {
+            "id": 3,
+            "prompt": "What makes velocity different from speed?",
+            "choices": [
+                "Velocity includes direction",
+                "Velocity does not use time",
+                "Velocity is always slower",
+                "Velocity only measures distance"
+            ],
+            "correct_index": 0,
+            "explanation": "Velocity is different from speed because velocity includes direction."
+        },
+        {
+            "id": 4,
+            "prompt": "Emma and Noah walked one complete lap and returned to where they started. What was their displacement?",
+            "choices": [
+                "400 m",
+                "One whole lap",
+                "100 m",
+                "0 m"
+            ],
+            "correct_index": 3,
+            "explanation": "Because they ended where they started, their displacement was 0 m."
+        },
+        {
+            "id": 5,
+            "prompt": "Two cyclists both travel at 10 km/h, but one goes north and the other goes south. What is true?",
+            "choices": [
+                "They have different speeds and the same velocity",
+                "They have the same speed but different velocities",
+                "They have the same speed and the same velocity",
+                "They have no velocity"
+            ],
+            "correct_index": 1,
+            "explanation": "They have the same speed but different velocities because they are moving in opposite directions."
+        }
+    ]
+}

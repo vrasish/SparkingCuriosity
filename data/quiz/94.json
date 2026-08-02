@@ -1,0 +1,67 @@
+{
+    "book_id": 94,
+    "title": "The Mystery of the Missing Sandwich",
+    "intro": "This quiz follows Lila, Jay, and Ms. Rivera as they discover the invisible world of bacteria—how they grow, why some spoil food, and how we can stay healthy.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "Why did Jay's sandwich have fuzzy patches?",
+            "choices": [
+                "It was covered with sugar",
+                "It had been left in his backpack all weekend",
+                "Lila dropped it on the floor",
+                "It was kept in a refrigerator"
+            ],
+            "correct_index": 1,
+            "explanation": "Jay's sandwich had fuzzy patches because it had been left in his backpack all weekend."
+        },
+        {
+            "id": 2,
+            "prompt": "What did Lila and Jay use to see the bacteria?",
+            "choices": [
+                "A telescope",
+                "A magnifying glass",
+                "A microscope",
+                "A camera"
+            ],
+            "correct_index": 2,
+            "explanation": "Lila and Jay used a microscope to see the bacteria."
+        },
+        {
+            "id": 3,
+            "prompt": "What is the process called when one bacterium splits into two?",
+            "choices": [
+                "Photosynthesis",
+                "Binary fission",
+                "Germination",
+                "Digestion"
+            ],
+            "correct_index": 1,
+            "explanation": "When one bacterium splits into two, the process is called binary fission."
+        },
+        {
+            "id": 4,
+            "prompt": "Which statement about bacteria is true?",
+            "choices": [
+                "All bacteria make people sick",
+                "Bacteria only live on spoiled food",
+                "Some bacteria are helpful, while others can be harmful",
+                "Bacteria can be seen easily without a microscope"
+            ],
+            "correct_index": 2,
+            "explanation": "Some bacteria are helpful, while others can be harmful."
+        },
+        {
+            "id": 5,
+            "prompt": "Which habit helps stop harmful bacteria?",
+            "choices": [
+                "Leaving food outside",
+                "Never washing fruits and vegetables",
+                "Keeping food in the refrigerator",
+                "Eating spoiled food"
+            ],
+            "correct_index": 2,
+            "explanation": "Keeping food in the refrigerator helps stop harmful bacteria."
+        }
+    ]
+}

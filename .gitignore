@@ -16,3 +16,5 @@ data/topic-request-submissions.jsonl
 .env
 /vendor/
 /composer.phar
+
+data/.quiz-completions-schema-ready

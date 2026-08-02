@@ -434,12 +434,12 @@ function format_story_description_html(string $description, int $wordsPerLine = 
     return format_text_word_break_html($description, $wordsPerLine);
 }
 
-function render_topic_tags(?string $categories, ?string $storyTopic = null): void
+function render_topic_tags(?string $categories, ?string $storyTopic = null, ?int $bookId = null): void
 {
-    render_story_card_bubbles($categories, $storyTopic, false);
+    render_story_card_bubbles($categories, $storyTopic, false, $bookId);
 }
 
-function render_story_card_bubbles(?string $categories, ?string $storyTopic = null, bool $homeStyle = false): void
+function render_story_card_bubbles(?string $categories, ?string $storyTopic = null, bool $homeStyle = false, ?int $bookId = null): void
 {
     $storyTopic = trim((string) ($storyTopic ?? ''));
     $categoryParts = [];
@@ -451,12 +451,21 @@ function render_story_card_bubbles(?string $categories, ?string $storyTopic = nu
         }
     }
 
-    if ($categoryParts === [] && $storyTopic === '') {
+    $bookId = $bookId !== null ? (int) $bookId : 0;
+    if ($bookId > 0 && !function_exists('is_quiz_completed_for_viewer') && is_file(__DIR__ . '/quiz-progress-lib.php')) {
+        require_once __DIR__ . '/quiz-progress-lib.php';
+    }
+    $quizDone = $bookId > 0 && function_exists('is_quiz_completed_for_viewer')
+        ? is_quiz_completed_for_viewer($bookId)
+        : false;
+
+    if ($categoryParts === [] && $storyTopic === '' && !$quizDone) {
         return;
     }
 
     $wrapperClass = $homeStyle ? 'story-card-bubbles story-card-bubbles-home' : 'topic-tags';
-    echo '<div class="' . $wrapperClass . '">';
+    $wrapperAttrs = $bookId > 0 ? ' data-book-id="' . $bookId . '"' : '';
+    echo '<div class="' . $wrapperClass . '"' . $wrapperAttrs . '>';
 
     $catsToShow = $homeStyle ? [primary_category($categories)] : $categoryParts;
     foreach ($catsToShow as $cat) {
@@ -477,6 +486,14 @@ function render_story_card_bubbles(?string $categories, ?string $storyTopic = nu
             $tagClass = 'home-story-tag ' . $tagClass;
         }
         echo '<span class="' . $tagClass . '">' . e($storyTopic) . '</span>';
+    }
+
+    if ($quizDone) {
+        $tagClass = 'topic-tag quiz-done-tag';
+        if ($homeStyle) {
+            $tagClass = 'home-story-tag ' . $tagClass;
+        }
+        echo '<span class="' . $tagClass . '" title="Quiz completed">Quiz done ✓</span>';
     }
 
     echo '</div>';
@@ -715,6 +732,11 @@ function delete_book_by_id(PDO $pdo, int $bookId): bool
             require_once __DIR__ . '/favorites-lib.php';
             ensure_user_favorites_schema($pdo);
             $pdo->prepare('DELETE FROM user_favorites WHERE book_id = ?')->execute([$bookId]);
+        }
+        if (is_file(__DIR__ . '/quiz-progress-lib.php')) {
+            require_once __DIR__ . '/quiz-progress-lib.php';
+            ensure_user_quiz_completions_schema($pdo);
+            $pdo->prepare('DELETE FROM user_quiz_completions WHERE book_id = ?')->execute([$bookId]);
         }
 
         if (is_file(__DIR__ . '/stripe-lib.php')) {

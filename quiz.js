@@ -238,6 +238,78 @@
         });
     }
 
+
+    var QUIZ_DONE_STORAGE_KEY = 'scifables_quiz_done';
+
+    function getQuizDoneMap() {
+        try {
+            var raw = global.localStorage.getItem(QUIZ_DONE_STORAGE_KEY);
+            var parsed = raw ? JSON.parse(raw) : {};
+            return parsed && typeof parsed === 'object' ? parsed : {};
+        } catch (err) {
+            return {};
+        }
+    }
+
+    function markQuizDoneLocally(bookId) {
+        if (!bookId) {
+            return;
+        }
+        var map = getQuizDoneMap();
+        map[String(bookId)] = true;
+        try {
+            global.localStorage.setItem(QUIZ_DONE_STORAGE_KEY, JSON.stringify(map));
+        } catch (err) {
+            // ignore quota / private mode
+        }
+        if (global.SciFablesQuizDone && typeof global.SciFablesQuizDone.applyBadges === 'function') {
+            global.SciFablesQuizDone.applyBadges();
+        } else {
+            applyQuizDoneBadges(map);
+        }
+    }
+
+    function applyQuizDoneBadges(map) {
+        map = map || getQuizDoneMap();
+        document.querySelectorAll('.topic-tags[data-book-id], .story-card-bubbles[data-book-id]').forEach(function (el) {
+            var id = el.getAttribute('data-book-id');
+            if (!id || !map[String(id)] || el.querySelector('.quiz-done-tag')) {
+                return;
+            }
+            var span = document.createElement('span');
+            span.className = 'topic-tag quiz-done-tag' + (el.classList.contains('story-card-bubbles-home') ? ' home-story-tag' : '');
+            span.title = 'Quiz completed';
+            span.textContent = 'Quiz done ✓';
+            el.appendChild(span);
+        });
+    }
+
+    function persistQuizCompletion() {
+        if (!state.bookId) {
+            return;
+        }
+        markQuizDoneLocally(state.bookId);
+
+        if (!state.apiUrl) {
+            return;
+        }
+
+        var payload = {
+            book_id: state.bookId,
+            score: state.score,
+            total: state.questions.length,
+        };
+
+        fetch(state.apiUrl, {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        }).catch(function () {
+            // local badge already saved
+        });
+    }
+
     function renderResults() {
         if (!state.mountTarget) {
             return;
@@ -251,6 +323,8 @@
                 percent: Math.round((state.score / state.questions.length) * 100),
             });
         }
+
+        persistQuizCompletion();
 
         var total = state.questions.length;
         var percent = Math.round((state.score / total) * 100);

@@ -1,0 +1,67 @@
+{
+    "book_id": 95,
+    "title": "The Treasure That Never Runs Out",
+    "intro": "This quiz follows Lila, Jay, and Ranger Maya as they discover natural resources—renewable and non-renewable—and how we can use them wisely.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is a natural resource?",
+            "choices": [
+                "Something made only in a factory",
+                "Something that comes from nature",
+                "Something found only underground",
+                "Something that cannot be used"
+            ],
+            "correct_index": 1,
+            "explanation": "A natural resource is something that comes from nature."
+        },
+        {
+            "id": 2,
+            "prompt": "Which of these is a renewable resource?",
+            "choices": [
+                "Coal",
+                "Oil",
+                "Sunlight",
+                "Natural gas"
+            ],
+            "correct_index": 2,
+            "explanation": "Sunlight is a renewable resource because nature keeps replacing it."
+        },
+        {
+            "id": 3,
+            "prompt": "Why are coal, oil, and natural gas called non-renewable resources?",
+            "choices": [
+                "They can be replaced every year",
+                "They take millions of years to form",
+                "They come only from trees",
+                "They are made by people"
+            ],
+            "correct_index": 1,
+            "explanation": "Coal, oil, and natural gas are non-renewable because they take millions of years to form."
+        },
+        {
+            "id": 4,
+            "prompt": "Which action helps us use natural resources wisely?",
+            "choices": [
+                "Leaving the tap running",
+                "Letting a car idle for a long time",
+                "Turning off lights when they are not needed",
+                "Throwing reusable items away"
+            ],
+            "correct_index": 2,
+            "explanation": "Turning off lights when they are not needed helps us use natural resources wisely."
+        },
+        {
+            "id": 5,
+            "prompt": "What promise did Lila and Jay make?",
+            "choices": [
+                "To collect as many rocks as possible",
+                "To use resources wisely and care for the Earth",
+                "To stop visiting nature parks",
+                "To use more fossil fuels"
+            ],
+            "correct_index": 1,
+            "explanation": "Lila and Jay promised to use resources wisely and care for the Earth."
+        }
+    ]
+}

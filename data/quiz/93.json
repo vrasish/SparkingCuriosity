@@ -1,0 +1,67 @@
+{
+    "book_id": 93,
+    "title": "The River That Couldn't Smile",
+    "intro": "This quiz follows Maya, Leo, and Grandpa Arun as they learn how plastic pollution harms rivers and wildlife—and how people can help.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "Why did the river look sad?",
+            "choices": [
+                "The water had dried up",
+                "Plastic bottles and wrappers were polluting it",
+                "The fish had all moved away",
+                "The bridge was broken"
+            ],
+            "correct_index": 1,
+            "explanation": "The river looked sad because plastic bottles and wrappers were polluting it."
+        },
+        {
+            "id": 2,
+            "prompt": "Why can plastic be dangerous to turtles?",
+            "choices": [
+                "Turtles may mistake plastic bags for jellyfish",
+                "Plastic makes the water too cold",
+                "Turtles use plastic to build nests",
+                "Plastic makes turtles swim too fast"
+            ],
+            "correct_index": 0,
+            "explanation": "Turtles may mistake plastic bags for jellyfish, which can make them very sick."
+        },
+        {
+            "id": 3,
+            "prompt": "How did much of the plastic reach the river?",
+            "choices": [
+                "Fish carried it there",
+                "It grew in the water",
+                "Wind and rain moved it from the land",
+                "The river created it"
+            ],
+            "correct_index": 2,
+            "explanation": "Much of the plastic reached the river when wind and rain moved it from the land."
+        },
+        {
+            "id": 4,
+            "prompt": "What did the River Rescue Team do?",
+            "choices": [
+                "They added more water to the river",
+                "They collected litter, recycled plastic, and planted flowers",
+                "They moved the animals to another river",
+                "They built a new bridge"
+            ],
+            "correct_index": 1,
+            "explanation": "The River Rescue Team collected litter, recycled plastic, and planted flowers."
+        },
+        {
+            "id": 5,
+            "prompt": "What is the main lesson of the story?",
+            "choices": [
+                "Only adults can protect rivers",
+                "One good choice does not matter",
+                "Many people making small good choices can create a big change",
+                "Plastic disappears quickly in nature"
+            ],
+            "correct_index": 2,
+            "explanation": "The main lesson is that many people making small good choices can create a big change."
+        }
+    ]
+}

@@ -146,7 +146,7 @@ if ($book && !$preview && !$bookLocked) {
                 <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="book-cover">
             </div>
             <div>
-                <?php render_topic_tags($book['categories'] ?? '', $book['story_topic'] ?? null); ?>
+                <?php render_topic_tags($book['categories'] ?? '', $book['story_topic'] ?? null, (int) $bookId); ?>
                 <h1><?= e($book['title']) ?></h1>
                 <div class="book-meta-row">
                     <span class="book-meta-item story-card-meta">By <?= e($book['author_name']) ?> · Ages <?= e($book['age_group']) ?></span>

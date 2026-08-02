@@ -178,7 +178,7 @@ $searchRedirect = app_url('search.php' . ($hasFilters ? '?' . http_build_query(a
                 <article class="story-card story-card-compact">
                     <?php render_story_card_cover((int) $book['book_id'], $cover, (string) $book['title'], $searchRedirect); ?>
                     <div class="story-card-content">
-                        <?php render_topic_tags($book['categories'] ?? '', $book['story_topic'] ?? null); ?>
+                        <?php render_topic_tags($book['categories'] ?? '', $book['story_topic'] ?? null, (int) ($book['book_id'] ?? 0)); ?>
                         <h3 class="story-card-title"><?= e($book['title']) ?></h3>
                         <p class="story-card-desc"><?= e($book['description']) ?></p>
                         <div class="story-card-bottom">
