@@ -401,6 +401,7 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
         echo '<a href="' . e(app_url('index.php')) . '">Home</a>';
         echo '<a href="' . e(app_url('search.php')) . '">Search</a>';
         echo '<a href="' . e(app_url('mission.php')) . '">Our Mission</a>';
+        echo '<a href="' . e(app_url('impact.php')) . '">Impact</a>';
         echo '<a href="' . e(app_url('request-topic.php')) . '">Request a Topic</a>';
         if ($user) {
             echo '<a href="' . e(app_url('my-library.php')) . '">My Library</a>';

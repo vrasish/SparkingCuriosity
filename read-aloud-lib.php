@@ -451,6 +451,123 @@ function read_aloud_import_uploaded_mp3(int $bookId, int $page, string $sourcePa
         throw new RuntimeException('audio_copy_failed');
     }
     @chmod($dest, 0666);
+    read_aloud_invalidate_full_story_audio($bookId);
 
     return $dest;
+}
+
+/** @return list<string> Absolute paths to cached page MP3s in story order, or [] if incomplete. */
+function read_aloud_full_story_source_paths(int $bookId): array
+{
+    $pages = read_aloud_playable_pages($bookId);
+    if ($pages === []) {
+        return [];
+    }
+
+    $paths = [];
+    foreach ($pages as $page) {
+        $path = read_aloud_cached_audio_path($bookId, $page);
+        if ($path === null || !is_file($path)) {
+            return [];
+        }
+        $paths[] = $path;
+    }
+
+    return $paths;
+}
+
+function read_aloud_full_story_audio_available(int $bookId): bool
+{
+    return read_aloud_full_story_source_paths($bookId) !== [];
+}
+
+function read_aloud_full_story_audio_path(int $bookId): string
+{
+    return read_aloud_audio_dir($bookId) . '/story-full.mp3';
+}
+
+function read_aloud_invalidate_full_story_audio(int $bookId): void
+{
+    $path = read_aloud_full_story_audio_path($bookId);
+    if (is_file($path)) {
+        @unlink($path);
+    }
+    $tmp = $path . '.tmp';
+    if (is_file($tmp)) {
+        @unlink($tmp);
+    }
+}
+
+/**
+ * Build (or reuse) a single MP3 of all playable page audio for download.
+ * Uses binary concatenation, which works for sequential MPEG frame streams.
+ */
+function read_aloud_ensure_full_story_audio(int $bookId): ?string
+{
+    $sources = read_aloud_full_story_source_paths($bookId);
+    if ($sources === []) {
+        return null;
+    }
+
+    $out = read_aloud_full_story_audio_path($bookId);
+    $needsRebuild = !is_file($out) || filesize($out) < 1;
+    if (!$needsRebuild) {
+        $outMtime = (int) filemtime($out);
+        foreach ($sources as $src) {
+            if ((int) filemtime($src) > $outMtime) {
+                $needsRebuild = true;
+                break;
+            }
+        }
+    }
+
+    if (!$needsRebuild) {
+        return $out;
+    }
+
+    $dir = read_aloud_audio_dir($bookId);
+    if (!is_dir($dir) && !mkdir($dir, 0777, true) && !is_dir($dir)) {
+        return null;
+    }
+
+    $tmp = $out . '.tmp';
+    $fh = fopen($tmp, 'wb');
+    if ($fh === false) {
+        return null;
+    }
+
+    try {
+        foreach ($sources as $src) {
+            $in = fopen($src, 'rb');
+            if ($in === false) {
+                throw new RuntimeException('source_open_failed');
+            }
+            stream_copy_to_stream($in, $fh);
+            fclose($in);
+        }
+    } catch (Throwable $e) {
+        fclose($fh);
+        @unlink($tmp);
+        return null;
+    }
+
+    fclose($fh);
+    @chmod($tmp, 0666);
+
+    if (!rename($tmp, $out)) {
+        @unlink($tmp);
+        return null;
+    }
+
+    return $out;
+}
+
+function read_aloud_download_url(int $bookId, bool $preview = false): string
+{
+    $url = app_url('read-aloud-download.php?id=' . $bookId);
+    if ($preview) {
+        $url .= '&preview=1';
+    }
+
+    return $url;
 }

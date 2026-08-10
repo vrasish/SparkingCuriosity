@@ -94,7 +94,12 @@ function brand_pdf_file(string $absolutePath, bool $compact = false): bool
  */
 function brand_tcpdf_document(TCPDF $pdf): void
 {
-    $logoPath = site_logo_pdf_disk_path();
+    // Prefer opaque logo for TCPDF: alpha PNGs need GD/Imagick, which may be unavailable.
+    $logoPath = site_logo_disk_path();
+    $transparent = __DIR__ . '/assets/science-fables-logo-transparent.png';
+    if ((extension_loaded('gd') || extension_loaded('imagick')) && is_file($transparent)) {
+        $logoPath = $transparent;
+    }
     if (!is_file($logoPath)) {
         return;
     }
@@ -103,6 +108,10 @@ function brand_tcpdf_document(TCPDF $pdf): void
     if ($pageCount < 1) {
         return;
     }
+
+    $autoBreak = $pdf->getAutoPageBreak();
+    $breakMargin = $pdf->getBreakMargin();
+    $pdf->SetAutoPageBreak(false);
 
     for ($page = 1; $page <= $pageCount; $page++) {
         $pdf->setPage($page);
@@ -118,6 +127,13 @@ function brand_tcpdf_document(TCPDF $pdf): void
         $logoX = $pageW - $sideMargin - $logoW;
         $logoY = $pageH - $bottomMargin - $logoH;
 
-        @$pdf->Image($logoPath, $logoX, $logoY, $logoW, 0, 'PNG');
+        @$pdf->Image($logoPath, $logoX, $logoY, $logoW, $logoH, '', '', '', false, 300, '', false, false, 0, false, false, false);
     }
+
+    // Image placement must never create extra pages.
+    while ($pdf->getNumPages() > $pageCount) {
+        $pdf->deletePage($pdf->getNumPages());
+    }
+
+    $pdf->SetAutoPageBreak($autoBreak, $breakMargin);
 }

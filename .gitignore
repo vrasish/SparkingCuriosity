@@ -18,3 +18,5 @@ data/topic-request-submissions.jsonl
 /composer.phar
 
 data/.quiz-completions-schema-ready
+data/read-aloud/audio/*/story-full.mp3
+data/read-aloud/audio/*/story-full.mp3.tmp

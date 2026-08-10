@@ -3,6 +3,8 @@ require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/reviews-lib.php';
 require_once __DIR__ . '/recommendations-lib.php';
 require_once __DIR__ . '/favorites-lib.php';
+require_once __DIR__ . '/read-aloud-lib.php';
+require_once __DIR__ . '/quiz-lib.php';
 
 ensure_book_pdf_schema($pdo);
 ensure_book_pricing_schema($pdo);
@@ -88,6 +90,10 @@ $isPdfBook = $book && !$bookLocked && ($book['book_format'] ?? 'pages') === 'pdf
 $pdfUrl = $isPdfBook ? pdf_reader_url($bookId, $preview) : '';
 $pdfDownloadUrl = $isPdfBook ? pdf_download_url($bookId, $preview) : '';
 $pdfExists = $isPdfBook && is_file(__DIR__ . '/' . ($book['pdf_file_path'] ?? ''));
+$audioDownloadAvailable = $isPdfBook && !$bookLocked && read_aloud_full_story_audio_available($bookId);
+$audioDownloadUrl = $audioDownloadAvailable ? read_aloud_download_url($bookId, $preview) : '';
+$quizDownloadAvailable = $isPdfBook && !$bookLocked && quiz_has_story($bookId) && quiz_public_questions($bookId) !== [];
+$quizDownloadUrl = $quizDownloadAvailable ? quiz_download_url($bookId, $preview) : '';
 $inCart = cart_enabled() && $book && in_array($bookId, cart_book_ids(), true);
 $bookOwned = $book && cart_enabled() && is_book_purchased($bookId) && !is_book_free($book);
 
@@ -217,6 +223,12 @@ if ($book && !$preview && !$bookLocked) {
                         <div class="pdf-viewer-column">
                             <div class="pdf-viewer-actions">
                                 <a href="<?= e($pdfDownloadUrl) ?>" class="btn btn-primary btn-sm btn-download-pdf">Download PDF</a>
+                                <?php if ($audioDownloadAvailable): ?>
+                                <a href="<?= e($audioDownloadUrl) ?>" class="btn btn-primary btn-sm btn-download-audio">Download Audio</a>
+                                <?php endif; ?>
+                                <?php if ($quizDownloadAvailable): ?>
+                                <a href="<?= e($quizDownloadUrl) ?>" class="btn btn-primary btn-sm btn-download-quiz">Download Quiz</a>
+                                <?php endif; ?>
                                 <a href="<?= e($pdfUrl) ?>" class="btn btn-outline btn-sm" target="_blank" rel="noopener">Open in new tab</a>
                             </div>
                             <div

@@ -531,3 +531,149 @@ function quiz_public_questions_from_raw(array $rawQuestions): array
 
     return array_slice($questions, 0, quiz_question_count());
 }
+
+function quiz_download_url(int $bookId, bool $preview = false): string
+{
+    $url = app_url('quiz-download.php?id=' . $bookId);
+    if ($preview) {
+        $url .= '&preview=1';
+    }
+
+    return $url;
+}
+
+function quiz_choice_letter(int $index): string
+{
+    return chr(ord('A') + $index);
+}
+
+/**
+ * Build a printable quiz PDF (questions first, answer key last).
+ *
+ * @return string Absolute path to a temporary PDF file
+ */
+function quiz_build_download_pdf(int $bookId, string $bookTitle = ''): string
+{
+    $data = quiz_story_data($bookId);
+    $questions = quiz_public_questions($bookId);
+    if ($data === null || $questions === []) {
+        throw new RuntimeException('quiz_unavailable');
+    }
+
+    $title = trim((string) ($data['title'] ?? $bookTitle));
+    if ($title === '') {
+        $title = 'Story Quiz';
+    }
+    $intro = trim((string) ($data['intro'] ?? ''));
+
+    if (!defined('K_TCPDF_THROW_EXCEPTION')) {
+        define('K_TCPDF_THROW_EXCEPTION', true);
+    }
+    require_once __DIR__ . '/lib/tcpdf/tcpdf.php';
+    require_once __DIR__ . '/pdf-branding-lib.php';
+
+    $pdf = new TCPDF('P', 'mm', 'LETTER', true, 'UTF-8', false);
+    $pdf->SetCreator(site_brand_name());
+    $pdf->SetAuthor(site_brand_name());
+    $pdf->SetTitle($title . ' — Quiz');
+    $pdf->setPrintHeader(false);
+    $pdf->setPrintFooter(false);
+    $pdf->SetMargins(18, 18, 18);
+    $pdf->SetAutoPageBreak(true, 22);
+    $pdf->AddPage();
+
+    $pdf->SetFont('helvetica', 'B', 18);
+    $pdf->SetTextColor(37, 99, 235);
+    $pdf->MultiCell(0, 9, site_brand_name(), 0, 'L', false, 1);
+
+    $pdf->SetFont('helvetica', 'B', 16);
+    $pdf->SetTextColor(26, 16, 51);
+    $pdf->MultiCell(0, 8, $title, 0, 'L', false, 1);
+
+    $pdf->SetFont('helvetica', 'B', 12);
+    $pdf->SetTextColor(124, 58, 237);
+    $pdf->MultiCell(0, 7, 'Story Quiz', 0, 'L', false, 1);
+    $pdf->Ln(2);
+
+    if ($intro !== '') {
+        $pdf->SetFont('helvetica', '', 10);
+        $pdf->SetTextColor(91, 77, 122);
+        $pdf->MultiCell(0, 5, $intro, 0, 'L', false, 1);
+        $pdf->Ln(3);
+    }
+
+    $pdf->SetTextColor(26, 16, 51);
+    foreach ($questions as $i => $question) {
+        $num = $i + 1;
+        $prompt = (string) ($question['prompt'] ?? '');
+        $choices = $question['choices'] ?? [];
+        if (!is_array($choices)) {
+            $choices = [];
+        }
+
+        if ($pdf->GetY() > 240) {
+            $pdf->AddPage();
+        }
+
+        $pdf->SetFont('helvetica', 'B', 11);
+        $pdf->MultiCell(0, 6, $num . '. ' . $prompt, 0, 'L', false, 1);
+        $pdf->Ln(1);
+
+        $pdf->SetFont('helvetica', '', 10);
+        foreach (array_values($choices) as $choiceIndex => $choiceText) {
+            $letter = quiz_choice_letter($choiceIndex);
+            $pdf->MultiCell(0, 5, '    ' . $letter . '. ' . trim((string) $choiceText), 0, 'L', false, 1);
+        }
+        $pdf->Ln(4);
+    }
+
+    $pdf->AddPage();
+    $pdf->SetFont('helvetica', 'B', 14);
+    $pdf->SetTextColor(124, 58, 237);
+    $pdf->MultiCell(0, 8, 'Answer Key', 0, 'L', false, 1);
+    $pdf->Ln(2);
+
+    $pdf->SetTextColor(26, 16, 51);
+    foreach ($questions as $i => $question) {
+        $num = $i + 1;
+        $choices = $question['choices'] ?? [];
+        if (!is_array($choices)) {
+            $choices = [];
+        }
+        $correctIndex = (int) ($question['correct_index'] ?? -1);
+        $letter = ($correctIndex >= 0 && $correctIndex < count($choices))
+            ? quiz_choice_letter($correctIndex)
+            : '?';
+        $correctText = ($correctIndex >= 0 && isset($choices[$correctIndex]))
+            ? trim((string) $choices[$correctIndex])
+            : '';
+        $explanation = trim((string) ($question['explanation'] ?? ''));
+
+        if ($pdf->GetY() > 250) {
+            $pdf->AddPage();
+        }
+
+        $pdf->SetFont('helvetica', 'B', 11);
+        $pdf->MultiCell(0, 6, $num . '. ' . $letter . ($correctText !== '' ? ' — ' . $correctText : ''), 0, 'L', false, 1);
+        if ($explanation !== '') {
+            $pdf->SetFont('helvetica', '', 10);
+            $pdf->SetTextColor(91, 77, 122);
+            $pdf->MultiCell(0, 5, $explanation, 0, 'L', false, 1);
+            $pdf->SetTextColor(26, 16, 51);
+        }
+        $pdf->Ln(3);
+    }
+
+    $pdf->SetAutoPageBreak(false);
+    brand_tcpdf_document($pdf);
+
+    $tmpDir = sys_get_temp_dir();
+    $tmpPath = $tmpDir . '/scifables-quiz-' . $bookId . '-' . bin2hex(random_bytes(6)) . '.pdf';
+    $pdf->Output($tmpPath, 'F');
+
+    if (!is_file($tmpPath)) {
+        throw new RuntimeException('quiz_pdf_write_failed');
+    }
+
+    return $tmpPath;
+}
