@@ -346,6 +346,66 @@ function body_class(string $extra = ''): string
     return trim('public-page ' . $extra);
 }
 
+/** Current request script basename, e.g. impact.php */
+function current_nav_script(): string
+{
+    $script = basename((string) ($_SERVER['SCRIPT_NAME'] ?? ''));
+    if ($script === '' || $script === '/' || $script === '\\') {
+        return 'index.php';
+    }
+
+    return $script;
+}
+
+/**
+ * Whether a nav item should be marked active for the current page.
+ * Related pages (e.g. impact-story.php) can activate a parent nav script.
+ *
+ * @param list<string> $alsoActiveFor
+ */
+function nav_link_is_active(string $hrefScript, array $alsoActiveFor = []): bool
+{
+    $current = current_nav_script();
+    if ($current === $hrefScript) {
+        return true;
+    }
+
+    return in_array($current, $alsoActiveFor, true);
+}
+
+function render_nav_link(string $href, string $label, bool $active = false, string $extraClass = ''): void
+{
+    $classes = trim($extraClass . ($active ? ' is-active' : ''));
+    $attrs = 'href="' . e($href) . '"';
+    if ($classes !== '') {
+        $attrs .= ' class="' . e($classes) . '"';
+    }
+    if ($active) {
+        $attrs .= ' aria-current="page"';
+    }
+    echo '<a ' . $attrs . '>' . e($label) . '</a>';
+}
+
+function render_current_impact_badge(): void
+{
+    require_once __DIR__ . '/impact-lib.php';
+
+    $students = impact_total_children_reached();
+    if ($students < 1) {
+        return;
+    }
+
+    echo '<div class="current-impact" aria-label="Current impact: ' . (int) $students . ' students reached">';
+    echo '<span class="current-impact-kicker">Current Impact</span>';
+    echo '<span class="current-impact-metrics">';
+    echo '<span class="current-impact-metric">';
+    echo '<span class="current-impact-label">Students</span>';
+    echo '<span class="current-impact-value impact-count" data-count-to="' . (int) $students . '" data-count-duration="2000">1</span>';
+    echo '</span>';
+    echo '</span>';
+    echo '</div>';
+}
+
 function render_site_logo_icon(): void
 {
     $logoUrl = site_logo_url();
@@ -391,30 +451,31 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
     echo '<nav class="nav-links" id="site-nav" aria-label="Main">';
 
     if ($isAdminNav) {
-        echo '<a href="' . e(app_url('admin-stories.php')) . '">All Stories</a>';
-        echo '<a href="' . e(app_url('admin-review.php')) . '">Story Review</a>';
-        echo '<a href="' . e(app_url('admin-topic-requests.php')) . '">Topic Requests</a>';
-        echo '<a href="' . e(app_url('admin-sales.php')) . '">Library Sales</a>';
-        echo '<a href="' . e(app_url('reports-admin.php')) . '">Reports</a>';
-        echo '<a href="' . e(app_url('index.php')) . '">Public Site</a>';
+        render_nav_link(app_url('admin-stories.php'), 'All Stories', nav_link_is_active('admin-stories.php'));
+        render_nav_link(app_url('admin-review.php'), 'Story Review', nav_link_is_active('admin-review.php'));
+        render_nav_link(app_url('admin-topic-requests.php'), 'Topic Requests', nav_link_is_active('admin-topic-requests.php'));
+        render_nav_link(app_url('admin-sales.php'), 'Library Sales', nav_link_is_active('admin-sales.php'));
+        render_nav_link(app_url('reports-admin.php'), 'Reports', nav_link_is_active('reports-admin.php'));
+        render_nav_link(app_url('index.php'), 'Public Site', false);
     } else {
-        echo '<a href="' . e(app_url('index.php')) . '">Home</a>';
-        echo '<a href="' . e(app_url('search.php')) . '">Search</a>';
-        echo '<a href="' . e(app_url('mission.php')) . '">Our Mission</a>';
-        echo '<a href="' . e(app_url('impact.php')) . '">Impact</a>';
-        echo '<a href="' . e(app_url('request-topic.php')) . '">Request a Topic</a>';
+        render_nav_link(app_url('index.php'), 'Home', nav_link_is_active('index.php'));
+        render_nav_link(app_url('search.php'), 'Search', nav_link_is_active('search.php', ['explore.php']));
+        render_nav_link(app_url('mission.php'), 'Our Mission', nav_link_is_active('mission.php'));
+        render_nav_link(app_url('impact.php'), 'Impact', nav_link_is_active('impact.php', ['impact-story.php']));
+        render_nav_link(app_url('get-involved.php'), 'Get Involved', nav_link_is_active('get-involved.php', ['partners.php']));
+        render_nav_link(app_url('request-topic.php'), 'Request a Topic', nav_link_is_active('request-topic.php'));
         if ($user) {
-            echo '<a href="' . e(app_url('my-library.php')) . '">My Library</a>';
+            render_nav_link(app_url('my-library.php'), 'My Library', nav_link_is_active('my-library.php'));
         }
         if ($user && is_creator_user()) {
             if (ai_authoring_enabled()) {
-                echo '<a href="' . e(app_url('ai-authoring.php')) . '">AI Authoring Tool</a>';
+                render_nav_link(app_url('ai-authoring.php'), 'AI Authoring Tool', nav_link_is_active('ai-authoring.php'));
             }
-            echo '<a href="' . e(app_url('upload-book.php')) . '">Upload PDF</a>';
-            echo '<a href="' . e(app_url('creator-dashboard.php')) . '">Creator Dashboard</a>';
+            render_nav_link(app_url('upload-book.php'), 'Upload PDF', nav_link_is_active('upload-book.php'));
+            render_nav_link(app_url('creator-dashboard.php'), 'Creator Dashboard', nav_link_is_active('creator-dashboard.php', ['creator-sales.php']));
         }
         if ($user && is_admin_user()) {
-            echo '<a href="' . e(app_url('admin-review.php')) . '">Admin</a>';
+            render_nav_link(app_url('admin-review.php'), 'Admin', nav_link_is_active('admin-review.php', ['admin-stories.php', 'admin-topic-requests.php', 'admin-sales.php', 'reports-admin.php']));
         }
     }
 
