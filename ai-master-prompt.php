@@ -7,7 +7,7 @@ declare(strict_types=1);
  * Override in sparking-ai.config.php with a 'master_prompt' key.
  */
 return <<<'PROMPT'
-Create a children's science mystery storybook for ages 8–12 about [SCIENCE TOPIC].
+Create a children's science mystery storybook for ages 8–15 about [SCIENCE TOPIC].
 
 The story should feel friendly, natural, interesting, and educational. It should not sound like a textbook. Build the science through a small mystery, discovery, nature walk, experiment, field trip, classroom activity, family trip, museum visit, science camp, or another fresh setting.
 
@@ -19,7 +19,7 @@ Give every page a short, interesting title.
 Use a natural story flow from one page to the next.
 Avoid repeating the same phrases, questions, or sentence patterns.
 Do not repeatedly write lines such as "the mystery was getting more interesting," "they looked closely," or "another clue."
-Include accurate science appropriate for ages 8–12.
+Include accurate science appropriate for ages 8–15.
 Explain difficult terms through dialogue and events.
 Keep each page's text short enough to fit comfortably below the image.
 Finish the story before the science summary.

@@ -121,7 +121,7 @@ $insertBook = $pdo->prepare("
         created_by, price_cents
     ) VALUES (
         :title, :author_name, :description, :cover_image_url,
-        '8-12', :science_element, 'approved', 'pdf', :pdf_file_path,
+        '8-15', :science_element, 'approved', 'pdf', :pdf_file_path,
         NULL, 0
     )
 ");

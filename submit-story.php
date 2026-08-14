@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $stmtBook = $pdo->prepare("
                 INSERT INTO books (title, author_name, description, cover_image_url, age_group, science_element, status, created_by)
-                VALUES (:title, :author_name, :description, :cover_image_url, '8-12', :science_element, 'under_review', :created_by)
+                VALUES (:title, :author_name, :description, :cover_image_url, '8-15', :science_element, 'under_review', :created_by)
             ");
             $stmtBook->execute([
                 'title' => $title,
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <main class="container page-main page-main-compact">
     <?php render_page_header(
         'Submit Your Science Story',
-        'Share a fictional story for ages 8–12 that teaches one clear science idea. All stories are reviewed before publishing.'
+        'Share a fictional story for ages 8–15 that teaches one clear science idea. All stories are reviewed before publishing.'
     ); ?>
 
     <div class="page-section">

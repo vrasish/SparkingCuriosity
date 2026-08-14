@@ -407,7 +407,7 @@ function quiz_generate_for_book(PDO $pdo, int $bookId): array
     }
 
     $system = <<<'PROMPT'
-You write simple reading quizzes for children ages 8–12.
+You write simple reading quizzes for children ages 8–15.
 
 Return ONLY valid JSON with this shape:
 {

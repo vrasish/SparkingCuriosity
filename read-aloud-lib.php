@@ -22,7 +22,7 @@ function read_aloud_tts_config(): array
         'provider' => 'openai',
         'model' => 'gpt-4o-mini-tts',
         'voice' => 'shimmer',
-        'instructions' => 'You are reading a children\'s science story aloud to kids ages 8–12. '
+        'instructions' => 'You are reading a children\'s science story aloud to kids ages 8–15. '
             . 'Use a warm, natural female storyteller voice with lively intonation and emotional variety. '
             . 'Slow down slightly on important science words, lift your tone gently on questions, '
             . 'and sound curious or surprised when the characters wonder about something. '

@@ -48,7 +48,6 @@ $latestRowTwo = array_slice($latestBooks, 3);
 function render_home_story_card(array $book, array $ratingSummaries): void
 {
     $cover = cover_image_src($book['cover_image_url'] ?? null, $book['title']);
-    $readMins = estimate_reading_minutes((string) ($book['description'] ?? ''));
     ?>
     <article class="home-story-card">
         <div class="home-story-cover-wrap">
@@ -64,7 +63,6 @@ function render_home_story_card(array $book, array $ratingSummaries): void
             <div class="home-story-card-footer">
                 <div class="home-story-meta">
                     <span>Ages <?= e($book['age_group']) ?></span>
-                    <span><?= (int) $readMins ?> min</span>
                 </div>
                 <div class="home-story-actions">
                     <?php

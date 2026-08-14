@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             name="age_group"
                             class="form-control"
                             maxlength="50"
-                            placeholder="e.g. 8–12"
+                            placeholder="e.g. 8–15"
                             value="<?= e($postedAgeGroup) ?>"
                         >
                     </div>

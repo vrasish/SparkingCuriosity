@@ -28,7 +28,7 @@ $partnerEmail = 'scifables2026@gmail.com';
         <p class="mission-kicker">Partner with Science Fables</p>
         <h1 class="mission-hero-title">Making Science Accessible Through Stories</h1>
         <p class="mission-hero-lead">
-            Science Fables is a free digital library of engaging science stories that helps children ages 8–12 discover STEM through imagination, curiosity, and reading.
+            Science Fables is a free digital library of engaging science stories that helps children ages 8–15 discover STEM through imagination, curiosity, and reading.
         </p>
         <p class="mission-hero-support">
             Whether you're a nonprofit, school, library, museum, or community organization, we'd love to work together to inspire the next generation of scientists, engineers, and innovators.
@@ -90,7 +90,7 @@ $partnerEmail = 'scifables2026@gmail.com';
         <div class="mission-audience-grid">
             <article class="mission-audience-card">
                 <span class="mission-audience-icon" aria-hidden="true">👧</span>
-                <h3>Children (Ages 8–12)</h3>
+                <h3>Children (Ages 8–15)</h3>
                 <p>Stories that make science exciting and easy to understand.</p>
             </article>
             <article class="mission-audience-card">

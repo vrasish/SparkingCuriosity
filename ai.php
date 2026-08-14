@@ -124,7 +124,7 @@ function ai_system_prompt(): string
 {
     return ai_master_story_rules() . "\n\n"
         . "You are the Science Fables AI Authoring Assistant. Help creators write children's science mystery storybooks "
-        . "for ages 8–12 that match the site's published PDF style: friendly, natural, realistic photo-style pages, "
+        . "for ages 8–15 that match the site's published PDF style: friendly, natural, realistic photo-style pages, "
         . "cream backgrounds, navy titles, and a Science Element page only at the very end.\n\n"
         . "When the user asks for a plan, outline, or full story, follow the master story rules exactly. "
         . "Do not sound like a textbook. Use fresh characters and settings each time. "
@@ -170,15 +170,15 @@ SCHEMA;
 function ai_prompt_templates(): array
 {
     return [
-        ['id' => 'space_adventure', 'title' => 'Space', 'icon' => '🪐', 'starter' => 'Help me write a space science fiction story for kids ages 8–12.'],
-        ['id' => 'body_journey', 'title' => 'Human Body', 'icon' => '🫀', 'starter' => 'Help me write a story about the human body for kids ages 8–12.'],
-        ['id' => 'plant_mystery', 'title' => 'Plants', 'icon' => '🌱', 'starter' => 'Help me write a plant science story for kids ages 8–12.'],
-        ['id' => 'animal_adventure', 'title' => 'Animals', 'icon' => '🐾', 'starter' => 'Help me write an animal science story for kids ages 8–12.'],
-        ['id' => 'weather_watch', 'title' => 'Weather', 'icon' => '🌦️', 'starter' => 'Help me write a weather science story for kids ages 8–12.'],
-        ['id' => 'germ_detectives', 'title' => 'Microbes', 'icon' => '🦠', 'starter' => 'Help me write a kid-friendly microbes or bacteria story for ages 8–12.'],
-        ['id' => 'earth_science', 'title' => 'Earth Science', 'icon' => '🌍', 'starter' => 'Help me write an earth science story about oceans, weather, or the atmosphere for kids ages 8–12.'],
-        ['id' => 'engineering_build', 'title' => 'Engineering', 'icon' => '🔧', 'starter' => 'Help me write an engineering story for kids ages 8–12.'],
-        ['id' => 'physical_science', 'title' => 'Physical Science', 'icon' => '⚛️', 'starter' => 'Help me write a physical science story about forces, energy, or matter for kids ages 8–12.'],
+        ['id' => 'space_adventure', 'title' => 'Space', 'icon' => '🪐', 'starter' => 'Help me write a space science fiction story for kids ages 8–15.'],
+        ['id' => 'body_journey', 'title' => 'Human Body', 'icon' => '🫀', 'starter' => 'Help me write a story about the human body for kids ages 8–15.'],
+        ['id' => 'plant_mystery', 'title' => 'Plants', 'icon' => '🌱', 'starter' => 'Help me write a plant science story for kids ages 8–15.'],
+        ['id' => 'animal_adventure', 'title' => 'Animals', 'icon' => '🐾', 'starter' => 'Help me write an animal science story for kids ages 8–15.'],
+        ['id' => 'weather_watch', 'title' => 'Weather', 'icon' => '🌦️', 'starter' => 'Help me write a weather science story for kids ages 8–15.'],
+        ['id' => 'germ_detectives', 'title' => 'Microbes', 'icon' => '🦠', 'starter' => 'Help me write a kid-friendly microbes or bacteria story for ages 8–15.'],
+        ['id' => 'earth_science', 'title' => 'Earth Science', 'icon' => '🌍', 'starter' => 'Help me write an earth science story about oceans, weather, or the atmosphere for kids ages 8–15.'],
+        ['id' => 'engineering_build', 'title' => 'Engineering', 'icon' => '🔧', 'starter' => 'Help me write an engineering story for kids ages 8–15.'],
+        ['id' => 'physical_science', 'title' => 'Physical Science', 'icon' => '⚛️', 'starter' => 'Help me write a physical science story about forces, energy, or matter for kids ages 8–15.'],
     ];
 }
 
@@ -395,7 +395,7 @@ function ai_generate_plan(string $idea): array
     $messages = [
         [
             'role' => 'user',
-            'content' => "Create a step-by-step PLAN for a children's science mystery storybook (ages 8–12) based on this idea:\n\n"
+            'content' => "Create a step-by-step PLAN for a children's science mystery storybook (ages 8–15) based on this idea:\n\n"
                 . $idea . "\n\n"
                 . ai_master_story_rules() . "\n\n"
                 . "Write a clear, editable plan the author can review before drafting. Use markdown with these sections:\n"
@@ -435,7 +435,7 @@ function ai_generate_outline(string $idea, string $plan): array
     $messages = [
         [
             'role' => 'user',
-            'content' => "Using this story idea and approved plan, produce a finished children's science mystery storybook outline for ages 8–12.\n\n"
+            'content' => "Using this story idea and approved plan, produce a finished children's science mystery storybook outline for ages 8–15.\n\n"
                 . ai_master_story_rules() . "\n\n"
                 . ai_story_json_schema_instructions() . "\n\n"
                 . "Follow the plan closely. Invent fresh characters and a fresh setting if the plan is vague.\n\n"
@@ -477,7 +477,7 @@ function ai_story_from_outline(string $idea, string $plan, string $outline): arr
     $messages = [
         [
             'role' => 'user',
-            'content' => "Convert this approved story outline into JSON for PDF generation (ages 8–12). Return JSON only (no markdown fences).\n\n"
+            'content' => "Convert this approved story outline into JSON for PDF generation (ages 8–15). Return JSON only (no markdown fences).\n\n"
                 . ai_story_json_schema_instructions() . "\n\n"
                 . "Respect any edits the author made to the outline. Keep one clear science concept. "
                 . "Display story text exactly as written — do not rewrite, shorten, duplicate, or add lines.\n\n"
@@ -880,7 +880,7 @@ function ai_extract_story_for_pdf(array $messages): array
     $extractMessages = [
         [
             'role' => 'user',
-            'content' => "From this writing session, produce a finished children's science mystery storybook for ages 8–12 as JSON only (no markdown fences).\n\n"
+            'content' => "From this writing session, produce a finished children's science mystery storybook for ages 8–15 as JSON only (no markdown fences).\n\n"
                 . ai_master_story_rules() . "\n\n"
                 . ai_story_json_schema_instructions() . "\n\n"
                 . "If the conversation is brief, invent a complete story with fresh characters and setting.\n"
@@ -1028,13 +1028,13 @@ function ai_save_book_from_story(PDO $pdo, array $story, string $pdfPath, int $u
                 age_group, science_element, status, book_format, pdf_file_path, created_by
             ) VALUES (
                 :title, :author_name, :description, :cover_image_url,
-                '8-12', :science_element, 'under_review', 'pdf', :pdf_file_path, :created_by
+                '8-15', :science_element, 'under_review', 'pdf', :pdf_file_path, :created_by
             )
         ");
         $stmtBook->execute([
             'title' => $title,
             'author_name' => $author,
-            'description' => $description !== '' ? $description : 'An AI-assisted science story for ages 8–12.',
+            'description' => $description !== '' ? $description : 'An AI-assisted science story for ages 8–15.',
             'cover_image_url' => $coverBrowser,
             'science_element' => $scienceElement,
             'pdf_file_path' => $pdfPath,

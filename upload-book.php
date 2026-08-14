@@ -125,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 age_group, science_element, status, book_format, pdf_file_path, created_by
                             ) VALUES (
                                 :title, :author_name, :description, :cover_image_url,
-                                '8-12', :science_element, 'under_review', 'pdf', :pdf_file_path, :created_by
+                                '8-15', :science_element, 'under_review', 'pdf', :pdf_file_path, :created_by
                             )
                         ");
                         $stmtBook->execute([
