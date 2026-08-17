@@ -56,7 +56,6 @@ function story_topics_by_title(): array
         'The Raindrop That Took a Trip' => 'Water cycle',
         'The Creatures of the Midnight Sea' => 'Deep-sea ecosystem',
         'The Cloud That Came Down' => 'Fog vs. Mist',
-        'The Beach That Ate the Footprints' => 'Tides',
         'Good Bacteria Club' => 'Good bacteria (Microbiome)',
         'The Food Tunnel Adventure' => 'Digestive system',
         'The River Inside You' => 'Circulatory system',
