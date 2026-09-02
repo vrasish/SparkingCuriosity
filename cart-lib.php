@@ -89,13 +89,20 @@ function book_price_cents(array $book): int
     return max(0, (int) ($book['price_cents'] ?? 0));
 }
 
-/** @return list<int> */
+/** Stories shown on the homepage — guests can open these without signing up. */
 function guest_open_story_ids(): array
 {
-    return [
-        39, // Good Bacteria Club
-        54, // The Stem That Carried a River
-    ];
+    static $ids = null;
+    if ($ids !== null) {
+        return $ids;
+    }
+
+    $ids = array_values(array_unique(array_map(
+        'intval',
+        array_merge(home_featured_story_ids(), home_top_pick_story_ids())
+    )));
+
+    return $ids;
 }
 
 function is_guest_open_story(int $bookId): bool
