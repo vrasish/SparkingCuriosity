@@ -149,6 +149,7 @@ $topicTiles = home_topic_tiles();
     <?php foreach ($classrooms as $classroom): ?>
         <?php
         $stats = classroom_stats($pdo, $classroom);
+        $completedStories = classroom_stories_completed($pdo, $classroom);
         $link = classroom_absolute_url((string) $classroom['slug']);
         $teacherName = (string) ($classroom['teacher_display_name'] ?? '');
         $school = trim((string) ($classroom['school_name'] ?? ''));
@@ -253,34 +254,68 @@ $topicTiles = home_topic_tiles();
             <p class="class-stats-note">
                 Counts are for your class as a whole (anonymous devices that used your link). Individual students are not named.
             </p>
+
+            <?php if ($completedStories !== []): ?>
+                <h4 class="class-completed-heading">Stories completed</h4>
+                <ul class="class-completed-list">
+                    <?php foreach ($completedStories as $done): ?>
+                        <li class="class-completed-item">
+                            <div class="class-completed-title">
+                                <span class="class-completed-badge">Story completed ✓</span>
+                                <strong><?= e((string) $done['title']) ?></strong>
+                                <?php if (($done['story_topic'] ?? '') !== ''): ?>
+                                    <span class="class-completed-topic"><?= e((string) $done['story_topic']) ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <dl class="class-completed-stats">
+                                <div>
+                                    <dt>Students finished</dt>
+                                    <dd><?= (int) $done['students_completed'] ?> / <?= (int) ($classroom['class_size'] ?? 0) ?></dd>
+                                </div>
+                                <div>
+                                    <dt>Avg. quiz score</dt>
+                                    <dd><?= $done['average_quiz_score'] === null ? '—' : ((int) $done['average_quiz_score'] . '%') ?></dd>
+                                </div>
+                            </dl>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
+            <h4 class="class-current-heading">Current assigned story</h4>
+            <p class="class-dash-assigned class-current-assigned">
+                <?php if ($assignedTitle !== ''): ?>
+                    <strong><?= e((string) ($classroom['assigned_topic_icon'] ?? '🌱')) ?> <?= e((string) ($classroom['assigned_topic'] ?? '')) ?></strong>
+                    — <?= e($assignedTitle) ?>
+                <?php else: ?>
+                    No story assigned yet.
+                <?php endif; ?>
+            </p>
+            <p class="class-stats-note">These numbers count only the currently assigned story — not completed stories above.</p>
             <dl class="class-stats">
                 <div class="class-stat">
                     <dt>👥 Class size</dt>
                     <dd><?= (int) ($classroom['class_size'] ?? 0) ?></dd>
                 </div>
                 <div class="class-stat">
-                    <dt>📖 Students who opened assigned story</dt>
+                    <dt>📖 Students who opened this story</dt>
                     <dd><?= (int) $stats['students_read_assigned'] ?></dd>
                 </div>
                 <div class="class-stat">
-                    <dt>🧠 Students who completed a quiz</dt>
-                    <dd><?= (int) $stats['students_completed_quiz'] ?></dd>
+                    <dt>🧠 Students who finished this quiz</dt>
+                    <dd><?= (int) ($stats['students_completed_assigned_quiz'] ?? 0) ?></dd>
                 </div>
                 <div class="class-stat">
-                    <dt>📚 Total story opens</dt>
-                    <dd><?= (int) $stats['stories_read'] ?></dd>
+                    <dt>📚 Story opens</dt>
+                    <dd><?= (int) ($stats['assigned_story_opens'] ?? 0) ?></dd>
                 </div>
                 <div class="class-stat">
                     <dt>📝 Quizzes completed</dt>
-                    <dd><?= (int) $stats['quizzes_completed'] ?></dd>
+                    <dd><?= (int) ($stats['assigned_quizzes_completed'] ?? 0) ?></dd>
                 </div>
                 <div class="class-stat">
                     <dt>⭐ Average quiz score</dt>
-                    <dd><?= $stats['average_quiz_score'] === null ? '—' : ((int) $stats['average_quiz_score'] . '%') ?></dd>
-                </div>
-                <div class="class-stat">
-                    <dt>🔎 Extra stories explored</dt>
-                    <dd><?= (int) $stats['additional_stories_explored'] ?></dd>
+                    <dd><?= ($stats['assigned_average_quiz_score'] ?? null) === null ? '—' : ((int) $stats['assigned_average_quiz_score'] . '%') ?></dd>
                 </div>
             </dl>
         </section>

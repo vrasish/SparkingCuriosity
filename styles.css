@@ -6429,12 +6429,87 @@ tr:hover td {
     text-decoration: none;
 }
 
+.admin-class-completed-cell {
+    min-width: 220px;
+    line-height: 1.35;
+}
+
 .admin-class-table td a:hover {
     text-decoration: underline;
 }
 
 .admin-class-impact-grid {
     margin-top: 12px;
+}
+
+.class-completed-heading,
+.class-current-heading {
+    margin: 18px 0 10px;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--purple-dark);
+}
+
+.class-completed-list {
+    list-style: none;
+    margin: 0 0 18px;
+    padding: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.class-completed-item {
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.28);
+}
+
+.class-completed-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 12px;
+    margin-bottom: 10px;
+}
+
+.class-completed-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(22, 101, 52, 0.12);
+    color: #166534;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.class-completed-topic {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+}
+
+.class-completed-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin: 0;
+}
+
+.class-completed-stats dt {
+    margin: 0 0 2px;
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+}
+
+.class-completed-stats dd {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--purple-dark);
+}
+
+.class-current-assigned {
+    margin: 0 0 14px;
 }
 
 .admin-class-reset {

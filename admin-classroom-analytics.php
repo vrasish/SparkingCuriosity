@@ -38,10 +38,12 @@ $impact = classroom_platform_impact($pdo);
 $rows = classroom_admin_rows_with_stats($pdo);
 
 $detailStats = null;
+$detailCompleted = [];
 $detailTeacher = null;
 $detailBookTitle = '';
 if ($detail) {
     $detailStats = classroom_stats($pdo, $detail);
+    $detailCompleted = classroom_stories_completed($pdo, $detail);
     foreach ($rows as $row) {
         if ((int) ($row['classroom_id'] ?? 0) === (int) $detail['classroom_id']) {
             $detailTeacher = $row;
@@ -145,34 +147,69 @@ if ($detail) {
                 Same aggregate view the teacher sees. Counts are anonymous devices that used this classroom link.
                 Activity while you are logged in as SciFables admin is not recorded.
             </p>
+
+            <?php if ($detailCompleted !== []): ?>
+                <h3 class="class-completed-heading">Stories completed</h3>
+                <ul class="class-completed-list">
+                    <?php foreach ($detailCompleted as $done): ?>
+                        <li class="class-completed-item">
+                            <div class="class-completed-title">
+                                <span class="class-completed-badge">Story completed ✓</span>
+                                <strong><?= e((string) $done['title']) ?></strong>
+                                <?php if (($done['story_topic'] ?? '') !== ''): ?>
+                                    <span class="class-completed-topic"><?= e((string) $done['story_topic']) ?></span>
+                                <?php endif; ?>
+                            </div>
+                            <dl class="class-completed-stats">
+                                <div>
+                                    <dt>Students finished</dt>
+                                    <dd><?= (int) $done['students_completed'] ?> / <?= (int) ($detail['class_size'] ?? 0) ?></dd>
+                                </div>
+                                <div>
+                                    <dt>Avg. quiz score</dt>
+                                    <dd><?= $done['average_quiz_score'] === null ? '—' : ((int) $done['average_quiz_score'] . '%') ?></dd>
+                                </div>
+                            </dl>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            <?php endif; ?>
+
+            <h3 class="class-current-heading">Current assigned story</h3>
+            <p class="class-dash-assigned class-current-assigned">
+                <?php if ($detailBookTitle !== ''): ?>
+                    <strong><?= e((string) ($detail['assigned_topic_icon'] ?? '🌱')) ?> <?= e((string) ($detail['assigned_topic'] ?? '')) ?></strong>
+                    — <?= e($detailBookTitle) ?>
+                <?php else: ?>
+                    No story assigned yet.
+                <?php endif; ?>
+            </p>
+            <p class="class-stats-note">These numbers count only the currently assigned story — not completed stories above.</p>
+
             <dl class="class-stats">
                 <div class="class-stat">
                     <dt>👥 Class size</dt>
                     <dd><?= (int) ($detail['class_size'] ?? 0) ?></dd>
                 </div>
                 <div class="class-stat">
-                    <dt>📖 Students who opened assigned story</dt>
+                    <dt>📖 Students who opened this story</dt>
                     <dd><?= (int) $detailStats['students_read_assigned'] ?></dd>
                 </div>
                 <div class="class-stat">
-                    <dt>🧠 Students who completed a quiz</dt>
-                    <dd><?= (int) $detailStats['students_completed_quiz'] ?></dd>
+                    <dt>🧠 Students who finished this quiz</dt>
+                    <dd><?= (int) ($detailStats['students_completed_assigned_quiz'] ?? 0) ?></dd>
                 </div>
                 <div class="class-stat">
-                    <dt>📚 Total story opens</dt>
-                    <dd><?= (int) $detailStats['stories_read'] ?></dd>
+                    <dt>📚 Story opens</dt>
+                    <dd><?= (int) ($detailStats['assigned_story_opens'] ?? 0) ?></dd>
                 </div>
                 <div class="class-stat">
                     <dt>📝 Quizzes completed</dt>
-                    <dd><?= (int) $detailStats['quizzes_completed'] ?></dd>
+                    <dd><?= (int) ($detailStats['assigned_quizzes_completed'] ?? 0) ?></dd>
                 </div>
                 <div class="class-stat">
                     <dt>⭐ Average quiz score</dt>
-                    <dd><?= $detailStats['average_quiz_score'] === null ? '—' : ((int) $detailStats['average_quiz_score'] . '%') ?></dd>
-                </div>
-                <div class="class-stat">
-                    <dt>🔎 Extra stories explored</dt>
-                    <dd><?= (int) $detailStats['additional_stories_explored'] ?></dd>
+                    <dd><?= ($detailStats['assigned_average_quiz_score'] ?? null) === null ? '—' : ((int) $detailStats['assigned_average_quiz_score'] . '%') ?></dd>
                 </div>
             </dl>
         </section>
@@ -270,7 +307,8 @@ if ($detail) {
                                 <th>Teacher</th>
                                 <th>School</th>
                                 <th>Class size</th>
-                                <th>Assigned story</th>
+                                <th>Assigned now</th>
+                                <th>Stories completed</th>
                                 <th>Story opens</th>
                                 <th>Quizzes</th>
                                 <th>Avg. score</th>
@@ -281,6 +319,7 @@ if ($detail) {
                             <?php foreach ($rows as $row): ?>
                                 <?php
                                 $stats = is_array($row['stats'] ?? null) ? $row['stats'] : [];
+                                $completed = is_array($row['completed_stories'] ?? null) ? $row['completed_stories'] : [];
                                 $cid = (int) ($row['classroom_id'] ?? 0);
                                 $teacherLabel = trim((string) ($row['teacher_account_name'] ?? ''));
                                 if ($teacherLabel === '') {
@@ -290,6 +329,17 @@ if ($detail) {
                                 if ($assignedLabel === '' && !empty($row['assigned_topic'])) {
                                     $assignedLabel = (string) $row['assigned_topic'];
                                 }
+                                $completedParts = [];
+                                foreach ($completed as $done) {
+                                    $score = ($done['average_quiz_score'] ?? null) === null
+                                        ? ''
+                                        : (', ' . (int) $done['average_quiz_score'] . '%');
+                                    $completedParts[] = (string) ($done['title'] ?? 'Story')
+                                        . ' (' . (int) ($done['students_completed'] ?? 0)
+                                        . '/' . (int) ($row['class_size'] ?? 0)
+                                        . $score . ')';
+                                }
+                                $completedLabel = $completedParts !== [] ? implode('; ', $completedParts) : '—';
                                 ?>
                                 <tr>
                                     <td>
@@ -301,6 +351,7 @@ if ($detail) {
                                     <td><?= e(trim((string) ($row['school_name'] ?? '')) !== '' ? (string) $row['school_name'] : '—') ?></td>
                                     <td><?= (int) ($row['class_size'] ?? 0) ?></td>
                                     <td><?= e($assignedLabel !== '' ? $assignedLabel : '—') ?></td>
+                                    <td class="admin-class-completed-cell"><?= e($completedLabel) ?></td>
                                     <td><?= (int) ($stats['stories_read'] ?? 0) ?></td>
                                     <td><?= (int) ($stats['quizzes_completed'] ?? 0) ?></td>
                                     <td><?= ($stats['average_quiz_score'] ?? null) === null ? '—' : ((int) $stats['average_quiz_score'] . '%') ?></td>

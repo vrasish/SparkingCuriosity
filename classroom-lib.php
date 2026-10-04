@@ -141,8 +141,8 @@ function classroom_seed_ms_kim(PDO $pdo): void
 }
 
 /**
- * Demo: all 24 students completed The Seed That Slept Underground at 100% (Quiz done).
- * Skips if that classroom already has quiz completions for the seed story.
+ * Demo: mark The Seed That Slept Underground as a completed story (24 students, 100%).
+ * Current assigned story remains Good Bacteria Club. Skips if seed quiz events already exist.
  */
 function classroom_seed_ms_kim_seed_story_done(PDO $pdo, int $classroomId): void
 {
@@ -421,7 +421,11 @@ function classroom_reset_analytics(PDO $pdo, int $classroomId): array
  *   additional_stories_explored: int,
  *   unique_stories: int,
  *   students_read_assigned: int,
- *   students_completed_quiz: int
+ *   students_completed_quiz: int,
+ *   assigned_story_opens: int,
+ *   assigned_quizzes_completed: int,
+ *   assigned_average_quiz_score: float|null,
+ *   students_completed_assigned_quiz: int
  * }
  */
 function classroom_stats(PDO $pdo, array $classroom): array
@@ -438,6 +442,10 @@ function classroom_stats(PDO $pdo, array $classroom): array
         'unique_stories' => 0,
         'students_read_assigned' => 0,
         'students_completed_quiz' => 0,
+        'assigned_story_opens' => 0,
+        'assigned_quizzes_completed' => 0,
+        'assigned_average_quiz_score' => null,
+        'students_completed_assigned_quiz' => 0,
     ];
     if ($classroomId <= 0) {
         return $empty;
@@ -476,19 +484,44 @@ function classroom_stats(PDO $pdo, array $classroom): array
     $stmt->execute([$classroomId]);
     $uniqueStories = (int) $stmt->fetchColumn();
 
+    // Extra exploration = opened books that are not the current assignment and not already "story completed".
     $additional = 0;
     if ($assignedBookId > 0) {
         $stmt = $pdo->prepare("
-            SELECT COUNT(DISTINCT book_id) FROM classroom_events
-            WHERE classroom_id = ? AND event_type = 'story_open' AND book_id <> ?
+            SELECT COUNT(DISTINCT o.book_id)
+            FROM classroom_events o
+            WHERE o.classroom_id = ?
+              AND o.event_type = 'story_open'
+              AND o.book_id <> ?
+              AND o.book_id NOT IN (
+                  SELECT q.book_id FROM classroom_events q
+                  WHERE q.classroom_id = o.classroom_id
+                    AND q.event_type = 'quiz_complete'
+              )
         ");
         $stmt->execute([$classroomId, $assignedBookId]);
         $additional = (int) $stmt->fetchColumn();
     } else {
-        $additional = $uniqueStories;
+        $stmt = $pdo->prepare("
+            SELECT COUNT(DISTINCT o.book_id)
+            FROM classroom_events o
+            WHERE o.classroom_id = ?
+              AND o.event_type = 'story_open'
+              AND o.book_id NOT IN (
+                  SELECT q.book_id FROM classroom_events q
+                  WHERE q.classroom_id = o.classroom_id
+                    AND q.event_type = 'quiz_complete'
+              )
+        ");
+        $stmt->execute([$classroomId]);
+        $additional = (int) $stmt->fetchColumn();
     }
 
     $studentsReadAssigned = 0;
+    $assignedStoryOpens = 0;
+    $assignedQuizzes = 0;
+    $assignedAvg = null;
+    $studentsAssignedQuiz = 0;
     if ($assignedBookId > 0) {
         $stmt = $pdo->prepare("
             SELECT COUNT(DISTINCT visitor_token) FROM classroom_events
@@ -500,6 +533,46 @@ function classroom_stats(PDO $pdo, array $classroom): array
         ");
         $stmt->execute([$classroomId, $assignedBookId]);
         $studentsReadAssigned = (int) $stmt->fetchColumn();
+
+        $stmt = $pdo->prepare("
+            SELECT COUNT(*) FROM classroom_events
+            WHERE classroom_id = ? AND event_type = 'story_open' AND book_id = ?
+        ");
+        $stmt->execute([$classroomId, $assignedBookId]);
+        $assignedStoryOpens = (int) $stmt->fetchColumn();
+
+        $stmt = $pdo->prepare("
+            SELECT COUNT(*) FROM classroom_events
+            WHERE classroom_id = ? AND event_type = 'quiz_complete' AND book_id = ?
+        ");
+        $stmt->execute([$classroomId, $assignedBookId]);
+        $assignedQuizzes = (int) $stmt->fetchColumn();
+
+        $stmt = $pdo->prepare("
+            SELECT AVG(CASE WHEN total > 0 THEN (score * 100.0) / total ELSE NULL END)
+            FROM classroom_events
+            WHERE classroom_id = ?
+              AND event_type = 'quiz_complete'
+              AND book_id = ?
+              AND total IS NOT NULL
+              AND total > 0
+        ");
+        $stmt->execute([$classroomId, $assignedBookId]);
+        $assignedAvgRaw = $stmt->fetchColumn();
+        if ($assignedAvgRaw !== false && $assignedAvgRaw !== null) {
+            $assignedAvg = round((float) $assignedAvgRaw);
+        }
+
+        $stmt = $pdo->prepare("
+            SELECT COUNT(DISTINCT visitor_token) FROM classroom_events
+            WHERE classroom_id = ?
+              AND event_type = 'quiz_complete'
+              AND book_id = ?
+              AND visitor_token IS NOT NULL
+              AND visitor_token <> ''
+        ");
+        $stmt->execute([$classroomId, $assignedBookId]);
+        $studentsAssignedQuiz = (int) $stmt->fetchColumn();
     }
 
     $stmt = $pdo->prepare("
@@ -520,7 +593,81 @@ function classroom_stats(PDO $pdo, array $classroom): array
         'unique_stories' => $uniqueStories,
         'students_read_assigned' => $studentsReadAssigned,
         'students_completed_quiz' => $studentsQuizzed,
+        'assigned_story_opens' => $assignedStoryOpens,
+        'assigned_quizzes_completed' => $assignedQuizzes,
+        'assigned_average_quiz_score' => $assignedAvg,
+        'students_completed_assigned_quiz' => $studentsAssignedQuiz,
     ];
+}
+
+/**
+ * Stories students finished (quiz complete), separate from the currently assigned story.
+ *
+ * @return list<array{
+ *   book_id: int,
+ *   title: string,
+ *   story_topic: string,
+ *   students_completed: int,
+ *   quizzes_completed: int,
+ *   average_quiz_score: float|null
+ * }>
+ */
+function classroom_stories_completed(PDO $pdo, array $classroom): array
+{
+    ensure_classrooms_schema($pdo);
+    $classroomId = (int) ($classroom['classroom_id'] ?? 0);
+    if ($classroomId <= 0) {
+        return [];
+    }
+
+    $assignedBookId = (int) ($classroom['assigned_book_id'] ?? 0);
+
+    try {
+        // Past completed stories only — current assignment is shown separately.
+        $sql = "
+            SELECT
+                e.book_id,
+                COALESCE(b.title, CONCAT('Story #', e.book_id)) AS title,
+                COALESCE(b.story_topic, '') AS story_topic,
+                COUNT(*) AS quizzes_completed,
+                COUNT(DISTINCT NULLIF(e.visitor_token, '')) AS students_completed,
+                AVG(CASE WHEN e.total > 0 THEN (e.score * 100.0) / e.total ELSE NULL END) AS average_quiz_score
+            FROM classroom_events e
+            LEFT JOIN books b ON b.book_id = e.book_id
+            WHERE e.classroom_id = ?
+              AND e.event_type = 'quiz_complete'
+        ";
+        $params = [$classroomId];
+        if ($assignedBookId > 0) {
+            $sql .= ' AND e.book_id <> ?';
+            $params[] = $assignedBookId;
+        }
+        $sql .= '
+            GROUP BY e.book_id, b.title, b.story_topic
+            ORDER BY students_completed DESC, title ASC
+        ';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        $out = [];
+        foreach ($rows as $row) {
+            $avgRaw = $row['average_quiz_score'] ?? null;
+            $out[] = [
+                'book_id' => (int) ($row['book_id'] ?? 0),
+                'title' => (string) ($row['title'] ?? ''),
+                'story_topic' => (string) ($row['story_topic'] ?? ''),
+                'students_completed' => (int) ($row['students_completed'] ?? 0),
+                'quizzes_completed' => (int) ($row['quizzes_completed'] ?? 0),
+                'average_quiz_score' => ($avgRaw === null || $avgRaw === '') ? null : round((float) $avgRaw),
+            ];
+        }
+
+        return $out;
+    } catch (PDOException $ex) {
+        error_log($ex->getMessage());
+
+        return [];
+    }
 }
 
 /** @return list<array{book_id:int,title:string,story_topic:?string}> */
@@ -726,8 +873,10 @@ function classroom_admin_rows_with_stats(PDO $pdo): array
     $rows = [];
     foreach (classrooms_all_for_admin($pdo) as $classroom) {
         $stats = classroom_stats($pdo, $classroom);
+        $completed = classroom_stories_completed($pdo, $classroom);
         $rows[] = array_merge($classroom, [
             'stats' => $stats,
+            'completed_stories' => $completed,
         ]);
     }
 
