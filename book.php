@@ -86,6 +86,16 @@ if ($bookId <= 0) {
 $cover = $book ? cover_image_src($book['cover_image_url'] ?? null, $book['title']) : default_cover();
 $bookLocked = $bookLocked ?? false;
 $bookId = $book ? (int) $book['book_id'] : $bookId;
+
+$classroomContext = classroom_current($pdo);
+if ($book && !$bookLocked && !$preview && !$error && $classroomContext) {
+    classroom_record_event(
+        $pdo,
+        (int) $classroomContext['classroom_id'],
+        'story_open',
+        $bookId
+    );
+}
 $isPdfBook = $book && !$bookLocked && ($book['book_format'] ?? 'pages') === 'pdf' && is_safe_pdf_path($book['pdf_file_path'] ?? null);
 $pdfUrl = $isPdfBook ? pdf_reader_url($bookId, $preview) : '';
 $pdfDownloadUrl = $isPdfBook ? pdf_download_url($bookId, $preview) : '';
@@ -139,6 +149,7 @@ if ($book && !$preview && !$bookLocked) {
 <body class="<?= body_class() ?>">
 <?php render_fun_background(); ?>
 <?php render_site_header('public'); ?>
+<?php render_classroom_banner($classroomContext); ?>
 
 <main class="container page-main">
     <?php if ($error): ?>

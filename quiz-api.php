@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/quiz-lib.php';
 require_once __DIR__ . '/quiz-progress-lib.php';
+require_once __DIR__ . '/classroom-lib.php';
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -31,10 +32,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $saved = save_quiz_completion($pdo, $userId, $bookId, $score, $total);
     }
 
+    $classroomId = classroom_current_id();
+    $classroomSaved = false;
+    if ($classroomId > 0) {
+        $classroomSaved = classroom_record_event(
+            $pdo,
+            $classroomId,
+            'quiz_complete',
+            $bookId,
+            max(0, $score),
+            max(0, $total)
+        );
+    }
+
     echo json_encode([
         'ok' => true,
         'book_id' => $bookId,
         'saved' => $saved,
+        'classroom_saved' => $classroomSaved,
         'logged_in' => $userId !== null,
     ]);
     exit;

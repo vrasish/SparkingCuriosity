@@ -568,7 +568,7 @@ function return_purchased_book_stripe(int $bookId, int $userId, PDO $pdo): array
         return ['ok' => false, 'error' => 'This story was already refunded.'];
     }
 
-    $priceCents = (int) ($row['price_cents'] ?? $row['book_price_cents'] ?? 200);
+    $priceCents = (int) ($row['price_cents'] ?? $row['book_price_cents'] ?? 0);
     $paymentIntentId = (string) ($row['stripe_payment_intent_id'] ?? '');
     $orderItemId = (int) ($row['order_item_id'] ?? 0);
 

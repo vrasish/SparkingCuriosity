@@ -112,7 +112,19 @@ function is_guest_open_story(int $bookId): bool
 
 function story_requires_signup(int $bookId): bool
 {
-    return !is_logged_in() && !is_guest_open_story($bookId);
+    if (is_logged_in() || is_guest_open_story($bookId)) {
+        return false;
+    }
+
+    // Classroom link guests can open every story without signing up.
+    if (function_exists('is_classroom_guest') && is_classroom_guest()) {
+        return false;
+    }
+    if (function_exists('classroom_current_id') && classroom_current_id() > 0) {
+        return false;
+    }
+
+    return true;
 }
 
 function story_book_url(int $bookId): string
@@ -225,7 +237,18 @@ function can_read_book(array $book, bool $preview = false): bool
         return is_book_free($book) || is_book_purchased($bookId);
     }
 
-    return is_guest_open_story($bookId);
+    if (is_guest_open_story($bookId)) {
+        return true;
+    }
+
+    if (function_exists('is_classroom_guest') && is_classroom_guest()) {
+        return true;
+    }
+    if (function_exists('classroom_current_id') && classroom_current_id() > 0) {
+        return true;
+    }
+
+    return false;
 }
 
 function cart_item_count(): int
@@ -440,7 +463,7 @@ function ensure_book_pricing_schema(PDO $pdo): void
     ");
     $columnExists = (bool) $stmt->fetchColumn();
     if (!$columnExists) {
-        $pdo->exec('ALTER TABLE books ADD COLUMN price_cents INT NOT NULL DEFAULT 200');
+        $pdo->exec('ALTER TABLE books ADD COLUMN price_cents INT NOT NULL DEFAULT 0');
     }
 
     if (!is_file($seedFlag)) {
@@ -448,8 +471,7 @@ function ensure_book_pricing_schema(PDO $pdo): void
             $books = $pdo->query("SELECT book_id, title FROM books WHERE status = 'approved'")->fetchAll();
             $update = $pdo->prepare('UPDATE books SET price_cents = ? WHERE book_id = ?');
             foreach ($books as $book) {
-                $price = is_title_free_story((string) $book['title']) ? 0 : 200;
-                $update->execute([$price, (int) $book['book_id']]);
+                $update->execute([0, (int) $book['book_id']]);
             }
             if (!is_dir(dirname($seedFlag))) {
                 mkdir(dirname($seedFlag), 0775, true);

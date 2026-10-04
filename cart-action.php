@@ -40,7 +40,7 @@ if ($action === 'return') {
     if (!$result['ok']) {
         $_SESSION['cart_flash_error'] = $result['error'];
     } else {
-        $refund = format_book_price(['price_cents' => (int) ($result['price_cents'] ?? 200)]);
+        $refund = format_book_price(['price_cents' => (int) ($result['price_cents'] ?? 0)]);
         $_SESSION['cart_flash_success'] = 'Returned "' . ($result['title'] ?? 'story') . '" — refund of ' . $refund . ' applied.';
     }
     $redirect = safe_redirect_path($_POST['redirect'] ?? null, 'cart-page.php');

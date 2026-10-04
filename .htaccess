@@ -9,6 +9,9 @@
 
 RewriteEngine On
 
+# Classroom links: /class/MsKim → class.php?slug=MsKim
+RewriteRule ^class/([A-Za-z0-9_-]+)/?$ class.php?slug=$1 [L,QSA]
+
 # Redirect .php URLs to extensionless URLs (local XAMPP under /stories/)
 RewriteCond %{THE_REQUEST} \s/stories/([^\s?]+)\.php[\s?] [NC]
 RewriteRule ^ /stories/%1 [R=301,L]

@@ -16,8 +16,10 @@ $searchQuery = trim((string) ($_GET['q'] ?? ''));
 
 require_once __DIR__ . '/auth.php';
 require_once __DIR__ . '/favorites-lib.php';
+require_once __DIR__ . '/classroom-lib.php';
 
-$searchLocked = !is_logged_in();
+$classroomContext = classroom_current(stories_connect());
+$searchLocked = !is_logged_in() && classroom_current_id() <= 0;
 $books = [];
 $dbError = null;
 $ratingSummaries = [];
@@ -96,6 +98,7 @@ $searchRedirect = app_url('search.php' . ($hasFilters ? '?' . http_build_query(a
 <body class="<?= body_class('explore-library-page search-page') ?>">
 <?php render_fun_background(); ?>
 <?php render_site_header('public'); ?>
+<?php render_classroom_banner($classroomContext); ?>
 
 <main class="container page-main page-main-compact">
     <h2 class="section-title section-title-compact">Search Stories</h2>

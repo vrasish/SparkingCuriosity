@@ -6128,3 +6128,213 @@ tr:hover td {
     flex-wrap: wrap;
     gap: 10px;
 }
+
+/* —— Classroom —— */
+.class-banner {
+    margin: 0 0 18px;
+}
+
+.class-banner-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 14px 20px;
+    border-radius: 14px;
+    background:
+        linear-gradient(160deg, rgba(26, 16, 51, 0.92), rgba(49, 46, 129, 0.86)),
+        radial-gradient(circle at 12% 20%, rgba(6, 182, 212, 0.28), transparent 55%);
+    color: #fff;
+    box-shadow: 0 8px 22px rgba(26, 16, 51, 0.16);
+}
+
+.class-banner-assigned,
+.class-banner-topic,
+.class-banner-note {
+    margin: 0;
+}
+
+.class-banner-assigned {
+    font-size: 1.05rem;
+}
+
+.class-banner-topic {
+    margin-top: 4px;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.class-banner-note {
+    margin-top: 6px;
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.82);
+}
+
+.class-assigned-topic {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0 0;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(124, 58, 237, 0.1);
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--purple-dark);
+}
+
+.class-assigned-card {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.class-assigned-media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 22px rgba(26, 16, 51, 0.12);
+}
+
+.class-assigned-label {
+    margin: 0 0 6px;
+    font-weight: 700;
+    color: var(--purple);
+}
+
+.class-assigned-title {
+    margin: 0 0 10px;
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+}
+
+.class-assigned-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.class-assigned-summary {
+    margin: 0 0 16px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+.class-topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px;
+    margin-top: 12px;
+}
+
+.class-topic-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 12px;
+    text-decoration: none;
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(124, 58, 237, 0.14);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 16px rgba(124, 58, 237, 0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.class-topic-tile:hover,
+.class-topic-tile:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(124, 58, 237, 0.12);
+    outline: none;
+}
+
+.class-topic-icon {
+    font-size: 1.8rem;
+}
+
+.class-topic-label {
+    font-weight: 700;
+    text-align: center;
+}
+
+.class-link-box {
+    margin: 16px 0 22px;
+    padding: 16px;
+    border-radius: var(--radius);
+    background: rgba(124, 58, 237, 0.06);
+    border: 1px solid rgba(124, 58, 237, 0.12);
+}
+
+.class-link-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.class-link-row .form-control {
+    flex: 1 1 auto;
+}
+
+.class-link-note {
+    margin: 8px 0 0;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.class-slug-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.class-slug-prefix {
+    font-weight: 600;
+    color: var(--color-text-muted);
+}
+
+.class-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 0;
+}
+
+.class-stat {
+    padding: 14px 16px;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(124, 58, 237, 0.12);
+}
+
+.class-stat dt {
+    margin: 0 0 6px;
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.class-stat dd {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--purple-dark);
+}
+
+.class-create-form .form-group {
+    margin-bottom: 14px;
+}
+
+@media (max-width: 700px) {
+    .class-assigned-card {
+        grid-template-columns: 1fr;
+    }
+
+    .class-link-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

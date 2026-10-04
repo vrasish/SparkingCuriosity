@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/cart-lib.php';
+require_once __DIR__ . '/classroom-lib.php';
 require_once __DIR__ . '/pdf-branding-lib.php';
 
 /** Start session for reading only — releases lock immediately (prevents tab lockups). */
@@ -466,6 +467,11 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
         render_nav_link(app_url('request-topic.php'), 'Request a Topic', nav_link_is_active('request-topic.php'));
         if ($user) {
             render_nav_link(app_url('my-library.php'), 'My Library', nav_link_is_active('my-library.php'));
+            render_nav_link(
+                app_url('classroom-dashboard.php'),
+                'My Classroom',
+                nav_link_is_active('classroom-dashboard.php', ['class.php'])
+            );
         }
         if ($user && is_creator_user()) {
             if (ai_authoring_enabled()) {
