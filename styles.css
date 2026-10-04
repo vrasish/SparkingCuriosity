@@ -6328,6 +6328,125 @@ tr:hover td {
     margin-bottom: 14px;
 }
 
+.class-steps {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.55;
+}
+
+.class-steps li {
+    margin-bottom: 8px;
+}
+
+.class-assign-form {
+    margin: 22px 0;
+    padding-top: 8px;
+    border-top: 1px solid rgba(124, 58, 237, 0.12);
+}
+
+.class-assign-form h3,
+.class-stats-heading {
+    margin: 0 0 10px;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--purple-dark);
+}
+
+.class-stats-heading {
+    margin-top: 24px;
+}
+
+.class-stats-note {
+    margin: 0 0 14px;
+    color: var(--color-text-muted);
+}
+
+.form-success {
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    background: rgba(34, 197, 94, 0.12);
+    color: #166534;
+    font-weight: 600;
+}
+
+.form-error {
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: var(--radius);
+    background: rgba(239, 68, 68, 0.1);
+    color: #991b1b;
+    font-weight: 600;
+}
+
+.admin-class-back {
+    margin: -8px 0 18px;
+}
+
+.admin-class-back a {
+    font-weight: 600;
+    color: var(--purple-dark);
+    text-decoration: none;
+}
+
+.admin-class-back a:hover {
+    text-decoration: underline;
+}
+
+.admin-class-meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 0;
+}
+
+.admin-class-meta dt {
+    margin: 0 0 4px;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+.admin-class-meta dd {
+    margin: 0;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.admin-class-meta-email {
+    display: block;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+}
+
+.admin-class-table-wrap {
+    overflow-x: auto;
+}
+
+.admin-class-table td a {
+    font-weight: 700;
+    color: var(--purple-dark);
+    text-decoration: none;
+}
+
+.admin-class-table td a:hover {
+    text-decoration: underline;
+}
+
+.admin-class-impact-grid {
+    margin-top: 12px;
+}
+
+.admin-class-reset {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(124, 58, 237, 0.12);
+}
+
+.admin-class-reset-form {
+    margin-top: 10px;
+}
+
 @media (max-width: 700px) {
     .class-assigned-card {
         grid-template-columns: 1fr;

@@ -82,6 +82,17 @@ function login_redirect_for_role(string $role): string
     if ($role === 'creator') {
         return app_url('creator-dashboard.php');
     }
+
+    // Teachers with a classroom go straight to their dashboard after login.
+    try {
+        $userId = current_user_id();
+        if ($userId && function_exists('teacher_has_classroom') && teacher_has_classroom(stories_connect(), $userId)) {
+            return app_url('classroom-dashboard.php');
+        }
+    } catch (Throwable $ex) {
+        // fall through to home
+    }
+
     return app_url('index.php');
 }
 
@@ -344,7 +355,15 @@ function upgrade_reader_to_creator(PDO $pdo, int $userId): array
 
 function body_class(string $extra = ''): string
 {
-    return trim('public-page ' . $extra);
+    $parts = ['public-page'];
+    if (function_exists('classroom_current_id') && classroom_current_id() > 0) {
+        $parts[] = 'classroom-mode';
+    }
+    if ($extra !== '') {
+        $parts[] = $extra;
+    }
+
+    return trim(implode(' ', $parts));
 }
 
 /** Current request script basename, e.g. impact.php */
@@ -456,6 +475,11 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
         render_nav_link(app_url('admin-review.php'), 'Story Review', nav_link_is_active('admin-review.php'));
         render_nav_link(app_url('admin-topic-requests.php'), 'Topic Requests', nav_link_is_active('admin-topic-requests.php'));
         render_nav_link(app_url('admin-sales.php'), 'Library Sales', nav_link_is_active('admin-sales.php'));
+        render_nav_link(
+            app_url('admin-classroom-analytics.php'),
+            'Classrooms',
+            nav_link_is_active('admin-classroom-analytics.php')
+        );
         render_nav_link(app_url('reports-admin.php'), 'Reports', nav_link_is_active('reports-admin.php'));
         render_nav_link(app_url('index.php'), 'Public Site', false);
     } else {
@@ -467,11 +491,17 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
         render_nav_link(app_url('request-topic.php'), 'Request a Topic', nav_link_is_active('request-topic.php'));
         if ($user) {
             render_nav_link(app_url('my-library.php'), 'My Library', nav_link_is_active('my-library.php'));
-            render_nav_link(
-                app_url('classroom-dashboard.php'),
-                'My Classroom',
-                nav_link_is_active('classroom-dashboard.php', ['class.php'])
-            );
+            try {
+                if (teacher_has_classroom(stories_connect(), (int) ($user['user_id'] ?? 0))) {
+                    render_nav_link(
+                        app_url('classroom-dashboard.php'),
+                        'My Classroom',
+                        nav_link_is_active('classroom-dashboard.php', ['class.php'])
+                    );
+                }
+            } catch (Throwable $ex) {
+                // skip classroom nav if schema is unavailable
+            }
         }
         if ($user && is_creator_user()) {
             if (ai_authoring_enabled()) {
@@ -481,7 +511,7 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
             render_nav_link(app_url('creator-dashboard.php'), 'Creator Dashboard', nav_link_is_active('creator-dashboard.php', ['creator-sales.php']));
         }
         if ($user && is_admin_user()) {
-            render_nav_link(app_url('admin-review.php'), 'Admin', nav_link_is_active('admin-review.php', ['admin-stories.php', 'admin-topic-requests.php', 'admin-sales.php', 'reports-admin.php']));
+            render_nav_link(app_url('admin-review.php'), 'Admin', nav_link_is_active('admin-review.php', ['admin-stories.php', 'admin-topic-requests.php', 'admin-sales.php', 'admin-classroom-analytics.php', 'reports-admin.php']));
         }
     }
 

@@ -136,42 +136,44 @@ function e(?string $value): string
     return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 }
 
-/** Extensionless site URL, e.g. app_url('explore.php') => 'explore', app_url('book.php?id=3') => 'book?id=3' */
+/**
+ * Root-absolute extensionless site URL.
+ * e.g. app_url('explore.php') => '/explore', app_url('book.php?id=3') => '/book?id=3'
+ * Under a subdirectory install: '/stories/book?id=3'
+ */
 function app_url(string $path): string
 {
     $path = ltrim($path, '/');
     if ($path === '' || $path === 'index.php' || $path === 'index') {
-        return 'index';
+        $relative = 'index';
+    } else {
+        $file = $path;
+        $suffix = '';
+        if (preg_match('~^([^?#]+)(.*)$~', $path, $matches)) {
+            $file = $matches[1];
+            $suffix = $matches[2];
+        }
+
+        if (str_ends_with(strtolower($file), '.php')) {
+            $file = substr($file, 0, -4);
+        }
+
+        $relative = ($file === 'index' ? 'index' : $file) . $suffix;
     }
 
-    $file = $path;
-    $suffix = '';
-    if (preg_match('~^([^?#]+)(.*)$~', $path, $matches)) {
-        $file = $matches[1];
-        $suffix = $matches[2];
-    }
-
-    if (str_ends_with(strtolower($file), '.php')) {
-        $file = substr($file, 0, -4);
-    }
-
-    if ($file === 'index') {
-        return 'index' . $suffix;
-    }
-
-    return $file . $suffix;
+    return app_path_prefix() . '/' . ltrim($relative, '/');
 }
 
 /** Absolute URL path for JSON/audio API endpoints (works from any page URL). */
 function app_api_url(string $path): string
 {
-    $base = app_base_path();
-    $url = app_url($path);
-    if ($base === '') {
-        return '/' . ltrim($url, '/');
-    }
+    return app_url($path);
+}
 
-    return $base . '/' . ltrim($url, '/');
+/** Site path prefix: '' at domain root, or '/stories' under a subdirectory. */
+function app_path_prefix(): string
+{
+    return app_base_path();
 }
 
 function default_cover(?string $title = null): string
@@ -186,21 +188,41 @@ function app_base_path(): string
     if ($base !== null) {
         return $base;
     }
-    $scriptDir = dirname($_SERVER['SCRIPT_NAME'] ?? '/stories/index.php');
+
+    // Prefer the app directory from this file's location vs document root,
+    // so nested pretty URLs like /class/MsKim still resolve assets at site root.
+    $docRoot = realpath((string) ($_SERVER['DOCUMENT_ROOT'] ?? '')) ?: '';
+    $appRoot = realpath(__DIR__) ?: '';
+    if ($docRoot !== '' && $appRoot !== '' && str_starts_with($appRoot, $docRoot)) {
+        $prefix = substr($appRoot, strlen($docRoot));
+        $base = ($prefix === false || $prefix === '' || $prefix === '/')
+            ? ''
+            : rtrim(str_replace('\\', '/', $prefix), '/');
+        return $base;
+    }
+
+    $scriptName = (string) ($_SERVER['SCRIPT_NAME'] ?? '/index.php');
+    // Ignore pretty-URL folders like /class/... — use the real PHP script directory.
+    if (preg_match('#/class(?:/|$)#', $scriptName)) {
+        $scriptName = preg_replace('#/class(?:/.*)?$#', '/class.php', $scriptName) ?? $scriptName;
+    }
+    $scriptDir = dirname($scriptName);
     $base = ($scriptDir === '/' || $scriptDir === '\\' || $scriptDir === '.') ? '' : rtrim($scriptDir, '/');
     return $base;
 }
 
-/** Cache-busted URL for static assets (CSS, JS) so browsers pick up changes. */
+/** Cache-busted root-absolute URL for static assets (CSS, JS). */
 function asset_url(string $file): string
 {
     $relative = ltrim($file, '/');
     $diskPath = __DIR__ . '/' . $relative;
+    $prefix = app_path_prefix();
+    $urlPath = ($prefix === '' ? '' : $prefix) . '/' . $relative;
     if (!is_file($diskPath)) {
-        return $relative;
+        return $urlPath;
     }
 
-    return $relative . '?v=' . filemtime($diskPath);
+    return $urlPath . '?v=' . filemtime($diskPath);
 }
 
 function render_stylesheet(): void
@@ -455,9 +477,11 @@ function render_story_card_bubbles(?string $categories, ?string $storyTopic = nu
     if ($bookId > 0 && !function_exists('is_quiz_completed_for_viewer') && is_file(__DIR__ . '/quiz-progress-lib.php')) {
         require_once __DIR__ . '/quiz-progress-lib.php';
     }
-    $quizDone = $bookId > 0 && function_exists('is_quiz_completed_for_viewer')
-        ? is_quiz_completed_for_viewer($bookId)
-        : false;
+    $inClassroom = function_exists('classroom_current_id') && classroom_current_id() > 0;
+    $quizDone = !$inClassroom
+        && $bookId > 0
+        && function_exists('is_quiz_completed_for_viewer')
+        && is_quiz_completed_for_viewer($bookId);
 
     if ($categoryParts === [] && $storyTopic === '' && !$quizDone) {
         return;

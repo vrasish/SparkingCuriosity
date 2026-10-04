@@ -11,8 +11,9 @@ classroom_seed_ms_kim($pdo);
 $user = current_user();
 $userId = (int) ($user['user_id'] ?? 0);
 $classrooms = classrooms_for_teacher($pdo, $userId);
+$assignableBooks = classroom_assignable_books($pdo);
 $error = null;
-$created = false;
+$success = null;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_classroom'])) {
     $result = classroom_create(
@@ -27,10 +28,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_classroom'])) 
         ((int) ($_POST['assigned_book_id'] ?? 0)) ?: null
     );
     if ($result['ok']) {
-        $created = true;
+        $success = 'Classroom created. Copy the link below into Google Classroom.';
         $classrooms = classrooms_for_teacher($pdo, $userId);
     } else {
         $error = (string) ($result['error'] ?? 'Could not create classroom.');
+    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_assignment'])) {
+    $result = classroom_update_assignment(
+        $pdo,
+        (int) ($_POST['classroom_id'] ?? 0),
+        $userId,
+        (int) ($_POST['assigned_book_id'] ?? 0),
+        (string) ($_POST['assigned_topic'] ?? ''),
+        (string) ($_POST['assigned_topic_icon'] ?? '🌱'),
+        (int) ($_POST['class_size'] ?? 0)
+    );
+    if ($result['ok']) {
+        $success = 'Assignment updated. Students who open your classroom link will see the new story.';
+        $classrooms = classrooms_for_teacher($pdo, $userId);
+    } else {
+        $error = (string) ($result['error'] ?? 'Could not update assignment.');
     }
 }
 
@@ -53,18 +72,29 @@ $topicTiles = home_topic_tiles();
         <p class="mission-kicker">Teacher tools</p>
         <h1 class="mission-hero-title">My Classroom</h1>
         <p class="mission-hero-lead">
-            Share your special classroom link. Students read all SciFables stories with no signup — and activity is counted for your class as a whole.
+            Log in → assign a story → share your classroom link. Students need no signup. Your dashboard tracks class activity as a whole.
         </p>
     </header>
+
+    <section class="mission-section">
+        <h2>How it works</h2>
+        <ol class="class-steps">
+            <li><strong>You log in</strong> with your teacher email.</li>
+            <li><strong>Assign a story</strong> (and topic) for the class.</li>
+            <li><strong>Copy your classroom link</strong> into Google Classroom.</li>
+            <li><strong>Students click the link</strong> — no email or password — and can read all SciFables stories.</li>
+            <li><strong>Watch this dashboard</strong> for how many students opened the assigned story and completed quizzes.</li>
+        </ol>
+    </section>
 
     <?php if ($error): ?>
         <section class="mission-section">
             <p class="form-error"><?= e($error) ?></p>
         </section>
     <?php endif; ?>
-    <?php if ($created): ?>
+    <?php if ($success): ?>
         <section class="mission-section">
-            <p class="form-success">Classroom created. Copy the link below into Google Classroom.</p>
+            <p class="form-success"><?= e($success) ?></p>
         </section>
     <?php endif; ?>
 
@@ -93,7 +123,18 @@ $topicTiles = home_topic_tiles();
                     <input type="number" id="class_size" name="class_size" class="form-control" min="1" max="200" value="24" required>
                 </div>
                 <div class="form-group">
-                    <label for="assigned_topic">Assigned topic</label>
+                    <label for="assigned_book_id">Assign a story</label>
+                    <select id="assigned_book_id" name="assigned_book_id" class="form-control" required>
+                        <option value="">Choose a story…</option>
+                        <?php foreach ($assignableBooks as $book): ?>
+                            <option value="<?= (int) $book['book_id'] ?>">
+                                <?= e((string) $book['title']) ?><?= !empty($book['story_topic']) ? ' — ' . e((string) $book['story_topic']) : '' ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="assigned_topic">Topic label students see</label>
                     <input type="text" id="assigned_topic" name="assigned_topic" class="form-control" placeholder="e.g. Germination" required>
                 </div>
                 <div class="form-group">
@@ -111,18 +152,22 @@ $topicTiles = home_topic_tiles();
         $link = classroom_absolute_url((string) $classroom['slug']);
         $teacherName = (string) ($classroom['teacher_display_name'] ?? '');
         $school = trim((string) ($classroom['school_name'] ?? ''));
+        $assignedBookId = (int) ($classroom['assigned_book_id'] ?? 0);
+        $assignedTitle = '';
+        foreach ($assignableBooks as $book) {
+            if ((int) $book['book_id'] === $assignedBookId) {
+                $assignedTitle = (string) $book['title'];
+                break;
+            }
+        }
         ?>
         <section class="mission-section class-dash-card" aria-labelledby="class-<?= (int) $classroom['classroom_id'] ?>-heading">
             <h2 id="class-<?= (int) $classroom['classroom_id'] ?>-heading">
                 <?= e($teacherName) ?><?= $school !== '' ? ' — ' . e($school) : '' ?>
             </h2>
-            <p class="class-dash-assigned">
-                Assigned:
-                <strong><?= e((string) ($classroom['assigned_topic_icon'] ?? '🌱')) ?> <?= e((string) ($classroom['assigned_topic'] ?? '')) ?></strong>
-            </p>
 
             <div class="class-link-box">
-                <label for="class-link-<?= (int) $classroom['classroom_id'] ?>">Classroom link</label>
+                <label for="class-link-<?= (int) $classroom['classroom_id'] ?>">1. Share this classroom link</label>
                 <div class="class-link-row">
                     <input
                         id="class-link-<?= (int) $classroom['classroom_id'] ?>"
@@ -133,20 +178,100 @@ $topicTiles = home_topic_tiles();
                     >
                     <a href="<?= e(classroom_public_url((string) $classroom['slug'])) ?>" class="btn btn-outline btn-sm" target="_blank" rel="noopener">Open</a>
                 </div>
-                <p class="class-link-note">Put this link in Google Classroom. Students do not need accounts.</p>
+                <p class="class-link-note">Put this in Google Classroom. Students do not need accounts.</p>
             </div>
 
+            <form method="post" class="class-create-form class-assign-form">
+                <input type="hidden" name="update_assignment" value="1">
+                <input type="hidden" name="classroom_id" value="<?= (int) $classroom['classroom_id'] ?>">
+                <h3>2. Assign a story for your class</h3>
+                <?php if ($assignedTitle !== ''): ?>
+                    <p class="class-dash-assigned">
+                        Currently assigned:
+                        <strong><?= e((string) ($classroom['assigned_topic_icon'] ?? '🌱')) ?> <?= e((string) ($classroom['assigned_topic'] ?? '')) ?></strong>
+                        — <?= e($assignedTitle) ?>
+                    </p>
+                <?php endif; ?>
+                <div class="form-group">
+                    <label for="assigned_book_id_<?= (int) $classroom['classroom_id'] ?>">Story</label>
+                    <select
+                        id="assigned_book_id_<?= (int) $classroom['classroom_id'] ?>"
+                        name="assigned_book_id"
+                        class="form-control"
+                        required
+                    >
+                        <?php foreach ($assignableBooks as $book): ?>
+                            <option
+                                value="<?= (int) $book['book_id'] ?>"
+                                <?= (int) $book['book_id'] === $assignedBookId ? 'selected' : '' ?>
+                                data-topic="<?= e((string) ($book['story_topic'] ?? '')) ?>"
+                            >
+                                <?= e((string) $book['title']) ?><?= !empty($book['story_topic']) ? ' — ' . e((string) $book['story_topic']) : '' ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="assigned_topic_<?= (int) $classroom['classroom_id'] ?>">Topic label</label>
+                    <input
+                        type="text"
+                        id="assigned_topic_<?= (int) $classroom['classroom_id'] ?>"
+                        name="assigned_topic"
+                        class="form-control"
+                        required
+                        value="<?= e((string) ($classroom['assigned_topic'] ?? '')) ?>"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="assigned_topic_icon_<?= (int) $classroom['classroom_id'] ?>">Topic emoji</label>
+                    <input
+                        type="text"
+                        id="assigned_topic_icon_<?= (int) $classroom['classroom_id'] ?>"
+                        name="assigned_topic_icon"
+                        class="form-control"
+                        maxlength="8"
+                        value="<?= e((string) ($classroom['assigned_topic_icon'] ?? '🌱')) ?>"
+                    >
+                </div>
+                <div class="form-group">
+                    <label for="class_size_<?= (int) $classroom['classroom_id'] ?>">Class size</label>
+                    <input
+                        type="number"
+                        id="class_size_<?= (int) $classroom['classroom_id'] ?>"
+                        name="class_size"
+                        class="form-control"
+                        min="1"
+                        max="200"
+                        required
+                        value="<?= (int) ($classroom['class_size'] ?? 24) ?>"
+                    >
+                </div>
+                <button type="submit" class="btn btn-primary">Save assignment</button>
+            </form>
+
+            <h3 class="class-stats-heading">3. Class activity dashboard</h3>
+            <p class="class-stats-note">
+                Counts are for your class as a whole (anonymous devices that used your link). Individual students are not named.
+            </p>
             <dl class="class-stats">
                 <div class="class-stat">
                     <dt>👥 Class size</dt>
                     <dd><?= (int) ($classroom['class_size'] ?? 0) ?></dd>
                 </div>
                 <div class="class-stat">
-                    <dt>📖 Stories read</dt>
+                    <dt>📖 Students who opened assigned story</dt>
+                    <dd><?= (int) $stats['students_read_assigned'] ?></dd>
+                </div>
+                <div class="class-stat">
+                    <dt>🧠 Students who completed a quiz</dt>
+                    <dd><?= (int) $stats['students_completed_quiz'] ?></dd>
+                </div>
+                <div class="class-stat">
+                    <dt>📚 Total story opens</dt>
                     <dd><?= (int) $stats['stories_read'] ?></dd>
                 </div>
                 <div class="class-stat">
-                    <dt>🧠 Quizzes completed</dt>
+                    <dt>📝 Quizzes completed</dt>
                     <dd><?= (int) $stats['quizzes_completed'] ?></dd>
                 </div>
                 <div class="class-stat">
@@ -154,7 +279,7 @@ $topicTiles = home_topic_tiles();
                     <dd><?= $stats['average_quiz_score'] === null ? '—' : ((int) $stats['average_quiz_score'] . '%') ?></dd>
                 </div>
                 <div class="class-stat">
-                    <dt>🔎 Additional stories explored</dt>
+                    <dt>🔎 Extra stories explored</dt>
                     <dd><?= (int) $stats['additional_stories_explored'] ?></dd>
                 </div>
             </dl>
@@ -163,7 +288,7 @@ $topicTiles = home_topic_tiles();
 
     <?php if ($classrooms !== []): ?>
         <section class="mission-section">
-            <h2>Topic ideas for Explore More</h2>
+            <h2>Topics students can explore</h2>
             <ul class="mission-checklist">
                 <?php foreach ($topicTiles as $tile): ?>
                     <li><?= e($tile['icon']) ?> <?= e($tile['label']) ?></li>
@@ -173,5 +298,22 @@ $topicTiles = home_topic_tiles();
     <?php endif; ?>
 </main>
 <?php render_site_footer(true); ?>
+<script>
+(function () {
+    document.querySelectorAll('select[name="assigned_book_id"]').forEach(function (select) {
+        select.addEventListener('change', function () {
+            var opt = select.options[select.selectedIndex];
+            var topic = opt ? (opt.getAttribute('data-topic') || '') : '';
+            if (!topic) { return; }
+            var form = select.closest('form');
+            if (!form) { return; }
+            var topicInput = form.querySelector('input[name="assigned_topic"]');
+            if (topicInput && !topicInput.value) {
+                topicInput.value = topic;
+            }
+        });
+    });
+})();
+</script>
 </body>
 </html>

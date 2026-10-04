@@ -13,7 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = attempt_login($pdo, $_POST['email'] ?? '', $_POST['password'] ?? '');
     if ($result['ok']) {
         $role = $result['role'];
-        $redirect = safe_redirect_path($_POST['redirect'] ?? null, login_redirect_for_role($role));
+        $roleHome = login_redirect_for_role($role);
+        $posted = (string) ($_POST['redirect'] ?? '');
+        // Treat home as "no destination" so teachers with a class go to My Classroom.
+        $isHome = $posted === ''
+            || preg_match('#^(index\.php|/|/?index\.php)$#i', $posted)
+            || $posted === app_url('index.php');
+        $redirect = $isHome ? $roleHome : safe_redirect_path($posted, $roleHome);
         header('Location: ' . $redirect);
         exit;
     }

@@ -37,12 +37,30 @@ function ensure_classrooms_schema(PDO $pdo): void
             book_id INT UNSIGNED NOT NULL,
             score INT NULL,
             total INT NULL,
+            visitor_token VARCHAR(64) NULL,
             created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (event_id),
             KEY idx_classroom_events_class (classroom_id, event_type),
-            KEY idx_classroom_events_book (classroom_id, book_id)
+            KEY idx_classroom_events_book (classroom_id, book_id),
+            KEY idx_classroom_events_visitor (classroom_id, visitor_token)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
     ");
+
+    // Older installs may already have classroom_events without visitor_token.
+    try {
+        $col = $pdo->query("
+            SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
+            WHERE TABLE_SCHEMA = DATABASE()
+              AND TABLE_NAME = 'classroom_events'
+              AND COLUMN_NAME = 'visitor_token'
+        ")->fetchColumn();
+        if (!$col) {
+            $pdo->exec('ALTER TABLE classroom_events ADD COLUMN visitor_token VARCHAR(64) NULL AFTER total');
+            $pdo->exec('ALTER TABLE classroom_events ADD KEY idx_classroom_events_visitor (classroom_id, visitor_token)');
+        }
+    } catch (PDOException $ex) {
+        error_log($ex->getMessage());
+    }
 
     $checked = true;
 }
@@ -55,32 +73,47 @@ function classroom_seed_ms_kim(PDO $pdo): void
     }
     ensure_classrooms_schema($pdo);
 
-    $exists = $pdo->prepare('SELECT classroom_id FROM classrooms WHERE slug = ? LIMIT 1');
-    $exists->execute(['MsKim']);
-    if ($exists->fetchColumn()) {
-        $seeded = true;
-        return;
-    }
-
     $teacherId = null;
-    $teacherStmt = $pdo->prepare('SELECT user_id FROM users WHERE email = ? LIMIT 1');
-    $teacherStmt->execute(['akim@lasdschools.org']);
-    $teacherId = $teacherStmt->fetchColumn();
+    foreach (['akim@lasdk8.org', 'akim@lasdschools.org'] as $email) {
+        $teacherStmt = $pdo->prepare('SELECT user_id FROM users WHERE email = ? LIMIT 1');
+        $teacherStmt->execute([$email]);
+        $teacherId = $teacherStmt->fetchColumn();
+        if ($teacherId) {
+            break;
+        }
+    }
     if (!$teacherId) {
         $seeded = true;
         return;
     }
 
-    $bookId = null;
+    $assignedBookId = null;
     $bookStmt = $pdo->prepare("
         SELECT book_id FROM books
         WHERE status = 'approved'
-          AND (story_topic = 'Germination' OR title LIKE ?)
+          AND (title LIKE ? OR story_topic LIKE ?)
         ORDER BY book_id
         LIMIT 1
     ");
-    $bookStmt->execute(['%Seed That Slept%']);
-    $bookId = $bookStmt->fetchColumn();
+    $bookStmt->execute(['%Good Bacteria Club%', '%Good bacteria%']);
+    $assignedBookId = $bookStmt->fetchColumn();
+    if ($assignedBookId === false) {
+        $assignedBookId = null;
+    } else {
+        $assignedBookId = (int) $assignedBookId;
+    }
+
+    $exists = $pdo->prepare('SELECT classroom_id FROM classrooms WHERE slug = ? LIMIT 1');
+    $exists->execute(['MsKim']);
+    $existingId = $exists->fetchColumn();
+    if ($existingId) {
+        // Keep MsKim on the preferred login account; do not overwrite teacher-chosen assignment.
+        $pdo->prepare('UPDATE classrooms SET teacher_user_id = ? WHERE classroom_id = ?')
+            ->execute([(int) $teacherId, (int) $existingId]);
+        classroom_seed_ms_kim_seed_story_done($pdo, (int) $existingId);
+        $seeded = true;
+        return;
+    }
 
     $insert = $pdo->prepare("
         INSERT INTO classrooms (
@@ -94,12 +127,62 @@ function classroom_seed_ms_kim(PDO $pdo): void
         'Ms. Kim',
         'Loyola Elementary',
         24,
-        'Germination',
-        '🌱',
-        $bookId !== false ? (int) $bookId : null,
+        'Good bacteria (Microbiome)',
+        '🦠',
+        $assignedBookId,
     ]);
 
+    $newId = (int) $pdo->lastInsertId();
+    if ($newId > 0) {
+        classroom_seed_ms_kim_seed_story_done($pdo, $newId);
+    }
+
     $seeded = true;
+}
+
+/**
+ * Demo: all 24 students completed The Seed That Slept Underground at 100% (Quiz done).
+ * Skips if that classroom already has quiz completions for the seed story.
+ */
+function classroom_seed_ms_kim_seed_story_done(PDO $pdo, int $classroomId): void
+{
+    if ($classroomId <= 0) {
+        return;
+    }
+
+    $seedBookStmt = $pdo->prepare("
+        SELECT book_id FROM books
+        WHERE status = 'approved'
+          AND (title LIKE ? OR story_topic = 'Germination')
+        ORDER BY book_id
+        LIMIT 1
+    ");
+    $seedBookStmt->execute(['%Seed That Slept%']);
+    $seedBookId = $seedBookStmt->fetchColumn();
+    if ($seedBookId === false) {
+        return;
+    }
+    $seedBookId = (int) $seedBookId;
+
+    $countStmt = $pdo->prepare("
+        SELECT COUNT(*) FROM classroom_events
+        WHERE classroom_id = ? AND book_id = ? AND event_type = 'quiz_complete'
+    ");
+    $countStmt->execute([$classroomId, $seedBookId]);
+    if ((int) $countStmt->fetchColumn() > 0) {
+        return;
+    }
+
+    $classSize = 24;
+    $ins = $pdo->prepare("
+        INSERT INTO classroom_events (classroom_id, event_type, book_id, score, total, visitor_token)
+        VALUES (?, ?, ?, ?, ?, ?)
+    ");
+    for ($i = 1; $i <= $classSize; $i++) {
+        $token = hash('sha256', 'mskim-demo-student-' . $i);
+        $ins->execute([$classroomId, 'story_open', $seedBookId, null, null, $token]);
+        $ins->execute([$classroomId, 'quiz_complete', $seedBookId, 5, 5, $token]);
+    }
 }
 
 /** @return array<string, mixed>|null */
@@ -172,6 +255,37 @@ function classroom_absolute_url(string $slug): string
     return $scheme . '://' . $host . classroom_public_url($slug);
 }
 
+function classroom_cookie_options(int $expires): array
+{
+    return [
+        'expires' => $expires,
+        'path' => '/',
+        'secure' => (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'),
+        'httponly' => true,
+        'samesite' => 'Lax',
+    ];
+}
+
+/** Anonymous browser token for class-level unique counts (not tied to a student identity). */
+function classroom_visitor_token(): string
+{
+    $existing = trim((string) ($_COOKIE['scifables_class_visitor'] ?? ''));
+    if ($existing !== '' && preg_match('/^[a-f0-9]{32,64}$/', $existing)) {
+        return $existing;
+    }
+
+    try {
+        $token = bin2hex(random_bytes(16));
+    } catch (Throwable $ex) {
+        $token = hash('sha256', uniqid('class', true));
+    }
+
+    setcookie('scifables_class_visitor', $token, classroom_cookie_options(time() + 60 * 60 * 24 * 180));
+    $_COOKIE['scifables_class_visitor'] = $token;
+
+    return $token;
+}
+
 function classroom_enter_session(array $classroom): void
 {
     stories_open_writable_session();
@@ -183,13 +297,8 @@ function classroom_enter_session(array $classroom): void
     $_SESSION['classroom_assigned_book_id'] = (int) ($classroom['assigned_book_id'] ?? 0);
 
     $cookieValue = (string) ((int) ($classroom['classroom_id'] ?? 0));
-    setcookie('scifables_classroom', $cookieValue, [
-        'expires' => time() + 60 * 60 * 24 * 90,
-        'path' => '/',
-        'secure' => (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'),
-        'httponly' => true,
-        'samesite' => 'Lax',
-    ]);
+    setcookie('scifables_classroom', $cookieValue, classroom_cookie_options(time() + 60 * 60 * 24 * 90));
+    classroom_visitor_token();
 }
 
 function classroom_current_id(): int
@@ -228,6 +337,12 @@ function classroom_current(PDO $pdo): ?array
     return $classroom;
 }
 
+function classroom_should_exclude_activity(): bool
+{
+    // SciFables admin testing must not pollute teacher classroom analytics.
+    return function_exists('is_admin_user') && is_admin_user();
+}
+
 function classroom_record_event(
     PDO $pdo,
     int $classroomId,
@@ -243,13 +358,23 @@ function classroom_record_event(
     if (!in_array($eventType, ['story_open', 'quiz_complete'], true)) {
         return false;
     }
+    if (classroom_should_exclude_activity()) {
+        return false;
+    }
 
     try {
         $stmt = $pdo->prepare("
-            INSERT INTO classroom_events (classroom_id, event_type, book_id, score, total)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO classroom_events (classroom_id, event_type, book_id, score, total, visitor_token)
+            VALUES (?, ?, ?, ?, ?, ?)
         ");
-        $stmt->execute([$classroomId, $eventType, $bookId, $score, $total]);
+        $stmt->execute([
+            $classroomId,
+            $eventType,
+            $bookId,
+            $score,
+            $total,
+            classroom_visitor_token(),
+        ]);
 
         return true;
     } catch (PDOException $ex) {
@@ -260,12 +385,43 @@ function classroom_record_event(
 }
 
 /**
+ * Wipe all activity events for a classroom (admin/test reset). Keeps class settings.
+ *
+ * @return array{ok: bool, error?: string, deleted?: int}
+ */
+function classroom_reset_analytics(PDO $pdo, int $classroomId): array
+{
+    ensure_classrooms_schema($pdo);
+    if ($classroomId <= 0) {
+        return ['ok' => false, 'error' => 'Classroom not found.'];
+    }
+
+    $classroom = classroom_by_id($pdo, $classroomId);
+    if (!$classroom) {
+        return ['ok' => false, 'error' => 'Classroom not found.'];
+    }
+
+    try {
+        $stmt = $pdo->prepare('DELETE FROM classroom_events WHERE classroom_id = ?');
+        $stmt->execute([$classroomId]);
+
+        return ['ok' => true, 'deleted' => $stmt->rowCount()];
+    } catch (PDOException $ex) {
+        error_log($ex->getMessage());
+
+        return ['ok' => false, 'error' => 'Could not reset classroom analytics.'];
+    }
+}
+
+/**
  * @return array{
  *   stories_read: int,
  *   quizzes_completed: int,
  *   average_quiz_score: float|null,
  *   additional_stories_explored: int,
- *   unique_stories: int
+ *   unique_stories: int,
+ *   students_read_assigned: int,
+ *   students_completed_quiz: int
  * }
  */
 function classroom_stats(PDO $pdo, array $classroom): array
@@ -280,6 +436,8 @@ function classroom_stats(PDO $pdo, array $classroom): array
         'average_quiz_score' => null,
         'additional_stories_explored' => 0,
         'unique_stories' => 0,
+        'students_read_assigned' => 0,
+        'students_completed_quiz' => 0,
     ];
     if ($classroomId <= 0) {
         return $empty;
@@ -330,13 +488,250 @@ function classroom_stats(PDO $pdo, array $classroom): array
         $additional = $uniqueStories;
     }
 
+    $studentsReadAssigned = 0;
+    if ($assignedBookId > 0) {
+        $stmt = $pdo->prepare("
+            SELECT COUNT(DISTINCT visitor_token) FROM classroom_events
+            WHERE classroom_id = ?
+              AND event_type = 'story_open'
+              AND book_id = ?
+              AND visitor_token IS NOT NULL
+              AND visitor_token <> ''
+        ");
+        $stmt->execute([$classroomId, $assignedBookId]);
+        $studentsReadAssigned = (int) $stmt->fetchColumn();
+    }
+
+    $stmt = $pdo->prepare("
+        SELECT COUNT(DISTINCT visitor_token) FROM classroom_events
+        WHERE classroom_id = ?
+          AND event_type = 'quiz_complete'
+          AND visitor_token IS NOT NULL
+          AND visitor_token <> ''
+    ");
+    $stmt->execute([$classroomId]);
+    $studentsQuizzed = (int) $stmt->fetchColumn();
+
     return [
         'stories_read' => $storiesRead,
         'quizzes_completed' => $quizzes,
         'average_quiz_score' => $avg,
         'additional_stories_explored' => $additional,
         'unique_stories' => $uniqueStories,
+        'students_read_assigned' => $studentsReadAssigned,
+        'students_completed_quiz' => $studentsQuizzed,
     ];
+}
+
+/** @return list<array{book_id:int,title:string,story_topic:?string}> */
+function classroom_assignable_books(PDO $pdo): array
+{
+    try {
+        $stmt = $pdo->query("
+            SELECT book_id, title, story_topic
+            FROM books
+            WHERE status = 'approved'
+            ORDER BY title ASC
+        ");
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+    } catch (PDOException $ex) {
+        error_log($ex->getMessage());
+
+        return [];
+    }
+}
+
+/**
+ * @return array{ok: bool, error?: string}
+ */
+function classroom_update_assignment(
+    PDO $pdo,
+    int $classroomId,
+    int $teacherUserId,
+    int $bookId,
+    string $assignedTopic,
+    string $assignedTopicIcon,
+    int $classSize
+): array {
+    ensure_classrooms_schema($pdo);
+    $classroom = classroom_by_id($pdo, $classroomId);
+    if (!$classroom || (int) ($classroom['teacher_user_id'] ?? 0) !== $teacherUserId) {
+        return ['ok' => false, 'error' => 'Classroom not found.'];
+    }
+
+    $assignedTopic = trim($assignedTopic);
+    $assignedTopicIcon = trim($assignedTopicIcon);
+    if ($bookId <= 0) {
+        return ['ok' => false, 'error' => 'Choose a story to assign.'];
+    }
+    if ($assignedTopic === '') {
+        return ['ok' => false, 'error' => 'Assigned topic is required.'];
+    }
+    if ($classSize < 1) {
+        $classSize = 1;
+    }
+
+    $bookStmt = $pdo->prepare("SELECT book_id, story_topic FROM books WHERE book_id = ? AND status = 'approved' LIMIT 1");
+    $bookStmt->execute([$bookId]);
+    $book = $bookStmt->fetch(PDO::FETCH_ASSOC);
+    if (!$book) {
+        return ['ok' => false, 'error' => 'That story is not available.'];
+    }
+
+    if ($assignedTopicIcon === '') {
+        $assignedTopicIcon = '🌱';
+    }
+
+    try {
+        $stmt = $pdo->prepare("
+            UPDATE classrooms
+            SET assigned_book_id = ?, assigned_topic = ?, assigned_topic_icon = ?, class_size = ?
+            WHERE classroom_id = ? AND teacher_user_id = ?
+        ");
+        $stmt->execute([
+            $bookId,
+            $assignedTopic,
+            $assignedTopicIcon,
+            $classSize,
+            $classroomId,
+            $teacherUserId,
+        ]);
+
+        return ['ok' => true];
+    } catch (PDOException $ex) {
+        error_log($ex->getMessage());
+
+        return ['ok' => false, 'error' => 'Could not update the assignment.'];
+    }
+}
+
+function teacher_has_classroom(PDO $pdo, int $userId): bool
+{
+    return classrooms_for_teacher($pdo, $userId) !== [];
+}
+
+/**
+ * All classrooms for SciFables admin (no student PII).
+ *
+ * @return list<array<string, mixed>>
+ */
+function classrooms_all_for_admin(PDO $pdo): array
+{
+    ensure_classrooms_schema($pdo);
+    classroom_seed_ms_kim($pdo);
+
+    try {
+        $stmt = $pdo->query("
+            SELECT
+                c.*,
+                u.full_name AS teacher_account_name,
+                u.email AS teacher_email,
+                b.title AS assigned_book_title
+            FROM classrooms c
+            LEFT JOIN users u ON u.user_id = c.teacher_user_id
+            LEFT JOIN books b ON b.book_id = c.assigned_book_id
+            ORDER BY c.school_name ASC, c.teacher_display_name ASC, c.classroom_id ASC
+        ");
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+    } catch (PDOException $ex) {
+        error_log($ex->getMessage());
+
+        return [];
+    }
+}
+
+/**
+ * Platform-wide classroom impact totals (aggregate only).
+ *
+ * @return array{
+ *   schools: int,
+ *   classrooms: int,
+ *   students_reached: int,
+ *   stories_opened: int,
+ *   quizzes_completed: int,
+ *   average_quiz_score: float|null,
+ *   additional_stories_explored: int
+ * }
+ */
+function classroom_platform_impact(PDO $pdo): array
+{
+    ensure_classrooms_schema($pdo);
+    classroom_seed_ms_kim($pdo);
+
+    $empty = [
+        'schools' => 0,
+        'classrooms' => 0,
+        'students_reached' => 0,
+        'stories_opened' => 0,
+        'quizzes_completed' => 0,
+        'average_quiz_score' => null,
+        'additional_stories_explored' => 0,
+    ];
+
+    try {
+        $row = $pdo->query("
+            SELECT
+                COUNT(*) AS classrooms,
+                COUNT(DISTINCT NULLIF(TRIM(school_name), '')) AS schools,
+                COALESCE(SUM(class_size), 0) AS students_reached
+            FROM classrooms
+        ")->fetch(PDO::FETCH_ASSOC);
+
+        $storiesOpened = (int) $pdo->query("
+            SELECT COUNT(*) FROM classroom_events WHERE event_type = 'story_open'
+        ")->fetchColumn();
+
+        $quizzesCompleted = (int) $pdo->query("
+            SELECT COUNT(*) FROM classroom_events WHERE event_type = 'quiz_complete'
+        ")->fetchColumn();
+
+        $avgRaw = $pdo->query("
+            SELECT AVG(CASE WHEN total > 0 THEN (score * 100.0) / total ELSE NULL END)
+            FROM classroom_events
+            WHERE event_type = 'quiz_complete' AND total IS NOT NULL AND total > 0
+        ")->fetchColumn();
+        $avg = ($avgRaw !== false && $avgRaw !== null) ? round((float) $avgRaw) : null;
+
+        // Sum per-classroom "extra stories" (distinct books opened besides assigned).
+        $additional = 0;
+        $classrooms = $pdo->query('SELECT classroom_id, assigned_book_id FROM classrooms')->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        foreach ($classrooms as $classroom) {
+            $stats = classroom_stats($pdo, $classroom);
+            $additional += (int) ($stats['additional_stories_explored'] ?? 0);
+        }
+
+        return [
+            'schools' => (int) ($row['schools'] ?? 0),
+            'classrooms' => (int) ($row['classrooms'] ?? 0),
+            'students_reached' => (int) ($row['students_reached'] ?? 0),
+            'stories_opened' => $storiesOpened,
+            'quizzes_completed' => $quizzesCompleted,
+            'average_quiz_score' => $avg,
+            'additional_stories_explored' => $additional,
+        ];
+    } catch (PDOException $ex) {
+        error_log($ex->getMessage());
+
+        return $empty;
+    }
+}
+
+/**
+ * @return list<array<string, mixed>>
+ */
+function classroom_admin_rows_with_stats(PDO $pdo): array
+{
+    $rows = [];
+    foreach (classrooms_all_for_admin($pdo) as $classroom) {
+        $stats = classroom_stats($pdo, $classroom);
+        $rows[] = array_merge($classroom, [
+            'stats' => $stats,
+        ]);
+    }
+
+    return $rows;
 }
 
 function render_classroom_banner(?array $classroom): void

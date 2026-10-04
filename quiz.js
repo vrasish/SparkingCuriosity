@@ -241,6 +241,10 @@
 
     var QUIZ_DONE_STORAGE_KEY = 'scifables_quiz_done';
 
+    function isClassroomMode() {
+        return document.body && document.body.classList.contains('classroom-mode');
+    }
+
     function getQuizDoneMap() {
         try {
             var raw = global.localStorage.getItem(QUIZ_DONE_STORAGE_KEY);
@@ -252,7 +256,8 @@
     }
 
     function markQuizDoneLocally(bookId) {
-        if (!bookId) {
+        if (!bookId || isClassroomMode()) {
+            // Classroom activity is counted for the class as a whole — no per-browser badge.
             return;
         }
         var map = getQuizDoneMap();
@@ -270,6 +275,12 @@
     }
 
     function applyQuizDoneBadges(map) {
+        if (isClassroomMode()) {
+            document.querySelectorAll('.quiz-done-tag').forEach(function (el) {
+                el.remove();
+            });
+            return;
+        }
         map = map || getQuizDoneMap();
         document.querySelectorAll('.topic-tags[data-book-id], .story-card-bubbles[data-book-id]').forEach(function (el) {
             var id = el.getAttribute('data-book-id');
