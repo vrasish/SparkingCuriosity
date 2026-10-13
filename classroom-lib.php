@@ -298,7 +298,43 @@ function classroom_enter_session(array $classroom): void
 
     $cookieValue = (string) ((int) ($classroom['classroom_id'] ?? 0));
     setcookie('scifables_classroom', $cookieValue, classroom_cookie_options(time() + 60 * 60 * 24 * 90));
+    $_COOKIE['scifables_classroom'] = $cookieValue;
     classroom_visitor_token();
+}
+
+/** Leave classroom mode (clears session + cookie). */
+function classroom_exit_session(): void
+{
+    stories_open_writable_session();
+    unset(
+        $_SESSION['classroom_id'],
+        $_SESSION['classroom_slug'],
+        $_SESSION['classroom_teacher'],
+        $_SESSION['classroom_assigned_topic'],
+        $_SESSION['classroom_assigned_icon'],
+        $_SESSION['classroom_assigned_book_id']
+    );
+
+    setcookie('scifables_classroom', '', classroom_cookie_options(time() - 3600));
+    unset($_COOKIE['scifables_classroom']);
+}
+
+/** Handle ?exit_classroom=1 — clears classroom mode and redirects back. */
+function classroom_handle_exit_request(): void
+{
+    if (!isset($_GET['exit_classroom'])) {
+        return;
+    }
+
+    classroom_exit_session();
+
+    $redirect = trim((string) ($_GET['redirect'] ?? ''));
+    if ($redirect === '' || str_contains($redirect, '://') || str_contains($redirect, '..')) {
+        $redirect = 'index.php';
+    }
+
+    header('Location: ' . (function_exists('app_url') ? app_url($redirect) : $redirect));
+    exit;
 }
 
 function classroom_current_id(): int
@@ -892,6 +928,7 @@ function render_classroom_banner(?array $classroom): void
     $teacher = (string) ($classroom['teacher_display_name'] ?? 'Your teacher');
     $topic = (string) ($classroom['assigned_topic'] ?? '');
     $icon = (string) ($classroom['assigned_topic_icon'] ?? '🌱');
+    $exitUrl = app_url('index.php?exit_classroom=1');
 
     echo '<div class="class-banner" role="status">';
     echo '<div class="class-banner-inner">';
@@ -900,6 +937,7 @@ function render_classroom_banner(?array $classroom): void
         echo '<p class="class-banner-topic"><span aria-hidden="true">' . e($icon) . '</span> ' . e($topic) . '</p>';
     }
     echo '<p class="class-banner-note">Classroom mode — all stories open, no signup needed.</p>';
+    echo '<p class="class-banner-exit"><a href="' . e($exitUrl) . '">Exit classroom</a></p>';
     echo '</div>';
     echo '</div>';
 }

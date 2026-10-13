@@ -19,7 +19,8 @@ require_once __DIR__ . '/favorites-lib.php';
 require_once __DIR__ . '/classroom-lib.php';
 
 $classroomContext = classroom_current(stories_connect());
-$searchLocked = !is_logged_in() && classroom_current_id() <= 0;
+// Search is open to kids without signup; login remains available at /login for teachers.
+$searchLocked = false;
 $books = [];
 $dbError = null;
 $ratingSummaries = [];

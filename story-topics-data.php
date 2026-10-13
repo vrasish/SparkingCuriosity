@@ -64,5 +64,7 @@ function story_topics_by_title(): array
         "The Body's Hidden Frame" => 'Skeletal system',
         'The Control Room Inside Your Head' => 'Brain & nervous system',
         'The Message in the Blood Drop' => 'How blood travels (Blood circulation)',
+        'The Tiny Building Blocks' => 'Atoms, Molecules, and Compounds',
+        'Types of Microscopes' => 'Simple & compound microscopes',
     ];
 }

@@ -50,7 +50,11 @@ function find_python_with_pymupdf(): ?string
 
 function pdf_compact_brand_book_ids(): array
 {
-    return [54]; // The Stem That Carried a River
+    return [
+        54, // The Stem That Carried a River
+        97, // The Tiny Building Blocks
+        98, // Types of Microscopes
+    ];
 }
 
 function brand_pdf_file(string $absolutePath, bool $compact = false): bool

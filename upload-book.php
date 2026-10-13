@@ -4,7 +4,7 @@ require_creator_login();
 
 ensure_book_pdf_schema($pdo);
 
-$topics = ['Space', 'Human Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science'];
+$topics = admin_science_topics();
 $message = '';
 $error = '';
 $uploadDir = books_upload_dir();

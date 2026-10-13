@@ -401,6 +401,7 @@ function topic_class(string $name): string
         'Ocean' => 'topic-earth-science',
         'Engineering' => 'topic-engineering',
         'Physical Science' => 'topic-physical-science',
+        'Chemistry' => 'topic-chemistry',
     ];
     return $map[$name] ?? 'topic-default';
 }
@@ -534,6 +535,7 @@ function home_topic_tiles(): array
         ['label' => 'Human Body', 'slug' => 'Human Body', 'icon' => '🫀', 'class' => 'topic-body'],
         ['label' => 'Microbes', 'slug' => 'Microbes', 'icon' => '🦠', 'class' => 'topic-germs'],
         ['label' => 'Physical Science', 'slug' => 'Physical Science', 'icon' => '⚛️', 'class' => 'topic-physical-science'],
+        ['label' => 'Chemistry', 'slug' => 'Chemistry', 'icon' => '🧪', 'class' => 'topic-chemistry'],
     ];
 }
 
@@ -652,7 +654,7 @@ function admin_story_statuses(): array
 /** @return list<string> */
 function admin_science_topics(): array
 {
-    return ['Space', 'Human Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science'];
+    return ['Space', 'Human Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science', 'Chemistry'];
 }
 
 function delete_book_files(array $book): void

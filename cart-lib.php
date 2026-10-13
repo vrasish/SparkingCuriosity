@@ -112,19 +112,8 @@ function is_guest_open_story(int $bookId): bool
 
 function story_requires_signup(int $bookId): bool
 {
-    if (is_logged_in() || is_guest_open_story($bookId)) {
-        return false;
-    }
-
-    // Classroom link guests can open every story without signing up.
-    if (function_exists('is_classroom_guest') && is_classroom_guest()) {
-        return false;
-    }
-    if (function_exists('classroom_current_id') && classroom_current_id() > 0) {
-        return false;
-    }
-
-    return true;
+    // Kids can open stories without signing up. Accounts remain available via /login.
+    return false;
 }
 
 function story_book_url(int $bookId): string
@@ -237,7 +226,8 @@ function can_read_book(array $book, bool $preview = false): bool
         return is_book_free($book) || is_book_purchased($bookId);
     }
 
-    if (is_guest_open_story($bookId)) {
+    // Guests can read free / open stories without an account.
+    if (is_book_free($book) || is_guest_open_story($bookId)) {
         return true;
     }
 

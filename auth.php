@@ -28,6 +28,7 @@ function stories_open_writable_session(): void
 }
 
 stories_start_session();
+classroom_handle_exit_request();
 
 /** @deprecated Use read_and_close via stories_start_session(); kept for cart-action pages. */
 function release_session_lock(): void
@@ -411,17 +412,34 @@ function render_current_impact_badge(): void
     require_once __DIR__ . '/impact-lib.php';
 
     $students = impact_total_children_reached();
-    if ($students < 1) {
+    $schools = impact_total_schools();
+    if ($students < 1 && $schools < 1) {
         return;
     }
 
-    echo '<div class="current-impact" aria-label="Current impact: ' . (int) $students . ' students reached">';
+    $aria = 'Current impact:';
+    if ($students > 0) {
+        $aria .= ' ' . (int) $students . ' students';
+    }
+    if ($schools > 0) {
+        $aria .= ($students > 0 ? ',' : '') . ' ' . (int) $schools . ' schools';
+    }
+
+    echo '<div class="current-impact" aria-label="' . e(trim($aria)) . '">';
     echo '<span class="current-impact-kicker">Current Impact</span>';
     echo '<span class="current-impact-metrics">';
-    echo '<span class="current-impact-metric">';
-    echo '<span class="current-impact-label">Students</span>';
-    echo '<span class="current-impact-value impact-count" data-count-to="' . (int) $students . '" data-count-duration="2000">1</span>';
-    echo '</span>';
+    if ($students > 0) {
+        echo '<span class="current-impact-metric">';
+        echo '<span class="current-impact-label">Students</span>';
+        echo '<span class="current-impact-value impact-count" data-count-to="' . (int) $students . '" data-count-duration="2000">1</span>';
+        echo '</span>';
+    }
+    if ($schools > 0) {
+        echo '<span class="current-impact-metric">';
+        echo '<span class="current-impact-label">Schools</span>';
+        echo '<span class="current-impact-value impact-count" data-count-to="' . (int) $schools . '" data-count-duration="2000">1</span>';
+        echo '</span>';
+    }
     echo '</span>';
     echo '</div>';
 }
@@ -529,10 +547,9 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
     if ($user) {
         echo '<span class="nav-user-name">' . e($user['full_name']) . '</span>';
         echo '<a href="' . e(app_url('logout.php')) . '" class="btn btn-outline btn-sm nav-login-btn">Log out</a>';
-    } else {
-        echo '<a href="' . e(app_url('register.php')) . '" class="btn btn-outline btn-sm nav-login-btn">Sign up</a>';
-        echo '<a href="' . e(app_url('login.php')) . '" class="btn btn-outline btn-sm nav-login-btn">Log in</a>';
     }
+    // Sign up / Log in are hidden so kids can browse without an account.
+    // Teachers and admins can still open /login directly.
     echo '</span>';
 
     echo '</nav>';

@@ -21,7 +21,7 @@ $stories = impact_stories();
     <header class="impact-hero">
         <p class="impact-kicker">SciFables in Action</p>
         <div class="impact-hero-title-row">
-            <h1 class="impact-hero-title">Our Impact</h1>
+            <h1 class="impact-hero-title">Impact</h1>
             <?php render_current_impact_badge(); ?>
         </div>
         <p class="impact-hero-lead">

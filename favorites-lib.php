@@ -194,10 +194,7 @@ function render_story_favorite_button(int $bookId, ?string $redirect = null): vo
     $label = $favorited ? 'Remove from My Library' : 'Save to My Library';
 
     if (!$loggedIn) {
-        $loginUrl = app_url('login.php?redirect=' . rawurlencode($redirect));
-        echo '<a href="' . e($loginUrl) . '" class="' . e($classes) . '" aria-label="Log in to save this story" title="Save to My Library">';
-        echo '<span class="story-favorite-icon" aria-hidden="true">♡</span>';
-        echo '</a>';
+        // Hide save/login prompts for guests so kids can browse without signup friction.
         return;
     }
 

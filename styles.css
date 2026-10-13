@@ -47,6 +47,7 @@
     --topic-earth-science: #0ea5e9;
     --topic-engineering: #f97316;
     --topic-physical-science: #eab308;
+    --topic-chemistry: #14b8a6;
 
     --content-max-width: 100%;
     --page-gutter: clamp(24px, 5vw, 200px);
@@ -656,7 +657,11 @@ main.page-main.container {
 }
 
 .current-impact-metrics {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 10px 22px;
     flex: 1 1 auto;
     min-width: 0;
 }
@@ -666,7 +671,7 @@ main.page-main.container {
     flex-direction: row;
     align-items: baseline;
     justify-content: flex-start;
-    gap: 14px;
+    gap: 10px;
     min-width: 0;
 }
 
@@ -1604,6 +1609,10 @@ h1, h2, h3, h4 {
 
 .explore-topic-chips {
     margin-top: 2px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 6px;
+    -webkit-overflow-scrolling: touch;
 }
 
 .explore-results-meta {
@@ -1960,14 +1969,16 @@ h1, h2, h3, h4 {
 .filter-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
 }
 
 .filter-chip {
-    padding: 10px 18px;
+    padding: 8px 12px;
     border-radius: 999px;
     font-weight: 700;
-    font-size: 1.05rem;
+    font-size: 0.92rem;
+    white-space: nowrap;
+    flex: 0 0 auto;
     background: #f3e8ff;
     color: var(--purple-dark);
     border: 2px solid transparent;
@@ -3881,8 +3892,8 @@ tr:hover td {
 
 .home-topic-grid {
     display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-    gap: 6px;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 5px;
 }
 
 .home-topic-tile {
@@ -3890,12 +3901,12 @@ tr:hover td {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 6px 8px;
+    gap: 4px;
+    padding: 6px 6px;
     border-radius: 12px;
     text-decoration: none;
     font-weight: 800;
-    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    font-size: clamp(0.72rem, 0.95vw, 0.92rem);
     min-height: 0;
     transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
@@ -5727,6 +5738,25 @@ tr:hover td {
     gap: 18px;
 }
 
+.impact-empty-sessions {
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+.impact-bullet-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    line-height: 1.6;
+}
+
+.impact-stat-note {
+    margin: 6px 0 0;
+    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    line-height: 1.35;
+}
+
 .impact-folder {
     display: block;
     position: relative;
@@ -5877,6 +5907,22 @@ tr:hover td {
     height: auto;
     aspect-ratio: 16 / 10;
     object-fit: cover;
+}
+
+/* Keep phone/screenshot photos sharp — don't stretch them edge-to-edge. */
+.impact-feature-compact {
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.impact-feature-compact img {
+    width: 100%;
+    max-width: 920px;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    margin: 0 auto;
 }
 
 .impact-feature figcaption {
@@ -6167,6 +6213,22 @@ tr:hover td {
     margin-top: 6px;
     font-size: 0.92rem;
     color: rgba(255, 255, 255, 0.82);
+}
+
+.class-banner-exit {
+    margin: 8px 0 0;
+}
+
+.class-banner-exit a {
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.class-banner-exit a:hover {
+    opacity: 0.9;
 }
 
 .class-assigned-topic {

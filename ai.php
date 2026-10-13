@@ -148,7 +148,7 @@ Return JSON only (no markdown fences) with these keys:
 - title (string)
 - author_name (string — use "Story Author" unless given)
 - description (string, 1–2 sentences)
-- science_topic (one of: Space, Human Body, Plants, Animals, Weather, Microbes, Earth Science, Engineering, Physical Science)
+- science_topic (one of: Space, Human Body, Plants, Animals, Weather, Microbes, Earth Science, Engineering, Physical Science, Chemistry)
 - setting (string — where the story takes place)
 - character_1 (string — full visual description for consistent images)
 - character_2 (string — full visual description for consistent images)
@@ -179,6 +179,7 @@ function ai_prompt_templates(): array
         ['id' => 'earth_science', 'title' => 'Earth Science', 'icon' => '🌍', 'starter' => 'Help me write an earth science story about oceans, weather, or the atmosphere for kids ages 8–15.'],
         ['id' => 'engineering_build', 'title' => 'Engineering', 'icon' => '🔧', 'starter' => 'Help me write an engineering story for kids ages 8–15.'],
         ['id' => 'physical_science', 'title' => 'Physical Science', 'icon' => '⚛️', 'starter' => 'Help me write a physical science story about forces, energy, or matter for kids ages 8–15.'],
+        ['id' => 'chemistry_lab', 'title' => 'Chemistry', 'icon' => '🧪', 'starter' => 'Help me write a chemistry story for kids ages 8–15.'],
     ];
 }
 
@@ -991,7 +992,9 @@ function ai_save_book_from_story(PDO $pdo, array $story, string $pdfPath, int $u
     $description = trim((string) ($story['description'] ?? ''));
     $scienceElement = trim((string) ($story['science_element'] ?? ''));
     $topic = trim((string) ($story['science_topic'] ?? 'Space'));
-    $allowedTopics = ['Space', 'Human Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science'];
+    $allowedTopics = function_exists('admin_science_topics')
+        ? admin_science_topics()
+        : ['Space', 'Human Body', 'Plants', 'Animals', 'Weather', 'Microbes', 'Earth Science', 'Engineering', 'Physical Science', 'Chemistry'];
     if (!in_array($topic, $allowedTopics, true)) {
         $topic = 'Space';
     }

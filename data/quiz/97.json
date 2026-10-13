@@ -1,0 +1,67 @@
+{
+    "book_id": 97,
+    "title": "The Tiny Building Blocks",
+    "intro": "This quiz checks what you learned about atoms, molecules, and compounds — the tiny building blocks of everything around us.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is an atom?",
+            "choices": [
+                "Two or more elements mixed together",
+                "The smallest unit of an element that retains its properties",
+                "A substance made of different molecules",
+                "Two or more atoms bonded together"
+            ],
+            "correct_index": 1,
+            "explanation": "An atom is the smallest unit of an element that retains its properties."
+        },
+        {
+            "id": 2,
+            "prompt": "Which of the following is an element?",
+            "choices": [
+                "Water (H₂O)",
+                "Carbon dioxide (CO₂)",
+                "Gold (Au)",
+                "Salt (NaCl)"
+            ],
+            "correct_index": 2,
+            "explanation": "Gold (Au) is an element. Water, carbon dioxide, and salt are compounds."
+        },
+        {
+            "id": 3,
+            "prompt": "What is a molecule?",
+            "choices": [
+                "Two or more atoms chemically bonded together",
+                "A substance made of only different elements",
+                "A single atom",
+                "Two substances physically mixed together"
+            ],
+            "correct_index": 0,
+            "explanation": "A molecule is two or more atoms chemically bonded together."
+        },
+        {
+            "id": 4,
+            "prompt": "Which of the following is a molecule but NOT a compound?",
+            "choices": [
+                "Water (H₂O)",
+                "Carbon dioxide (CO₂)",
+                "Salt (NaCl)",
+                "Oxygen gas (O₂)"
+            ],
+            "correct_index": 3,
+            "explanation": "Oxygen gas (O₂) is a molecule made of the same element, so it is not a compound."
+        },
+        {
+            "id": 5,
+            "prompt": "Why is water (H₂O) both a molecule and a compound?",
+            "choices": [
+                "It contains only oxygen atoms",
+                "It contains hydrogen and oxygen atoms chemically bonded together",
+                "It contains only one atom",
+                "It is a mixture of hydrogen and oxygen"
+            ],
+            "correct_index": 1,
+            "explanation": "Water is both a molecule and a compound because it contains hydrogen and oxygen atoms chemically bonded together."
+        }
+    ]
+}
