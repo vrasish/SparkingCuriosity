@@ -1,0 +1,67 @@
+{
+    "book_id": 44,
+    "title": "La nube que bajó",
+    "intro": "Este cuestionario sigue a Maya y Leo mientras aprenden cómo se forman la niebla y la neblina, y por qué la niebla puede hacer que viajar sea más difícil.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué pensaron Maya y Leo que había pasado afuera?",
+            "choices": [
+                "La nieve había cubierto el pueblo",
+                "Una nube había caído cerca del suelo",
+                "El humo había llenado la calle",
+                "Las casas habían desaparecido"
+            ],
+            "correct_index": 1,
+            "explanation": "Maya y Leo pensaron que una nube había caído cerca del suelo."
+        },
+        {
+            "id": 2,
+            "prompt": "¿De qué está hecha la niebla?",
+            "choices": [
+                "De diminutas gotas de agua que flotan en el aire",
+                "De polvo y arena del suelo",
+                "De trocitos de nieve congelada",
+                "De humo de las nubes"
+            ],
+            "correct_index": 0,
+            "explanation": "La niebla está hecha de diminutas gotas de agua que flotan en el aire."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo se forma la niebla?",
+            "choices": [
+                "El aire caliente sube y se convierte en fuego",
+                "El aire húmedo se enfría y el vapor de agua se condensa en diminutas gotas",
+                "El agua de lluvia se congela en el suelo",
+                "El viento empuja las nubes contra los edificios"
+            ],
+            "correct_index": 1,
+            "explanation": "La niebla se forma cuando el aire húmedo se enfría y el vapor de agua se condensa en diminutas gotas."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cuál es una diferencia entre la niebla y la neblina?",
+            "choices": [
+                "La niebla es más cálida que la neblina",
+                "La neblina no contiene agua",
+                "La niebla es más espesa, mientras que la neblina es más ligera",
+                "La neblina se forma solo de noche"
+            ],
+            "correct_index": 2,
+            "explanation": "La niebla es más espesa, mientras que la neblina es más ligera."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué el autobús escolar avanzaba despacio en la niebla?",
+            "choices": [
+                "La carretera estaba cubierta de nieve",
+                "El conductor no podía ver muy lejos hacia adelante",
+                "Al autobús se le había acabado el combustible",
+                "Los niños le pidieron al conductor que se detuviera"
+            ],
+            "correct_index": 1,
+            "explanation": "El autobús avanzaba despacio porque el conductor no podía ver muy lejos hacia adelante."
+        }
+    ]
+}

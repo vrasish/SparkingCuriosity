@@ -1,0 +1,67 @@
+{
+    "book_id": 41,
+    "title": "La aventura planetaria",
+    "intro": "Este cuestionario sigue el viaje de Max por el sistema solar y las características especiales que descubre en cada planeta.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Por qué Max llamó a Mercurio el planeta más rápido?",
+            "choices": [
+                "Gira sobre sí mismo más rápido que todos los demás planetas",
+                "Da la vuelta al Sol más rápido que los otros planetas",
+                "Tiene los vientos más fuertes",
+                "Tiene las tormentas más veloces"
+            ],
+            "correct_index": 1,
+            "explanation": "Mercurio da la vuelta al Sol más rápido que los otros planetas."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué hace que Venus sea extremadamente caliente?",
+            "choices": [
+                "Está cubierto por nubes espesas que atrapan el calor",
+                "Está hecho completamente de fuego",
+                "Tiene muchos volcanes activos",
+                "Es el planeta más grande"
+            ],
+            "correct_index": 0,
+            "explanation": "Venus es extremadamente caliente porque las nubes espesas atrapan el calor."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué notó Max sobre la Tierra?",
+            "choices": [
+                "Era polvorienta, seca y roja",
+                "Solo tenía hielo y rocas",
+                "Tenía océanos, nubes, tierra, aire y vida",
+                "Estaba rodeada de enormes anillos"
+            ],
+            "correct_index": 2,
+            "explanation": "La Tierra tenía océanos, nubes, tierra, aire y vida."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué planeta es el más grande y tiene una tormenta gigante más grande que la Tierra?",
+            "choices": [
+                "Marte",
+                "Júpiter",
+                "Saturno",
+                "Neptuno"
+            ],
+            "correct_index": 1,
+            "explanation": "Júpiter es el planeta más grande y tiene una tormenta gigante más grande que la Tierra."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué afirmación describe correctamente a Urano y Neptuno?",
+            "choices": [
+                "Urano gira de lado y Neptuno tiene vientos muy fuertes",
+                "Urano es rojo y Neptuno tiene grandes anillos",
+                "Urano es el planeta más caliente y Neptuno es el más cercano al Sol",
+                "Urano tiene vida y Neptuno está cubierto de bosques"
+            ],
+            "correct_index": 0,
+            "explanation": "Urano gira de lado y Neptuno tiene vientos muy fuertes."
+        }
+    ]
+}

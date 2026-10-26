@@ -6,6 +6,8 @@ require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/cart-lib.php';
 require_once __DIR__ . '/classroom-lib.php';
 require_once __DIR__ . '/pdf-branding-lib.php';
+require_once __DIR__ . '/i18n-lib.php';
+require_once __DIR__ . '/book-i18n-lib.php';
 
 /** Start session for reading only — releases lock immediately (prevents tab lockups). */
 function stories_start_session(): void
@@ -210,7 +212,7 @@ function ensure_users_schema(PDO $pdo): array
         return ['ok' => true, 'error' => ''];
     } catch (PDOException $ex) {
         error_log($ex->getMessage());
-        return ['ok' => false, 'error' => 'Account system is not available right now.'];
+        return ['ok' => false, 'error' => 'auth.error.system'];
     }
 }
 
@@ -229,22 +231,22 @@ function register_user(PDO $pdo, string $fullName, string $email, string $passwo
     $role = in_array($role, ['reader', 'creator'], true) ? $role : 'reader';
 
     if ($fullName === '' || $email === '' || $password === '') {
-        return ['ok' => false, 'error' => 'Please enter your name, email, and password.'];
+        return ['ok' => false, 'error' => 'auth.error.enter_all'];
     }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        return ['ok' => false, 'error' => 'Please enter a valid email address.'];
+        return ['ok' => false, 'error' => 'auth.error.invalid_email'];
     }
 
     if (strlen($password) < 6) {
-        return ['ok' => false, 'error' => 'Password must be at least 6 characters.'];
+        return ['ok' => false, 'error' => 'auth.error.password_short'];
     }
 
     try {
         $stmt = $pdo->prepare('SELECT user_id FROM users WHERE email = ? LIMIT 1');
         $stmt->execute([$email]);
         if ($stmt->fetch()) {
-            return ['ok' => false, 'error' => 'An account with that email already exists. Try logging in instead.'];
+            return ['ok' => false, 'error' => 'auth.error.email_exists'];
         }
 
         $insert = $pdo->prepare('
@@ -259,7 +261,7 @@ function register_user(PDO $pdo, string $fullName, string $email, string $passwo
         ]);
     } catch (PDOException $ex) {
         error_log($ex->getMessage());
-        return ['ok' => false, 'error' => 'Could not create account. Please try again.'];
+        return ['ok' => false, 'error' => 'auth.error.create_failed'];
     }
 
     return ['ok' => true, 'error' => ''];
@@ -283,7 +285,7 @@ function attempt_login(PDO $pdo, string $email, string $password): array
 
     $email = trim(strtolower($email));
     if ($email === '' || $password === '') {
-        return ['ok' => false, 'error' => 'Please enter your email and password.', 'role' => ''];
+        return ['ok' => false, 'error' => 'auth.error.enter_credentials', 'role' => ''];
     }
 
     try {
@@ -297,16 +299,16 @@ function attempt_login(PDO $pdo, string $email, string $password): array
         $row = $stmt->fetch();
     } catch (PDOException $ex) {
         error_log($ex->getMessage());
-        return ['ok' => false, 'error' => 'Could not sign in right now. Please try again.', 'role' => ''];
+        return ['ok' => false, 'error' => 'auth.error.sign_in_failed', 'role' => ''];
     }
 
     if (!$row || !password_verify($password, (string) $row['password_hash'])) {
-        return ['ok' => false, 'error' => 'Email or password is incorrect.', 'role' => ''];
+        return ['ok' => false, 'error' => 'auth.error.bad_credentials', 'role' => ''];
     }
 
     $role = (string) $row['role'];
     if (!in_array($role, ['admin', 'creator', 'reader'], true)) {
-        return ['ok' => false, 'error' => 'This account cannot sign in here.', 'role' => ''];
+        return ['ok' => false, 'error' => 'auth.error.cannot_sign_in', 'role' => ''];
     }
 
     login_user($row);
@@ -426,17 +428,17 @@ function render_current_impact_badge(): void
     }
 
     echo '<div class="current-impact" aria-label="' . e(trim($aria)) . '">';
-    echo '<span class="current-impact-kicker">Current Impact</span>';
+    echo '<span class="current-impact-kicker">' . e(t('impact.current')) . '</span>';
     echo '<span class="current-impact-metrics">';
     if ($students > 0) {
         echo '<span class="current-impact-metric">';
-        echo '<span class="current-impact-label">Students</span>';
+        echo '<span class="current-impact-label">' . e(t('impact.students')) . '</span>';
         echo '<span class="current-impact-value impact-count" data-count-to="' . (int) $students . '" data-count-duration="2000">1</span>';
         echo '</span>';
     }
     if ($schools > 0) {
         echo '<span class="current-impact-metric">';
-        echo '<span class="current-impact-label">Schools</span>';
+        echo '<span class="current-impact-label">' . e(t('impact.schools')) . '</span>';
         echo '<span class="current-impact-value impact-count" data-count-to="' . (int) $schools . '" data-count-duration="2000">1</span>';
         echo '</span>';
     }
@@ -461,6 +463,10 @@ function render_site_footer(bool $compact = false): void
 
 function render_site_header(string $variant = 'public', bool $homeNav = false): void
 {
+    if (function_exists('render_i18n_js_boot')) {
+        render_i18n_js_boot();
+    }
+
     $user = current_user();
     $isAdminNav = $variant === 'admin';
     $headerClass = 'site-header' . ($isAdminNav ? ' admin-header' : '') . ($homeNav ? ' site-header-home' : '');
@@ -473,7 +479,7 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
         echo '<a href="' . e(app_url('index.php')) . '" class="logo">';
         render_site_logo_icon();
         echo '</a>';
-        echo '<p class="logo-tagline">Science stories kids actually want to read</p>';
+        echo '<p class="logo-tagline">' . e(t('tagline')) . '</p>';
         echo '</div>';
     } else {
         echo '<a href="' . e(app_url('index.php')) . '" class="logo">';
@@ -482,7 +488,7 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
         echo '</a>';
     }
 
-    echo '<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">';
+    echo '<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="' . e(t('nav.open_menu')) . '">';
     echo '<span class="nav-toggle-lines" aria-hidden="true"></span>';
     echo '</button>';
 
@@ -501,19 +507,19 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
         render_nav_link(app_url('reports-admin.php'), 'Reports', nav_link_is_active('reports-admin.php'));
         render_nav_link(app_url('index.php'), 'Public Site', false);
     } else {
-        render_nav_link(app_url('index.php'), 'Home', nav_link_is_active('index.php'));
-        render_nav_link(app_url('search.php'), 'Search', nav_link_is_active('search.php', ['explore.php']));
-        render_nav_link(app_url('mission.php'), 'Our Mission', nav_link_is_active('mission.php'));
-        render_nav_link(app_url('impact.php'), 'Impact', nav_link_is_active('impact.php', ['impact-story.php']));
-        render_nav_link(app_url('get-involved.php'), 'Get Involved', nav_link_is_active('get-involved.php', ['partners.php']));
-        render_nav_link(app_url('request-topic.php'), 'Request a Topic', nav_link_is_active('request-topic.php'));
+        render_nav_link(app_url('index.php'), t('nav.home'), nav_link_is_active('index.php'));
+        render_nav_link(app_url('search.php'), t('nav.search'), nav_link_is_active('search.php', ['explore.php']));
+        render_nav_link(app_url('mission.php'), t('nav.mission'), nav_link_is_active('mission.php'));
+        render_nav_link(app_url('impact.php'), t('nav.impact'), nav_link_is_active('impact.php', ['impact-story.php']));
+        render_nav_link(app_url('get-involved.php'), t('nav.get_involved'), nav_link_is_active('get-involved.php', ['partners.php']));
+        render_nav_link(app_url('request-topic.php'), t('nav.request_topic'), nav_link_is_active('request-topic.php'));
         if ($user) {
-            render_nav_link(app_url('my-library.php'), 'My Library', nav_link_is_active('my-library.php'));
+            render_nav_link(app_url('my-library.php'), t('nav.my_library'), nav_link_is_active('my-library.php'));
             try {
                 if (teacher_has_classroom(stories_connect(), (int) ($user['user_id'] ?? 0))) {
                     render_nav_link(
                         app_url('classroom-dashboard.php'),
-                        'My Classroom',
+                        t('nav.my_classroom'),
                         nav_link_is_active('classroom-dashboard.php', ['class.php'])
                     );
                 }
@@ -534,10 +540,13 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
     }
 
     echo '<span class="nav-auth">';
+    if (!$isAdminNav) {
+        render_language_selector();
+    }
     if (!$isAdminNav && cart_enabled()) {
         cart_bootstrap();
         $cartCount = cart_item_count();
-        echo '<a href="' . e(app_url('cart-page.php')) . '" class="nav-cart" aria-label="Shopping cart">';
+        echo '<a href="' . e(app_url('cart-page.php')) . '" class="nav-cart" aria-label="' . e(t('nav.cart')) . '">';
         echo '<span class="nav-cart-icon" aria-hidden="true">🛒</span>';
         if ($cartCount > 0) {
             echo '<span class="nav-cart-badge">' . (int) $cartCount . '</span>';
@@ -546,7 +555,7 @@ function render_site_header(string $variant = 'public', bool $homeNav = false): 
     }
     if ($user) {
         echo '<span class="nav-user-name">' . e($user['full_name']) . '</span>';
-        echo '<a href="' . e(app_url('logout.php')) . '" class="btn btn-outline btn-sm nav-login-btn">Log out</a>';
+        echo '<a href="' . e(app_url('logout.php')) . '" class="btn btn-outline btn-sm nav-login-btn">' . e(t('nav.logout')) . '</a>';
     }
     // Sign up / Log in are hidden so kids can browse without an account.
     // Teachers and admins can still open /login directly.

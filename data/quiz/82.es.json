@@ -1,0 +1,67 @@
+{
+    "book_id": 82,
+    "title": "La pista del color oculto",
+    "intro": "Este cuestionario sigue a Maya y Theo mientras descubren cómo el camuflaje ayuda a los animales a mezclarse con su entorno.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es el camuflaje?",
+            "choices": [
+                "Una forma en que los animales hacen sonidos fuertes",
+                "Una forma en que los animales se mezclan con su entorno",
+                "Una forma en que los animales crecen más",
+                "Una forma en que los animales encuentran agua"
+            ],
+            "correct_index": 1,
+            "explanation": "El camuflaje es una forma en que los animales se mezclan con su entorno."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Por qué era difícil ver a la rana verde de los árboles?",
+            "choices": [
+                "Estaba escondida bajo tierra",
+                "Su color era igual al de las hojas verdes",
+                "Era demasiado pequeña para verla",
+                "Tenía los ojos cerrados"
+            ],
+            "correct_index": 1,
+            "explanation": "Era difícil ver a la rana verde de los árboles porque su color era igual al de las hojas verdes."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo puede ayudar el camuflaje a los animales que son presas?",
+            "choices": [
+                "Puede hacer que a los depredadores les sea más fácil encontrarlos",
+                "Puede ayudarlos a esconderse de los depredadores",
+                "Puede ayudarlos a que les salgan alas",
+                "Puede hacer que corran más despacio"
+            ],
+            "correct_index": 1,
+            "explanation": "El camuflaje puede ayudar a los animales que son presas a esconderse de los depredadores."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cómo puede ayudar el camuflaje a los depredadores?",
+            "choices": [
+                "Les ayuda a acercarse a sus presas sin ser notados",
+                "Hace que tengan menos hambre",
+                "Les ayuda a respirar bajo el agua",
+                "Los protege de la luz del sol"
+            ],
+            "correct_index": 0,
+            "explanation": "El camuflaje ayuda a los depredadores a acercarse a sus presas sin ser notados."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué animal estaría mejor camuflado en un hábitat nevado?",
+            "choices": [
+                "Una rana de un verde brillante",
+                "Un zorro ártico blanco",
+                "Una mariquita roja",
+                "Un escarabajo negro"
+            ],
+            "correct_index": 1,
+            "explanation": "Un zorro ártico blanco estaría mejor camuflado en un hábitat nevado."
+        }
+    ]
+}

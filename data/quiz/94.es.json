@@ -1,0 +1,67 @@
+{
+    "book_id": 94,
+    "title": "El misterio del sándwich perdido",
+    "intro": "Este cuestionario sigue a Lila, Jay y la Sra. Rivera mientras descubren el mundo invisible de las bacterias: cómo crecen, por qué algunas echan a perder los alimentos y cómo podemos mantenernos sanos.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Por qué el sándwich de Jay tenía manchas peludas?",
+            "choices": [
+                "Estaba cubierto de azúcar",
+                "Lo habían dejado en su mochila todo el fin de semana",
+                "Lila lo tiró al suelo",
+                "Lo habían guardado en el refrigerador"
+            ],
+            "correct_index": 1,
+            "explanation": "El sándwich de Jay tenía manchas peludas porque lo habían dejado en su mochila todo el fin de semana."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué usaron Lila y Jay para ver las bacterias?",
+            "choices": [
+                "Un telescopio",
+                "Una lupa",
+                "Un microscopio",
+                "Una cámara"
+            ],
+            "correct_index": 2,
+            "explanation": "Lila y Jay usaron un microscopio para ver las bacterias."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo se llama el proceso en el que una bacteria se divide en dos?",
+            "choices": [
+                "Fotosíntesis",
+                "Fisión binaria",
+                "Germinación",
+                "Digestión"
+            ],
+            "correct_index": 1,
+            "explanation": "Cuando una bacteria se divide en dos, el proceso se llama fisión binaria."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué afirmación sobre las bacterias es verdadera?",
+            "choices": [
+                "Todas las bacterias enferman a las personas",
+                "Las bacterias solo viven en los alimentos echados a perder",
+                "Algunas bacterias son beneficiosas, mientras que otras pueden ser dañinas",
+                "Las bacterias se pueden ver fácilmente sin microscopio"
+            ],
+            "correct_index": 2,
+            "explanation": "Algunas bacterias son beneficiosas, mientras que otras pueden ser dañinas."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué hábito ayuda a detener las bacterias dañinas?",
+            "choices": [
+                "Dejar la comida afuera",
+                "No lavar nunca las frutas y verduras",
+                "Guardar la comida en el refrigerador",
+                "Comer alimentos echados a perder"
+            ],
+            "correct_index": 2,
+            "explanation": "Guardar la comida en el refrigerador ayuda a detener las bacterias dañinas."
+        }
+    ]
+}

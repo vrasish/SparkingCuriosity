@@ -1,0 +1,67 @@
+{
+    "book_id": 77,
+    "title": "La pista de la columna vertebral",
+    "intro": "Este cuestionario sigue a Asha y Ben mientras aprenden cómo se agrupan los animales en vertebrados e invertebrados.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es un vertebrado?",
+            "choices": [
+                "Un animal con columna vertebral",
+                "Un animal sin huesos",
+                "Un animal que vive solo en el agua",
+                "Un animal con caparazón"
+            ],
+            "correct_index": 0,
+            "explanation": "Un vertebrado es un animal con columna vertebral."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cómo se llaman los huesitos que forman la columna vertebral?",
+            "choices": [
+                "Costillas",
+                "Vértebras",
+                "Articulaciones",
+                "Músculos"
+            ],
+            "correct_index": 1,
+            "explanation": "Los huesitos que forman la columna vertebral se llaman vértebras."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué grupo contiene solo vertebrados?",
+            "choices": [
+                "Peces, anfibios, reptiles, aves y mamíferos",
+                "Medusas, estrellas de mar, cangrejos y pulpos",
+                "Insectos, gusanos y arañas",
+                "Caracoles, almejas y medusas"
+            ],
+            "correct_index": 0,
+            "explanation": "Los peces, anfibios, reptiles, aves y mamíferos son todos vertebrados."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué animal de la historia es un invertebrado?",
+            "choices": [
+                "El pez",
+                "La tortuga",
+                "La medusa",
+                "El pájaro"
+            ],
+            "correct_index": 2,
+            "explanation": "La medusa es un invertebrado."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué pista usaron Asha y Ben para clasificar a los animales?",
+            "choices": [
+                "Dónde vivía el animal",
+                "Si el animal tenía columna vertebral o no",
+                "El color del animal",
+                "El tamaño del animal"
+            ],
+            "correct_index": 1,
+            "explanation": "Asha y Ben clasificaron a los animales según tuvieran columna vertebral o no."
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "book_id": 67,
+    "title": "El día que el agua cambió de opinión",
+    "intro": "Este cuestionario explora cómo el agua cambia entre sólido, líquido y gas cuando se le añade o se le quita calor.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué pasa cuando el hielo absorbe suficiente calor?",
+            "choices": [
+                "Se congela",
+                "Se derrite y se convierte en agua líquida",
+                "Se convierte directamente en nieve",
+                "Se vuelve más frío"
+            ],
+            "correct_index": 1,
+            "explanation": "Cuando el hielo absorbe suficiente calor, se derrite y se convierte en agua líquida."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué es la evaporación?",
+            "choices": [
+                "El agua líquida que se convierte en vapor de agua",
+                "El vapor de agua que se convierte en agua líquida",
+                "El agua líquida que se convierte en hielo",
+                "El hielo que se convierte en agua líquida"
+            ],
+            "correct_index": 0,
+            "explanation": "La evaporación es cuando el agua líquida se convierte en vapor de agua."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué pasa durante la condensación?",
+            "choices": [
+                "El agua se congela y se convierte en hielo",
+                "El agua líquida hierve",
+                "El vapor de agua se enfría y se convierte en gotitas de líquido",
+                "El hielo absorbe calor y se derrite"
+            ],
+            "correct_index": 2,
+            "explanation": "Durante la condensación, el vapor de agua se enfría y se convierte en gotitas de líquido."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué cambio ocurre cuando el agua líquida pierde suficiente calor?",
+            "choices": [
+                "Fusión",
+                "Evaporación",
+                "Congelación",
+                "Ebullición"
+            ],
+            "correct_index": 2,
+            "explanation": "Cuando el agua líquida pierde suficiente calor, se congela."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué permanece igual cuando el agua cambia de hielo a líquido o a vapor de agua?",
+            "choices": [
+                "Sigue estando formada por partículas de agua",
+                "Siempre mantiene la misma forma",
+                "Siempre se mantiene a la misma temperatura",
+                "Deja de ser materia"
+            ],
+            "correct_index": 0,
+            "explanation": "Cuando el agua cambia de estado, sigue estando formada por partículas de agua."
+        }
+    ]
+}

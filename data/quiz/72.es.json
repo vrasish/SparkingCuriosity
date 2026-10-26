@@ -1,0 +1,67 @@
+{
+    "book_id": 72,
+    "title": "El calor que viajó de tres maneras",
+    "intro": "Este cuestionario sigue a Nina y Omar mientras descubren las tres formas en que se mueve el calor: conducción, convección y radiación.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es la conducción?",
+            "choices": [
+                "El calor que se mueve por contacto directo",
+                "El calor que se mueve solo por el espacio",
+                "El calor que se mueve porque el aire caliente sube",
+                "El calor que desaparece de un objeto"
+            ],
+            "correct_index": 0,
+            "explanation": "La conducción es el calor que se mueve por contacto directo."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Por qué se calentó el mango de la cuchara en el té caliente?",
+            "choices": [
+                "La radiación del Sol lo calentó",
+                "La conducción llevó calor a través de la cuchara",
+                "El aire más frío bajó a su alrededor",
+                "La cuchara produjo su propio calor"
+            ],
+            "correct_index": 1,
+            "explanation": "La conducción llevó calor a través de la cuchara y calentó el mango en el té caliente."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué ocurre durante la convección?",
+            "choices": [
+                "Los líquidos o gases calientes suben mientras que las partes más frías bajan",
+                "El calor se mueve solo a través de objetos sólidos",
+                "El calor viaja por el espacio vacío en forma de ondas",
+                "El calor deja de moverse por completo"
+            ],
+            "correct_index": 0,
+            "explanation": "Durante la convección, los líquidos o gases calientes suben mientras que las partes más frías bajan."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cómo calentó el Sol el banco de metal?",
+            "choices": [
+                "Por conducción",
+                "Por convección",
+                "Por radiación",
+                "Por evaporación"
+            ],
+            "correct_index": 2,
+            "explanation": "El Sol calentó el banco de metal por radiación."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué afirmación relaciona correctamente los tres tipos de transferencia de calor?",
+            "choices": [
+                "La conducción usa el contacto directo, la convección ocurre en líquidos y gases, y la radiación viaja en forma de ondas",
+                "La conducción ocurre solo en el aire, la convección no necesita materia y la radiación usa el contacto directo",
+                "La conducción y la convección ocurren solo en el espacio",
+                "La radiación ocurre solo en el agua"
+            ],
+            "correct_index": 0,
+            "explanation": "La conducción usa el contacto directo, la convección ocurre en líquidos y gases, y la radiación viaja en forma de ondas."
+        }
+    ]
+}

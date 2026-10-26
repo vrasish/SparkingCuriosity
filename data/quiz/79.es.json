@@ -1,0 +1,67 @@
+{
+    "book_id": 79,
+    "title": "La pista del jardín de mariposas",
+    "intro": "Este cuestionario sigue a Nora y Sam mientras descubren las cuatro etapas del ciclo de vida de una mariposa.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Dónde encontró Nora por primera vez los huevos de mariposa?",
+            "choices": [
+                "Debajo de una hoja",
+                "Dentro de una flor",
+                "En el suelo",
+                "En un estanque"
+            ],
+            "correct_index": 0,
+            "explanation": "Nora encontró por primera vez los huevos de mariposa debajo de una hoja."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué sale de un huevo de mariposa?",
+            "choices": [
+                "Una mariposa joven",
+                "Una oruga",
+                "Una crisálida",
+                "Un escarabajo"
+            ],
+            "correct_index": 1,
+            "explanation": "De un huevo de mariposa sale una oruga."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cuál es el trabajo principal de la oruga?",
+            "choices": [
+                "Volar y buscar flores",
+                "Comer y crecer",
+                "Poner huevos",
+                "Construir un nido"
+            ],
+            "correct_index": 1,
+            "explanation": "El trabajo principal de la oruga es comer y crecer."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué sucede dentro de la crisálida?",
+            "choices": [
+                "La oruga se transforma en una mariposa adulta",
+                "La mariposa pone huevos",
+                "La oruga se convierte en rana",
+                "El insecto deja de crecer para siempre"
+            ],
+            "correct_index": 0,
+            "explanation": "Dentro de la crisálida, la oruga se transforma en una mariposa adulta."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué orden muestra correctamente el ciclo de vida de la mariposa?",
+            "choices": [
+                "Huevo → oruga → crisálida → mariposa adulta",
+                "Oruga → huevo → mariposa → crisálida",
+                "Huevo → crisálida → oruga → mariposa",
+                "Mariposa → oruga → huevo → crisálida"
+            ],
+            "correct_index": 0,
+            "explanation": "El ciclo de vida de la mariposa es: huevo → oruga → crisálida → mariposa adulta."
+        }
+    ]
+}

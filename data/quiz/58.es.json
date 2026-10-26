@@ -1,0 +1,67 @@
+{
+    "book_id": 58,
+    "title": "Las plantas que almorzaban",
+    "intro": "Este cuestionario sigue a Nia y Kai mientras descubren cómo las plantas carnívoras atrapan insectos para obtener nutrientes extra.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Por qué las plantas carnívoras atrapan insectos?",
+            "choices": [
+                "Para obtener nutrientes extra de un suelo pobre en nutrientes",
+                "Para fabricar luz solar",
+                "Para producir más agua",
+                "Para protegerse de la lluvia"
+            ],
+            "correct_index": 0,
+            "explanation": "Las plantas carnívoras atrapan insectos para obtener nutrientes extra de un suelo pobre en nutrientes."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué hace que una atrapamoscas de Venus se cierre de golpe?",
+            "choices": [
+                "Que sus raíces toquen agua",
+                "Que un insecto toque más de una vez los pelos sensibles",
+                "Que la luz del sol llegue a sus hojas",
+                "Que el viento sacuda la planta"
+            ],
+            "correct_index": 1,
+            "explanation": "Una atrapamoscas de Venus se cierra de golpe cuando un insecto toca más de una vez los pelos sensibles."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo digiere un insecto una atrapamoscas de Venus?",
+            "choices": [
+                "Mastica el insecto con dientes",
+                "Libera jugos digestivos que descomponen el insecto",
+                "Se traga el insecto entero",
+                "Seca el insecto con la luz del sol"
+            ],
+            "correct_index": 1,
+            "explanation": "Una atrapamoscas de Venus libera jugos digestivos que descomponen el insecto."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cómo atrapan insectos las plantas jarra y las droseras?",
+            "choices": [
+                "Las plantas jarra usan hojas en forma de copa y las droseras usan gotas pegajosas",
+                "Ambas usan raíces subterráneas",
+                "Las plantas jarra usan espinas y las droseras usan flores",
+                "Ambas persiguen a los insectos por el suelo"
+            ],
+            "correct_index": 0,
+            "explanation": "Las plantas jarra usan hojas en forma de copa, mientras que las droseras usan gotas pegajosas para atrapar insectos."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué las plantas carnívoras se siguen llamando productoras?",
+            "choices": [
+                "Porque producen insectos",
+                "Porque fabrican su propio azúcar usando la luz del sol",
+                "Porque solo comen animales",
+                "Porque no necesitan agua ni aire"
+            ],
+            "correct_index": 1,
+            "explanation": "Las plantas carnívoras se siguen llamando productoras porque fabrican su propio azúcar usando la luz del sol."
+        }
+    ]
+}

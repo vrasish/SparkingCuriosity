@@ -48,11 +48,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= e(html_lang_attr()) ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= e(site_page_title('Request a Topic')) ?></title>
+    <title><?= e(site_page_title(t('request.title'))) ?></title>
     <?php render_stylesheet(); ?>
 </head>
 <body class="<?= body_class() ?>">
@@ -61,36 +61,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <main class="container page-main page-main-compact">
     <?php render_page_header(
-        'Request a Topic',
-        'Request any science topic you are interested in. We will create the story, add it to the SciFables library, and email you when it is ready.'
+        t('request.title'),
+        t('request.lead')
     ); ?>
 
     <div class="page-section">
         <?php if ($success): ?>
             <div class="alert alert-success">
-                Thank you! Your topic request has been submitted. We’ll email you when the story is ready.
+                <?= e(t('request.success')) ?>
             </div>
             <p class="topic-request-account-note">
-                We’ll notify <strong><?= e((string) ($user['email'] ?? '')) ?></strong> when your story is ready.
+                <?= e(t('request.notify', ['email' => (string) ($user['email'] ?? '')])) ?>
             </p>
             <div class="action-bar">
-                <a href="<?= e(app_url('search.php')) ?>" class="btn btn-primary">Explore Stories</a>
-                <a href="<?= e(app_url('request-topic.php')) ?>" class="btn btn-outline">Submit Another Request</a>
+                <a href="<?= e(app_url('search.php')) ?>" class="btn btn-primary"><?= e(t('request.explore')) ?></a>
+                <a href="<?= e(app_url('request-topic.php')) ?>" class="btn btn-outline"><?= e(t('request.another')) ?></a>
             </div>
         <?php else: ?>
             <?php if ($error !== ''): ?>
-                <div class="alert alert-error"><?= e($error) ?></div>
+                <div class="alert alert-error"><?= e(t($error)) ?></div>
             <?php endif; ?>
 
             <div class="form-panel topic-request-panel">
                 <p class="topic-request-account-note">
-                    Submitting as <strong><?= e((string) ($user['full_name'] ?? '')) ?></strong>
-                    (<strong><?= e((string) ($user['email'] ?? '')) ?></strong>)
+                    <?= e(t('request.submitting_as', [
+                        'name' => (string) ($user['full_name'] ?? ''),
+                        'email' => (string) ($user['email'] ?? ''),
+                    ])) ?>
                 </p>
 
                 <form method="post" action="<?= e(app_url('request-topic.php')) ?>" class="topic-request-form">
                     <div class="form-group">
-                        <label for="science_topic">Science Topic *</label>
+                        <label for="science_topic"><?= e(t('request.topic_label')) ?></label>
                         <input
                             type="text"
                             id="science_topic"
@@ -98,36 +100,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             class="form-control"
                             required
                             maxlength="255"
-                            placeholder="e.g. Photosynthesis, Volcanoes, The water cycle"
+                            placeholder="<?= e(t('request.topic_placeholder')) ?>"
                             value="<?= e($postedTopic) ?>"
                         >
                     </div>
 
                     <div class="form-group">
-                        <label for="age_group">Age Group</label>
+                        <label for="age_group"><?= e(t('request.age_label')) ?></label>
                         <input
                             type="text"
                             id="age_group"
                             name="age_group"
                             class="form-control"
                             maxlength="50"
-                            placeholder="e.g. 8–15"
+                            placeholder="<?= e(t('request.age_placeholder')) ?>"
                             value="<?= e($postedAgeGroup) ?>"
                         >
                     </div>
 
                     <div class="form-group">
-                        <label for="additional_details">Additional Details</label>
+                        <label for="additional_details"><?= e(t('request.details_label')) ?></label>
                         <textarea
                             id="additional_details"
                             name="additional_details"
                             class="form-control"
                             rows="4"
-                            placeholder="Tell us anything else that would help us create the story."
+                            placeholder="<?= e(t('request.details_placeholder')) ?>"
                         ><?= e($postedDetails) ?></textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                    <button type="submit" class="btn btn-primary"><?= e(t('request.submit')) ?></button>
                 </form>
             </div>
         <?php endif; ?>

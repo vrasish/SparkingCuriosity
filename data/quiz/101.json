@@ -1,0 +1,67 @@
+{
+    "book_id": 101,
+    "title": "The Mystery of the Invisible Building Blocks",
+    "intro": "This quiz checks what you learned about atomicity and valency — counting atoms in molecules and how atoms combine.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What does atomicity tell us about a molecule?",
+            "choices": [
+                "The total number of atoms in the molecule",
+                "The number of bonds an atom can form",
+                "The charge of the molecule",
+                "The mass of the molecule"
+            ],
+            "correct_index": 0,
+            "explanation": "Atomicity is the total number of atoms present in one molecule."
+        },
+        {
+            "id": 2,
+            "prompt": "What is the atomicity of water, H₂O?",
+            "choices": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ],
+            "correct_index": 2,
+            "explanation": "Water (H₂O) has 2 hydrogen atoms and 1 oxygen atom, so its atomicity is 3."
+        },
+        {
+            "id": 3,
+            "prompt": "According to the story, what is the common valency of oxygen?",
+            "choices": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ],
+            "correct_index": 1,
+            "explanation": "Oxygen’s common valency is 2 — its combining capacity."
+        },
+        {
+            "id": 4,
+            "prompt": "What is the atomicity of phosphorus, P₄?",
+            "choices": [
+                "2",
+                "3",
+                "4",
+                "8"
+            ],
+            "correct_index": 2,
+            "explanation": "Phosphorus (P₄) has 4 atoms in one molecule, so its atomicity is 4."
+        },
+        {
+            "id": 5,
+            "prompt": "Which statement correctly explains the difference between atomicity and valency?",
+            "choices": [
+                "Atomicity counts atoms in a molecule, while valency describes an atom's combining capacity",
+                "Atomicity describes combining capacity, while valency counts atoms in a molecule",
+                "Atomicity and valency always have the same value",
+                "Atomicity and valency both describe the mass of atoms"
+            ],
+            "correct_index": 0,
+            "explanation": "Atomicity counts the atoms in a molecule; valency describes an atom’s combining capacity."
+        }
+    ]
+}

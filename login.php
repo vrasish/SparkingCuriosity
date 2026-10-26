@@ -28,11 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= e(html_lang_attr()) ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= e(site_page_title('Log in')) ?></title>
+    <title><?= e(site_page_title(t('auth.login_title'))) ?></title>
     <?php render_stylesheet(); ?>
 </head>
 <body class="<?= body_class('auth-page') ?>">
@@ -41,27 +41,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <main class="container page-main page-main-compact auth-main">
     <div class="auth-card">
-        <h1 class="auth-title">Log in</h1>
-        <p class="auth-lead">Sign in with your email and password.</p>
+        <h1 class="auth-title"><?= e(t('auth.login_title')) ?></h1>
+        <p class="auth-lead"><?= e(t('auth.login_lead')) ?></p>
 
         <?php if ($error): ?>
-            <div class="alert alert-error"><?= e($error) ?></div>
+            <div class="alert alert-error"><?= e(t($error)) ?></div>
         <?php endif; ?>
 
         <form method="post" action="<?= e(app_url('login.php')) ?>" class="auth-form">
             <input type="hidden" name="redirect" value="<?= e($redirect) ?>">
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email"><?= e(t('auth.email')) ?></label>
                 <input type="email" id="email" name="email" class="form-control" required autocomplete="email"
                     value="<?= e($_POST['email'] ?? '') ?>">
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password"><?= e(t('auth.password')) ?></label>
                 <input type="password" id="password" name="password" class="form-control" required autocomplete="current-password">
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            <button type="submit" class="btn btn-primary btn-block"><?= e(t('auth.login_button')) ?></button>
         </form>
-        <p class="auth-switch">Need an account? <a href="<?= e(app_url('register.php?redirect=' . rawurlencode($redirect))) ?>">Create one with your name, email, and password</a></p>
+        <p class="auth-switch"><?= e(t('auth.need_account')) ?> <a href="<?= e(app_url('register.php?redirect=' . rawurlencode($redirect))) ?>"><?= e(t('auth.create_account_link')) ?></a></p>
     </div>
 </main>
 <?php render_site_footer(); ?>

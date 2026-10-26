@@ -34,18 +34,22 @@ if (!$searchLocked) {
         cart_bootstrap();
 
         try {
+            ensure_book_i18n_schema(stories_connect());
             $sql = "
                 SELECT
                     b.book_id,
                     b.title,
+                    b.title_es,
                     b.author_name,
                     b.description,
+                    b.description_es,
                     b.science_element,
                     b.cover_image_url,
                     b.age_group,
                     b.book_format,
                     b.price_cents,
                     b.story_topic,
+                    b.pdf_file_path_es,
                     GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
                 FROM books b
                 LEFT JOIN book_categories bc ON b.book_id = bc.book_id
@@ -59,7 +63,7 @@ if (!$searchLocked) {
             }
             $sql .= '
                 GROUP BY b.book_id
-                ORDER BY b.created_at DESC
+                ORDER BY b.created_at ASC, b.book_id ASC
             ';
             $stmt = stories_connect()->prepare($sql);
             $stmt->execute($params);
@@ -68,6 +72,7 @@ if (!$searchLocked) {
             if ($searchQuery !== '') {
                 $books = explore_books_filter_by_search($books, $searchQuery);
             }
+            $books = filter_books_for_site_lang($books);
         } catch (PDOException $ex) {
             $dbError = 'The story library could not be loaded.';
             error_log($ex->getMessage());
@@ -76,6 +81,8 @@ if (!$searchLocked) {
         $ratingSummaries = get_book_rating_summaries(stories_connect(), array_column($books, 'book_id'));
         explore_page_cache_set($topicFilter, $searchQuery, $books, $ratingSummaries);
     }
+
+    $books = filter_books_for_site_lang($books);
 }
 
 cart_bootstrap();
@@ -88,12 +95,17 @@ $searchRedirect = app_url('search.php' . ($hasFilters ? '?' . http_build_query(a
     'q' => $searchQuery !== '' ? $searchQuery : null,
 ])) : ''));
 ?>
+<?php
+if ($dbError === 'The story library could not be loaded.') {
+    $dbError = t('search.load_error');
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= e(html_lang_attr()) ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= e(site_page_title('Search Stories')) ?></title>
+    <title><?= e(site_page_title(t('search.title'))) ?></title>
     <?php render_stylesheet(); ?>
 </head>
 <body class="<?= body_class('explore-library-page search-page') ?>">
@@ -102,7 +114,7 @@ $searchRedirect = app_url('search.php' . ($hasFilters ? '?' . http_build_query(a
 <?php render_classroom_banner($classroomContext); ?>
 
 <main class="container page-main page-main-compact">
-    <h2 class="section-title section-title-compact">Search Stories</h2>
+    <h2 class="section-title section-title-compact"><?= e(t('search.title')) ?></h2>
 
     <?php if ($searchLocked): ?>
         <div class="empty-state empty-state-compact explore-locked-state" role="status">
@@ -114,29 +126,29 @@ $searchRedirect = app_url('search.php' . ($hasFilters ? '?' . http_build_query(a
             </p>
         </div>
     <?php else: ?>
-    <section class="explore-search-panel" aria-label="Search and filter stories">
+    <section class="explore-search-panel" aria-label="<?= e(t('search.title')) ?>">
         <form class="search-form explore-search-form" method="get" action="<?= e(app_url('search.php')) ?>">
             <?php if ($topicFilter !== ''): ?>
                 <input type="hidden" name="topic" value="<?= e($topicFilter) ?>">
             <?php endif; ?>
-            <label class="visually-hidden" for="story-search">Search stories by topic or keyword</label>
+            <label class="visually-hidden" for="story-search"><?= e(t('search.title')) ?></label>
             <input
                 type="search"
                 id="story-search"
                 name="q"
                 class="form-control explore-search-input"
                 value="<?= e($searchQuery) ?>"
-                placeholder="Search by title, topic, or any word from the story…"
+                placeholder="<?= e(t('search.placeholder')) ?>"
                 autocomplete="off"
                 autofocus
             >
-            <button type="submit" class="btn btn-primary btn-sm explore-search-btn">Search</button>
+            <button type="submit" class="btn btn-primary btn-sm explore-search-btn"><?= e(t('search.button')) ?></button>
             <?php if ($hasFilters): ?>
-                <a href="<?= e(app_url('search.php')) ?>" class="btn btn-outline btn-sm">Clear</a>
+                <a href="<?= e(app_url('search.php')) ?>" class="btn btn-outline btn-sm"><?= e(t('search.clear')) ?></a>
             <?php endif; ?>
         </form>
 
-        <div class="filter-chips explore-topic-chips" aria-label="Browse by topic">
+        <div class="filter-chips explore-topic-chips" aria-label="<?= e(t('search.browse_topics')) ?>">
             <?php foreach ($topicTiles as $tile): ?>
                 <?php
                 $isActive = $topicFilter === $tile['slug'];
@@ -148,18 +160,18 @@ $searchRedirect = app_url('search.php' . ($hasFilters ? '?' . http_build_query(a
                 <a
                     href="<?= e($chipUrl) ?>"
                     class="filter-chip category-btn <?= e($tile['class']) ?><?= $isActive ? ' active' : '' ?>"
-                ><?= e($tile['label']) ?></a>
+                ><?= e(topic_label($tile['slug'])) ?></a>
             <?php endforeach; ?>
         </div>
 
         <?php if ($hasFilters): ?>
             <p class="explore-results-meta">
                 <?php if ($topicFilter !== '' && $searchQuery !== ''): ?>
-                    Stories in <strong><?= e($topicFilter) ?></strong> matching “<?= e($searchQuery) ?>”
+                    <?= e(t('search.in_topic_matching', ['topic' => topic_label($topicFilter), 'query' => $searchQuery])) ?>
                 <?php elseif ($topicFilter !== ''): ?>
-                    Stories about <strong><?= e($topicFilter) ?></strong>
+                    <?= e(t('search.about_topic', ['topic' => topic_label($topicFilter)])) ?>
                 <?php else: ?>
-                    Results for “<?= e($searchQuery) ?>”
+                    <?= e(t('search.results_for', ['query' => $searchQuery])) ?>
                 <?php endif; ?>
             </p>
         <?php endif; ?>
@@ -170,23 +182,26 @@ $searchRedirect = app_url('search.php' . ($hasFilters ? '?' . http_build_query(a
     <?php elseif (empty($books)): ?>
         <div class="empty-state empty-state-compact">
             <?php if ($hasFilters): ?>
-                <p>No stories matched your search. Try another topic or keyword.</p>
+                <p><?= e(is_spanish() ? t('search.empty_spanish') : t('search.empty_filtered')) ?></p>
             <?php else: ?>
-                <p>No stories yet. Check back soon!</p>
+                <p><?= e(is_spanish() ? t('search.empty_spanish') : t('search.empty')) ?></p>
             <?php endif; ?>
         </div>
     <?php else: ?>
         <div class="story-grid story-grid-compact">
             <?php foreach ($books as $book): ?>
-                <?php $cover = cover_image_src($book['cover_image_url'] ?? null, $book['title']); ?>
+                <?php
+                $display = book_card_display_fields($book);
+                $cover = cover_image_src($book['cover_image_url'] ?? null, $display['title']);
+                ?>
                 <article class="story-card story-card-compact">
-                    <?php render_story_card_cover((int) $book['book_id'], $cover, (string) $book['title'], $searchRedirect); ?>
+                    <?php render_story_card_cover((int) $book['book_id'], $cover, $display['title'], $searchRedirect); ?>
                     <div class="story-card-content">
                         <?php render_topic_tags($book['categories'] ?? '', $book['story_topic'] ?? null, (int) ($book['book_id'] ?? 0)); ?>
-                        <h3 class="story-card-title"><?= e($book['title']) ?></h3>
-                        <p class="story-card-desc"><?= e($book['description']) ?></p>
+                        <h3 class="story-card-title"><?= e($display['title']) ?></h3>
+                        <p class="story-card-desc"><?= e($display['description']) ?></p>
                         <div class="story-card-bottom">
-                            <p class="story-card-meta">By <?= e($book['author_name']) ?> · Ages <?= e($book['age_group']) ?></p>
+                            <p class="story-card-meta"><?= e(t('search.by_ages', ['author' => $book['author_name'], 'ages' => $book['age_group']])) ?></p>
                             <?php
                             $cardRating = $ratingSummaries[(int) $book['book_id']] ?? null;
                             render_story_card_actions($book, $cardRating);

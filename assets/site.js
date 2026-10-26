@@ -69,8 +69,8 @@
             }
             var span = document.createElement('span');
             span.className = 'topic-tag quiz-done-tag' + (el.classList.contains('story-card-bubbles-home') ? ' home-story-tag' : '');
-            span.title = 'Quiz completed';
-            span.textContent = 'Quiz done ✓';
+            span.title = (window.SciFablesT && window.SciFablesT('book.quiz_done_title')) || 'Quiz completed';
+            span.textContent = (window.SciFablesT && window.SciFablesT('book.quiz_done')) || 'Quiz done ✓';
             el.appendChild(span);
         });
     }

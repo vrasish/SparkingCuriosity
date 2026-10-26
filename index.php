@@ -19,8 +19,9 @@ if ($pageCache !== null) {
 
     try {
         $pdo = stories_connect();
-        $latestBooks = home_fetch_books_by_ids($pdo, home_featured_story_ids());
-        $topPickBooks = home_fetch_books_by_ids($pdo, home_top_pick_story_ids());
+        ensure_book_i18n_schema($pdo);
+        $latestBooks = filter_books_for_site_lang(home_fetch_books_by_ids($pdo, home_featured_story_ids()));
+        $topPickBooks = filter_books_for_site_lang(home_fetch_books_by_ids($pdo, home_top_pick_story_ids()));
     } catch (PDOException $ex) {
         $dbError = 'Stories could not be loaded right now.';
         error_log($ex->getMessage());
@@ -33,6 +34,9 @@ if ($pageCache !== null) {
     $ratingSummaries = get_book_rating_summaries(stories_connect(), $allBookIds);
     home_page_cache_set($latestBooks, $ratingSummaries, $topPickBooks);
 }
+
+$latestBooks = filter_books_for_site_lang($latestBooks);
+$topPickBooks = filter_books_for_site_lang($topPickBooks);
 
 cart_bootstrap();
 release_session_lock();
@@ -47,22 +51,23 @@ $latestRowTwo = array_slice($latestBooks, 3);
  */
 function render_home_story_card(array $book, array $ratingSummaries): void
 {
-    $cover = cover_image_src($book['cover_image_url'] ?? null, $book['title']);
+    $display = book_card_display_fields($book);
+    $cover = cover_image_src($book['cover_image_url'] ?? null, $display['title']);
     ?>
     <article class="home-story-card">
         <div class="home-story-cover-wrap">
             <?php render_story_favorite_button((int) $book['book_id'], app_url('index.php')); ?>
             <a href="<?= e(story_book_url((int) $book['book_id'])) ?>" class="home-story-cover-link">
-                <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="home-story-img" loading="lazy">
+                <img src="<?= e($cover) ?>" alt="<?= e(t('home.cover_alt', ['title' => $display['title']])) ?>" class="home-story-img" loading="lazy">
             </a>
         </div>
         <div class="home-story-body">
             <?php render_story_card_bubbles($book['categories'] ?? '', $book['story_topic'] ?? null, true, (int) $book['book_id']); ?>
-            <a href="<?= e(story_book_url((int) $book['book_id'])) ?>" class="home-story-title"><?= e($book['title']) ?></a>
-            <p class="home-story-desc"><?= e($book['description']) ?></p>
+            <a href="<?= e(story_book_url((int) $book['book_id'])) ?>" class="home-story-title"><?= e($display['title']) ?></a>
+            <p class="home-story-desc"><?= e($display['description']) ?></p>
             <div class="home-story-card-footer">
                 <div class="home-story-meta">
-                    <span>Ages <?= e($book['age_group']) ?></span>
+                    <span><?= e(t('home.ages', ['ages' => $book['age_group']])) ?></span>
                 </div>
                 <div class="home-story-actions">
                     <?php
@@ -76,8 +81,13 @@ function render_home_story_card(array $book, array $ratingSummaries): void
     <?php
 }
 ?>
+<?php
+if ($dbError === 'Stories could not be loaded right now.') {
+    $dbError = t('home.load_error');
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= e(html_lang_attr()) ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -90,13 +100,13 @@ function render_home_story_card(array $book, array $ratingSummaries): void
 
 <main class="container page-main home-main">
 <div class="home-shell">
-    <section class="home-topics" id="topics" aria-label="Explore by topic">
-        <h2 class="home-section-title home-topics-title">Explore by Topic</h2>
+    <section class="home-topics" id="topics" aria-label="<?= e(t('home.explore_topics')) ?>">
+        <h2 class="home-section-title home-topics-title"><?= e(t('home.explore_topics')) ?></h2>
         <div class="home-topic-grid">
             <?php foreach ($topicTiles as $tile): ?>
                 <a href="<?= e(app_url('search.php?topic=' . rawurlencode($tile['slug']))) ?>" class="home-topic-tile category-btn <?= e($tile['class']) ?>">
                     <span class="home-topic-icon" aria-hidden="true"><span class="home-topic-icon-glyph"><?= $tile['icon'] ?></span></span>
-                    <span class="home-topic-label"><?= e($tile['label']) ?></span>
+                    <span class="home-topic-label"><?= e(topic_label($tile['slug'])) ?></span>
                 </a>
             <?php endforeach; ?>
         </div>
@@ -104,15 +114,15 @@ function render_home_story_card(array $book, array $ratingSummaries): void
 
     <section class="home-latest">
         <div class="home-section-head">
-            <h2 class="home-section-title">Latest Stories</h2>
-            <a href="<?= e(app_url('search.php')) ?>" class="home-view-all">View all stories</a>
+            <h2 class="home-section-title"><?= e(t('home.latest')) ?></h2>
+            <a href="<?= e(app_url('search.php')) ?>" class="home-view-all"><?= e(t('home.view_all')) ?></a>
         </div>
 
         <?php if ($dbError): ?>
             <div class="alert alert-error"><?= e($dbError) ?></div>
         <?php elseif (empty($latestBooks)): ?>
             <div class="empty-state home-empty">
-                <p>No approved stories yet. Check back soon!</p>
+                <p><?= e(is_spanish() ? t('home.empty_spanish') : t('home.empty')) ?></p>
             </div>
         <?php else: ?>
             <div class="home-latest-rows">
@@ -125,10 +135,10 @@ function render_home_story_card(array $book, array $ratingSummaries): void
                 <?php endif; ?>
 
                 <?php if ($topPickBooks !== []): ?>
-                    <section class="home-top-picks" aria-label="Top Picks">
+                    <section class="home-top-picks" aria-label="<?= e(t('home.top_picks')) ?>">
                         <div class="home-top-picks-head">
-                            <h3 class="home-top-picks-title">Top Picks</h3>
-                            <p class="home-top-picks-lead">Stories kids love to read again and again</p>
+                            <h3 class="home-top-picks-title"><?= e(t('home.top_picks')) ?></h3>
+                            <p class="home-top-picks-lead"><?= e(is_spanish() ? 'Historias que los niños quieren leer una y otra vez' : 'Stories kids love to read again and again') ?></p>
                         </div>
                         <div class="home-story-grid home-story-grid--picks">
                             <?php foreach ($topPickBooks as $book): ?>

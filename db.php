@@ -501,7 +501,12 @@ function render_story_card_bubbles(?string $categories, ?string $storyTopic = nu
         if ($homeStyle) {
             $tagClass = 'home-story-tag ' . $tagClass;
         }
-        $label = $homeStyle ? strtoupper($cat) : $cat;
+        $label = function_exists('topic_label') ? topic_label($cat) : $cat;
+        if ($homeStyle && (!function_exists('is_spanish') || !is_spanish())) {
+            $label = strtoupper($label);
+        } elseif ($homeStyle && function_exists('is_spanish') && is_spanish()) {
+            $label = mb_strtoupper($label, 'UTF-8');
+        }
         echo '<span class="' . $tagClass . '">' . e($label) . '</span>';
     }
 
@@ -510,7 +515,8 @@ function render_story_card_bubbles(?string $categories, ?string $storyTopic = nu
         if ($homeStyle) {
             $tagClass = 'home-story-tag ' . $tagClass;
         }
-        echo '<span class="' . $tagClass . '">' . e($storyTopic) . '</span>';
+        $topicLabel = function_exists('story_topic_label') ? story_topic_label($storyTopic) : $storyTopic;
+        echo '<span class="' . $tagClass . '">' . e($topicLabel) . '</span>';
     }
 
     if ($quizDone) {
@@ -518,7 +524,9 @@ function render_story_card_bubbles(?string $categories, ?string $storyTopic = nu
         if ($homeStyle) {
             $tagClass = 'home-story-tag ' . $tagClass;
         }
-        echo '<span class="' . $tagClass . '" title="Quiz completed">Quiz done ✓</span>';
+        echo '<span class="' . $tagClass . '" title="' . e(function_exists('t') ? t('book.quiz_done_title') : 'Quiz completed') . '">'
+            . e(function_exists('t') ? t('book.quiz_done') : 'Quiz done ✓')
+            . '</span>';
     }
 
     echo '</div>';
@@ -560,6 +568,10 @@ function home_fetch_books_by_ids(PDO $pdo, array $bookIds): array
     }
 
     $idList = implode(',', $bookIds);
+    if (function_exists('ensure_book_i18n_schema')) {
+        ensure_book_i18n_schema($pdo);
+    }
+
     $stmt = $pdo->prepare("
         SELECT
             b.book_id,
@@ -571,6 +583,9 @@ function home_fetch_books_by_ids(PDO $pdo, array $bookIds): array
             b.price_cents,
             b.book_format,
             b.story_topic,
+            b.title_es,
+            b.description_es,
+            b.pdf_file_path_es,
             GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
         FROM books b
         LEFT JOIN book_categories bc ON b.book_id = bc.book_id

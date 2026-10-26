@@ -1,0 +1,67 @@
+{
+    "book_id": 81,
+    "title": "El rastro de las plumas",
+    "intro": "Este cuestionario sigue a Nia, Kai y Meera mientras descubren qué hace especiales a las aves y cómo las plumas, las alas, los picos y los huesos huecos las ayudan a sobrevivir.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué característica tienen todas las aves?",
+            "choices": [
+                "Pelo",
+                "Plumas",
+                "Solo escamas",
+                "Dientes afilados"
+            ],
+            "correct_index": 1,
+            "explanation": "Todas las aves tienen plumas."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cómo ayudan las plumas a las aves?",
+            "choices": [
+                "Ayudan a volar, a mantener el calor y a protegerse",
+                "Ayudan a las aves a respirar bajo el agua",
+                "Hacen que las aves pesen más",
+                "Reemplazan los huesos del ave"
+            ],
+            "correct_index": 0,
+            "explanation": "Las plumas ayudan a las aves a volar, a mantener el calor y a protegerse."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Por qué muchos huesos de las aves son huecos?",
+            "choices": [
+                "Para almacenar comida",
+                "Para que el cuerpo sea más ligero y puedan volar",
+                "Para guardar agua",
+                "Para que el ave se mantenga más caliente"
+            ],
+            "correct_index": 1,
+            "explanation": "Muchos huesos de las aves son huecos para que el cuerpo sea más ligero y puedan volar."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Por qué las distintas aves tienen distintos tipos de pico?",
+            "choices": [
+                "Sus picos tienen la forma adecuada para el tipo de alimento que comen",
+                "Los picos cambian de color todos los días",
+                "Todas las aves usan el pico exactamente de la misma manera",
+                "Los picos ayudan a las aves a respirar"
+            ],
+            "correct_index": 0,
+            "explanation": "Las distintas aves tienen distintos tipos de pico porque sus picos tienen la forma adecuada para el tipo de alimento que comen."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué afirmación sobre las aves es correcta?",
+            "choices": [
+                "Todas las aves pueden volar",
+                "Las aves son mamíferos porque son de sangre caliente",
+                "Las aves tienen plumas, ponen huevos y son vertebrados de sangre caliente",
+                "Las aves no tienen columna vertebral"
+            ],
+            "correct_index": 2,
+            "explanation": "Las aves tienen plumas, ponen huevos y son vertebrados de sangre caliente."
+        }
+    ]
+}

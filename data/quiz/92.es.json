@@ -1,0 +1,67 @@
+{
+    "book_id": 92,
+    "title": "El equipo del bosque",
+    "intro": "Este cuestionario sigue a dos niños curiosos y al guardabosques Mateo mientras descubren cómo los factores bióticos y abióticos trabajan juntos en un ecosistema.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es un ecosistema?",
+            "choices": [
+                "Un lugar donde solo hay animales",
+                "Un lugar donde los seres vivos y las cosas sin vida interactúan y dependen unos de otros",
+                "Un lugar donde solo crecen plantas",
+                "Un lugar sin agua ni luz del sol"
+            ],
+            "correct_index": 1,
+            "explanation": "Un ecosistema es un lugar donde los seres vivos y las cosas sin vida interactúan y dependen unos de otros."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cómo se llama a las partes de un ecosistema que están vivas o estuvieron vivas?",
+            "choices": [
+                "Factores abióticos",
+                "Factores del clima",
+                "Factores bióticos",
+                "Factores del terreno"
+            ],
+            "correct_index": 2,
+            "explanation": "A las partes de un ecosistema que están vivas o estuvieron vivas se les llama factores bióticos."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cuál de estos es un factor abiótico?",
+            "choices": [
+                "Un ciervo",
+                "Un hongo",
+                "Un pájaro",
+                "La luz del sol"
+            ],
+            "correct_index": 3,
+            "explanation": "La luz del sol es un factor abiótico porque es una parte del ecosistema sin vida."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué hacen los hongos en un ecosistema?",
+            "choices": [
+                "Producen luz del sol",
+                "Descomponen la materia muerta y devuelven nutrientes al suelo",
+                "Crean rocas",
+                "Impiden que crezcan las plantas"
+            ],
+            "correct_index": 1,
+            "explanation": "Los hongos descomponen la materia muerta y devuelven nutrientes al suelo."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué pasa cuando los equipos biótico y abiótico trabajan juntos en equilibrio?",
+            "choices": [
+                "El ecosistema se mantiene sano y fuerte",
+                "Todos los animales abandonan el bosque",
+                "El suelo desaparece",
+                "El clima deja de cambiar"
+            ],
+            "correct_index": 0,
+            "explanation": "Cuando los equipos biótico y abiótico trabajan juntos en equilibrio, el ecosistema se mantiene sano y fuerte."
+        }
+    ]
+}

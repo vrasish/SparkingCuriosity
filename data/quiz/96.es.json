@@ -1,0 +1,67 @@
+{
+    "book_id": 96,
+    "title": "La carrera alrededor del parque",
+    "intro": "Este cuestionario sigue a Emma, Noah y papá en el parque mientras aprenden la diferencia entre rapidez y velocidad con dirección, y cómo encajan la distancia y el desplazamiento.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué nos dice la rapidez?",
+            "choices": [
+                "Qué tan lejos está algo",
+                "Qué tan rápido se mueve algo",
+                "En qué dirección se mueve algo",
+                "Dónde empezó algo"
+            ],
+            "correct_index": 1,
+            "explanation": "La rapidez nos dice qué tan rápido se mueve algo."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué fórmula se usa para calcular la rapidez?",
+            "choices": [
+                "Rapidez = Tiempo ÷ Distancia",
+                "Rapidez = Distancia + Tiempo",
+                "Rapidez = Distancia ÷ Tiempo",
+                "Rapidez = Distancia × Tiempo"
+            ],
+            "correct_index": 2,
+            "explanation": "La rapidez se calcula dividiendo la distancia entre el tiempo."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué hace que la velocidad con dirección sea diferente de la rapidez?",
+            "choices": [
+                "La velocidad con dirección incluye la dirección",
+                "La velocidad con dirección no usa el tiempo",
+                "La velocidad con dirección siempre es más lenta",
+                "La velocidad con dirección solo mide la distancia"
+            ],
+            "correct_index": 0,
+            "explanation": "La velocidad con dirección es diferente de la rapidez porque incluye la dirección."
+        },
+        {
+            "id": 4,
+            "prompt": "Emma y Noah caminaron una vuelta completa y regresaron al punto de partida. ¿Cuál fue su desplazamiento?",
+            "choices": [
+                "400 m",
+                "Una vuelta completa",
+                "100 m",
+                "0 m"
+            ],
+            "correct_index": 3,
+            "explanation": "Como terminaron donde empezaron, su desplazamiento fue de 0 m."
+        },
+        {
+            "id": 5,
+            "prompt": "Dos ciclistas viajan a 10 km/h, pero uno va hacia el norte y el otro hacia el sur. ¿Qué es verdadero?",
+            "choices": [
+                "Tienen rapideces diferentes y la misma velocidad con dirección",
+                "Tienen la misma rapidez pero diferentes velocidades con dirección",
+                "Tienen la misma rapidez y la misma velocidad con dirección",
+                "No tienen velocidad con dirección"
+            ],
+            "correct_index": 1,
+            "explanation": "Tienen la misma rapidez pero diferentes velocidades con dirección porque se mueven en direcciones opuestas."
+        }
+    ]
+}

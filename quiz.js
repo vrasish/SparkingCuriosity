@@ -27,6 +27,13 @@
         return div.innerHTML;
     }
 
+    function tr(key, replace, fallback) {
+        if (typeof global.SciFablesT === 'function') {
+            return global.SciFablesT(key, replace || {});
+        }
+        return fallback || key;
+    }
+
     function renderEmpty(message) {
         if (!state.mountTarget) {
             return;
@@ -130,20 +137,28 @@
         var html =
             '<section class="story-quiz" aria-labelledby="story-quiz-title">' +
             '  <div class="story-quiz-header">' +
-            '    <h2 id="story-quiz-title">📝 Story Quiz</h2>' +
+            '    <h2 id="story-quiz-title">' +
+            escapeHtml(tr('book.story_quiz', null, '📝 Story Quiz')) +
+            '</h2>' +
             (state.quizIntro
                 ? '    <p class="story-quiz-intro">' + escapeHtml(state.quizIntro) + '</p>'
                 : '') +
-            '    <p class="story-quiz-lead">Answer all ' + total + ' fun questions!</p>' +
+            '    <p class="story-quiz-lead">' +
+            escapeHtml(tr('book.quiz_lead', { count: total }, 'Answer all ' + total + ' fun questions!')) +
+            '</p>' +
             '    <div class="story-quiz-progress" aria-hidden="true">' +
             '      <span class="story-quiz-progress-fill" style="width:' +
             Math.round((state.currentIndex / total) * 100) +
             '%"></span>' +
             '    </div>' +
-            '    <p class="story-quiz-meta">Question ' +
-            (state.currentIndex + 1) +
-            ' of ' +
-            total +
+            '    <p class="story-quiz-meta">' +
+            escapeHtml(
+                tr(
+                    'book.quiz_question_of',
+                    { current: state.currentIndex + 1, total: total },
+                    'Question ' + (state.currentIndex + 1) + ' of ' + total
+                )
+            ) +
             '</p>' +
             '  </div>' +
             '  <fieldset class="story-quiz-question">' +
@@ -169,7 +184,9 @@
             '  </fieldset>' +
             '  <div class="story-quiz-feedback" hidden aria-live="polite"></div>' +
             '  <div class="story-quiz-actions">' +
-            '    <button type="button" class="btn btn-primary btn-sm story-quiz-check" disabled>Check Answer</button>' +
+            '    <button type="button" class="btn btn-primary btn-sm story-quiz-check" disabled>' +
+            escapeHtml(tr('book.quiz_check', null, 'Check Answer')) +
+            '</button>' +
             '  </div>' +
             '</section>';
 
@@ -229,11 +246,15 @@
             feedbackEl.className =
                 'story-quiz-feedback ' + (isCorrect ? 'is-correct' : 'is-incorrect');
             feedbackEl.innerHTML = isCorrect
-                ? '<strong>Great job!</strong> <span class="story-quiz-tick" aria-hidden="true">✓</span>'
-                : '<strong>Nice try!</strong> Keep going.';
+                ? '<strong>' +
+                  escapeHtml(tr('book.quiz_great', null, 'Great job!')) +
+                  '</strong> <span class="story-quiz-tick" aria-hidden="true">✓</span>'
+                : '<strong>' + escapeHtml(tr('book.quiz_nice_try', null, 'Nice try! Keep going.')) + '</strong>';
 
             checkBtn.textContent =
-                state.currentIndex + 1 >= state.questions.length ? 'See Results' : 'Next Question';
+                state.currentIndex + 1 >= state.questions.length
+                    ? tr('book.quiz_see_results', null, 'See Results')
+                    : tr('book.quiz_next', null, 'Next Question');
             checkBtn.disabled = false;
         });
     }
@@ -289,8 +310,8 @@
             }
             var span = document.createElement('span');
             span.className = 'topic-tag quiz-done-tag' + (el.classList.contains('story-card-bubbles-home') ? ' home-story-tag' : '');
-            span.title = 'Quiz completed';
-            span.textContent = 'Quiz done ✓';
+            span.title = tr('book.quiz_done_title', null, 'Quiz completed');
+            span.textContent = tr('book.quiz_done', null, 'Quiz done ✓');
             el.appendChild(span);
         });
     }
@@ -339,32 +360,40 @@
 
         var total = state.questions.length;
         var percent = Math.round((state.score / total) * 100);
-        var message = 'Great job exploring this story!';
+        var message = tr('book.quiz_msg_default', null, 'Great job exploring this story!');
         if (percent === 100) {
-            message = 'Wow! You got them all right!';
+            message = tr('book.quiz_msg_perfect', null, 'Wow! You got them all right!');
         } else if (percent >= 75) {
-            message = 'Awesome! You learned a lot from this story.';
+            message = tr('book.quiz_msg_great', null, 'Awesome! You learned a lot from this story.');
         } else if (percent >= 50) {
-            message = 'Good job! Read the story again to learn even more.';
+            message = tr('book.quiz_msg_good', null, 'Good job! Read the story again to learn even more.');
         } else {
-            message = 'Keep going! Try the story one more time.';
+            message = tr('book.quiz_msg_keep', null, 'Keep going! Try the story one more time.');
         }
 
         state.mountTarget.innerHTML =
             '<section class="story-quiz story-quiz-results" aria-live="polite">' +
             '<div class="story-quiz-header">' +
-            '<h2>🎉 Quiz Complete!</h2>' +
+            '<h2>' +
+            escapeHtml(tr('book.quiz_complete', null, '🎉 Quiz Complete!')) +
+            '</h2>' +
             '<p class="story-quiz-score">' +
-            state.score +
-            ' / ' +
-            total +
-            ' correct</p>' +
+            escapeHtml(
+                tr(
+                    'book.quiz_correct',
+                    { score: state.score, total: total },
+                    state.score + ' / ' + total + ' correct'
+                )
+            ) +
+            '</p>' +
             '<p class="story-quiz-lead">' +
             escapeHtml(message) +
             '</p>' +
             '</div>' +
             '<div class="story-quiz-actions">' +
-            '<button type="button" class="btn btn-outline btn-sm story-quiz-retry">Try Again</button>' +
+            '<button type="button" class="btn btn-outline btn-sm story-quiz-retry">' +
+            escapeHtml(tr('book.quiz_try_again', null, 'Try Again')) +
+            '</button>' +
             '</div>' +
             '</section>';
 
@@ -393,7 +422,9 @@
         state.ctaEl.className = 'story-quiz-cta';
         state.ctaEl.hidden = true;
         state.ctaEl.innerHTML =
-            '<button type="button" class="btn btn-primary story-quiz-start">Take the Quiz</button>';
+            '<button type="button" class="btn btn-primary story-quiz-start">' +
+            escapeHtml(tr('book.take_quiz', null, 'Take the Quiz')) +
+            '</button>';
 
         state.ctaEl.querySelector('.story-quiz-start').addEventListener('click', function (event) {
             event.preventDefault();
@@ -518,14 +549,14 @@
                 state.questions = Array.isArray(data.questions) ? data.questions : [];
                 state.quizIntro = typeof data.intro === 'string' ? data.intro.trim() : '';
                 if (!state.questions.length) {
-                    renderEmpty('Quiz coming soon for this story.');
+                    renderEmpty(tr('book.quiz_coming_soon', null, 'Quiz coming soon for this story.'));
                     return;
                 }
                 renderQuestion();
                 setupRevealTriggers();
             })
             .catch(function () {
-                renderEmpty('Quiz coming soon for this story.');
+                renderEmpty(tr('book.quiz_coming_soon', null, 'Quiz coming soon for this story.'));
             });
     }
 

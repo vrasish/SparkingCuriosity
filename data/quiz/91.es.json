@@ -1,0 +1,67 @@
+{
+    "book_id": 91,
+    "title": "El secreto bajo las raíces",
+    "intro": "Este cuestionario sigue a Zoe y Ethan en el jardín de la abuela Rosa mientras descubren cómo las bacterias fijadoras de nitrógeno ayudan a crecer a las plantas de frijol.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué notaron Zoe y Ethan en las dos hileras de plantas de frijol?",
+            "choices": [
+                "Ambas hileras se veían exactamente iguales",
+                "Una hilera estaba sana, mientras que la otra se veía pálida y débil",
+                "Ninguna de las dos hileras tenía flores",
+                "Una hilera no recibía luz solar"
+            ],
+            "correct_index": 1,
+            "explanation": "Zoe y Ethan notaron que una hilera de plantas de frijol estaba sana, mientras que la otra se veía pálida y débil."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cómo se llaman los bultitos redondos y pequeños que había en las raíces del frijol?",
+            "choices": [
+                "Semillas",
+                "Flores",
+                "Nódulos",
+                "Hojas"
+            ],
+            "correct_index": 2,
+            "explanation": "Los bultitos redondos y pequeños de las raíces del frijol se llaman nódulos."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué bacterias beneficiosas vivían dentro de los nódulos de las raíces?",
+            "choices": [
+                "Rhizobium",
+                "Algas",
+                "Hongos",
+                "Levadura"
+            ],
+            "correct_index": 0,
+            "explanation": "Las bacterias Rhizobium vivían dentro de los nódulos de las raíces."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué hacen las bacterias Rhizobium con el nitrógeno del aire?",
+            "choices": [
+                "Lo sacan del suelo",
+                "Lo transforman en una forma que la planta puede usar",
+                "Lo convierten en luz solar",
+                "Lo guardan dentro de las flores"
+            ],
+            "correct_index": 1,
+            "explanation": "Las bacterias Rhizobium transforman el nitrógeno del aire en una forma que la planta puede usar."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué le da la planta a las bacterias Rhizobium a cambio?",
+            "choices": [
+                "Azúcar y un hogar seguro",
+                "Más luz solar y lluvia",
+                "Hojas y flores",
+                "Agua y tierra"
+            ],
+            "correct_index": 0,
+            "explanation": "A cambio, la planta les da a las bacterias Rhizobium azúcar y un hogar seguro."
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "book_id": 66,
+    "title": "El misterio de la materia",
+    "intro": "Este cuestionario sigue a Nia y Caleb mientras descubren qué es la materia y cómo se comportan los sólidos, los líquidos y los gases.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es la materia?",
+            "choices": [
+                "Todo lo que emite luz",
+                "Todo lo que tiene masa y ocupa espacio",
+                "Solo las cosas que se pueden ver",
+                "Solo los sólidos y los líquidos"
+            ],
+            "correct_index": 1,
+            "explanation": "La materia es todo lo que tiene masa y ocupa espacio."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué propiedad describe a un sólido?",
+            "choices": [
+                "Se extiende para llenar todo el espacio disponible",
+                "Toma la forma de su recipiente",
+                "Mantiene su propia forma",
+                "No tiene masa"
+            ],
+            "correct_index": 2,
+            "explanation": "Un sólido mantiene su propia forma."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué pasa cuando se vierte agua de un vaso alto a una taza baja?",
+            "choices": [
+                "Conserva la forma del vaso alto",
+                "Toma la forma de la taza baja",
+                "Se convierte en gas",
+                "Deja de ser materia"
+            ],
+            "correct_index": 1,
+            "explanation": "Cuando el agua se vierte en una taza baja, toma la forma de la taza baja."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cómo se comporta un gas?",
+            "choices": [
+                "Mantiene una forma fija",
+                "Se queda solo en el fondo de un recipiente",
+                "Se extiende para llenar el espacio que lo rodea",
+                "No se puede mover"
+            ],
+            "correct_index": 2,
+            "explanation": "Un gas se extiende para llenar el espacio que lo rodea."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué afirmación describe correctamente un cambio de estado?",
+            "choices": [
+                "El hielo se puede derretir y convertirse en agua líquida",
+                "El agua deja de ser materia cuando se evapora",
+                "Un gas no puede volver a convertirse en líquido",
+                "Un sólido nunca puede cambiar de forma"
+            ],
+            "correct_index": 0,
+            "explanation": "El hielo se puede derretir y convertirse en agua líquida, lo cual es un cambio de estado."
+        }
+    ]
+}

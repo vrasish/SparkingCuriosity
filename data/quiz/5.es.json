@@ -1,0 +1,67 @@
+{
+    "book_id": 5,
+    "title": "El mensaje en la gota de sangre",
+    "intro": "Este cuestionario sigue a Mia y Ruby mientras descubren cómo funciona la sangre y sus pequeños ayudantes dentro del cuerpo.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Quién era Ruby?",
+            "choices": [
+                "Un glóbulo blanco",
+                "Un glóbulo rojo",
+                "Una plaqueta",
+                "Un germen"
+            ],
+            "correct_index": 1,
+            "explanation": "Ruby era un glóbulo rojo."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cuál es el trabajo principal del corazón en el sistema circulatorio?",
+            "choices": [
+                "Producir oxígeno",
+                "Digerir la comida",
+                "Bombear sangre por todo el cuerpo",
+                "Cerrar heridas"
+            ],
+            "correct_index": 2,
+            "explanation": "El trabajo principal del corazón es bombear sangre por todo el cuerpo."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Dónde recogen oxígeno fresco los glóbulos rojos?",
+            "choices": [
+                "En el estómago",
+                "En los pulmones",
+                "En los riñones",
+                "En los huesos"
+            ],
+            "correct_index": 1,
+            "explanation": "Los glóbulos rojos recogen oxígeno fresco en los pulmones."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cómo ayudaron el Capitán Wally y los glóbulos blancos a Mia?",
+            "choices": [
+                "Llevaron oxígeno",
+                "La ayudaron a correr más rápido",
+                "Protegieron su cuerpo de gérmenes que entraban por el corte",
+                "Bombearon sangre por su corazón"
+            ],
+            "correct_index": 2,
+            "explanation": "El Capitán Wally y los glóbulos blancos protegieron el cuerpo de Mia de gérmenes que entraban por el corte."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué hacen las plaquetas cuando el cuerpo se corta?",
+            "choices": [
+                "Llevan oxígeno a los músculos",
+                "Ayudan a cerrar el corte para que el cuerpo pueda sanar",
+                "Destruyen glóbulos rojos",
+                "Convierten la sangre en agua"
+            ],
+            "correct_index": 1,
+            "explanation": "Las plaquetas ayudan a cerrar el corte para que el cuerpo pueda sanar."
+        }
+    ]
+}

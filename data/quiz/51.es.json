@@ -1,0 +1,67 @@
+{
+    "book_id": 51,
+    "title": "La montaña que retumbó",
+    "intro": "Este cuestionario sigue a Isla y Theo mientras aprenden sobre los volcanes, el magma, la lava y la diferencia entre volcanes activos y volcanes inactivos.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es el magma?",
+            "choices": [
+                "Roca derretida bajo la tierra",
+                "Agua atrapada dentro de una montaña",
+                "Humo de un volcán",
+                "Roca dura en la superficie de la Tierra"
+            ],
+            "correct_index": 0,
+            "explanation": "El magma es roca derretida bajo la tierra."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cómo se llama el magma después de llegar a la superficie de la Tierra?",
+            "choices": [
+                "Ceniza",
+                "Vapor",
+                "Lava",
+                "Tierra"
+            ],
+            "correct_index": 2,
+            "explanation": "El magma se llama lava después de llegar a la superficie de la Tierra."
+        },
+        {
+            "id": 3,
+            "prompt": "Además de lava, ¿qué más puede expulsar un volcán?",
+            "choices": [
+                "Nieve, lluvia y hielo",
+                "Ceniza, vapor y gases",
+                "Arena, tierra y hojas",
+                "Solo agua"
+            ],
+            "correct_index": 1,
+            "explanation": "Además de lava, un volcán puede expulsar ceniza, vapor y gases."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué significa que un volcán esté activo?",
+            "choices": [
+                "Que nunca podrá volver a hacer erupción",
+                "Que está en erupción ahora, hizo erupción hace poco o podría hacer erupción otra vez",
+                "Que ha desaparecido por completo",
+                "Que siempre está cubierto de nieve"
+            ],
+            "correct_index": 1,
+            "explanation": "Un volcán activo está en erupción ahora, hizo erupción hace poco o podría hacer erupción otra vez."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué es un volcán inactivo (o dormido)?",
+            "choices": [
+                "Un volcán que ahora está tranquilo pero que algún día podría hacer erupción otra vez",
+                "Un volcán que hace erupción todos los días",
+                "Un volcán hecho solo de hielo",
+                "Una montaña sin magma debajo"
+            ],
+            "correct_index": 0,
+            "explanation": "Un volcán inactivo (o dormido) está tranquilo ahora, pero algún día podría hacer erupción otra vez."
+        }
+    ]
+}

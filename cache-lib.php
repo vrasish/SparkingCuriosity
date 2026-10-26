@@ -54,7 +54,9 @@ function stories_cache_set(string $key, array $data): void
 
 function explore_cache_key(string $topicFilter, string $searchQuery): string
 {
-    return 'explore-v3-' . md5($topicFilter . '|' . $searchQuery);
+    $lang = function_exists('current_lang') ? current_lang() : 'en';
+
+    return 'explore-v4-' . $lang . '-' . md5($topicFilter . '|' . $searchQuery);
 }
 
 /** @return list<string> */
@@ -99,7 +101,9 @@ function explore_books_filter_by_search(array $books, string $searchQuery): arra
 
         $haystack = strtolower(implode(' ', [
             (string) ($book['title'] ?? ''),
+            (string) ($book['title_es'] ?? ''),
             (string) ($book['description'] ?? ''),
+            (string) ($book['description_es'] ?? ''),
             (string) ($book['author_name'] ?? ''),
             (string) ($book['categories'] ?? ''),
             (string) ($book['story_topic'] ?? ''),
@@ -147,9 +151,16 @@ function explore_page_cache_set(string $topicFilter, string $searchQuery, array 
 }
 
 /** @return array{books: list<array<string, mixed>>, top_picks: list<array<string, mixed>>, ratings: array<int, array<string, mixed>>}|null */
+function home_cache_key(): string
+{
+    $lang = function_exists('current_lang') ? current_lang() : 'en';
+
+    return 'home-featured-' . $lang;
+}
+
 function home_page_cache_get(int $ttlSeconds = 600): ?array
 {
-    $cached = stories_cache_get('home-featured', $ttlSeconds);
+    $cached = stories_cache_get(home_cache_key(), $ttlSeconds);
     if ($cached === null || !isset($cached['books'], $cached['ratings']) || !is_array($cached['books']) || !is_array($cached['ratings'])) {
         return null;
     }
@@ -165,7 +176,7 @@ function home_page_cache_get(int $ttlSeconds = 600): ?array
 /** @param list<array<string, mixed>> $topPicks */
 function home_page_cache_set(array $books, array $ratings, array $topPicks = []): void
 {
-    stories_cache_set('home-featured', [
+    stories_cache_set(home_cache_key(), [
         'books' => $books,
         'top_picks' => $topPicks,
         'ratings' => $ratings,
@@ -174,9 +185,11 @@ function home_page_cache_set(array $books, array $ratings, array $topPicks = [])
 
 function home_page_cache_clear(): void
 {
-    $path = stories_cache_dir() . '/home-featured.json';
-    if (is_file($path)) {
-        @unlink($path);
+    $dir = stories_cache_dir();
+    foreach (glob($dir . '/home-featured*.json') ?: [] as $path) {
+        if (is_file($path)) {
+            @unlink($path);
+        }
     }
 }
 

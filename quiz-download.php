@@ -11,6 +11,10 @@ if (session_status() === PHP_SESSION_NONE) {
 
 $bookId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 $preview = isset($_GET['preview']) && $_GET['preview'] === '1';
+$lang = strtolower(trim((string) ($_GET['lang'] ?? 'en')));
+if ($lang !== 'es') {
+    $lang = 'en';
+}
 
 if ($bookId <= 0) {
     http_response_code(400);
@@ -19,7 +23,7 @@ if ($bookId <= 0) {
 
 try {
     $stmt = $pdo->prepare('
-        SELECT book_id, title, status, book_format, pdf_file_path, price_cents
+        SELECT book_id, title, title_es, status, book_format, pdf_file_path, price_cents
         FROM books
         WHERE book_id = ?
         LIMIT 1
@@ -50,22 +54,36 @@ if (!$preview && !can_read_book($book, $preview)) {
     exit('Purchase this story to download the quiz.');
 }
 
-if (!quiz_has_story($bookId) || quiz_public_questions($bookId) === []) {
+$quizLang = $lang;
+$questions = quiz_public_questions($bookId, $quizLang);
+if ($questions === [] && $quizLang === 'es') {
+    $quizLang = 'en';
+    $questions = quiz_public_questions($bookId, 'en');
+}
+if ($questions === []) {
     http_response_code(404);
     exit('Quiz is not available yet.');
 }
 
+$displayTitle = '';
+if ($quizLang === 'es') {
+    $displayTitle = trim((string) ($book['title_es'] ?? ''));
+}
+if ($displayTitle === '') {
+    $displayTitle = (string) ($book['title'] ?? '');
+}
+
 try {
-    $pdfPath = quiz_build_download_pdf($bookId, (string) ($book['title'] ?? ''));
+    $pdfPath = quiz_build_download_pdf($bookId, $displayTitle, $quizLang);
 } catch (Throwable $e) {
     error_log('quiz download failed for book ' . $bookId . ': ' . $e->getMessage());
     http_response_code(500);
     exit('Could not build quiz PDF.');
 }
 
-$safeTitle = preg_replace('/[^a-zA-Z0-9._-]+/', '-', (string) ($book['title'] ?? 'story'));
+$safeTitle = preg_replace('/[^a-zA-Z0-9._-]+/', '-', $displayTitle);
 $safeTitle = trim((string) $safeTitle, '-') ?: 'story';
-$filename = $safeTitle . '-quiz.pdf';
+$filename = $safeTitle . ($quizLang === 'es' ? '-cuestionario.pdf' : '-quiz.pdf');
 $fileSize = filesize($pdfPath);
 
 while (ob_get_level() > 0) {

@@ -1,0 +1,67 @@
+{
+    "book_id": 100,
+    "title": "The Mystery of Everyday Changes",
+    "intro": "This quiz checks what you learned about physical and chemical changes — and how to tell them apart.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is the main difference between a physical change and a chemical change?",
+            "choices": [
+                "Physical changes always involve heat",
+                "Chemical changes form one or more new substances",
+                "Physical changes always change color",
+                "Chemical changes are always reversible"
+            ],
+            "correct_index": 1,
+            "explanation": "Chemical changes form one or more new substances, while physical changes do not."
+        },
+        {
+            "id": 2,
+            "prompt": "Which of the following is a physical change?",
+            "choices": [
+                "Rusting iron",
+                "Burning a matchstick",
+                "Melting ice",
+                "Toasting bread"
+            ],
+            "correct_index": 2,
+            "explanation": "Melting ice is a physical change — water changes state but no new substance forms."
+        },
+        {
+            "id": 3,
+            "prompt": "Why is burning candle wax considered a chemical change?",
+            "choices": [
+                "The wax changes from solid to liquid",
+                "The candle becomes shorter",
+                "New substances such as carbon dioxide and water vapor are formed",
+                "The wax becomes softer"
+            ],
+            "correct_index": 2,
+            "explanation": "Burning wax produces new substances such as carbon dioxide and water vapor."
+        },
+        {
+            "id": 4,
+            "prompt": "Why is rusting iron considered a chemical change?",
+            "choices": [
+                "The iron changes shape",
+                "Iron reacts with oxygen and moisture to form new substances",
+                "The iron becomes colder",
+                "The rust can be easily washed away"
+            ],
+            "correct_index": 1,
+            "explanation": "Rusting is a chemical change because iron reacts with oxygen and moisture to form new substances."
+        },
+        {
+            "id": 5,
+            "prompt": "What is the most important question to ask when deciding whether a change is physical or chemical?",
+            "choices": [
+                "Did the substance change size?",
+                "Did the substance change color?",
+                "Was a new substance formed?",
+                "Can the change be reversed?"
+            ],
+            "correct_index": 2,
+            "explanation": "Ask: Was a new substance formed? If yes, it is a chemical change; if no, it is a physical change."
+        }
+    ]
+}

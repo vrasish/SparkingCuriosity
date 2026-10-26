@@ -1,0 +1,67 @@
+{
+    "book_id": 78,
+    "title": "El misterio del estanque",
+    "intro": "Este cuestionario sigue a Maya y Theo mientras aprenden sobre el ciclo de vida de la rana y la metamorfosis.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Dónde comienzan las ranas su ciclo de vida?",
+            "choices": [
+                "En un árbol",
+                "En el agua",
+                "Bajo tierra",
+                "Dentro de un nido"
+            ],
+            "correct_index": 1,
+            "explanation": "Las ranas comienzan su ciclo de vida en el agua."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué protege a los embriones de rana que se desarrollan dentro de los huevos?",
+            "choices": [
+                "Una cáscara dura",
+                "Una capa de pelo",
+                "La gelatina que rodea los huevos",
+                "Una cubierta de hojas"
+            ],
+            "correct_index": 2,
+            "explanation": "La gelatina que rodea los huevos protege a los embriones de rana mientras se desarrollan."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo respiran los renacuajos bajo el agua?",
+            "choices": [
+                "Con pulmones",
+                "Solo a través de la piel",
+                "Con branquias",
+                "A través de la cola"
+            ],
+            "correct_index": 2,
+            "explanation": "Los renacuajos respiran bajo el agua con branquias."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué grandes cambios ocurren cuando un renacuajo se convierte en ranita?",
+            "choices": [
+                "Le salen alas y pierde las patas",
+                "Le salen patas, desarrolla pulmones y su cola se hace más pequeña",
+                "Le sale pelo y sale del agua de inmediato",
+                "Se hace más grande pero conserva la misma forma de cuerpo"
+            ],
+            "correct_index": 1,
+            "explanation": "Cuando un renacuajo se convierte en ranita, le salen patas, desarrolla pulmones y su cola se hace más pequeña."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué es la metamorfosis?",
+            "choices": [
+                "El proceso de poner huevos",
+                "Un gran cambio en la forma del cuerpo a medida que un animal crece",
+                "La manera en que las ranas atrapan insectos",
+                "El movimiento de las ranas de un estanque a otro"
+            ],
+            "correct_index": 1,
+            "explanation": "La metamorfosis es un gran cambio en la forma del cuerpo a medida que un animal crece."
+        }
+    ]
+}

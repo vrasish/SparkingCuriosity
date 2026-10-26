@@ -1,0 +1,67 @@
+{
+    "book_id": 57,
+    "title": "Las plantas que ahorraban cada gota",
+    "intro": "Este cuestionario sigue a Riya y Caleb mientras descubren cómo las plantas del desierto ahorran y recogen agua.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Por qué muchas plantas del desierto tienen espinas en lugar de hojas grandes?",
+            "choices": [
+                "Para atraer a más animales",
+                "Para perder menos agua y proteger a la planta",
+                "Para captar la luz del sol de noche",
+                "Para que la planta crezca más alta"
+            ],
+            "correct_index": 1,
+            "explanation": "Las plantas del desierto tienen espinas en lugar de hojas grandes para perder menos agua y proteger a la planta."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Dónde guarda el agua un cactus?",
+            "choices": [
+                "Dentro de su tallo grueso",
+                "Dentro de sus flores",
+                "Dentro de sus espinas",
+                "Debajo de su corteza"
+            ],
+            "correct_index": 0,
+            "explanation": "Un cactus guarda el agua dentro de su tallo grueso."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo ayudan las hojas del aloe y del agave a que estas plantas sobrevivan?",
+            "choices": [
+                "Sus hojas gruesas y cerosas ayudan a mantener la humedad en su interior",
+                "Sus hojas se caen todas las mañanas",
+                "Sus hojas absorben alimento de los insectos",
+                "Sus hojas producen lluvia"
+            ],
+            "correct_index": 0,
+            "explanation": "El aloe y el agave tienen hojas gruesas y cerosas que ayudan a mantener la humedad en su interior."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cómo encuentran agua los mezquites en los lugares secos?",
+            "choices": [
+                "Recogen agua solo con sus hojas",
+                "Desarrollan raíces profundas que llegan al agua subterránea",
+                "Guardan agua dentro de sus flores",
+                "Esperan a que los animales les traigan agua"
+            ],
+            "correct_index": 1,
+            "explanation": "Los mezquites desarrollan raíces profundas que llegan al agua subterránea."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué algunas plantas del desierto tienen raíces anchas y poco profundas?",
+            "choices": [
+                "Para absorber rápidamente el agua de lluvia cerca de la superficie",
+                "Para sostener sus flores por encima del suelo",
+                "Para mantener alejados a los insectos",
+                "Para producir más semillas"
+            ],
+            "correct_index": 0,
+            "explanation": "Las raíces anchas y poco profundas ayudan a las plantas del desierto a absorber rápidamente el agua de lluvia cerca de la superficie."
+        }
+    ]
+}

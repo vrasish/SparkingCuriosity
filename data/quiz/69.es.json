@@ -1,0 +1,67 @@
+{
+    "book_id": 69,
+    "title": "El misterio del pequeño cubo pesado",
+    "intro": "Este cuestionario sigue a Zara y Eli mientras aprenden sobre la masa, el volumen y la densidad.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Por qué el cubo de plata era más pesado que el cubo de madera aunque tenían el mismo tamaño?",
+            "choices": [
+                "El cubo de plata tenía más masa concentrada en el mismo volumen",
+                "El cubo de madera estaba hueco",
+                "El cubo de plata tenía un volumen mayor",
+                "El cubo de madera contenía más materia"
+            ],
+            "correct_index": 0,
+            "explanation": "El cubo de plata era más pesado porque tenía más masa concentrada en el mismo volumen."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué mide el volumen?",
+            "choices": [
+                "Qué tan pesado se siente un objeto",
+                "Cuánto espacio ocupa un objeto",
+                "Qué tan rápido se mueve un objeto",
+                "Cuánta agua contiene un objeto"
+            ],
+            "correct_index": 1,
+            "explanation": "El volumen mide cuánto espacio ocupa un objeto."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué describe la masa?",
+            "choices": [
+                "La cantidad de materia que hay en un objeto",
+                "La forma de un objeto",
+                "El color de un objeto",
+                "La cantidad de espacio alrededor de un objeto"
+            ],
+            "correct_index": 0,
+            "explanation": "La masa describe la cantidad de materia que hay en un objeto."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cómo se calcula la densidad?",
+            "choices": [
+                "Densidad = volumen ÷ masa",
+                "Densidad = masa × volumen",
+                "Densidad = masa ÷ volumen",
+                "Densidad = masa + volumen"
+            ],
+            "correct_index": 2,
+            "explanation": "La densidad se calcula como la masa dividida entre el volumen."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué el bloque de madera flotó mientras que la roca se hundió?",
+            "choices": [
+                "El bloque de madera estaba más frío que la roca",
+                "El bloque de madera era menos denso que el agua, mientras que la roca era más densa",
+                "La roca no tenía volumen",
+                "El agua empujaba solo el bloque de madera"
+            ],
+            "correct_index": 1,
+            "explanation": "El bloque de madera flotó porque era menos denso que el agua, mientras que la roca era más densa."
+        }
+    ]
+}

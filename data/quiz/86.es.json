@@ -1,0 +1,67 @@
+{
+    "book_id": 86,
+    "title": "Las luces que danzaban en el cielo",
+    "intro": "Este cuestionario sigue a Maya y Leo mientras descubren cómo se forman las auroras boreales y por qué aparecen en diferentes colores.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cómo se llaman también las luces del norte?",
+            "choices": [
+                "Nubes solares",
+                "Aurora boreal",
+                "Cintas de la Luna",
+                "Arcoíris polares"
+            ],
+            "correct_index": 1,
+            "explanation": "Las luces del norte también se llaman aurora boreal."
+        },
+        {
+            "id": 2,
+            "prompt": "¿De dónde vienen las partículas cargadas que ayudan a crear las auroras boreales?",
+            "choices": [
+                "De la Luna",
+                "De los océanos de la Tierra",
+                "Del Sol",
+                "De estrellas lejanas"
+            ],
+            "correct_index": 2,
+            "explanation": "Las partículas cargadas que ayudan a crear las auroras boreales vienen del Sol."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué ayuda a guiar las partículas cargadas hacia las regiones polares de la Tierra?",
+            "choices": [
+                "El campo magnético de la Tierra",
+                "Las corrientes oceánicas",
+                "La gravedad de la Luna",
+                "Los fuertes vientos de la atmósfera"
+            ],
+            "correct_index": 0,
+            "explanation": "El campo magnético de la Tierra ayuda a guiar las partículas cargadas hacia las regiones polares."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué sucede cuando las partículas cargadas chocan con los gases de la atmósfera de la Tierra?",
+            "choices": [
+                "Los gases se congelan",
+                "Los gases liberan luz",
+                "El cielo produce lluvia",
+                "Las partículas se convierten en nubes"
+            ],
+            "correct_index": 1,
+            "explanation": "Cuando las partículas cargadas chocan con los gases de la atmósfera de la Tierra, los gases liberan luz."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué gas produce comúnmente las auroras verdes y rojas?",
+            "choices": [
+                "Hidrógeno",
+                "Oxígeno",
+                "Dióxido de carbono",
+                "Helio"
+            ],
+            "correct_index": 1,
+            "explanation": "El oxígeno produce comúnmente las auroras verdes y rojas."
+        }
+    ]
+}

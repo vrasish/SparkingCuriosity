@@ -1,0 +1,67 @@
+{
+    "book_id": 100,
+    "title": "El misterio de los cambios cotidianos",
+    "intro": "Este cuestionario revisa lo que aprendiste sobre los cambios físicos y químicos — y cómo distinguirlos.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cuál es la diferencia principal entre un cambio físico y un cambio químico?",
+            "choices": [
+                "Los cambios físicos siempre involucran calor",
+                "Los cambios químicos forman una o más sustancias nuevas",
+                "Los cambios físicos siempre cambian el color",
+                "Los cambios químicos siempre son reversibles"
+            ],
+            "correct_index": 1,
+            "explanation": "Los cambios químicos forman una o más sustancias nuevas, mientras que los cambios físicos no."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cuál de los siguientes es un cambio físico?",
+            "choices": [
+                "Oxidación del hierro",
+                "Quemar un fósforo",
+                "Derretir hielo",
+                "Tostar pan"
+            ],
+            "correct_index": 2,
+            "explanation": "Derretir hielo es un cambio físico: el agua cambia de estado, pero no se forma una sustancia nueva."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Por qué quemar la cera de una vela se considera un cambio químico?",
+            "choices": [
+                "La cera pasa de sólido a líquido",
+                "La vela se hace más corta",
+                "Se forman sustancias nuevas como dióxido de carbono y vapor de agua",
+                "La cera se vuelve más blanda"
+            ],
+            "correct_index": 2,
+            "explanation": "Al quemar la cera se producen sustancias nuevas como dióxido de carbono y vapor de agua."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Por qué la oxidación del hierro se considera un cambio químico?",
+            "choices": [
+                "El hierro cambia de forma",
+                "El hierro reacciona con el oxígeno y la humedad para formar sustancias nuevas",
+                "El hierro se vuelve más frío",
+                "El óxido se puede lavar fácilmente"
+            ],
+            "correct_index": 1,
+            "explanation": "La oxidación es un cambio químico porque el hierro reacciona con el oxígeno y la humedad para formar sustancias nuevas."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Cuál es la pregunta más importante para decidir si un cambio es físico o químico?",
+            "choices": [
+                "¿Cambió el tamaño de la sustancia?",
+                "¿Cambió el color de la sustancia?",
+                "¿Se formó una sustancia nueva?",
+                "¿Se puede revertir el cambio?"
+            ],
+            "correct_index": 2,
+            "explanation": "Pregunta: ¿Se formó una sustancia nueva? Si sí, es un cambio químico; si no, es un cambio físico."
+        }
+    ]
+}

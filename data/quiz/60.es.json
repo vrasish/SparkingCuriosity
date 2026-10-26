@@ -1,0 +1,67 @@
+{
+    "book_id": 60,
+    "title": "El aliento que emprendió un viaje",
+    "intro": "Este cuestionario sigue una inhalación de aire mientras viaja por el sistema respiratorio y ayuda al cuerpo a recibir oxígeno.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Por dónde entra normalmente el aire al cuerpo?",
+            "choices": [
+                "Por el estómago",
+                "Por la nariz o la boca",
+                "Por el corazón",
+                "Por la piel"
+            ],
+            "correct_index": 1,
+            "explanation": "El aire normalmente entra al cuerpo por la nariz o la boca."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué tubo lleva el aire desde la garganta hacia los pulmones?",
+            "choices": [
+                "El esófago",
+                "La tráquea",
+                "La arteria",
+                "El uréter"
+            ],
+            "correct_index": 1,
+            "explanation": "La tráquea lleva el aire desde la garganta hacia los pulmones."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué ocurre en los diminutos sacos de aire llamados alvéolos?",
+            "choices": [
+                "Se descompone la comida",
+                "El oxígeno pasa a la sangre y el dióxido de carbono sale",
+                "Se crean las células de la sangre",
+                "Se almacena agua"
+            ],
+            "correct_index": 1,
+            "explanation": "En los alvéolos, el oxígeno pasa a la sangre y el dióxido de carbono sale."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué hace el diafragma cuando inhalas?",
+            "choices": [
+                "Se mueve hacia abajo y les da a los pulmones más espacio para expandirse",
+                "Cierra la tráquea",
+                "Bombea sangre a los pulmones",
+                "Empuja el aire fuera de la nariz"
+            ],
+            "correct_index": 0,
+            "explanation": "Cuando inhalas, el diafragma se mueve hacia abajo y les da a los pulmones más espacio para expandirse."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué exhalamos dióxido de carbono?",
+            "choices": [
+                "El cuerpo lo produce como un gas de desecho y necesita eliminarlo",
+                "El cuerpo lo usa para fortalecer los huesos",
+                "Ayuda al estómago a digerir la comida",
+                "Se convierte en oxígeno dentro de la nariz"
+            ],
+            "correct_index": 0,
+            "explanation": "Exhalamos dióxido de carbono porque el cuerpo lo produce como un gas de desecho y necesita eliminarlo."
+        }
+    ]
+}

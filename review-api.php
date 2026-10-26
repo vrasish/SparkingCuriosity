@@ -27,16 +27,6 @@ $bookId = isset($payload['book_id']) ? (int) $payload['book_id'] : 0;
 $rating = isset($payload['rating']) ? (int) $payload['rating'] : 0;
 $reviewText = trim((string) ($payload['review_text'] ?? ''));
 
-if (!is_logged_in()) {
-    http_response_code(401);
-    echo json_encode([
-        'ok' => false,
-        'error' => 'Please log in to rate this story.',
-        'login_url' => app_url('login.php?redirect=' . rawurlencode('book.php?id=' . $bookId)),
-    ]);
-    exit;
-}
-
 if ($bookId <= 0) {
     http_response_code(400);
     echo json_encode(['ok' => false, 'error' => 'Invalid story.']);
@@ -66,8 +56,9 @@ if (!can_read_book($book)) {
     exit;
 }
 
-$userId = (int) (current_user()['user_id'] ?? 0);
-$result = save_book_review($pdo, $bookId, $userId, $rating, $reviewText);
+$userId = is_logged_in() ? (int) (current_user()['user_id'] ?? 0) : null;
+$visitorToken = $userId ? '' : review_visitor_token();
+$result = save_book_review($pdo, $bookId, $userId, $rating, $reviewText, $visitorToken);
 
 if (!$result['ok']) {
     http_response_code(422);
@@ -80,6 +71,6 @@ $summary = get_book_rating_summary($pdo, $bookId);
 echo json_encode([
     'ok' => true,
     'rating' => $rating,
-    'message' => 'Thank you for rating this story!',
+    'message' => function_exists('t') ? t('book.rating_thanks') : 'Thank you for rating this story!',
     'summary' => $summary,
 ]);

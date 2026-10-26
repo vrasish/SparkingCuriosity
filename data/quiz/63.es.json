@@ -1,0 +1,67 @@
+{
+    "book_id": 63,
+    "title": "La aventura por el túnel de los alimentos",
+    "intro": "Este cuestionario sigue a Nora y Jayden mientras aprenden cómo viaja la comida por el sistema digestivo.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Dónde comienza la digestión?",
+            "choices": [
+                "En el estómago",
+                "En la boca",
+                "En el intestino delgado",
+                "En el intestino grueso"
+            ],
+            "correct_index": 1,
+            "explanation": "La digestión comienza en la boca."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué hacen los dientes y la saliva en la boca?",
+            "choices": [
+                "Los dientes absorben nutrientes y la saliva forma desechos",
+                "Los dientes trituran la comida y la saliva la ablanda y empieza a descomponerla",
+                "Los dientes llevan la comida al estómago y la saliva absorbe agua",
+                "Los dientes hacen vitaminas y la saliva lleva oxígeno"
+            ],
+            "correct_index": 1,
+            "explanation": "Los dientes trituran la comida y la saliva la ablanda y empieza a descomponerla."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cuál es el trabajo del esófago?",
+            "choices": [
+                "Empujar la comida desde la boca hasta el estómago",
+                "Absorber la mayoría de los nutrientes",
+                "Formar desechos sólidos",
+                "Producir saliva"
+            ],
+            "correct_index": 0,
+            "explanation": "El esófago empuja la comida desde la boca hasta el estómago."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Dónde se absorben la mayoría de los nutrientes hacia la sangre?",
+            "choices": [
+                "En la boca",
+                "En el estómago",
+                "En el intestino delgado",
+                "En el intestino grueso"
+            ],
+            "correct_index": 2,
+            "explanation": "La mayoría de los nutrientes se absorben hacia la sangre en el intestino delgado."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Cuál orden muestra correctamente el camino que sigue la comida?",
+            "choices": [
+                "Boca → estómago → esófago → intestino grueso → intestino delgado",
+                "Boca → esófago → estómago → intestino delgado → intestino grueso",
+                "Estómago → boca → esófago → intestino delgado → intestino grueso",
+                "Boca → intestino delgado → estómago → esófago → intestino grueso"
+            ],
+            "correct_index": 1,
+            "explanation": "La comida viaja desde la boca por el esófago, el estómago, el intestino delgado y el intestino grueso."
+        }
+    ]
+}

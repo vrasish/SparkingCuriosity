@@ -1,0 +1,67 @@
+{
+    "book_id": 75,
+    "title": "El misterio de la piedra soleada",
+    "intro": "Este cuestionario sigue la historia de una lagartija sobre una piedra soleada y cómo los animales de sangre caliente y de sangre fría se mantienen activos.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Por qué estaba la lagartija quieta sobre la piedra?",
+            "choices": [
+                "Estaba durmiendo.",
+                "Estaba esperando a calentarse.",
+                "Estaba almorzando.",
+                "Se estaba escondiendo del conejo."
+            ],
+            "correct_index": 1,
+            "explanation": "La lagartija estaba quieta sobre la piedra porque esperaba a calentarse."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué animal de la historia es un mamífero?",
+            "choices": [
+                "La lagartija",
+                "La serpiente",
+                "El conejo",
+                "La rana"
+            ],
+            "correct_index": 2,
+            "explanation": "El conejo es un mamífero."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué ayuda a los animales de sangre caliente a mantenerse activos en los días fríos?",
+            "choices": [
+                "El sol los calienta.",
+                "Producen calor dentro de su cuerpo.",
+                "Nunca sienten frío.",
+                "Se esconden debajo de las rocas."
+            ],
+            "correct_index": 1,
+            "explanation": "Los animales de sangre caliente se mantienen activos en los días fríos porque producen calor dentro de su cuerpo."
+        },
+        {
+            "id": 4,
+            "prompt": "¿De dónde obtienen la mayor parte de su calor los animales de sangre fría?",
+            "choices": [
+                "Del interior de su cuerpo.",
+                "De la comida.",
+                "Del aire y de la luz del sol que los rodea.",
+                "Del agua que beben."
+            ],
+            "correct_index": 2,
+            "explanation": "Los animales de sangre fría obtienen la mayor parte de su calor del aire y de la luz del sol que los rodea."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué pasó cuando el sol brilló sobre la lagartija?",
+            "choices": [
+                "Se quedó dormida.",
+                "Empezó a nadar.",
+                "Se calentó y salió corriendo.",
+                "Se convirtió en un conejo."
+            ],
+            "correct_index": 2,
+            "explanation": "Cuando el sol brilló sobre la lagartija, esta se calentó y salió corriendo."
+        }
+    ]
+}

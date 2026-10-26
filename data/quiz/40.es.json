@@ -1,0 +1,67 @@
+{
+    "book_id": 40,
+    "title": "La semilla que dormía bajo tierra",
+    "intro": "Este cuestionario trata sobre el descubrimiento de Asha: cómo germina una semilla y se convierte en una planta joven.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué hizo Asha después de poner la semilla en la tierra?",
+            "choices": [
+                "La cubrió con piedras",
+                "Le dio agua y presionó suavemente la tierra",
+                "La sacó de inmediato",
+                "La metió en un congelador"
+            ],
+            "correct_index": 1,
+            "explanation": "Asha le dio agua a la semilla y presionó suavemente la tierra."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué pasó primero cuando la semilla recibió agua?",
+            "choices": [
+                "Produjo una flor",
+                "Su cáscara se ablandó y la pequeña planta de adentro empezó a despertar",
+                "Sus hojas se pusieron verdes",
+                "Dio fruto"
+            ],
+            "correct_index": 1,
+            "explanation": "La cáscara de la semilla se ablandó y la pequeña planta de adentro empezó a despertar."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué tres cosas necesitaba la semilla para empezar a germinar?",
+            "choices": [
+                "Agua, aire y calor",
+                "Nieve, oscuridad y piedras",
+                "Azúcar, sal y viento",
+                "Flores, insectos y fruta"
+            ],
+            "correct_index": 0,
+            "explanation": "La semilla necesitaba agua, aire y calor para empezar a germinar."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué parte de la planta creció primero?",
+            "choices": [
+                "Una flor",
+                "Una hoja",
+                "Una raíz",
+                "Un fruto"
+            ],
+            "correct_index": 2,
+            "explanation": "Primero creció una raíz."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué significa germinación?",
+            "choices": [
+                "El momento en que una semilla empieza a crecer y se convierte en una planta nueva",
+                "La época en que una planta pierde sus hojas",
+                "El proceso de recoger frutas",
+                "El movimiento del polen entre las flores"
+            ],
+            "correct_index": 0,
+            "explanation": "La germinación es el momento en que una semilla empieza a crecer y se convierte en una planta nueva."
+        }
+    ]
+}

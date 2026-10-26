@@ -1,0 +1,67 @@
+{
+    "book_id": 43,
+    "title": "El cielo que comenzó a girar",
+    "intro": "Este cuestionario sigue a Maya y Leo mientras aprenden cómo se forman los tornados y qué hacer durante una alerta de tornado.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué cambios en el clima notaron Maya y Leo antes de la alerta de tornado?",
+            "choices": [
+                "El cielo se despejó y se puso frío",
+                "Aparecieron nubes oscuras, el aire se sentía cálido y pegajoso, y pasó una ráfaga fresca",
+                "Empezó a nevar rápidamente",
+                "El Sol se volvió muy brillante de una forma poco común"
+            ],
+            "correct_index": 1,
+            "explanation": "Aparecieron nubes oscuras, el aire se sentía cálido y pegajoso, y pasó una ráfaga fresca."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué es un tornado?",
+            "choices": [
+                "Una gran ola del océano",
+                "Una columna de aire que gira y se extiende desde una nube de tormenta hacia el suelo",
+                "Una nube que solo produce lluvia",
+                "Un viento fuerte que siempre se mueve en línea recta"
+            ],
+            "correct_index": 1,
+            "explanation": "Un tornado es una columna de aire que gira y se extiende desde una nube de tormenta hacia el suelo."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo puede empezar a girar el aire dentro de una tormenta eléctrica?",
+            "choices": [
+                "El aire cálido y el aire frío se quedan completamente quietos",
+                "Los vientos soplan en direcciones distintas o a velocidades distintas",
+                "El Sol jala las nubes hacia abajo",
+                "La lluvia se congela dentro de la nube"
+            ],
+            "correct_index": 1,
+            "explanation": "El aire puede empezar a girar cuando los vientos soplan en direcciones distintas o a velocidades distintas."
+        },
+        {
+            "id": 4,
+            "prompt": "¿A dónde fue la clase durante la alerta de tornado?",
+            "choices": [
+                "Afuera, a mirar la tormenta",
+                "Junto a las ventanas del salón",
+                "A un pasillo interior, lejos de las ventanas",
+                "Al patio de recreo de la escuela"
+            ],
+            "correct_index": 2,
+            "explanation": "La clase fue a un pasillo interior, lejos de las ventanas."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué lección importante aprendieron Maya y Leo?",
+            "choices": [
+                "Las alertas de tornado se pueden ignorar cuando la lluvia es ligera",
+                "Los tornados se forman solo en invierno",
+                "Aprender sobre el clima y seguir las instrucciones de seguridad ayuda a proteger a las personas",
+                "El lugar más seguro durante un tornado es cerca de una ventana"
+            ],
+            "correct_index": 2,
+            "explanation": "Aprender sobre el clima y seguir las instrucciones de seguridad ayuda a proteger a las personas."
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "book_id": 90,
+    "title": "El misterio del lago verde",
+    "intro": "Este cuestionario sigue a dos niños curiosos y a la abuela June mientras descubren qué son las algas y por qué ocurren las floraciones de algas.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué son las algas?",
+            "choices": [
+                "Organismos diminutos que crecen en el agua",
+                "Animales grandes que viven en tierra firme",
+                "Rocas que se encuentran en el fondo de los lagos",
+                "Plantas que solo crecen en los desiertos"
+            ],
+            "correct_index": 0,
+            "explanation": "Las algas son organismos diminutos que crecen en el agua."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué usan las algas para fabricar su propio alimento?",
+            "choices": [
+                "Luz solar, agua y dióxido de carbono",
+                "Tierra, insectos y rocas",
+                "Peces, oxígeno y arena",
+                "Solo lluvia, viento y fertilizante"
+            ],
+            "correct_index": 0,
+            "explanation": "Las algas usan luz solar, agua y dióxido de carbono para fabricar su propio alimento."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué es una floración de algas?",
+            "choices": [
+                "Cuando todas las algas desaparecen",
+                "Cuando las algas crecen mucho más rápido de lo normal",
+                "Cuando crecen flores alrededor de un lago",
+                "Cuando el agua del lago se congela"
+            ],
+            "correct_index": 1,
+            "explanation": "Una floración de algas ocurre cuando las algas crecen mucho más rápido de lo normal."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Por qué las floraciones de algas pueden dañar a los peces?",
+            "choices": [
+                "Hacen que el agua esté demasiado fría",
+                "Eliminan todas las plantas de la orilla",
+                "Pueden reducir el oxígeno del agua",
+                "Hacen que los peces crezcan demasiado rápido"
+            ],
+            "correct_index": 2,
+            "explanation": "Las floraciones de algas pueden dañar a los peces porque pueden reducir el oxígeno del agua."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Cómo pueden las personas ayudar a prevenir las floraciones de algas?",
+            "choices": [
+                "Usando más fertilizante cerca de los lagos",
+                "Echando fosfato directamente al agua",
+                "Manteniendo el fertilizante lejos de los cursos de agua y usando menos fosfato",
+                "Quitando todas las algas de todos los lagos"
+            ],
+            "correct_index": 2,
+            "explanation": "Las personas pueden ayudar a prevenir las floraciones de algas manteniendo el fertilizante lejos de los cursos de agua y usando menos fosfato."
+        }
+    ]
+}

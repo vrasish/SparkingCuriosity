@@ -1,0 +1,67 @@
+{
+    "book_id": 52,
+    "title": "La flor que envió un mensaje",
+    "intro": "Este cuestionario sigue a Mira y a Jonah mientras aprenden cómo la polinización ayuda a las plantas a producir semillas y cómo viajan las semillas a nuevos lugares.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué polvillo producen las flores que puede ayudarlas a producir semillas?",
+            "choices": [
+                "Néctar",
+                "Polen",
+                "Tierra",
+                "Savia"
+            ],
+            "correct_index": 1,
+            "explanation": "Las flores producen polen, que puede ayudarlas a producir semillas."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cómo ayudó la abeja a polinizar las flores?",
+            "choices": [
+                "Llevó polen de una flor a otra",
+                "Regó las flores",
+                "Plantó semillas en la tierra",
+                "Protegió las flores del viento"
+            ],
+            "correct_index": 0,
+            "explanation": "La abeja ayudó a polinizar las flores llevando polen de una flor a otra."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cuáles de estos pueden mover el polen entre las flores?",
+            "choices": [
+                "Las abejas, las mariposas, las aves, los murciélagos y el viento",
+                "Solo las abejas",
+                "Las piedras y la tierra",
+                "Solo la lluvia y la nieve"
+            ],
+            "correct_index": 0,
+            "explanation": "Las abejas, las mariposas, las aves, los murciélagos y el viento pueden mover el polen entre las flores."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Por qué es importante la dispersión de semillas?",
+            "choices": [
+                "Mantiene todas las semillas junto a la planta madre",
+                "Ayuda a las semillas a encontrar espacio, luz solar, agua y tierra para crecer",
+                "Evita que las semillas crezcan",
+                "Convierte las semillas en polen"
+            ],
+            "correct_index": 1,
+            "explanation": "La dispersión de semillas ayuda a las semillas a encontrar espacio, luz solar, agua y tierra para crecer."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Cuál es un ejemplo de dispersión de semillas por animales?",
+            "choices": [
+                "Semillas de diente de león que vuelan con el viento",
+                "Cocos que flotan en el agua",
+                "Abrojos que se pegan al pelaje o a la ropa",
+                "Vainas de semillas que se abren de golpe"
+            ],
+            "correct_index": 2,
+            "explanation": "Los abrojos que se pegan al pelaje o a la ropa son un ejemplo de dispersión de semillas por animales."
+        }
+    ]
+}

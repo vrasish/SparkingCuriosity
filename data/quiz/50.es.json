@@ -1,0 +1,67 @@
+{
+    "book_id": 50,
+    "title": "La Tierra y sus capas ocultas",
+    "intro": "Este cuestionario sigue a Isla y Theo mientras descubren las diferentes capas ocultas dentro de la Tierra.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿En qué capa de la Tierra vive la gente?",
+            "choices": [
+                "El manto",
+                "El núcleo externo",
+                "La corteza",
+                "El núcleo interno"
+            ],
+            "correct_index": 2,
+            "explanation": "La gente vive en la corteza de la Tierra."
+        },
+        {
+            "id": 2,
+            "prompt": "¿De qué está hecho principalmente el manto?",
+            "choices": [
+                "De una gruesa capa de roca muy caliente",
+                "De agua líquida y fría",
+                "De hielo sólido",
+                "De tierra suelta y plantas"
+            ],
+            "correct_index": 0,
+            "explanation": "El manto es principalmente una gruesa capa de roca muy caliente."
+        },
+        {
+            "id": 3,
+            "prompt": "¿De qué está hecho el núcleo externo?",
+            "choices": [
+                "De roca sólida",
+                "De metal líquido",
+                "De aire y agua",
+                "De arena y tierra"
+            ],
+            "correct_index": 1,
+            "explanation": "El núcleo externo está hecho de metal líquido."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Por qué el núcleo interno permanece sólido aunque está extremadamente caliente?",
+            "choices": [
+                "Está rodeado de agua fría",
+                "No recibe calor del manto",
+                "La enorme presión en el centro de la Tierra mantiene sólido el metal",
+                "Está hecho solo de piedra"
+            ],
+            "correct_index": 2,
+            "explanation": "La enorme presión en el centro de la Tierra mantiene sólido el núcleo interno aunque esté extremadamente caliente."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué lista muestra las capas de la Tierra en el orden correcto, desde el exterior hasta el centro?",
+            "choices": [
+                "Corteza → manto → núcleo externo → núcleo interno",
+                "Manto → corteza → núcleo interno → núcleo externo",
+                "Núcleo interno → núcleo externo → manto → corteza",
+                "Corteza → núcleo externo → manto → núcleo interno"
+            ],
+            "correct_index": 0,
+            "explanation": "Desde el exterior hasta el centro, las capas de la Tierra son la corteza, el manto, el núcleo externo y el núcleo interno."
+        }
+    ]
+}

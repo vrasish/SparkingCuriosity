@@ -14,15 +14,21 @@ function quiz_data_dir(): string
     return $dir;
 }
 
-function quiz_json_path(int $bookId): string
+function quiz_json_path(int $bookId, string $lang = 'en'): string
 {
+    $lang = strtolower(trim($lang));
+    if ($lang === 'es') {
+        // Strict path — callers fall back to English when this file is missing.
+        return quiz_data_dir() . '/' . $bookId . '.es.json';
+    }
+
     return quiz_data_dir() . '/' . $bookId . '.json';
 }
 
 /** @return array<string, mixed>|null */
-function quiz_story_data(int $bookId): ?array
+function quiz_story_data(int $bookId, string $lang = 'en'): ?array
 {
-    $path = quiz_json_path($bookId);
+    $path = quiz_json_path($bookId, $lang);
     if (!is_file($path)) {
         return null;
     }
@@ -36,15 +42,15 @@ function quiz_story_data(int $bookId): ?array
     return $data;
 }
 
-function quiz_has_story(int $bookId): bool
+function quiz_has_story(int $bookId, string $lang = 'en'): bool
 {
-    return quiz_story_data($bookId) !== null;
+    return quiz_story_data($bookId, $lang) !== null;
 }
 
 /** @return list<array<string, mixed>> */
-function quiz_public_questions(int $bookId): array
+function quiz_public_questions(int $bookId, string $lang = 'en'): array
 {
-    $data = quiz_story_data($bookId);
+    $data = quiz_story_data($bookId, $lang);
     if ($data === null) {
         return [];
     }
@@ -532,9 +538,13 @@ function quiz_public_questions_from_raw(array $rawQuestions): array
     return array_slice($questions, 0, quiz_question_count());
 }
 
-function quiz_download_url(int $bookId, bool $preview = false): string
+function quiz_download_url(int $bookId, bool $preview = false, string $lang = 'en'): string
 {
     $url = app_url('quiz-download.php?id=' . $bookId);
+    $lang = strtolower(trim($lang));
+    if ($lang === 'es') {
+        $url .= '&lang=es';
+    }
     if ($preview) {
         $url .= '&preview=1';
     }
@@ -552,17 +562,29 @@ function quiz_choice_letter(int $index): string
  *
  * @return string Absolute path to a temporary PDF file
  */
-function quiz_build_download_pdf(int $bookId, string $bookTitle = ''): string
+function quiz_build_download_pdf(int $bookId, string $bookTitle = '', string $lang = 'en'): string
 {
-    $data = quiz_story_data($bookId);
-    $questions = quiz_public_questions($bookId);
+    $lang = strtolower(trim($lang)) === 'es' ? 'es' : 'en';
+    $data = quiz_story_data($bookId, $lang);
+    $questions = quiz_public_questions($bookId, $lang);
+    if (($data === null || $questions === []) && $lang === 'es') {
+        // Fall back to English quiz PDF if Spanish is not ready yet.
+        $lang = 'en';
+        $data = quiz_story_data($bookId, 'en');
+        $questions = quiz_public_questions($bookId, 'en');
+    }
     if ($data === null || $questions === []) {
         throw new RuntimeException('quiz_unavailable');
     }
 
+    $isSpanish = $lang === 'es';
+    $headingQuiz = $isSpanish ? 'Cuestionario' : 'Story Quiz';
+    $headingAnswers = $isSpanish ? 'Clave de respuestas' : 'Answer Key';
+    $defaultTitle = $isSpanish ? 'Cuestionario' : 'Story Quiz';
+
     $title = trim((string) ($data['title'] ?? $bookTitle));
     if ($title === '') {
-        $title = 'Story Quiz';
+        $title = $defaultTitle;
     }
     $intro = trim((string) ($data['intro'] ?? ''));
 
@@ -572,31 +594,34 @@ function quiz_build_download_pdf(int $bookId, string $bookTitle = ''): string
     require_once __DIR__ . '/lib/tcpdf/tcpdf.php';
     require_once __DIR__ . '/pdf-branding-lib.php';
 
+    // DejaVu supports Spanish accents; use it for all quiz PDFs.
+    $font = 'dejavusans';
+
     $pdf = new TCPDF('P', 'mm', 'LETTER', true, 'UTF-8', false);
     $pdf->SetCreator(site_brand_name());
     $pdf->SetAuthor(site_brand_name());
-    $pdf->SetTitle($title . ' — Quiz');
+    $pdf->SetTitle($title . ' — ' . $headingQuiz);
     $pdf->setPrintHeader(false);
     $pdf->setPrintFooter(false);
     $pdf->SetMargins(18, 18, 18);
     $pdf->SetAutoPageBreak(true, 22);
     $pdf->AddPage();
 
-    $pdf->SetFont('helvetica', 'B', 18);
+    $pdf->SetFont($font, 'B', 18);
     $pdf->SetTextColor(37, 99, 235);
     $pdf->MultiCell(0, 9, site_brand_name(), 0, 'L', false, 1);
 
-    $pdf->SetFont('helvetica', 'B', 16);
+    $pdf->SetFont($font, 'B', 16);
     $pdf->SetTextColor(26, 16, 51);
     $pdf->MultiCell(0, 8, $title, 0, 'L', false, 1);
 
-    $pdf->SetFont('helvetica', 'B', 12);
+    $pdf->SetFont($font, 'B', 12);
     $pdf->SetTextColor(124, 58, 237);
-    $pdf->MultiCell(0, 7, 'Story Quiz', 0, 'L', false, 1);
+    $pdf->MultiCell(0, 7, $headingQuiz, 0, 'L', false, 1);
     $pdf->Ln(2);
 
     if ($intro !== '') {
-        $pdf->SetFont('helvetica', '', 10);
+        $pdf->SetFont($font, '', 10);
         $pdf->SetTextColor(91, 77, 122);
         $pdf->MultiCell(0, 5, $intro, 0, 'L', false, 1);
         $pdf->Ln(3);
@@ -615,11 +640,11 @@ function quiz_build_download_pdf(int $bookId, string $bookTitle = ''): string
             $pdf->AddPage();
         }
 
-        $pdf->SetFont('helvetica', 'B', 11);
+        $pdf->SetFont($font, 'B', 11);
         $pdf->MultiCell(0, 6, $num . '. ' . $prompt, 0, 'L', false, 1);
         $pdf->Ln(1);
 
-        $pdf->SetFont('helvetica', '', 10);
+        $pdf->SetFont($font, '', 10);
         foreach (array_values($choices) as $choiceIndex => $choiceText) {
             $letter = quiz_choice_letter($choiceIndex);
             $pdf->MultiCell(0, 5, '    ' . $letter . '. ' . trim((string) $choiceText), 0, 'L', false, 1);
@@ -628,9 +653,9 @@ function quiz_build_download_pdf(int $bookId, string $bookTitle = ''): string
     }
 
     $pdf->AddPage();
-    $pdf->SetFont('helvetica', 'B', 14);
+    $pdf->SetFont($font, 'B', 14);
     $pdf->SetTextColor(124, 58, 237);
-    $pdf->MultiCell(0, 8, 'Answer Key', 0, 'L', false, 1);
+    $pdf->MultiCell(0, 8, $headingAnswers, 0, 'L', false, 1);
     $pdf->Ln(2);
 
     $pdf->SetTextColor(26, 16, 51);
@@ -653,10 +678,10 @@ function quiz_build_download_pdf(int $bookId, string $bookTitle = ''): string
             $pdf->AddPage();
         }
 
-        $pdf->SetFont('helvetica', 'B', 11);
+        $pdf->SetFont($font, 'B', 11);
         $pdf->MultiCell(0, 6, $num . '. ' . $letter . ($correctText !== '' ? ' — ' . $correctText : ''), 0, 'L', false, 1);
         if ($explanation !== '') {
-            $pdf->SetFont('helvetica', '', 10);
+            $pdf->SetFont($font, '', 10);
             $pdf->SetTextColor(91, 77, 122);
             $pdf->MultiCell(0, 5, $explanation, 0, 'L', false, 1);
             $pdf->SetTextColor(26, 16, 51);
@@ -668,7 +693,7 @@ function quiz_build_download_pdf(int $bookId, string $bookTitle = ''): string
     brand_tcpdf_document($pdf);
 
     $tmpDir = sys_get_temp_dir();
-    $tmpPath = $tmpDir . '/scifables-quiz-' . $bookId . '-' . bin2hex(random_bytes(6)) . '.pdf';
+    $tmpPath = $tmpDir . '/scifables-quiz-' . $bookId . '-' . $lang . '-' . bin2hex(random_bytes(6)) . '.pdf';
     $pdf->Output($tmpPath, 'F');
 
     if (!is_file($tmpPath)) {

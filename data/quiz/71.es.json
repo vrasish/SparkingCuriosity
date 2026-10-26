@@ -1,0 +1,67 @@
+{
+    "book_id": 71,
+    "title": "El misterio del calor y la temperatura",
+    "intro": "Este cuestionario explora la diferencia entre el calor y la temperatura, y cómo los termómetros miden la temperatura.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué mide la temperatura?",
+            "choices": [
+                "Cuánto espacio ocupa un objeto",
+                "Qué tan caliente o frío está algo",
+                "Cuánto pesa un objeto",
+                "Qué tan rápido se mueve un objeto por una habitación"
+            ],
+            "correct_index": 1,
+            "explanation": "La temperatura mide qué tan caliente o frío está algo."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué instrumento se usa para medir la temperatura?",
+            "choices": [
+                "Una regla",
+                "Una balanza",
+                "Un termómetro",
+                "Una taza medidora"
+            ],
+            "correct_index": 2,
+            "explanation": "Un termómetro se usa para medir la temperatura."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué es el calor?",
+            "choices": [
+                "La transferencia de energía térmica de un objeto más caliente a uno más frío",
+                "La cantidad de materia que hay dentro de un objeto",
+                "El espacio que ocupa un objeto",
+                "El color que produce un objeto caliente"
+            ],
+            "correct_index": 0,
+            "explanation": "El calor es la transferencia de energía térmica de un objeto más caliente a uno más frío."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué ocurre cuando un objeto caliente toca un objeto más frío?",
+            "choices": [
+                "El calor pasa del objeto más frío al objeto más caliente",
+                "El calor pasa del objeto más caliente al objeto más frío",
+                "Los dos objetos se congelan de inmediato",
+                "Sus temperaturas nunca pueden cambiar"
+            ],
+            "correct_index": 1,
+            "explanation": "Cuando un objeto caliente toca un objeto más frío, el calor pasa del objeto más caliente al objeto más frío."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué afirmación explica correctamente la diferencia entre el calor y la temperatura?",
+            "choices": [
+                "El calor y la temperatura siempre significan exactamente lo mismo",
+                "La temperatura mide qué tan caliente o frío está algo, mientras que el calor es energía que se mueve entre objetos",
+                "El calor se mide con una regla, mientras que la temperatura se mide con una balanza",
+                "La temperatura se mueve entre objetos, pero el calor se queda quieto"
+            ],
+            "correct_index": 1,
+            "explanation": "La temperatura mide qué tan caliente o frío está algo, mientras que el calor es energía que se mueve entre objetos."
+        }
+    ]
+}

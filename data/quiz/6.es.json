@@ -1,0 +1,67 @@
+{
+    "book_id": 6,
+    "title": "La ciudad que olvidó las estrellas",
+    "intro": "Este cuestionario trata sobre la investigación de Nia y Ben acerca de la contaminación lumínica y el cielo nocturno.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué notaron Nia y Ben cuando miraron el cielo nocturno?",
+            "choices": [
+                "La Luna había desaparecido",
+                "Solo se veían unas pocas estrellas tenues",
+                "Las estrellas se movían rápidamente",
+                "El cielo se había vuelto verde"
+            ],
+            "correct_index": 1,
+            "explanation": "Nia y Ben notaron que solo se veían unas pocas estrellas tenues en el cielo nocturno."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué escondía las estrellas sobre el pueblo?",
+            "choices": [
+                "Nubes espesas",
+                "El humo de un volcán",
+                "Demasiada luz artificial",
+                "Una gran tormenta de lluvia"
+            ],
+            "correct_index": 2,
+            "explanation": "Demasiada luz artificial escondía las estrellas sobre el pueblo."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué compararon Nia y Ben en su experimento en el patio de la escuela?",
+            "choices": [
+                "Una linterna y una vela",
+                "Una lámpara brillante sin pantalla y una lámpara con pantalla",
+                "Una bombilla cálida y el Sol",
+                "Un telescopio y unos binoculares"
+            ],
+            "correct_index": 1,
+            "explanation": "En su experimento del patio de la escuela compararon una lámpara brillante sin pantalla y una lámpara con pantalla."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué cambio le propusieron Nia y Ben al consejo del pueblo?",
+            "choices": [
+                "Encender carteles más brillantes toda la noche",
+                "Quitar todas las farolas",
+                "Usar lámparas con pantalla, bombillas cálidas y temporizadores",
+                "Pintar todas las lámparas de azul"
+            ],
+            "correct_index": 2,
+            "explanation": "Propusieron usar lámparas con pantalla, bombillas cálidas y temporizadores."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué pasó durante la primera Noche de las Estrellas del pueblo?",
+            "choices": [
+                "Decenas de estrellas se hicieron visibles en el cielo más oscuro",
+                "Todos se quedaron adentro por la lluvia",
+                "El pueblo añadió más luces brillantes",
+                "Las estrellas desaparecieron por completo"
+            ],
+            "correct_index": 0,
+            "explanation": "Durante la primera Noche de las Estrellas del pueblo, decenas de estrellas se hicieron visibles en el cielo más oscuro."
+        }
+    ]
+}

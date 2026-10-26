@@ -1,0 +1,67 @@
+{
+    "book_id": 95,
+    "title": "El tesoro que nunca se agota",
+    "intro": "Este cuestionario sigue a Lila, Jay y la guardabosques Maya mientras descubren los recursos naturales —renovables y no renovables— y cómo usarlos con cuidado.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es un recurso natural?",
+            "choices": [
+                "Algo que solo se hace en una fábrica",
+                "Algo que viene de la naturaleza",
+                "Algo que solo se encuentra bajo tierra",
+                "Algo que no se puede usar"
+            ],
+            "correct_index": 1,
+            "explanation": "Un recurso natural es algo que viene de la naturaleza."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cuál de estos es un recurso renovable?",
+            "choices": [
+                "El carbón",
+                "El petróleo",
+                "La luz del sol",
+                "El gas natural"
+            ],
+            "correct_index": 2,
+            "explanation": "La luz del sol es un recurso renovable porque la naturaleza lo sigue reemplazando."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Por qué el carbón, el petróleo y el gas natural se llaman recursos no renovables?",
+            "choices": [
+                "Se pueden reemplazar cada año",
+                "Tardan millones de años en formarse",
+                "Solo vienen de los árboles",
+                "Los hacen las personas"
+            ],
+            "correct_index": 1,
+            "explanation": "El carbón, el petróleo y el gas natural son no renovables porque tardan millones de años en formarse."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cuál acción nos ayuda a usar los recursos naturales con cuidado?",
+            "choices": [
+                "Dejar el grifo abierto",
+                "Dejar un auto encendido mucho tiempo",
+                "Apagar las luces cuando no se necesitan",
+                "Tirar objetos que se pueden reutilizar"
+            ],
+            "correct_index": 2,
+            "explanation": "Apagar las luces cuando no se necesitan ayuda a usar los recursos naturales con cuidado."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué promesa hicieron Lila y Jay?",
+            "choices": [
+                "Recolectar la mayor cantidad de piedras posible",
+                "Usar los recursos con cuidado y cuidar la Tierra",
+                "Dejar de visitar parques naturales",
+                "Usar más combustibles fósiles"
+            ],
+            "correct_index": 1,
+            "explanation": "Lila y Jay prometieron usar los recursos con cuidado y cuidar la Tierra."
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "book_id": 99,
+    "title": "El secreto dentro de un átomo",
+    "intro": "Este cuestionario revisa lo que aprendiste sobre la estructura de un átomo: protones, neutrones, electrones y los científicos que los descubrieron.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cuáles son las tres partículas subatómicas que forman un átomo?",
+            "choices": [
+                "Protones, moléculas y electrones",
+                "Protones, neutrones y electrones",
+                "Neutrones, átomos y moléculas",
+                "Electrones, iones y moléculas"
+            ],
+            "correct_index": 1,
+            "explanation": "Un átomo está formado por protones, neutrones y electrones."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué descubrió J. J. Thomson con sus experimentos de rayos catódicos?",
+            "choices": [
+                "Que los átomos contienen un núcleo pequeño y denso.",
+                "Que los átomos son en su mayor parte espacio vacío.",
+                "Que los rayos catódicos contienen partículas con carga negativa llamadas electrones.",
+                "Que los neutrones no tienen carga eléctrica."
+            ],
+            "correct_index": 2,
+            "explanation": "Thomson demostró que los rayos catódicos contienen partículas con carga negativa llamadas electrones."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué observó Eugen Goldstein en sus experimentos?",
+            "choices": [
+                "Rayos catódicos con carga negativa",
+                "Rayos canales o rayos anódicos con carga positiva",
+                "Neutrones dentro del núcleo",
+                "Electrones orbitando el núcleo"
+            ],
+            "correct_index": 1,
+            "explanation": "Goldstein observó rayos canales con carga positiva, también llamados rayos anódicos."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué descubrió Ernest Rutherford con su experimento de la lámina de oro y sus investigaciones posteriores?",
+            "choices": [
+                "Que los átomos son esferas sólidas sin espacio vacío.",
+                "Que los electrones están incrustados en una esfera con carga positiva.",
+                "Que los neutrones se encuentran dentro del núcleo.",
+                "Que los átomos son en su mayor parte espacio vacío con un núcleo pequeño, denso y con carga positiva, y más tarde identificó el protón."
+            ],
+            "correct_index": 3,
+            "explanation": "Rutherford demostró que los átomos son en su mayor parte espacio vacío con un núcleo pequeño, denso y con carga positiva, y más tarde identificó el protón."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué hace que un átomo sea eléctricamente neutro?",
+            "choices": [
+                "Tiene el mismo número de protones y electrones.",
+                "Tiene el mismo número de neutrones y electrones.",
+                "Contiene más electrones que protones.",
+                "Contiene solo partículas sin carga eléctrica."
+            ],
+            "correct_index": 0,
+            "explanation": "Un átomo es eléctricamente neutro cuando tiene el mismo número de protones y electrones."
+        }
+    ]
+}

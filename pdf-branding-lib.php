@@ -12,9 +12,14 @@ function site_page_title(string $pageName): string
     return $pageName . ' | ' . site_brand_name();
 }
 
-function site_copyright_text(): string
+function site_copyright_text(bool $localized = true): string
 {
-    return '© 2026 ' . site_brand_name() . '. All rights reserved.';
+    $rights = 'All rights reserved.';
+    if ($localized && function_exists('t')) {
+        $rights = t('common.rights_reserved');
+    }
+
+    return '© 2026 ' . site_brand_name() . '. ' . $rights;
 }
 
 function site_logo_disk_path(): string
@@ -54,6 +59,12 @@ function pdf_compact_brand_book_ids(): array
         54, // The Stem That Carried a River
         97, // The Tiny Building Blocks
         98, // Types of Microscopes
+        99, // The Secret Inside an Atom
+        100, // The Mystery of Everyday Changes
+        101, // The Mystery of the Invisible Building Blocks
+        102, // The Secret Map of the Elements
+        103, // The Mystery of the Electron Shells
+        104, // The Atom's Family Tree
     ];
 }
 
@@ -61,6 +72,12 @@ function brand_pdf_file(string $absolutePath, bool $compact = false): bool
 {
     $absolutePath = trim($absolutePath);
     if ($absolutePath === '' || !is_file($absolutePath)) {
+        return false;
+    }
+
+    // Spanish story PDFs already include the SciFables logo — do not stamp another one.
+    $base = basename($absolutePath);
+    if (str_starts_with($base, 'book_es_') || str_contains(strtolower($base), '_es.') || str_contains(strtolower($base), 'spanish') || str_contains(strtolower($base), 'espanol')) {
         return false;
     }
 
@@ -85,7 +102,7 @@ function brand_pdf_file(string $absolutePath, bool $compact = false): bool
         . escapeshellarg($scriptPath) . ' '
         . escapeshellarg($absolutePath) . ' '
         . escapeshellarg($logoPath) . ' '
-        . escapeshellarg(site_copyright_text()) . ' '
+        . escapeshellarg(site_copyright_text(false)) . ' '
         . escapeshellarg($mode);
 
     exec($cmd, $output, $code);

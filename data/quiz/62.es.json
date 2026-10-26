@@ -1,0 +1,67 @@
+{
+    "book_id": 62,
+    "title": "El río que llevas dentro",
+    "intro": "Este cuestionario explora cómo el sistema circulatorio mueve la sangre, el oxígeno y los nutrientes por todo el cuerpo.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cuál es el trabajo principal del corazón?",
+            "choices": [
+                "Digerir la comida",
+                "Bombear sangre por todo el cuerpo",
+                "Limpiar los pulmones",
+                "Controlar los nervios"
+            ],
+            "correct_index": 1,
+            "explanation": "El trabajo principal del corazón es bombear sangre por todo el cuerpo."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué vasos sanguíneos llevan la sangre lejos del corazón?",
+            "choices": [
+                "Las venas",
+                "Las arterias",
+                "Los capilares",
+                "Los nervios"
+            ],
+            "correct_index": 1,
+            "explanation": "Las arterias llevan la sangre lejos del corazón."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué vasos sanguíneos llevan la sangre de regreso al corazón?",
+            "choices": [
+                "Las venas",
+                "Las arterias",
+                "Las vías respiratorias",
+                "Los tendones"
+            ],
+            "correct_index": 0,
+            "explanation": "Las venas llevan la sangre de regreso al corazón."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué ocurre en los diminutos vasos sanguíneos llamados capilares?",
+            "choices": [
+                "La sangre se guarda para después",
+                "El oxígeno y los nutrientes pasan de la sangre a las células del cuerpo",
+                "La comida se rompe en pedazos más pequeños",
+                "Los huesos producen movimiento"
+            ],
+            "correct_index": 1,
+            "explanation": "En los capilares, el oxígeno y los nutrientes pasan de la sangre a las células del cuerpo."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué el corazón late más rápido durante el ejercicio?",
+            "choices": [
+                "Los músculos necesitan más oxígeno y nutrientes",
+                "Los pulmones dejan de funcionar",
+                "La sangre se enfría",
+                "Los huesos necesitan más agua"
+            ],
+            "correct_index": 0,
+            "explanation": "El corazón late más rápido durante el ejercicio porque los músculos necesitan más oxígeno y nutrientes."
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "book_id": 98,
+    "title": "Types of Microscopes",
+    "intro": "This quiz checks what you learned about simple and compound microscopes — how they work and how they help us see a tiny world.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What does a microscope help us do?",
+            "choices": [
+                "See very small things more clearly",
+                "Measure the temperature of water",
+                "Measure the weight of objects",
+                "Make objects move faster"
+            ],
+            "correct_index": 0,
+            "explanation": "A microscope helps us see very small things more clearly."
+        },
+        {
+            "id": 2,
+            "prompt": "What is the main difference between a simple microscope and a compound microscope?",
+            "choices": [
+                "A simple microscope uses one lens, while a compound microscope uses more than one lens",
+                "A simple microscope uses light, while a compound microscope does not",
+                "A simple microscope is only used for cells, while a compound microscope is only used for plants",
+                "A simple microscope has more lenses than a compound microscope"
+            ],
+            "correct_index": 0,
+            "explanation": "A simple microscope uses one lens, while a compound microscope uses more than one lens."
+        },
+        {
+            "id": 3,
+            "prompt": "Which microscope part keeps the slide in place?",
+            "choices": [
+                "Stage clips",
+                "Eyepiece",
+                "Light source",
+                "Base"
+            ],
+            "correct_index": 0,
+            "explanation": "Stage clips keep the slide in place."
+        },
+        {
+            "id": 4,
+            "prompt": "If the eyepiece magnification is 10× and the objective magnification is 4×, what is the total magnification?",
+            "choices": [
+                "14×",
+                "40×",
+                "6×",
+                "400×"
+            ],
+            "correct_index": 1,
+            "explanation": "Total magnification is 10× × 4× = 40×."
+        },
+        {
+            "id": 5,
+            "prompt": "Which part of a compound microscope is used to make small changes to sharpen the image?",
+            "choices": [
+                "Eyepiece",
+                "Stage",
+                "Fine adjustment knob",
+                "Base"
+            ],
+            "correct_index": 2,
+            "explanation": "The fine adjustment knob is used to make small changes to sharpen the image."
+        }
+    ]
+}

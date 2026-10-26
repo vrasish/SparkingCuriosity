@@ -1,0 +1,67 @@
+{
+    "book_id": 68,
+    "title": "El agua que no se quedaba quieta",
+    "intro": "Este cuestionario sigue a Mira y Jay mientras aprenden sobre la evaporación, la condensación, la sublimación y la ebullición.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué pasa durante la evaporación?",
+            "choices": [
+                "El vapor de agua se convierte en líquido",
+                "El agua líquida se convierte en vapor de agua en la superficie",
+                "El hielo se convierte directamente en líquido",
+                "El agua se congela y se convierte en hielo"
+            ],
+            "correct_index": 1,
+            "explanation": "Durante la evaporación, el agua líquida se convierte en vapor de agua en la superficie."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué es la condensación?",
+            "choices": [
+                "El vapor de agua que se enfría y se convierte en gotitas de líquido",
+                "El agua líquida que se convierte en gas",
+                "El hielo que se derrite y se convierte en agua",
+                "El agua que hierve rápidamente"
+            ],
+            "correct_index": 0,
+            "explanation": "La condensación es cuando el vapor de agua se enfría y se convierte en gotitas de líquido."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué le pasó a la escarcha en la historia?",
+            "choices": [
+                "Primero se derritió y formó un charco",
+                "Pasó directamente de hielo sólido a vapor de agua",
+                "Se convirtió en lluvia",
+                "Se congeló y formó hielo más grueso"
+            ],
+            "correct_index": 1,
+            "explanation": "La escarcha pasó directamente de hielo sólido a vapor de agua."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué es la sublimación?",
+            "choices": [
+                "Un líquido que se convierte en sólido",
+                "Un gas que se convierte en líquido",
+                "Un sólido que se convierte directamente en gas",
+                "Un líquido que se convierte en gas solo en el punto de ebullición"
+            ],
+            "correct_index": 2,
+            "explanation": "La sublimación es cuando un sólido se convierte directamente en gas."
+        },
+        {
+            "id": 5,
+            "prompt": "¿En qué se diferencia la ebullición de la evaporación?",
+            "choices": [
+                "La ebullición ocurre en todo el líquido, mientras que la evaporación ocurre solo en la superficie",
+                "La evaporación es más rápida que la ebullición",
+                "La ebullición puede ocurrir a cualquier temperatura",
+                "La evaporación crea burbujas en todo el agua"
+            ],
+            "correct_index": 0,
+            "explanation": "La ebullición ocurre en todo el líquido, mientras que la evaporación ocurre solo en la superficie."
+        }
+    ]
+}

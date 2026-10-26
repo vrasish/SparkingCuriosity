@@ -1,0 +1,67 @@
+{
+    "book_id": 61,
+    "title": "La autopista de mensajes dentro de ti",
+    "intro": "Este cuestionario sigue el viaje de los mensajes por el cerebro, la médula espinal y los nervios dentro del sistema nervioso.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué lleva mensajes entre el cerebro y el resto del cuerpo?",
+            "choices": [
+                "Los huesos",
+                "Los nervios",
+                "Los pulmones",
+                "Los músculos"
+            ],
+            "correct_index": 1,
+            "explanation": "Los nervios llevan mensajes entre el cerebro y el resto del cuerpo."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cuál es el trabajo principal del cerebro en el sistema nervioso?",
+            "choices": [
+                "Bombear sangre",
+                "Controlar el cuerpo y procesar información",
+                "Digerir la comida",
+                "Filtrar desechos"
+            ],
+            "correct_index": 1,
+            "explanation": "El trabajo principal del cerebro es controlar el cuerpo y procesar información."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué hace la médula espinal?",
+            "choices": [
+                "Lleva mensajes entre el cerebro y los nervios por todo el cuerpo",
+                "Produce oxígeno",
+                "Almacena comida",
+                "Protege los pulmones"
+            ],
+            "correct_index": 0,
+            "explanation": "La médula espinal lleva mensajes entre el cerebro y los nervios por todo el cuerpo."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Por qué una persona puede retirar rápido la mano después de tocar algo caliente?",
+            "choices": [
+                "Los músculos toman la decisión sin recibir un mensaje",
+                "Un reflejo rápido ayuda a proteger el cuerpo de una lesión",
+                "La piel se enfría",
+                "El corazón deja de enviar sangre"
+            ],
+            "correct_index": 1,
+            "explanation": "Un reflejo rápido ayuda a proteger el cuerpo de una lesión cuando se toca algo caliente."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Cuál orden muestra correctamente cómo puede responder el cuerpo al tocar algo caliente?",
+            "choices": [
+                "El músculo se mueve → la piel siente calor → el nervio envía un mensaje",
+                "La piel siente calor → los nervios envían un mensaje → el cuerpo se retira",
+                "El cerebro duerme → los huesos se mueven → la piel se enfría",
+                "El corazón bombea → los pulmones respiran → la mano se mueve"
+            ],
+            "correct_index": 1,
+            "explanation": "La piel siente calor, los nervios envían un mensaje y el cuerpo se retira."
+        }
+    ]
+}

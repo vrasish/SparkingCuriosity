@@ -1,0 +1,67 @@
+{
+    "book_id": 74,
+    "title": "La energía que hizo que todo sucediera",
+    "intro": "Este cuestionario sigue a Mira y Jay mientras descubren diferentes formas de energía y cómo la energía puede cambiar de una forma a otra.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es la energía?",
+            "choices": [
+                "La cantidad de espacio que ocupa un objeto",
+                "La capacidad de realizar un trabajo o provocar un cambio",
+                "El peso de un objeto",
+                "Un tipo de materia"
+            ],
+            "correct_index": 1,
+            "explanation": "La energía es la capacidad de realizar un trabajo o provocar un cambio."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué tipo de energía se almacena en una pila?",
+            "choices": [
+                "Energía sonora",
+                "Energía química",
+                "Energía de movimiento",
+                "Energía luminosa"
+            ],
+            "correct_index": 1,
+            "explanation": "En una pila se almacena energía química."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué le ocurre a la energía química de una pila cuando hace funcionar un aparato?",
+            "choices": [
+                "Se transforma en energía eléctrica",
+                "Se transforma solo en energía sonora",
+                "Desaparece por completo",
+                "Se convierte en energía gravitatoria"
+            ],
+            "correct_index": 0,
+            "explanation": "La energía química de una pila se transforma en energía eléctrica cuando hace funcionar un aparato."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Por qué tenía energía potencial gravitatoria el libro levantado?",
+            "choices": [
+                "Estaba caliente",
+                "Estaba haciendo ruido",
+                "Estaba sostenido en alto sobre la mesa",
+                "Estaba conectado a una pila"
+            ],
+            "correct_index": 2,
+            "explanation": "El libro levantado tenía energía potencial gravitatoria porque estaba sostenido en alto sobre la mesa."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué secuencia describe correctamente los cambios de energía en una linterna?",
+            "choices": [
+                "Energía luminosa → energía química → energía eléctrica",
+                "Energía química → energía eléctrica → luz y algo de energía térmica",
+                "Energía sonora → energía de movimiento → energía luminosa",
+                "Energía térmica → energía química → energía sonora"
+            ],
+            "correct_index": 1,
+            "explanation": "En una linterna, la energía química se transforma en energía eléctrica, que luego se convierte en luz y algo de energía térmica."
+        }
+    ]
+}

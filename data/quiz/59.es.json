@@ -1,0 +1,67 @@
+{
+    "book_id": 59,
+    "title": "La estructura oculta del cuerpo",
+    "intro": "Este cuestionario sigue la exploración de la historia sobre el esqueleto y cómo los huesos sostienen, protegen y ayudan al cuerpo a moverse.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cuál es el trabajo principal del esqueleto?",
+            "choices": [
+                "Digerir la comida",
+                "Sostener el cuerpo y darle forma",
+                "Bombear sangre",
+                "Llevar oxígeno"
+            ],
+            "correct_index": 1,
+            "explanation": "El trabajo principal del esqueleto es sostener el cuerpo y darle forma."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué huesos protegen el cerebro?",
+            "choices": [
+                "Las costillas",
+                "La columna vertebral",
+                "El cráneo",
+                "La pelvis"
+            ],
+            "correct_index": 2,
+            "explanation": "El cráneo protege el cerebro."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué órganos importantes protege la caja torácica?",
+            "choices": [
+                "El estómago y los riñones",
+                "El corazón y los pulmones",
+                "El cerebro y los ojos",
+                "Las manos y los pies"
+            ],
+            "correct_index": 1,
+            "explanation": "La caja torácica protege el corazón y los pulmones."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cómo ayudan los huesos a que el cuerpo se mueva?",
+            "choices": [
+                "Los huesos trabajan con los músculos y las articulaciones",
+                "Los huesos se mueven sin ayuda",
+                "Los huesos se llenan de aire",
+                "Los huesos se convierten en músculos"
+            ],
+            "correct_index": 0,
+            "explanation": "Los huesos ayudan al cuerpo a moverse trabajando con los músculos y las articulaciones."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué es una articulación?",
+            "choices": [
+                "Un lugar donde se unen dos o más huesos",
+                "Un tipo de músculo",
+                "Una capa de piel",
+                "Un vaso sanguíneo dentro de un hueso"
+            ],
+            "correct_index": 0,
+            "explanation": "Una articulación es un lugar donde se unen dos o más huesos."
+        }
+    ]
+}

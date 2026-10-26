@@ -1,0 +1,67 @@
+{
+    "book_id": 56,
+    "title": "Los árboles que dejaron caer sus hojas",
+    "intro": "Este cuestionario sigue a Zara y a Eli mientras aprenden por qué los árboles de hoja caduca pierden sus hojas y se preparan para el invierno.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es un árbol de hoja caduca?",
+            "choices": [
+                "Un árbol que nunca tiene hojas",
+                "Un árbol que pierde sus hojas cada año",
+                "Un árbol que crece solo en los desiertos",
+                "Un árbol que se mantiene verde en todas las estaciones"
+            ],
+            "correct_index": 1,
+            "explanation": "Un árbol de hoja caduca pierde sus hojas cada año."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué grupo contiene solo árboles de hoja caduca mencionados en el cuento?",
+            "choices": [
+                "Pino, abeto, abeto rojo, cedro y secuoya",
+                "Roble, arce, olmo, fresno y abedul",
+                "Palmera, cactus, bambú y helecho",
+                "Manzano, naranjo, limonero y cocotero"
+            ],
+            "correct_index": 1,
+            "explanation": "El roble, el arce, el olmo, el fresno y el abedul son árboles de hoja caduca mencionados en el cuento."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Por qué los árboles de hoja caduca dejan caer sus hojas antes del invierno?",
+            "choices": [
+                "Para atraer más insectos",
+                "Para ahorrar agua y energía durante la estación fría",
+                "Para que sus ramas crezcan más largas",
+                "Para que sus raíces dejen de crecer"
+            ],
+            "correct_index": 1,
+            "explanation": "Los árboles de hoja caduca dejan caer sus hojas antes del invierno para ahorrar agua y energía durante la estación fría."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué condiciones hacen más difícil que los árboles conserven sus hojas durante el invierno?",
+            "choices": [
+                "Luz solar más fuerte y más agua",
+                "Días más largos y aire más cálido",
+                "Luz solar más débil y menos agua disponible",
+                "Más flores e insectos"
+            ],
+            "correct_index": 2,
+            "explanation": "La luz solar más débil y la menor cantidad de agua disponible hacen más difícil que los árboles conserven sus hojas durante el invierno."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué descansaba dentro de las diminutas yemas de las ramas?",
+            "choices": [
+                "El comienzo de las hojas de la próxima primavera",
+                "Pequeños insectos que esperaban el verano",
+                "Trozos de corteza caída",
+                "Gotas de agua de lluvia"
+            ],
+            "correct_index": 0,
+            "explanation": "Las diminutas yemas guardaban el comienzo de las hojas de la próxima primavera."
+        }
+    ]
+}

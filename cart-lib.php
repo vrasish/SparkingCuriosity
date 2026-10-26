@@ -397,18 +397,21 @@ function owned_books(PDO $pdo): array
     return owned_books_for_user($userId, $pdo);
 }
 
-function pdf_reader_url(int $bookId, bool $preview = false): string
+function pdf_reader_url(int $bookId, bool $preview = false, string $lang = 'en'): string
 {
     $url = app_url('read-pdf.php?id=' . $bookId);
     if ($preview) {
         $url .= '&preview=1';
     }
+    if ($lang === 'es') {
+        $url .= '&lang=es';
+    }
     return $url;
 }
 
-function pdf_download_url(int $bookId, bool $preview = false): string
+function pdf_download_url(int $bookId, bool $preview = false, string $lang = 'en'): string
 {
-    return pdf_reader_url($bookId, $preview) . '&download=1';
+    return pdf_reader_url($bookId, $preview, $lang) . '&download=1';
 }
 
 function is_title_free_story(string $title): bool
@@ -484,10 +487,14 @@ function render_story_card_actions(array $book, ?array $ratingSummary = null): v
     echo '<div class="story-card-footer">';
     echo '<span class="story-card-badges">';
 
+    if (function_exists('render_spanish_coming_soon_badge')) {
+        render_spanish_coming_soon_badge($book);
+    }
+
     if ($free) {
-        echo '<span class="badge-free">Free</span>';
+        echo '<span class="badge-free">' . e(function_exists('t') ? t('book.badge_free') : 'Free') . '</span>';
     } elseif ($owned) {
-        echo '<span class="badge-owned">Owned</span>';
+        echo '<span class="badge-owned">' . e(function_exists('t') ? t('book.badge_owned') : 'Owned') . '</span>';
     } else {
         echo '<span class="badge-price">' . e(format_book_price($book)) . '</span>';
     }
@@ -500,7 +507,9 @@ function render_story_card_actions(array $book, ?array $ratingSummary = null): v
 
     echo '</span>';
     echo '<span class="story-card-buttons">';
-    echo '<a href="' . e(story_book_url($bookId)) . '" class="btn btn-view-more btn-sm">View More</a>';
+    echo '<a href="' . e(story_book_url($bookId)) . '" class="btn btn-view-more btn-sm">'
+        . e(function_exists('t') ? t('book.view_more') : 'View More')
+        . '</a>';
     echo '</span>';
     echo '</div>';
 }

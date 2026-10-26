@@ -117,10 +117,10 @@ function topic_request_create(
 
     $topic = trim($topic);
     if ($topic === '') {
-        return ['ok' => false, 'error' => 'Please enter a science topic.'];
+        return ['ok' => false, 'error' => 'request.error.topic_required'];
     }
     if (mb_strlen($topic) > 255) {
-        return ['ok' => false, 'error' => 'Science topic must be 255 characters or fewer.'];
+        return ['ok' => false, 'error' => 'request.error.topic_too_long'];
     }
 
     $user = topic_request_lookup_user($pdo, $userId);
@@ -132,7 +132,7 @@ function topic_request_create(
     $userEmail = trim($userEmail);
     $userName = trim($userName);
     if ($userId <= 0 || $userEmail === '') {
-        return ['ok' => false, 'error' => 'Your account could not be verified. Please log in again.'];
+        return ['ok' => false, 'error' => 'request.error.account'];
     }
 
     $ageGroup = trim($ageGroup);
@@ -158,7 +158,7 @@ function topic_request_create(
         return ['ok' => true, 'request_id' => $requestId, 'error' => ''];
     } catch (PDOException $ex) {
         error_log('topic_request_create failed: ' . $ex->getMessage());
-        return ['ok' => false, 'error' => 'Could not save your request. Please try again.'];
+        return ['ok' => false, 'error' => 'request.error.save_failed'];
     }
 }
 

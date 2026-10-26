@@ -1,0 +1,67 @@
+{
+    "book_id": 93,
+    "title": "El río que no podía sonreír",
+    "intro": "Este cuestionario sigue a Maya, Leo y el abuelo Arun mientras aprenden cómo la contaminación por plástico daña los ríos y la vida silvestre, y cómo las personas pueden ayudar.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Por qué el río se veía triste?",
+            "choices": [
+                "El agua se había secado",
+                "Botellas y envoltorios de plástico lo estaban contaminando",
+                "Todos los peces se habían ido",
+                "El puente estaba roto"
+            ],
+            "correct_index": 1,
+            "explanation": "El río se veía triste porque botellas y envoltorios de plástico lo estaban contaminando."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Por qué el plástico puede ser peligroso para las tortugas?",
+            "choices": [
+                "Las tortugas pueden confundir las bolsas de plástico con medusas",
+                "El plástico hace que el agua esté demasiado fría",
+                "Las tortugas usan el plástico para construir nidos",
+                "El plástico hace que las tortugas naden demasiado rápido"
+            ],
+            "correct_index": 0,
+            "explanation": "Las tortugas pueden confundir las bolsas de plástico con medusas, lo que puede enfermarlas mucho."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo llegó gran parte del plástico al río?",
+            "choices": [
+                "Los peces lo llevaron allí",
+                "Creció en el agua",
+                "El viento y la lluvia lo movieron desde la tierra",
+                "El río lo creó"
+            ],
+            "correct_index": 2,
+            "explanation": "Gran parte del plástico llegó al río cuando el viento y la lluvia lo movieron desde la tierra."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué hizo el Equipo de Rescate del Río?",
+            "choices": [
+                "Agregaron más agua al río",
+                "Recogieron basura, reciclaron plástico y plantaron flores",
+                "Mudaron a los animales a otro río",
+                "Construyeron un puente nuevo"
+            ],
+            "correct_index": 1,
+            "explanation": "El Equipo de Rescate del Río recogió basura, recicló plástico y plantó flores."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Cuál es la lección principal de la historia?",
+            "choices": [
+                "Solo los adultos pueden proteger los ríos",
+                "Una buena decisión no importa",
+                "Muchas personas haciendo pequeñas buenas decisiones pueden crear un gran cambio",
+                "El plástico desaparece rápido en la naturaleza"
+            ],
+            "correct_index": 2,
+            "explanation": "La lección principal es que muchas personas haciendo pequeñas buenas decisiones pueden crear un gran cambio."
+        }
+    ]
+}

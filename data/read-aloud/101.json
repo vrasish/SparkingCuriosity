@@ -1,0 +1,32 @@
+{
+    "story_id": "the-mystery-of-the-invisible-building-blocks",
+    "book_id": 101,
+    "title": "The Mystery of the Invisible Building Blocks",
+    "audio_source": "uploaded",
+    "pages": [
+        {
+            "page": 1,
+            "text": "The Mystery of the Invisible Building Blocks"
+        },
+        {
+            "page": 2,
+            "text": "Page 2"
+        },
+        {
+            "page": 3,
+            "text": "Page 3"
+        },
+        {
+            "page": 4,
+            "text": "Page 4"
+        },
+        {
+            "page": 5,
+            "text": "Page 5"
+        },
+        {
+            "page": 6,
+            "text": "Page 6"
+        }
+    ]
+}

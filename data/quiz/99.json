@@ -1,0 +1,67 @@
+{
+    "book_id": 99,
+    "title": "The Secret Inside an Atom",
+    "intro": "This quiz checks what you learned about the structure of an atom — protons, neutrons, electrons, and the scientists who discovered them.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "Which three subatomic particles make up an atom?",
+            "choices": [
+                "Protons, molecules, and electrons",
+                "Protons, neutrons, and electrons",
+                "Neutrons, atoms, and molecules",
+                "Electrons, ions, and molecules"
+            ],
+            "correct_index": 1,
+            "explanation": "An atom is made of protons, neutrons, and electrons."
+        },
+        {
+            "id": 2,
+            "prompt": "What did J. J. Thomson discover through his cathode ray experiments?",
+            "choices": [
+                "Atoms contain a small, dense nucleus.",
+                "Atoms are mostly empty space.",
+                "Cathode rays contain negatively charged particles called electrons.",
+                "Neutrons have no electric charge."
+            ],
+            "correct_index": 2,
+            "explanation": "Thomson showed that cathode rays contain negatively charged particles called electrons."
+        },
+        {
+            "id": 3,
+            "prompt": "What did Eugen Goldstein observe in his experiments?",
+            "choices": [
+                "Negatively charged cathode rays",
+                "Positively charged canal rays or anode rays",
+                "Neutrons inside the nucleus",
+                "Electrons orbiting the nucleus"
+            ],
+            "correct_index": 1,
+            "explanation": "Goldstein observed positively charged canal rays, also called anode rays."
+        },
+        {
+            "id": 4,
+            "prompt": "What did Ernest Rutherford discover through his gold foil experiment and later research?",
+            "choices": [
+                "Atoms are solid spheres without empty space.",
+                "Electrons are embedded in a positively charged sphere.",
+                "Neutrons are found inside the nucleus.",
+                "Atoms are mostly empty space with a small, dense, positively charged nucleus, and he later identified the proton."
+            ],
+            "correct_index": 3,
+            "explanation": "Rutherford showed that atoms are mostly empty space with a small, dense, positively charged nucleus, and he later identified the proton."
+        },
+        {
+            "id": 5,
+            "prompt": "What makes an atom electrically neutral?",
+            "choices": [
+                "It has equal numbers of protons and electrons.",
+                "It has equal numbers of neutrons and electrons.",
+                "It contains more electrons than protons.",
+                "It contains only particles without electric charge."
+            ],
+            "correct_index": 0,
+            "explanation": "An atom is electrically neutral when it has equal numbers of protons and electrons."
+        }
+    ]
+}

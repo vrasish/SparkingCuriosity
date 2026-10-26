@@ -1,0 +1,67 @@
+{
+    "book_id": 97,
+    "title": "Los pequeños bloques de construcción",
+    "intro": "Este cuestionario revisa lo que aprendiste sobre los átomos, las moléculas y los compuestos: los diminutos bloques de construcción de todo lo que nos rodea.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es un átomo?",
+            "choices": [
+                "Dos o más elementos mezclados",
+                "La unidad más pequeña de un elemento que conserva sus propiedades",
+                "Una sustancia hecha de moléculas diferentes",
+                "Dos o más átomos unidos entre sí"
+            ],
+            "correct_index": 1,
+            "explanation": "Un átomo es la unidad más pequeña de un elemento que conserva sus propiedades."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cuál de los siguientes es un elemento?",
+            "choices": [
+                "Agua (H₂O)",
+                "Dióxido de carbono (CO₂)",
+                "Oro (Au)",
+                "Sal (NaCl)"
+            ],
+            "correct_index": 2,
+            "explanation": "El oro (Au) es un elemento. El agua, el dióxido de carbono y la sal son compuestos."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué es una molécula?",
+            "choices": [
+                "Dos o más átomos unidos químicamente",
+                "Una sustancia hecha solo de elementos diferentes",
+                "Un solo átomo",
+                "Dos sustancias mezcladas físicamente"
+            ],
+            "correct_index": 0,
+            "explanation": "Una molécula son dos o más átomos unidos químicamente."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cuál de los siguientes es una molécula pero NO un compuesto?",
+            "choices": [
+                "Agua (H₂O)",
+                "Dióxido de carbono (CO₂)",
+                "Sal (NaCl)",
+                "Gas oxígeno (O₂)"
+            ],
+            "correct_index": 3,
+            "explanation": "El gas oxígeno (O₂) es una molécula hecha del mismo elemento, por eso no es un compuesto."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué el agua (H₂O) es a la vez una molécula y un compuesto?",
+            "choices": [
+                "Contiene solo átomos de oxígeno",
+                "Contiene átomos de hidrógeno y oxígeno unidos químicamente",
+                "Contiene un solo átomo",
+                "Es una mezcla de hidrógeno y oxígeno"
+            ],
+            "correct_index": 1,
+            "explanation": "El agua es a la vez una molécula y un compuesto porque contiene átomos de hidrógeno y oxígeno unidos químicamente."
+        }
+    ]
+}

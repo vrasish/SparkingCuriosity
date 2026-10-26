@@ -1,0 +1,67 @@
+{
+    "book_id": 84,
+    "title": "El sendero de las escamas",
+    "intro": "Este cuestionario sigue a Nia y Ben mientras descubren qué hace que los reptiles sean diferentes de otros animales.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué tipo de piel tienen los reptiles?",
+            "choices": [
+                "Piel suave y húmeda",
+                "Piel seca cubierta de escamas",
+                "Piel cubierta de plumas",
+                "Pelo grueso"
+            ],
+            "correct_index": 1,
+            "explanation": "Los reptiles tienen la piel seca y cubierta de escamas."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Por qué se estiró la tortuga hacia el Sol?",
+            "choices": [
+                "Para calentar su cuerpo",
+                "Para atrapar insectos",
+                "Para secar su caparazón después de nadar",
+                "Para buscar comida en el cielo"
+            ],
+            "correct_index": 0,
+            "explanation": "La tortuga se estiró hacia el Sol para calentar su cuerpo."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué significa que los reptiles sean ectotérmicos?",
+            "choices": [
+                "Producen todo el calor de su cuerpo por sí mismos",
+                "Dependen de su entorno para ayudar a controlar la temperatura de su cuerpo",
+                "Solo pueden vivir en agua fría",
+                "La temperatura de su cuerpo nunca cambia"
+            ],
+            "correct_index": 1,
+            "explanation": "Los reptiles ectotérmicos dependen de su entorno para ayudar a controlar la temperatura de su cuerpo."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué grupo contiene solo reptiles?",
+            "choices": [
+                "Tortuga, serpiente, lagarto y cocodrilo",
+                "Rana, pez, ave y tortuga",
+                "Serpiente, araña, cangrejo y lagarto",
+                "Cocodrilo, salamandra, búho y tortuga"
+            ],
+            "correct_index": 0,
+            "explanation": "La tortuga, la serpiente, el lagarto y el cocodrilo son todos reptiles."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué afirmación sobre los huevos de los reptiles suele ser verdadera?",
+            "choices": [
+                "Normalmente se ponen en el agua sin ninguna cubierta",
+                "Normalmente tienen una cáscara protectora y se ponen en tierra",
+                "Se llevan dentro de una bolsa",
+                "Solo eclosionan durante el invierno"
+            ],
+            "correct_index": 1,
+            "explanation": "Los huevos de los reptiles normalmente tienen una cáscara protectora y se ponen en tierra."
+        }
+    ]
+}

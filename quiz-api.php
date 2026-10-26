@@ -56,23 +56,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $bookId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
+$lang = strtolower(trim((string) ($_GET['lang'] ?? 'en')));
+if ($lang !== 'es') {
+    $lang = 'en';
+}
 if ($bookId <= 0) {
     http_response_code(400);
     echo json_encode(['error' => 'invalid_id']);
     exit;
 }
 
-$questions = quiz_public_questions($bookId);
+$questions = quiz_public_questions($bookId, $lang);
+if ($questions === [] && $lang === 'es') {
+    // Fall back to English quiz if Spanish is not ready yet.
+    $lang = 'en';
+    $questions = quiz_public_questions($bookId, 'en');
+}
 if ($questions === []) {
     http_response_code(404);
     echo json_encode(['error' => 'not_found', 'book_id' => $bookId]);
     exit;
 }
 
-$data = quiz_story_data($bookId);
+$data = quiz_story_data($bookId, $lang);
 
 echo json_encode([
     'book_id' => $bookId,
+    'lang' => $lang,
     'title' => (string) ($data['title'] ?? ''),
     'intro' => (string) ($data['intro'] ?? ''),
     'questions' => $questions,

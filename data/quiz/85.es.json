@@ -1,0 +1,67 @@
+{
+    "book_id": 85,
+    "title": "El día que el Sol desapareció",
+    "intro": "Este cuestionario sigue a Anaya y Miles mientras aprenden cómo ocurre un eclipse solar y cómo observarlo de forma segura.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué causa un eclipse solar?",
+            "choices": [
+                "La Tierra se mueve entre el Sol y la Luna",
+                "La Luna se mueve entre el Sol y la Tierra",
+                "Las nubes cubren por completo el Sol",
+                "El Sol deja de producir luz"
+            ],
+            "correct_index": 1,
+            "explanation": "Un eclipse solar ocurre cuando la Luna se mueve entre el Sol y la Tierra."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué ocurre durante un eclipse solar?",
+            "choices": [
+                "La Luna bloquea parte o toda la luz del Sol para que no llegue a una parte de la Tierra",
+                "La Tierra bloquea la luz del Sol para que no llegue a la Luna",
+                "El Sol se mueve detrás de la Tierra",
+                "La Luna produce su propia luz"
+            ],
+            "correct_index": 0,
+            "explanation": "Durante un eclipse solar, la Luna bloquea parte o toda la luz del Sol para que no llegue a una parte de la Tierra."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Por qué el cielo se oscureció y el aire se sintió más fresco?",
+            "choices": [
+                "Se acercaba una tormenta",
+                "La Luna bloqueó parte de la luz y del calor del Sol",
+                "El Sol se alejó más",
+                "La noche empezó más temprano de lo normal"
+            ],
+            "correct_index": 1,
+            "explanation": "El cielo se oscureció y el aire se sintió más fresco porque la Luna bloqueó parte de la luz y del calor del Sol."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cuál es la forma segura de mirar un eclipse solar?",
+            "choices": [
+                "Con gafas de sol comunes",
+                "Con binoculares",
+                "Usando gafas especiales para eclipses aprobadas",
+                "Mirando directamente al Sol solo unos segundos"
+            ],
+            "correct_index": 2,
+            "explanation": "La forma segura de mirar un eclipse solar es usando gafas especiales para eclipses aprobadas."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Cuál es la diferencia entre un eclipse solar total y uno parcial?",
+            "choices": [
+                "Un eclipse total tapa todo el Sol, mientras que uno parcial tapa solo una parte",
+                "Un eclipse parcial ocurre solo de noche",
+                "Un eclipse total dura todo el día",
+                "Un eclipse parcial ocurre cuando la Tierra tapa la Luna"
+            ],
+            "correct_index": 0,
+            "explanation": "En un eclipse solar total se tapa todo el Sol; en uno parcial, solo se tapa una parte."
+        }
+    ]
+}

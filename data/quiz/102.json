@@ -1,0 +1,67 @@
+{
+    "book_id": 102,
+    "title": "The Secret Map of the Elements",
+    "intro": "This quiz checks what you learned about the periodic table — groups, periods, atomic number, and types of elements.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "How are elements arranged in the modern periodic table?",
+            "choices": [
+                "By increasing atomic number",
+                "By decreasing atomic mass",
+                "Alphabetically by element name",
+                "By color"
+            ],
+            "correct_index": 0,
+            "explanation": "In the modern periodic table, elements are arranged by increasing atomic number."
+        },
+        {
+            "id": 2,
+            "prompt": "What are the horizontal rows of the periodic table called?",
+            "choices": [
+                "Groups",
+                "Periods",
+                "Families",
+                "Blocks"
+            ],
+            "correct_index": 1,
+            "explanation": "Horizontal rows of the periodic table are called periods."
+        },
+        {
+            "id": 3,
+            "prompt": "What are the vertical columns of the periodic table called?",
+            "choices": [
+                "Periods",
+                "Groups",
+                "Layers",
+                "Series"
+            ],
+            "correct_index": 1,
+            "explanation": "Vertical columns of the periodic table are called groups."
+        },
+        {
+            "id": 4,
+            "prompt": "What does an element's atomic number tell us?",
+            "choices": [
+                "The number of protons",
+                "The number of neutrons",
+                "The average atomic mass",
+                "The number of electron shells"
+            ],
+            "correct_index": 0,
+            "explanation": "Atomic number tells us the number of protons in an atom."
+        },
+        {
+            "id": 5,
+            "prompt": "Which type of element is usually shiny and a good conductor of heat and electricity?",
+            "choices": [
+                "Metal",
+                "Nonmetal",
+                "Metalloid",
+                "Noble gas"
+            ],
+            "correct_index": 0,
+            "explanation": "Metals are usually shiny and good conductors of heat and electricity."
+        }
+    ]
+}

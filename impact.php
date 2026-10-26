@@ -5,12 +5,12 @@ require_once __DIR__ . '/impact-lib.php';
 $stories = impact_stories();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= e(html_lang_attr()) ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= e(site_page_title('Impact')) ?></title>
-    <meta name="description" content="See SciFables in action around the world — partner sessions, stories, quizzes, and hands-on science with children.">
+    <title><?= e(site_page_title(t('impact.title'))) ?></title>
+    <meta name="description" content="<?= e(t('impact.lead')) ?>">
     <?php render_stylesheet(); ?>
 </head>
 <body class="<?= body_class('impact-page impact-index-page') ?>">
@@ -19,26 +19,26 @@ $stories = impact_stories();
 
 <main class="container page-main page-main-compact impact-main">
     <header class="impact-hero">
-        <p class="impact-kicker">SciFables in Action</p>
+        <p class="impact-kicker"><?= e(t('impact.kicker')) ?></p>
         <div class="impact-hero-title-row">
-            <h1 class="impact-hero-title">Impact</h1>
+            <h1 class="impact-hero-title"><?= e(t('impact.title')) ?></h1>
             <?php render_current_impact_badge(); ?>
         </div>
         <p class="impact-hero-lead">
-            Open a folder to see how partners are bringing SciFables stories, quizzes, and hands-on science to children around the world.
+            <?= e(t('impact.lead')) ?>
         </p>
     </header>
 
     <section class="impact-section" aria-labelledby="folders-heading">
-        <h2 id="folders-heading">Impact Folders</h2>
+        <h2 id="folders-heading"><?= e(t('impact.folders')) ?></h2>
         <ul class="impact-folder-list">
             <?php foreach ($stories as $story): ?>
                 <?php
                 $slug = (string) ($story['slug'] ?? '');
-                $title = (string) ($story['folder_title'] ?? '');
-                $summary = (string) ($story['summary'] ?? '');
+                $title = impact_text($story, 'folder_title');
+                $summary = impact_text($story, 'summary');
                 $cover = (string) ($story['cover'] ?? '');
-                $dateLabel = (string) ($story['date_label'] ?? '');
+                $dateLabel = impact_text($story, 'date_label');
                 $reached = (int) ($story['children_reached'] ?? 0);
                 ?>
                 <li>
@@ -66,7 +66,7 @@ $stories = impact_stories();
                                             data-count-to="<?= $reached ?>"
                                             data-count-duration="1800"
                                         >1</span>
-                                        students reached
+                                        <?= e(t('impact.students_reached')) ?>
                                     </span>
                                 <?php endif; ?>
                             </span>

@@ -1,0 +1,67 @@
+{
+    "book_id": 98,
+    "title": "Una mirada más de cerca",
+    "intro": "Este cuestionario revisa lo que aprendiste sobre los microscopios simples y compuestos: cómo funcionan y cómo nos ayudan a ver un mundo diminuto.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Para qué nos sirve un microscopio?",
+            "choices": [
+                "Para ver cosas muy pequeñas con más claridad",
+                "Para medir la temperatura del agua",
+                "Para medir el peso de los objetos",
+                "Para hacer que los objetos se muevan más rápido"
+            ],
+            "correct_index": 0,
+            "explanation": "Un microscopio nos ayuda a ver cosas muy pequeñas con más claridad."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cuál es la principal diferencia entre un microscopio simple y un microscopio compuesto?",
+            "choices": [
+                "Un microscopio simple usa una lente, mientras que un microscopio compuesto usa más de una lente",
+                "Un microscopio simple usa luz, mientras que un microscopio compuesto no",
+                "Un microscopio simple solo se usa para células, mientras que un microscopio compuesto solo se usa para plantas",
+                "Un microscopio simple tiene más lentes que un microscopio compuesto"
+            ],
+            "correct_index": 0,
+            "explanation": "Un microscopio simple usa una lente, mientras que un microscopio compuesto usa más de una lente."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué parte del microscopio mantiene la preparación en su lugar?",
+            "choices": [
+                "Las pinzas de la platina",
+                "El ocular",
+                "La fuente de luz",
+                "La base"
+            ],
+            "correct_index": 0,
+            "explanation": "Las pinzas de la platina mantienen la preparación en su lugar."
+        },
+        {
+            "id": 4,
+            "prompt": "Si el aumento del ocular es de 10× y el aumento del objetivo es de 4×, ¿cuál es el aumento total?",
+            "choices": [
+                "14×",
+                "40×",
+                "6×",
+                "400×"
+            ],
+            "correct_index": 1,
+            "explanation": "El aumento total es 10× × 4× = 40×."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué parte de un microscopio compuesto se usa para hacer pequeños ajustes y enfocar mejor la imagen?",
+            "choices": [
+                "El ocular",
+                "La platina",
+                "El tornillo micrométrico (ajuste fino)",
+                "La base"
+            ],
+            "correct_index": 2,
+            "explanation": "El tornillo micrométrico (ajuste fino) se usa para hacer pequeños ajustes y enfocar mejor la imagen."
+        }
+    ]
+}

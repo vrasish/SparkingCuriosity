@@ -1,0 +1,67 @@
+{
+    "book_id": 87,
+    "title": "El aire al que le encantaba subir",
+    "intro": "Este cuestionario sigue a Ava y Liam mientras descubren por qué el aire caliente sube y el aire frío baja.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué vio Ava flotando sobre los árboles?",
+            "choices": [
+                "Una cometa grande",
+                "Un globo aerostático",
+                "Un helicóptero",
+                "Una nube"
+            ],
+            "correct_index": 1,
+            "explanation": "Ava vio un globo aerostático flotando sobre los árboles."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué les pasa a las partículas del aire cuando el aire se calienta?",
+            "choices": [
+                "Dejan de moverse",
+                "Se mueven más lento y se juntan más",
+                "Se mueven más rápido y se separan más",
+                "Desaparecen"
+            ],
+            "correct_index": 2,
+            "explanation": "Cuando el aire se calienta, sus partículas se mueven más rápido y se separan más."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Por qué baja el aire frío?",
+            "choices": [
+                "El aire frío es más denso",
+                "El aire frío es más brillante",
+                "El aire frío se mueve más rápido",
+                "El aire frío no tiene partículas"
+            ],
+            "correct_index": 0,
+            "explanation": "El aire frío es más denso, por eso baja."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué pasa cuando el aire caliente sube?",
+            "choices": [
+                "El aire deja de moverse",
+                "El aire más frío entra a ocupar su lugar",
+                "Todas las nubes desaparecen",
+                "El suelo se calienta"
+            ],
+            "correct_index": 1,
+            "explanation": "Cuando el aire caliente sube, el aire más frío entra a ocupar su lugar."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué subió el globo aerostático?",
+            "choices": [
+                "El viento lo empujó hacia abajo",
+                "La canasta estaba vacía",
+                "El aire de adentro estaba más caliente y era más liviano que el aire frío de afuera",
+                "El globo estaba lleno de agua fría"
+            ],
+            "correct_index": 2,
+            "explanation": "El globo subió porque el aire de adentro estaba más caliente y era más liviano que el aire frío de afuera."
+        }
+    ]
+}

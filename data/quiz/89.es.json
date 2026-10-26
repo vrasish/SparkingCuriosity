@@ -1,0 +1,67 @@
+{
+    "book_id": 89,
+    "title": "El misterio del bosque",
+    "intro": "Este cuestionario sigue a dos niños curiosos y a la Dra. Kim mientras descubren cómo los productores, los consumidores y los descomponedores trabajan juntos en un bosque.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cómo se llama a las plantas porque fabrican su propio alimento?",
+            "choices": [
+                "Consumidoras",
+                "Productoras",
+                "Descomponedoras",
+                "Recicladoras"
+            ],
+            "correct_index": 1,
+            "explanation": "A las plantas se les llama productoras porque fabrican su propio alimento."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué usan las plantas para fabricar su propio alimento?",
+            "choices": [
+                "Luz del sol, agua y dióxido de carbono",
+                "Rocas, tierra y animales",
+                "Viento, hongos y hojas",
+                "Insectos, lluvia y ramas"
+            ],
+            "correct_index": 0,
+            "explanation": "Las plantas usan luz del sol, agua y dióxido de carbono para fabricar su propio alimento."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Por qué se llama consumidor al conejo?",
+            "choices": [
+                "Fabrica su propio alimento",
+                "Descompone plantas muertas",
+                "Come plantas para obtener energía",
+                "Devuelve nutrientes al suelo"
+            ],
+            "correct_index": 2,
+            "explanation": "Al conejo se le llama consumidor porque come plantas para obtener energía."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué hacen los descomponedores?",
+            "choices": [
+                "Producen luz del sol",
+                "Descomponen plantas y animales muertos",
+                "Comen solo hojas verdes",
+                "Impiden que crezcan plantas nuevas"
+            ],
+            "correct_index": 1,
+            "explanation": "Los descomponedores descomponen plantas y animales muertos."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Cómo ayudan los descomponedores a que crezcan plantas nuevas?",
+            "choices": [
+                "Devuelven nutrientes al suelo",
+                "Bloquean la luz del sol",
+                "Se comen todas las plantas",
+                "Quitan el agua del suelo"
+            ],
+            "correct_index": 0,
+            "explanation": "Los descomponedores ayudan a que crezcan plantas nuevas devolviendo nutrientes al suelo."
+        }
+    ]
+}

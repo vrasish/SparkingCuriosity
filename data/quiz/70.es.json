@@ -1,0 +1,67 @@
+{
+    "book_id": 70,
+    "title": "El barco que no se hundía",
+    "intro": "Este cuestionario sigue a Lila y Ben mientras aprenden sobre la flotabilidad, la densidad y por qué los grandes barcos de acero pueden flotar.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es la flotabilidad?",
+            "choices": [
+                "La fuerza de gravedad que tira hacia abajo",
+                "La fuerza hacia arriba que el agua ejerce sobre un objeto",
+                "La cantidad de metal que tiene un objeto",
+                "La rapidez con la que se mueve un objeto"
+            ],
+            "correct_index": 1,
+            "explanation": "La flotabilidad es la fuerza hacia arriba que el agua ejerce sobre un objeto."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Por qué se hundió al principio la bola de arcilla?",
+            "choices": [
+                "Estaba demasiado fría",
+                "No desplazaba suficiente agua para crear un empuje hacia arriba lo bastante fuerte",
+                "Estaba hecha de madera",
+                "Tenía demasiado aire dentro"
+            ],
+            "correct_index": 1,
+            "explanation": "La bola de arcilla se hundió porque no desplazaba suficiente agua para crear un empuje hacia arriba lo bastante fuerte."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Por qué flotó la misma arcilla cuando se le dio forma de barquito?",
+            "choices": [
+                "Se volvió más ligera",
+                "Se extendió y empujó a un lado más agua",
+                "Se transformó en otro material",
+                "Absorbió agua"
+            ],
+            "correct_index": 1,
+            "explanation": "La arcilla flotó con forma de barquito porque se extendió y empujó a un lado más agua."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Por qué puede flotar un gran barco de acero?",
+            "choices": [
+                "El acero es más ligero que el agua",
+                "Su forma ancha y hueca le da una densidad media más baja y le ayuda a desplazar mucha agua",
+                "Su motor lo mantiene por encima del agua",
+                "La carga lo empuja hacia arriba"
+            ],
+            "correct_index": 1,
+            "explanation": "Un gran barco de acero puede flotar porque su forma ancha y hueca le da una densidad media más baja y le ayuda a desplazar mucha agua."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué puede ser peligroso sobrecargar un barco?",
+            "choices": [
+                "El barco se calienta demasiado",
+                "El barco podría hundirse demasiado y perder el equilibrio seguro con el empuje hacia arriba del agua",
+                "El acero se convierte en arcilla",
+                "El agua deja de producir flotabilidad"
+            ],
+            "correct_index": 1,
+            "explanation": "Sobrecargar un barco puede ser peligroso porque podría hundirse demasiado y perder el equilibrio seguro con el empuje hacia arriba del agua."
+        }
+    ]
+}

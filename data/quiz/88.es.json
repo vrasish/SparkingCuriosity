@@ -1,0 +1,67 @@
+{
+    "book_id": 88,
+    "title": "El viento que iba y venía",
+    "intro": "Este cuestionario sigue a dos niños curiosos en la playa mientras descubren cómo se forman las brisas de mar y de tierra.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es una brisa?",
+            "choices": [
+                "Una tormenta fuerte",
+                "Un viento suave y agradable",
+                "Una ola grande del océano",
+                "Una nube caliente"
+            ],
+            "correct_index": 1,
+            "explanation": "Una brisa es un viento suave y agradable."
+        },
+        {
+            "id": 2,
+            "prompt": "Durante el día, ¿qué se calienta más rápido?",
+            "choices": [
+                "El mar",
+                "Las nubes",
+                "La tierra",
+                "El viento"
+            ],
+            "correct_index": 2,
+            "explanation": "Durante el día, la tierra se calienta más rápido que el mar."
+        },
+        {
+            "id": 3,
+            "prompt": "¿En qué dirección sopla una brisa de mar?",
+            "choices": [
+                "De la tierra hacia el mar",
+                "Del mar hacia la tierra",
+                "Del cielo hacia el suelo",
+                "Del norte hacia el sur"
+            ],
+            "correct_index": 1,
+            "explanation": "Una brisa de mar sopla del mar hacia la tierra."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué le pasa al aire sobre el mar por la noche?",
+            "choices": [
+                "Se calienta y sube",
+                "Se congela de inmediato",
+                "Deja de moverse",
+                "Se mueve hacia la tierra"
+            ],
+            "correct_index": 0,
+            "explanation": "Por la noche, el aire sobre el mar se calienta y sube."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué empieza el viento?",
+            "choices": [
+                "El aire caliente baja y el aire frío sube",
+                "El mar empuja la tierra",
+                "El aire caliente sube y el aire frío entra a reemplazarlo",
+                "Los árboles crean aire en movimiento"
+            ],
+            "correct_index": 2,
+            "explanation": "El viento empieza cuando el aire caliente sube y el aire frío entra a reemplazarlo."
+        }
+    ]
+}

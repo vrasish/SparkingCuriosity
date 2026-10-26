@@ -1,0 +1,67 @@
+{
+    "book_id": 47,
+    "title": "Las criaturas del mar de medianoche",
+    "intro": "Este cuestionario sigue a Nila y Owen mientras aprenden cómo sobreviven las criaturas de las profundidades del mar en la oscuridad, el agua fría y la alta presión.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué característica especial usa el pez rape para atraer a sus presas?",
+            "choices": [
+                "Un señuelo luminoso en la cabeza",
+                "Grandes alas de colores",
+                "Un caparazón duro",
+                "Un sonido fuerte"
+            ],
+            "correct_index": 0,
+            "explanation": "El pez rape usa un señuelo luminoso en la cabeza para atraer a sus presas."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué es la bioluminiscencia?",
+            "choices": [
+                "La capacidad de un animal de nadar rápido",
+                "La luz producida por un ser vivo",
+                "El calor producido por el océano",
+                "La luz del Sol reflejada en las escamas de los peces"
+            ],
+            "correct_index": 1,
+            "explanation": "La bioluminiscencia es la luz producida por un ser vivo."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Por qué algunas criaturas de las profundidades del mar producen luz?",
+            "choices": [
+                "Para calentar el océano",
+                "Para atraer alimento, asustar a los depredadores o encontrarse entre sí",
+                "Para ayudar a crecer a las plantas",
+                "Para que el agua sea menos salada"
+            ],
+            "correct_index": 1,
+            "explanation": "Algunas criaturas de las profundidades del mar producen luz para atraer alimento, asustar a los depredadores o encontrarse entre sí."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué condiciones se encuentran en las profundidades del mar?",
+            "choices": [
+                "Luminosas, cálidas y secas",
+                "Oscuras, frías y con mucha presión",
+                "Soleadas, con viento y poco profundas",
+                "Calurosas, arenosas y llenas de árboles"
+            ],
+            "correct_index": 1,
+            "explanation": "Las profundidades del mar son oscuras, frías y tienen mucha presión."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué adaptación ayuda a sobrevivir a algunos animales de las profundidades del mar?",
+            "choices": [
+                "Ojos grandes, bocas elásticas, cuerpos blandos o formas especiales de ahorrar energía",
+                "Plumas y alas",
+                "Pelaje grueso y patas",
+                "Hojas que recogen la luz del Sol"
+            ],
+            "correct_index": 0,
+            "explanation": "Los ojos grandes, las bocas elásticas, los cuerpos blandos o las formas especiales de ahorrar energía ayudan a sobrevivir a algunos animales de las profundidades del mar."
+        }
+    ]
+}

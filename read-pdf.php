@@ -16,9 +16,11 @@ if ($bookId <= 0) {
     exit('Invalid story.');
 }
 
+ensure_book_i18n_schema($pdo);
+
 try {
     $stmt = $pdo->prepare('
-        SELECT book_id, title, status, book_format, pdf_file_path, price_cents
+        SELECT book_id, title, title_es, status, book_format, pdf_file_path, pdf_file_path_es, price_cents
         FROM books
         WHERE book_id = ?
         LIMIT 1
@@ -49,7 +51,23 @@ if (!$preview && !can_read_book($book, $preview)) {
     exit('Purchase this story to read it.');
 }
 
-$pdfPath = $book['pdf_file_path'] ?? '';
+$lang = strtolower(trim((string) ($_GET['lang'] ?? 'en')));
+$pdfPath = (string) ($book['pdf_file_path'] ?? '');
+$displayTitle = (string) ($book['title'] ?? 'story');
+if ($lang === 'es') {
+    $esPath = trim((string) ($book['pdf_file_path_es'] ?? ''));
+    if ($esPath !== '' && is_safe_pdf_path($esPath)) {
+        $pdfPath = $esPath;
+        $titleEs = trim((string) ($book['title_es'] ?? ''));
+        if ($titleEs !== '') {
+            $displayTitle = $titleEs;
+        }
+    } else {
+        // Spanish requested but no Spanish PDF yet — do not serve the English file.
+        http_response_code(404);
+        exit('Spanish PDF coming soon.');
+    }
+}
 if (($book['book_format'] ?? '') !== 'pdf' || !is_safe_pdf_path($pdfPath)) {
     http_response_code(404);
     exit('PDF not available.');
@@ -61,7 +79,7 @@ if (!is_file($diskPath)) {
     exit('PDF file not found.');
 }
 
-$filename = preg_replace('/[^a-zA-Z0-9._-]+/', '-', (string) $book['title']) . '.pdf';
+$filename = preg_replace('/[^a-zA-Z0-9._-]+/', '-', $displayTitle) . '.pdf';
 $download = isset($_GET['download']) && $_GET['download'] === '1';
 $fileSize = filesize($diskPath);
 

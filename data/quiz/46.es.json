@@ -1,0 +1,67 @@
+{
+    "book_id": 46,
+    "title": "La planta con muchos trabajos",
+    "intro": "Este cuestionario sigue a Lina y a Mateo mientras aprenden cómo trabajan juntas las diferentes partes de una planta.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cuáles son los dos trabajos importantes de las raíces de una planta?",
+            "choices": [
+                "Producir flores y frutos",
+                "Absorber agua y minerales y sujetar la planta al suelo",
+                "Captar la luz del sol y producir semillas",
+                "Alejar a los insectos de la planta"
+            ],
+            "correct_index": 1,
+            "explanation": "Las raíces absorben agua y minerales y sujetan la planta al suelo."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Por qué la maestra Alvarez comparó el tallo con un camino de reparto?",
+            "choices": [
+                "Porque lleva agua y alimento a las diferentes partes de la planta",
+                "Porque produce todas las semillas de la planta",
+                "Porque lleva la luz del sol hacia la tierra",
+                "Porque protege el fruto de los animales"
+            ],
+            "correct_index": 0,
+            "explanation": "El tallo lleva agua y alimento a las diferentes partes de la planta."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué usan las hojas para fabricar alimento para la planta?",
+            "choices": [
+                "Luz solar, agua y dióxido de carbono",
+                "Tierra, fruta y oxígeno",
+                "Semillas, flores e insectos",
+                "Viento, piedras y minerales"
+            ],
+            "correct_index": 0,
+            "explanation": "Las hojas usan luz solar, agua y dióxido de carbono para fabricar alimento para la planta."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cuál es un trabajo importante de una flor?",
+            "choices": [
+                "Sujetar la planta firmemente al suelo",
+                "Ayudar a la planta a producir semillas",
+                "Llevar agua hacia arriba por el tallo",
+                "Proteger las raíces"
+            ],
+            "correct_index": 1,
+            "explanation": "Un trabajo importante de la flor es ayudar a la planta a producir semillas."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Cómo ayudan los frutos a una planta?",
+            "choices": [
+                "Fabrican luz solar",
+                "Absorben agua de la tierra",
+                "Protegen las semillas y ayudan a esparcirlas a nuevos lugares",
+                "Mantienen las hojas derechas"
+            ],
+            "correct_index": 2,
+            "explanation": "Los frutos protegen las semillas y ayudan a esparcirlas a nuevos lugares."
+        }
+    ]
+}

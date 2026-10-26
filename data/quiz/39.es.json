@@ -1,0 +1,67 @@
+{
+    "book_id": 39,
+    "title": "El club de las bacterias buenas",
+    "intro": "Este cuestionario trata sobre el descubrimiento de Maya: algunas bacterias ayudan con la digestión, la protección y el equilibrio en el cuerpo.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué creía Maya sobre las bacterias al principio de la historia?",
+            "choices": [
+                "Todas las bacterias eran útiles",
+                "Todas las bacterias eran peligrosas",
+                "Las bacterias solo vivían en el yogur",
+                "Las bacterias eran insectos grandes"
+            ],
+            "correct_index": 1,
+            "explanation": "Al principio, Maya creía que todas las bacterias eran peligrosas."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué significaban las palabras «cultivos vivos y activos» en el envase de yogur?",
+            "choices": [
+                "El yogur podía moverse solo",
+                "El yogur contenía microbios vivos y útiles",
+                "El yogur tenía azúcar extra",
+                "El yogur no era seguro para comer"
+            ],
+            "correct_index": 1,
+            "explanation": "«Cultivos vivos y activos» significaba que el yogur contenía microbios vivos y útiles."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo pueden apoyar al cuerpo las bacterias útiles del intestino?",
+            "choices": [
+                "Ayudan a descomponer la comida y a mantener el equilibrio",
+                "Bombean sangre por el cuerpo",
+                "Ayudan a que los huesos crezcan más largos",
+                "Llevan oxígeno a los músculos"
+            ],
+            "correct_index": 0,
+            "explanation": "Las bacterias útiles del intestino ayudan a descomponer la comida y a mantener el equilibrio."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cómo pueden hacer más difícil que entren gérmenes dañinos las bacterias útiles?",
+            "choices": [
+                "Hacen que el cuerpo se enfríe",
+                "Ocupan espacio que los gérmenes dañinos podrían usar",
+                "Se convierten en glóbulos blancos",
+                "Salen del cuerpo de inmediato"
+            ],
+            "correct_index": 1,
+            "explanation": "Las bacterias útiles ocupan espacio que los gérmenes dañinos podrían usar."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué comidas le mostró el papá de Maya durante su investigación de alimentos?",
+            "choices": [
+                "Dulces, pastel y helado",
+                "Yogur, kéfir y pepinillos fermentados",
+                "Pan, arroz y pasta",
+                "Manzanas, plátanos y uvas"
+            ],
+            "correct_index": 1,
+            "explanation": "El papá de Maya le mostró yogur, kéfir y pepinillos fermentados."
+        }
+    ]
+}

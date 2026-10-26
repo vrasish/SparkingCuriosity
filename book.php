@@ -8,6 +8,7 @@ require_once __DIR__ . '/quiz-lib.php';
 
 ensure_book_pdf_schema($pdo);
 ensure_book_pricing_schema($pdo);
+ensure_book_i18n_schema($pdo);
 cart_bootstrap();
 
 $bookId = isset($_GET['id']) ? (int) $_GET['id'] : 0;
@@ -28,16 +29,21 @@ if ($bookId <= 0) {
             SELECT
                 b.book_id,
                 b.title,
+                b.title_es,
                 b.author_name,
                 b.description,
+                b.description_es,
                 b.cover_image_url,
                 b.age_group,
                 b.science_element,
+                b.science_element_es,
                 b.status,
                 b.book_format,
                 b.pdf_file_path,
+                b.pdf_file_path_es,
                 b.price_cents,
                 b.story_topic,
+                b.story_topic_es,
                 GROUP_CONCAT(DISTINCT c.category_name ORDER BY c.category_name SEPARATOR ', ') AS categories
             FROM books b
             LEFT JOIN book_categories bc ON b.book_id = bc.book_id
@@ -83,7 +89,17 @@ if ($bookId <= 0) {
     }
 }
 
-$cover = $book ? cover_image_src($book['cover_image_url'] ?? null, $book['title']) : default_cover();
+$localized = $book ? book_localized_fields($book) : null;
+$displayTitle = $localized['title'] ?? (string) ($book['title'] ?? '');
+$displayDescription = $localized['description'] ?? (string) ($book['description'] ?? '');
+$displayScience = $localized['science_element'] ?? (string) ($book['science_element'] ?? '');
+$displayTopic = $localized['story_topic'] ?? ($book['story_topic'] ?? null);
+$contentLang = $localized['content_lang'] ?? 'en';
+$wantsSpanish = (bool) ($localized['wants_spanish'] ?? false);
+$spanishComingSoon = (bool) ($localized['spanish_coming_soon'] ?? false);
+$activePdfPath = $localized['pdf_file_path'] ?? (string) ($book['pdf_file_path'] ?? '');
+
+$cover = $book ? cover_image_src($book['cover_image_url'] ?? null, $displayTitle !== '' ? $displayTitle : (string) $book['title']) : default_cover();
 $bookLocked = $bookLocked ?? false;
 $bookId = $book ? (int) $book['book_id'] : $bookId;
 
@@ -96,14 +112,23 @@ if ($book && !$bookLocked && !$preview && !$error && $classroomContext) {
         $bookId
     );
 }
-$isPdfBook = $book && !$bookLocked && ($book['book_format'] ?? 'pages') === 'pdf' && is_safe_pdf_path($book['pdf_file_path'] ?? null);
-$pdfUrl = $isPdfBook ? pdf_reader_url($bookId, $preview) : '';
-$pdfDownloadUrl = $isPdfBook ? pdf_download_url($bookId, $preview) : '';
-$pdfExists = $isPdfBook && is_file(__DIR__ . '/' . ($book['pdf_file_path'] ?? ''));
-$audioDownloadAvailable = $isPdfBook && !$bookLocked && read_aloud_full_story_audio_available($bookId);
+$isPdfBook = $book && !$bookLocked && ($book['book_format'] ?? 'pages') === 'pdf' && is_safe_pdf_path($activePdfPath);
+$pdfUrl = $isPdfBook ? pdf_reader_url($bookId, $preview, $contentLang) : '';
+$pdfDownloadUrl = $isPdfBook ? pdf_download_url($bookId, $preview, $contentLang) : '';
+$pdfExists = $isPdfBook && is_file(__DIR__ . '/' . $activePdfPath);
+// English read-aloud only — do not offer or play English audio on Spanish stories.
+$readAloudEnabled = $isPdfBook && !$bookLocked && $contentLang === 'en';
+$audioDownloadAvailable = $readAloudEnabled && read_aloud_full_story_audio_available($bookId);
 $audioDownloadUrl = $audioDownloadAvailable ? read_aloud_download_url($bookId, $preview) : '';
-$quizDownloadAvailable = $isPdfBook && !$bookLocked && quiz_has_story($bookId) && quiz_public_questions($bookId) !== [];
-$quizDownloadUrl = $quizDownloadAvailable ? quiz_download_url($bookId, $preview) : '';
+$quizDownloadLang = 'en';
+if ($contentLang === 'es' && quiz_has_story($bookId, 'es') && quiz_public_questions($bookId, 'es') !== []) {
+    $quizDownloadLang = 'es';
+}
+$quizDownloadAvailable = $isPdfBook && !$bookLocked && (
+    ($quizDownloadLang === 'es')
+    || (quiz_has_story($bookId, 'en') && quiz_public_questions($bookId, 'en') !== [])
+);
+$quizDownloadUrl = $quizDownloadAvailable ? quiz_download_url($bookId, $preview, $quizDownloadLang) : '';
 $inCart = cart_enabled() && $book && in_array($bookId, cart_book_ids(), true);
 $bookOwned = $book && cart_enabled() && is_book_purchased($bookId) && !is_book_free($book);
 
@@ -112,20 +137,20 @@ $bookReviews = $book ? get_book_reviews($pdo, $bookId) : [];
 $userReview = null;
 if ($book && is_logged_in()) {
     $userReview = get_user_book_review($pdo, $bookId, (int) current_user()['user_id']);
+} elseif ($book && !$bookLocked && !$preview) {
+    $userReview = get_visitor_book_review($pdo, $bookId, review_visitor_token());
 }
-$canSubmitReview = $book && !$preview && !$bookLocked && is_logged_in();
+$canSubmitReview = $book && !$preview && !$bookLocked;
 $reviewSaved = isset($_GET['review_saved']);
 $reviewError = trim((string) ($_GET['review_error'] ?? ''));
 $showStoryRating = $book && !$error && !$bookLocked && !$preview;
 $storyRatingAttrs = '';
 if ($showStoryRating) {
-    $storyRatingLoginRedirect = app_url('book.php?id=' . $bookId);
     $storyRatingAttrs =
         ' data-story-rating="1"'
         . ' data-book-id="' . $bookId . '"'
         . ' data-rating-api="' . e(app_api_url('review-api.php')) . '"'
         . ' data-can-submit="' . ($canSubmitReview ? '1' : '0') . '"'
-        . ' data-login-url="' . e(app_url('login.php?redirect=' . rawurlencode($storyRatingLoginRedirect))) . '"'
         . ' data-existing-rating="' . (int) ($userReview['rating'] ?? 0) . '"';
 }
 
@@ -138,12 +163,15 @@ if ($book && !$preview && !$bookLocked) {
     }
 }
 ?>
+<?php
+$quizApiUrl = app_api_url('quiz-api.php') . ($contentLang === 'es' ? '?lang=es' : '');
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= e(html_lang_attr()) ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $book ? e($book['title'] . ' | ' . site_brand_name()) : e(site_page_title('Story')) ?></title>
+    <title><?= $book ? e($displayTitle . ' | ' . site_brand_name()) : e(site_page_title('Story')) ?></title>
     <?php render_stylesheet(); ?>
 </head>
 <body class="<?= body_class() ?>">
@@ -154,62 +182,66 @@ if ($book && !$preview && !$bookLocked) {
 <main class="container page-main">
     <?php if ($error): ?>
         <div class="alert alert-error"><?= e($error) ?></div>
-        <a href="<?= e(app_url('search.php')) ?>" class="btn btn-outline">Back to Search</a>
+        <a href="<?= e(app_url('search.php')) ?>" class="btn btn-outline"><?= e(t('book.back_search')) ?></a>
     <?php else: ?>
         <div class="page-section">
         <div class="book-header">
             <div class="book-cover-wrap">
                 <?php render_story_favorite_button($bookId, app_url('book.php?id=' . $bookId)); ?>
-                <img src="<?= e($cover) ?>" alt="Cover of <?= e($book['title']) ?>" class="book-cover">
+                <img src="<?= e($cover) ?>" alt="<?= e(t('home.cover_alt', ['title' => $displayTitle])) ?>" class="book-cover">
             </div>
             <div>
-                <?php render_topic_tags($book['categories'] ?? '', $book['story_topic'] ?? null, (int) $bookId); ?>
-                <h1><?= e($book['title']) ?></h1>
+                <?php render_book_language_toggle($bookId, $book, $wantsSpanish); ?>
+                <?php render_topic_tags($book['categories'] ?? '', $displayTopic, (int) $bookId); ?>
+                <h1><?= e($displayTitle) ?></h1>
                 <div class="book-meta-row">
-                    <span class="book-meta-item story-card-meta">By <?= e($book['author_name']) ?> · Ages <?= e($book['age_group']) ?></span>
+                    <span class="book-meta-item story-card-meta"><?= e(t('book.by_ages', ['author' => $book['author_name'], 'ages' => $book['age_group']])) ?></span>
                     <?php if ($isPdfBook): ?>
-                        <span class="book-meta-item badge-format-pdf">PDF Book</span>
+                        <span class="book-meta-item badge-format-pdf"><?= e(t('book.pdf_book')) ?></span>
                     <?php endif; ?>
                     <?php if ($preview): ?>
                         <span class="book-meta-item status-tag <?= e(status_class($book['status'])) ?>"><?= e(str_replace('_', ' ', $book['status'])) ?></span>
                         <span class="book-meta-item book-meta-note">(preview)</span>
                     <?php elseif (is_book_free($book)): ?>
-                        <span class="book-meta-item badge-free">Free</span>
+                        <span class="book-meta-item badge-free"><?= e(t('book.free')) ?></span>
                     <?php elseif (is_book_purchased($bookId)): ?>
-                        <span class="book-meta-item badge-owned">Owned</span>
+                        <span class="book-meta-item badge-owned"><?= e(t('book.owned')) ?></span>
                     <?php else: ?>
                         <span class="book-meta-item badge-price"><?= e(format_book_price($book)) ?></span>
                     <?php endif; ?>
                     <?php render_book_rating_summary($ratingSummary); ?>
                 </div>
-                <p class="mt-2"><?= e($book['description']) ?></p>
+                <p class="mt-2"><?= e($displayDescription) ?></p>
+                <?php if ($spanishComingSoon): ?>
+                    <?php render_spanish_coming_soon_notice(); ?>
+                <?php endif; ?>
                 <?php if ($bookLocked): ?>
                     <div class="book-purchase-cta mt-2">
                         <?php if (cart_enabled()): ?>
-                        <p class="page-lead">Purchase this story to read the full book.</p>
+                        <p class="page-lead"><?= e(t('book.purchase_cta')) ?></p>
                         <?php if ($inCart): ?>
-                            <a href="<?= e(app_url('cart-page.php')) ?>" class="btn btn-primary">View Cart</a>
+                            <a href="<?= e(app_url('cart-page.php')) ?>" class="btn btn-primary"><?= e(t('book.view_cart')) ?></a>
                         <?php else: ?>
                             <form method="post" action="<?= e(app_url('cart-action.php')) ?>" class="inline-form">
                                 <input type="hidden" name="action" value="add">
                                 <input type="hidden" name="book_id" value="<?= $bookId ?>">
                                 <input type="hidden" name="redirect" value="<?= e(app_url('book.php?id=' . $bookId)) ?>">
-                                <button type="submit" class="btn btn-primary">Add to Cart — <?= e(format_book_price($book)) ?></button>
+                                <button type="submit" class="btn btn-primary"><?= e(t('book.add_to_cart', ['price' => format_book_price($book)])) ?></button>
                             </form>
                         <?php endif; ?>
                         <?php else: ?>
-                        <p class="page-lead">This story is not available to read right now.</p>
-                        <a href="<?= e(app_url('search.php')) ?>" class="btn btn-primary">Browse Stories</a>
+                        <p class="page-lead"><?= e(t('book.unavailable')) ?></p>
+                        <a href="<?= e(app_url('search.php')) ?>" class="btn btn-primary"><?= e(t('book.browse')) ?></a>
                         <?php endif; ?>
                     </div>
                 <?php elseif ($bookOwned): ?>
                     <div class="book-owned-actions mt-2">
-                        <a href="<?= e(app_url('book.php?id=' . $bookId)) ?>" class="btn btn-primary btn-sm">Read Story</a>
-                        <form method="post" action="<?= e(app_url('cart-action.php')) ?>" class="inline-form" onsubmit="return confirm('Return this story for a full refund? You will no longer be able to read it.');">
+                        <a href="<?= e(app_url('book.php?id=' . $bookId)) ?>" class="btn btn-primary btn-sm"><?= e(t('book.read_story')) ?></a>
+                        <form method="post" action="<?= e(app_url('cart-action.php')) ?>" class="inline-form" onsubmit="return confirm(<?= json_encode(t('book.return_confirm'), JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_UNICODE) ?>);">
                             <input type="hidden" name="action" value="return">
                             <input type="hidden" name="book_id" value="<?= $bookId ?>">
                             <input type="hidden" name="redirect" value="book.php?id=<?= $bookId ?>">
-                            <button type="submit" class="btn btn-outline btn-sm">Return for Refund</button>
+                            <button type="submit" class="btn btn-outline btn-sm"><?= e(t('book.return_refund')) ?></button>
                         </form>
                     </div>
                 <?php endif; ?>
@@ -217,43 +249,55 @@ if ($book && !$preview && !$bookLocked) {
         </div>
         </div>
 
-        <div class="page-section book-content<?= $isPdfBook ? ' book-content-pdf' : ' book-content-text' ?>"<?= !$isPdfBook && !$bookLocked ? ' data-book-id="' . (int) $bookId . '" data-quiz-api="' . e(app_api_url('quiz-api.php')) . '"' . $storyRatingAttrs : '' ?>>
+        <div class="page-section book-content<?= $isPdfBook ? ' book-content-pdf' : ' book-content-text' ?>"<?= !$isPdfBook && !$bookLocked ? ' data-book-id="' . (int) $bookId . '" data-quiz-api="' . e($quizApiUrl) . '"' . $storyRatingAttrs : '' ?>>
         <?php if ($bookLocked): ?>
             <div class="empty-state">
                 <?php if (cart_enabled()): ?>
-                <p>This story is locked. Add it to your cart and purchase for <?= e(format_book_price($book)) ?> to read.</p>
+                <p><?= e(t('book.locked_cta', ['price' => format_book_price($book)])) ?></p>
                 <?php else: ?>
-                <p>This story is not available to read right now.</p>
-                <p class="mt-2"><a href="<?= e(app_url('search.php')) ?>" class="btn btn-primary">Browse Stories</a></p>
+                <p><?= e(t('book.unavailable')) ?></p>
+                <p class="mt-2"><a href="<?= e(app_url('search.php')) ?>" class="btn btn-primary"><?= e(t('book.browse')) ?></a></p>
                 <?php endif; ?>
             </div>
+        <?php elseif ($spanishComingSoon): ?>
+            <div class="empty-state book-spanish-soon-content">
+                <?php render_spanish_coming_soon_notice(); ?>
+                <p class="mt-2">
+                    <a href="<?= e(app_url('book.php?id=' . $bookId . '&story_lang=en')) ?>" class="btn btn-outline">
+                        <?= e(t('book.lang_english')) ?>
+                    </a>
+                </p>
+            </div>
+            <?php render_book_recommendations($recommendedBooks, $recommendedRatingSummaries); ?>
         <?php elseif ($isPdfBook): ?>
             <?php if ($pdfExists): ?>
                 <section class="pdf-viewer-wrap">
                     <div class="pdf-viewer-layout">
                         <div class="pdf-viewer-column">
                             <div class="pdf-viewer-actions">
-                                <a href="<?= e($pdfDownloadUrl) ?>" class="btn btn-primary btn-sm btn-download-pdf">Download PDF</a>
+                                <a href="<?= e($pdfDownloadUrl) ?>" class="btn btn-primary btn-sm btn-download-pdf"><?= e(t('book.download_pdf')) ?></a>
                                 <?php if ($audioDownloadAvailable): ?>
-                                <a href="<?= e($audioDownloadUrl) ?>" class="btn btn-primary btn-sm btn-download-audio">Download Audio</a>
+                                <a href="<?= e($audioDownloadUrl) ?>" class="btn btn-primary btn-sm btn-download-audio"><?= e(t('book.download_audio')) ?></a>
                                 <?php endif; ?>
                                 <?php if ($quizDownloadAvailable): ?>
-                                <a href="<?= e($quizDownloadUrl) ?>" class="btn btn-primary btn-sm btn-download-quiz">Download Quiz</a>
+                                <a href="<?= e($quizDownloadUrl) ?>" class="btn btn-primary btn-sm btn-download-quiz"><?= e(t('book.download_quiz')) ?></a>
                                 <?php endif; ?>
-                                <a href="<?= e($pdfUrl) ?>" class="btn btn-outline btn-sm" target="_blank" rel="noopener">Open in new tab</a>
+                                <a href="<?= e($pdfUrl) ?>" class="btn btn-outline btn-sm" target="_blank" rel="noopener"><?= e(t('book.open_tab')) ?></a>
                             </div>
                             <div
                                 id="pdf-reader"
                                 class="pdf-reader"
                                 data-pdf-url="<?= e($pdfUrl) ?>"
                                 data-story-id="<?= (int) $bookId ?>"
+                                <?php if ($readAloudEnabled): ?>
                                 data-read-aloud-api="<?= e(app_api_url('read-aloud-api.php')) ?>"
-                                data-quiz-api="<?= e(app_api_url('quiz-api.php')) ?>"
+                                <?php endif; ?>
+                                data-quiz-api="<?= e($quizApiUrl) ?>"
                                 <?= $storyRatingAttrs ?>
                             >
                                 <div class="pdf-reader-loading" role="status" aria-live="polite" aria-busy="true">
                                     <div class="pdf-reader-loading-spinner" aria-hidden="true"></div>
-                                    <p class="pdf-reader-loading-text">Opening your story…</p>
+                                    <p class="pdf-reader-loading-text"><?= e(t('book.opening')) ?></p>
                                 </div>
                             </div>
                         </div>
@@ -262,7 +306,9 @@ if ($book && !$preview && !$bookLocked) {
                 </section>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
                 <script src="<?= e(asset_url('pdf-reader.js')) ?>"></script>
+                <?php if ($readAloudEnabled): ?>
                 <script src="<?= e(asset_url('read-aloud.js')) ?>"></script>
+                <?php endif; ?>
                 <script src="<?= e(asset_url('quiz.js')) ?>"></script>
                 <script src="<?= e(asset_url('story-rating.js')) ?>"></script>
             <?php else: ?>
@@ -294,10 +340,10 @@ if ($book && !$preview && !$bookLocked) {
             <script src="<?= e(asset_url('story-rating.js')) ?>"></script>
         <?php endif; ?>
 
-        <?php if (!$bookLocked && !empty($book['science_element'])): ?>
+        <?php if (!$bookLocked && $displayScience !== ''): ?>
             <section class="science-box">
-                <h2>🔬 Science Element</h2>
-                <p><?= e($book['science_element']) ?></p>
+                <h2><?= e(t('book.science_element')) ?></h2>
+                <p><?= e($displayScience) ?></p>
             </section>
         <?php endif; ?>
 
@@ -307,15 +353,15 @@ if ($book && !$preview && !$bookLocked) {
             <?php elseif ($reviewError !== '' && $reviewError !== '1'): ?>
                 <div class="alert alert-error"><?= e($reviewError) ?></div>
             <?php elseif ($reviewError === 'locked'): ?>
-                <div class="alert alert-error">Purchase this story before leaving a review.</div>
+                <div class="alert alert-error"><?= e(t('book.review_purchase_first')) ?></div>
             <?php endif; ?>
 
-            <?php render_review_form($bookId, $userReview, $canSubmitReview, is_logged_in()); ?>
+            <?php render_review_form($bookId, $userReview, $canSubmitReview); ?>
             <?php render_reviews_list($bookReviews); ?>
         <?php endif; ?>
 
         <div class="page-actions">
-            <a href="<?= e(app_url('search.php')) ?>" class="btn btn-outline">&larr; Back to Search</a>
+            <a href="<?= e(app_url('search.php')) ?>" class="btn btn-outline">&larr; <?= e(t('book.back_search')) ?></a>
             <a href="<?= e(app_url('report-story.php?id=' . (int) $book['book_id'])) ?>" class="report-story-link"><span class="report-story-flag" aria-hidden="true">🚩</span> Report Story</a>
         </div>
         </div>

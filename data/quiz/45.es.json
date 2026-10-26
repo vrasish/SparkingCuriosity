@@ -1,0 +1,67 @@
+{
+    "book_id": 45,
+    "title": "El árbol que preparaba su propio almuerzo",
+    "intro": "Este cuestionario sigue a Asha y a Noah mientras descubren cómo los árboles usan la fotosíntesis para fabricar su alimento.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué se preguntó Asha mientras estaba sentada bajo el arce?",
+            "choices": [
+                "Si el árbol podía caminar",
+                "Si el árbol almorzaba",
+                "Si el árbol podía hablar",
+                "Si el árbol dormía por la noche"
+            ],
+            "correct_index": 1,
+            "explanation": "Asha se preguntó si el árbol almorzaba."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Con qué comparó la señora Patel a una hoja?",
+            "choices": [
+                "Con una pequeña fábrica de comida",
+                "Con una botella de agua",
+                "Con una lonchera",
+                "Con un paraguas pequeño"
+            ],
+            "correct_index": 0,
+            "explanation": "La señora Patel comparó una hoja con una pequeña fábrica de comida."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo se llama la sustancia verde de las hojas que ayuda a captar la luz del sol?",
+            "choices": [
+                "Oxígeno",
+                "Clorofila",
+                "Azúcar",
+                "Dióxido de carbono"
+            ],
+            "correct_index": 1,
+            "explanation": "La clorofila es la sustancia verde de las hojas que ayuda a captar la luz del sol."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué tres cosas usa un árbol para fabricar su alimento?",
+            "choices": [
+                "Luz solar, agua y dióxido de carbono",
+                "Tierra, oxígeno y fruta",
+                "Lluvia, azúcar y viento",
+                "Luz solar, piedras y oxígeno"
+            ],
+            "correct_index": 0,
+            "explanation": "Un árbol usa luz solar, agua y dióxido de carbono para fabricar su alimento."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué produce la fotosíntesis?",
+            "choices": [
+                "Azúcar para la planta y oxígeno para el aire",
+                "Solo agua para las raíces",
+                "Tierra y luz solar",
+                "Dióxido de carbono y piedras"
+            ],
+            "correct_index": 0,
+            "explanation": "La fotosíntesis produce azúcar para la planta y oxígeno para el aire."
+        }
+    ]
+}

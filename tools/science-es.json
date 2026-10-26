@@ -1,0 +1,242 @@
+[
+  {
+    "book_id": 5,
+    "science_element_es": "La sangre viaja por el cuerpo transportando oxígeno. El corazón bombea la sangre, los glóbulos rojos llevan oxígeno, los glóbulos blancos ayudan a combatir gérmenes y las plaquetas ayudan a cerrar los cortes para que el cuerpo pueda sanar."
+  },
+  {
+    "book_id": 6,
+    "science_element_es": "La contaminación lumínica ocurre cuando demasiada luz artificial brilla hacia arriba o hacia los lados, haciendo el cielo nocturno más brillante y ocultando las estrellas. Luces protegidas, de tonos cálidos y dirigidas hacia abajo ayudan a reducir el resplandor del cielo y hacen visibles más estrellas."
+  },
+  {
+    "book_id": 39,
+    "science_element_es": "Muchos microbios son útiles. Las buenas bacterias pueden ayudar a la digestión, protegernos de gérmenes dañinos y cumplir papeles importantes en la naturaleza."
+  },
+  {
+    "book_id": 40,
+    "science_element_es": "Las semillas pueden permanecer en reposo bajo tierra hasta que obtienen las condiciones adecuadas — calor, humedad y aire — para germinar y empezar a crecer como una nueva planta."
+  },
+  {
+    "book_id": 41,
+    "science_element_es": "El sistema solar tiene ocho planetas que orbitan el Sol. Cada planeta tiene distintos tamaños, temperaturas, atmósferas y características de superficie que los científicos estudian para aprender cómo se forman y cambian los mundos."
+  },
+  {
+    "book_id": 43,
+    "science_element_es": "La Tierra gira sobre su eje y la atmósfera se mueve con ella. El viento, las nubes y las tormentas se forman cuando el aire se mueve y el calor del Sol se redistribuye alrededor del planeta."
+  },
+  {
+    "book_id": 44,
+    "science_element_es": "La niebla se forma cuando el aire húmedo se enfría y el vapor de agua se condensa en diminutas gotas cerca del suelo. Las nubes bajas y la niebla forman parte de cómo el agua se mueve por la atmósfera."
+  },
+  {
+    "book_id": 45,
+    "science_element_es": "Las plantas fabrican su propio alimento mediante la fotosíntesis. Usando la luz del sol, el agua y el dióxido de carbono del aire, producen azúcares que impulsan el crecimiento y liberan oxígeno."
+  },
+  {
+    "book_id": 46,
+    "science_element_es": "Las plantas hacen mucho más que crecer. Producen oxígeno, ofrecen alimento y refugio a los animales, evitan la erosión del suelo y ayudan a mantener sanos los ecosistemas."
+  },
+  {
+    "book_id": 47,
+    "science_element_es": "Muchas criaturas de las profundidades marinas están activas de noche y usan bioluminiscencia — luz hecha por seres vivos — para encontrar comida, esconderse de depredadores y comunicarse en el océano oscuro."
+  },
+  {
+    "book_id": 48,
+    "science_element_es": "El cerebro es el centro de control del cuerpo. Distintas regiones se ocupan de trabajos como el equilibrio, la memoria, las emociones y el movimiento enviando señales a través del sistema nervioso."
+  },
+  {
+    "book_id": 49,
+    "science_element_es": "El agua se mueve por el ciclo del agua: se evapora de lagos y océanos, forma nubes, cae como lluvia o nieve y vuelve a ríos y mares para empezar de nuevo."
+  },
+  {
+    "book_id": 50,
+    "science_element_es": "La Tierra está formada por capas: la corteza donde vivimos, el manto caliente, el núcleo externo líquido y el núcleo interno sólido. Estas capas dan forma a volcanes, terremotos y al campo magnético que ayuda a proteger nuestra atmósfera."
+  },
+  {
+    "book_id": 51,
+    "science_element_es": "Las montañas pueden retumbar cuando las placas tectónicas se desplazan o el magma se mueve bajo la superficie. Los terremotos y la actividad volcánica ocurren cuando se acumula presión en la corteza terrestre y se libera como temblores, calor, ceniza o lava."
+  },
+  {
+    "book_id": 52,
+    "science_element_es": "Las flores atraen polinizadores con señales como pétalos brillantes, néctar dulce y aroma. Cuando las abejas y las mariposas visitan en busca de alimento, llevan polen de flor en flor, ayudando a las plantas a hacer semillas."
+  },
+  {
+    "book_id": 53,
+    "science_element_es": "Un prado es un ecosistema donde plantas, insectos, arañas y otros animales dependen unos de otros. Las arañas tejen redes para atrapar presas, los polinizadores visitan las flores y cada ser vivo juega un papel en la red alimentaria del prado."
+  },
+  {
+    "book_id": 54,
+    "science_element_es": "Las plantas mueven el agua por sus tallos en tubos llamados xilema. El agua sube desde las raíces hasta las hojas, donde ayuda en la fotosíntesis y puede escapar como vapor de agua mediante la transpiración."
+  },
+  {
+    "book_id": 55,
+    "science_element_es": "Los árboles de hoja perenne conservan sus hojas o agujas todo el año y se mantienen verdes porque están adaptados al clima frío. Los árboles de hoja caduca pierden sus hojas en otoño para ahorrar agua y energía, y luego crecen hojas nuevas en primavera."
+  },
+  {
+    "book_id": 56,
+    "science_element_es": "Los árboles de hoja caduca pierden sus hojas en otoño para ahorrar agua y energía durante los meses fríos. Antes de caer, la clorofila se descompone y otros pigmentos crean colores rojos, naranjas y amarillos. En primavera crecen hojas nuevas."
+  },
+  {
+    "book_id": 57,
+    "science_element_es": "Las plantas conservan el agua mediante adaptaciones como cutículas cerosas en las hojas, sistemas de raíces profundas y estomas que se abren para tomar dióxido de carbono y se cierran para reducir la pérdida de agua. Durante la sequía, estas características ayudan a las plantas a sobrevivir hasta que vuelve la lluvia."
+  },
+  {
+    "book_id": 58,
+    "science_element_es": "Mediante la fotosíntesis, las plantas usan la luz del sol, el dióxido de carbono del aire y el agua de sus raíces para fabricar azúcar (alimento). La clorofila de las hojas verdes captura la energía de la luz, impulsando el crecimiento y liberando oxígeno como subproducto."
+  },
+  {
+    "book_id": 59,
+    "science_element_es": "El esqueleto humano está formado por 206 huesos que dan estructura, protegen órganos como el cerebro y el corazón, y trabajan con músculos y articulaciones para permitir el movimiento. Los huesos también almacenan minerales y producen células sanguíneas en su médula."
+  },
+  {
+    "book_id": 60,
+    "science_element_es": "Cuando inhalas, el aire viaja por la nariz o la boca, baja por la tráquea y llega a los pulmones. El oxígeno pasa de diminutos sacos de aire llamados alvéolos a la sangre, mientras el dióxido de carbono sale para ser exhalado. Este intercambio de gases alimenta las células de todo el cuerpo."
+  },
+  {
+    "book_id": 61,
+    "science_element_es": "El sistema nervioso es la red de comunicación del cuerpo. Los nervios sensoriales llevan mensajes desde la piel y otros órganos al cerebro y la médula espinal; los nervios motores envían órdenes de vuelta a los músculos. Este viaje rápido de señales te permite reaccionar al mundo en milisegundos."
+  },
+  {
+    "book_id": 62,
+    "science_element_es": "El sistema circulatorio es una red de vasos sanguíneos impulsada por el corazón. Las arterias llevan sangre rica en oxígeno lejos del corazón; las venas devuelven sangre pobre en oxígeno. Este flujo constante entrega nutrientes a las células y elimina dióxido de carbono y otros desechos."
+  },
+  {
+    "book_id": 63,
+    "science_element_es": "El sistema digestivo convierte la comida en nutrientes que el cuerpo puede usar. La comida viaja por la boca, el esófago, el estómago y los intestinos, donde enzimas y ácidos ayudan a descomponerla antes de que los nutrientes se absorban en la sangre."
+  },
+  {
+    "book_id": 64,
+    "science_element_es": "El sistema inmunitario protege el cuerpo de gérmenes y enfermedades. Los glóbulos blancos, los anticuerpos y otros defensores trabajan juntos para encontrar, atacar y recordar invasores como virus y bacterias para que el cuerpo pueda sanar y combatir futuras infecciones."
+  },
+  {
+    "book_id": 66,
+    "science_element_es": "La materia es todo lo que tiene masa y ocupa espacio. Existe como sólidos, líquidos y gases hechos de partículas diminutas en constante movimiento. Calentar, enfriar y mezclar puede cambiar la materia de un estado a otro — como el hielo que se derrite en agua o el agua que hierve y se convierte en vapor."
+  },
+  {
+    "book_id": 67,
+    "science_element_es": "El agua puede existir como sólido (hielo), líquido (agua) o gas (vapor de agua). Añadir calor hace que el hielo se derrita y el agua líquida se evapore; quitar calor hace que el vapor se condense y el agua líquida se congele. Estos cambios de fase ocurren porque las partículas de agua se mueven más rápido con el calor y más lento al enfriarse."
+  },
+  {
+    "book_id": 68,
+    "science_element_es": "Los líquidos son un estado de la materia que fluye y toma la forma de su recipiente. Las moléculas de agua en un líquido se mueven unas junto a otras, por eso el agua se derrama, se vierte y llena cualquier espacio. A diferencia de los sólidos, los líquidos no mantienen una forma fija — pero a diferencia de los gases, se mantienen juntos con un volumen definido."
+  },
+  {
+    "book_id": 69,
+    "science_element_es": "La densidad describe cuánta masa hay empaquetada en cierto volumen. Dos objetos pueden ser del mismo tamaño pero tener distintas masas si sus partículas están más juntas o hechas de material más pesado. Medir masa y volumen ayuda a explicar por qué algunos objetos pequeños se sienten sorprendentemente pesados."
+  },
+  {
+    "book_id": 70,
+    "science_element_es": "Un objeto flota cuando la fuerza boyante hacia arriba del agua desplazada iguala su peso. Los barcos están hechos de materiales densos, pero distribuyen su masa en un gran volumen, desplazando suficiente agua para mantenerse a flote. La densidad, la forma y la gravedad intervienen en si algo se hunde o flota."
+  },
+  {
+    "book_id": 71,
+    "science_element_es": "El calor es la transferencia de energía térmica de objetos más calientes a más fríos. La temperatura mide qué tan caliente o frío está algo — relacionada con qué tan rápido se mueven sus partículas. Añadir calor eleva la temperatura y hace que las partículas vibren más rápido; quitar calor las ralentiza."
+  },
+  {
+    "book_id": 72,
+    "science_element_es": "El calor se mueve de tres formas principales. La conducción transfiere calor por contacto directo, como una cuchara de metal que se calienta en sopa caliente. La convección mueve calor a través de fluidos cuando el aire o el agua calientes suben y el aire o el agua fríos bajan. La radiación envía calor por el espacio vacío como ondas invisibles, como el calor que se siente del Sol o de un fuego."
+  },
+  {
+    "book_id": 73,
+    "science_element_es": "El peso es la fuerza de la gravedad que atrae la masa de un objeto. Máquinas simples como rampas y ruedas reducen la fuerza que necesitas aplicar al repartir el trabajo en una distancia más larga o cambiar la dirección. La misma mochila tiene la misma masa, pero herramientas inteligentes pueden hacerla mucho más fácil de cargar."
+  },
+  {
+    "book_id": 74,
+    "science_element_es": "La energía es la capacidad de hacer que las cosas ocurran — como moverse, calentar, iluminar o producir sonido. Puede almacenarse en comida, baterías o combustible y transferirse entre objetos. La energía cambia de forma, como la energía química de una batería que se convierte en energía eléctrica y luego en luz y calor en un bombillo."
+  },
+  {
+    "book_id": 75,
+    "science_element_es": "Muchos animales son de sangre fría (ectotermos), lo que significa que dependen del calor del entorno para calentar su cuerpo. Reptiles como lagartijas y tortugas se asolean en rocas soleadas para subir su temperatura corporal y así moverse, cazar y digerir comida. Cuando hace demasiado calor, se mueven a la sombra para enfriarse."
+  },
+  {
+    "book_id": 76,
+    "science_element_es": "Los animales tienen distintos patrones de actividad. Los animales diurnos están activos de día, mientras que los nocturnos salen de noche. Los animales nocturnos a menudo tienen adaptaciones como ojos grandes, oído agudo o bigotes sensibles para cazar y moverse en la oscuridad, mientras que los diurnos pueden depender más de la visión en color y de la luz del sol."
+  },
+  {
+    "book_id": 77,
+    "science_element_es": "Los animales se agrupan según tengan columna vertebral (vertebrados) o no (invertebrados). Los vertebrados — incluidos peces, aves, mamíferos, reptiles y anfibios — tienen una espina interna que sostiene su cuerpo. Los invertebrados como insectos, gusanos y estrellas de mar tienen otras formas de sostenerse y protegerse, como exoesqueletos o piel exterior resistente."
+  },
+  {
+    "book_id": 78,
+    "science_element_es": "Un estanque es un pequeño ecosistema donde muchos animales y plantas interactúan. Ranas, insectos, peces, tortugas y aves cada uno juega un papel en la red alimentaria — como depredadores, presas o ayudantes que mantienen sano el estanque. Desde huevos hasta renacuajos y ranas adultas, los ciclos de vida conectan a cada criatura con el agua que comparten."
+  },
+  {
+    "book_id": 79,
+    "science_element_es": "Las mariposas atraviesan la metamorfosis, una serie de cambios corporales. Una mariposa hembra pone huevos en una planta huésped. El huevo eclosiona en una oruga que come y crece, luego forma una crisálida. Dentro, su cuerpo se transforma hasta que emerge una mariposa adulta lista para volar."
+  },
+  {
+    "book_id": 80,
+    "science_element_es": "Las cuevas y los espacios huecos ofrecen refugio a muchos animales. Algunas criaturas, como osos y murciélagos, usan las cuevas para descansar, criar a sus crías o hibernar en los meses fríos. Huellas, excrementos y otras señales pueden revelar quién ha visitado — incluso cuando la cueva parece vacía."
+  },
+  {
+    "book_id": 81,
+    "science_element_es": "Las aves se pueden identificar por sus plumas, colores, formas, cantos y comportamiento. Las plumas mantienen cálidas a las aves, les ayudan a volar y a veces se caen durante el acicalado o la migración. Mirar y escuchar con atención ayuda a los observadores de aves a descubrir qué especie dejó cada pista."
+  },
+  {
+    "book_id": 82,
+    "science_element_es": "Muchos animales usan color y patrón para sobrevivir. El camuflaje ayuda a las presas a confundirse con su entorno y esconderse de depredadores. Algunos animales usan colores de advertencia brillantes para señalar peligro, mientras otros cambian de color para coincidir con su hábitat. Los colores de una criatura a menudo son una pista de dónde vive y cómo se mantiene a salvo."
+  },
+  {
+    "book_id": 83,
+    "science_element_es": "Los insectos son animales con seis patas, tres partes principales del cuerpo (cabeza, tórax y abdomen) y normalmente dos antenas. Características como alas, caparazones y piezas bucales ayudan a los insectos a comer, moverse y sobrevivir. Contar las patas y mirar de cerca es una forma rápida de distinguir insectos de otras criaturas diminutas como las arañas, que tienen ocho patas."
+  },
+  {
+    "book_id": 84,
+    "science_element_es": "Los reptiles son animales con piel seca y escamosa o con caparazón. Las tortugas, las serpientes y los lagartos son reptiles que a menudo se asolean para calentar su cuerpo. A diferencia de los mamíferos, los reptiles son de sangre fría: dependen del calor del entorno para estar activos. Las escamas y los caparazones los protegen y reducen la pérdida de agua."
+  },
+  {
+    "book_id": 85,
+    "science_element_es": "Un eclipse solar ocurre cuando la Luna se interpone entre la Tierra y el Sol, bloqueando la luz solar por un corto tiempo. La sombra de la Luna cae sobre la Tierra y el día parece crepúsculo. Los eclipses no significan que el Sol desaparezca para siempre: muestran cómo la Tierra, la Luna y el Sol se mueven por caminos predecibles en el espacio."
+  },
+  {
+    "book_id": 86,
+    "science_element_es": "La aurora (luces del norte o del sur) ocurre cuando partículas cargadas del Sol son guiadas por el campo magnético de la Tierra hacia la atmósfera superior. Allí chocan con moléculas de gas y las hacen brillar en colores como verde, rosa y púrpura. Las luces parecen bailar porque el viento solar y el campo magnético siguen cambiando."
+  },
+  {
+    "book_id": 87,
+    "science_element_es": "El aire caliente es menos denso que el aire más frío, por eso sube. Este movimiento se llama convección. Al calentarse, sus partículas se separan y el aire caliente se hace más ligero. El aire más frío y denso baja a ocupar su lugar, creando un ciclo de aire que sube y baja."
+  },
+  {
+    "book_id": 88,
+    "science_element_es": "Durante el día, la tierra se calienta más rápido que el océano. El aire cálido sube sobre la tierra y el aire más fresco del mar entra a reemplazarlo: esta es la brisa marina. De noche, la tierra se enfría más rápido que el océano. El aire más frío y denso baja sobre la tierra y el aire más cálido del mar se mueve hacia la costa: esta es la brisa terrestre."
+  },
+  {
+    "book_id": 89,
+    "science_element_es": "Los productores, como las plantas y los árboles, fabrican su propio alimento mediante la fotosíntesis. Los consumidores son animales que comen plantas u otros animales para obtener energía. Los descomponedores, como hongos y bacterias, descomponen hojas y troncos muertos, devolviendo nutrientes al suelo para que crezcan nuevas plantas."
+  },
+  {
+    "book_id": 90,
+    "science_element_es": "Las algas son organismos diminutos parecidos a plantas que viven en el agua y usan la luz del sol para crecer. Cuando se multiplican rápidamente, pueden formar una floración de algas que pone el agua verde. Las floraciones suelen ocurrir cuando entran nutrientes extras al agua. Demasiadas algas pueden bloquear la luz del sol y consumir oxígeno, dificultando la supervivencia de peces y otra vida del lago."
+  },
+  {
+    "book_id": 91,
+    "science_element_es": "Algunas plantas, como frijoles y guisantes, trabajan con bacterias útiles que viven en bultos llamados nódulos en sus raíces. Estas bacterias convierten el nitrógeno del aire en una forma que las plantas pueden usar. Este proceso se llama fijación del nitrógeno. Ayuda a las plantas a crecer fuertes y devuelve nitrógeno al suelo para otras plantas."
+  },
+  {
+    "book_id": 92,
+    "science_element_es": "Los factores bióticos son las partes vivas de un ecosistema, como plantas, animales, hongos y microbios. Los factores abióticos son las partes no vivas, como la luz del sol, el agua, el aire, el suelo y la temperatura. Lo vivo y lo no vivo trabajan juntos. Las plantas necesitan luz y agua para crecer, los animales necesitan plantas para alimentarse y refugiarse, y toda la comunidad del bosque depende de ambos factores bióticos y abióticos."
+  },
+  {
+    "book_id": 93,
+    "science_element_es": "El plástico es útil porque es fuerte y dura mucho tiempo, pero el plástico tirado en la naturaleza no desaparece. Muchos objetos de plástico tardan cientos de años en descomponerse y poco a poco se convierten en pedacitos llamados microplásticos que pueden entrar en ríos, océanos, animales e incluso en nuestra comida. Los animales pueden comer plástico por error o quedar atrapados en él. Podemos ayudar reciclando, usando botellas y bolsas reutilizables, sin tirar basura, uniéndonos a limpiezas y recogiendo la basura."
+  },
+  {
+    "book_id": 94,
+    "science_element_es": "Las bacterias son organismos vivos unicelulares diminutos. Millones de ellas caben en la punta de tu dedo. La mayoría son inofensivas y muchas son útiles, pero algunas pueden echar a perder la comida o enfermar a las personas. Las bacterias se reproducen por fisión binaria. Los antibióticos tratan infecciones bacterianas pero no funcionan contra virus. Podemos mantenernos sanos lavándonos las manos, refrigerando la comida, lavando los vegetales, cepillándonos y usando hilo dental, y tirando la comida echada a perder."
+  },
+  {
+    "book_id": 95,
+    "science_element_es": "Los recursos naturales son las cosas que obtenemos de la naturaleza y necesitamos para vivir y crecer, incluidos comida, agua, aire y energía. Los recursos renovables, como la luz del sol, el agua, el viento y los árboles, pueden reemplazarse de forma natural en poco tiempo si los usamos con cuidado. Los recursos no renovables, como el carbón, el petróleo, el gas natural y los metales, tardan millones de años en formarse y no pueden reemplazarse en nuestra vida. El carbón, el petróleo y el gas natural son combustibles fósiles formados a partir de plantas y animales antiguos. Podemos ayudar ahorrando agua y energía, plantando árboles y reduciendo, reutilizando y reciclando."
+  },
+  {
+    "book_id": 96,
+    "science_element_es": "La velocidad nos dice qué tan rápido se mueve algo y depende de la distancia recorrida y el tiempo empleado (Velocidad = Distancia ÷ Tiempo). La velocidad con dirección nos dice qué tan rápido y en qué dirección se mueve algo y depende del desplazamiento y el tiempo. La distancia es el camino total recorrido sin dirección. El desplazamiento es el cambio en línea recta del inicio al final e incluye dirección; puede ser cero si terminas donde empezaste. La misma rapidez con distintas direcciones significa distintas velocidades con dirección."
+  },
+  {
+    "book_id": 97,
+    "science_element_es": "Los átomos son los bloques de construcción más pequeños de la materia. Las moléculas se forman cuando los átomos se unen. Los compuestos son moléculas hechas de distintos tipos de átomos, como el agua (H₂O). La química nos ayuda a entender cómo estas piezas diminutas forman el mundo que vemos."
+  },
+  {
+    "book_id": 98,
+    "science_element_es": "Un microscopio simple usa una lente (como una lupa). Un microscopio compuesto usa más de una lente para mayor aumento. Las partes clave incluyen el ocular, los objetivos, la platina, las pinzas, la fuente de luz, los tornillos de enfoque grueso y fino, y la base. Los microscopios ayudan a los científicos a estudiar células, microorganismos y otras estructuras diminutas."
+  }
+]

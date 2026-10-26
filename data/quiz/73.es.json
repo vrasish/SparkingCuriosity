@@ -1,0 +1,67 @@
+{
+    "book_id": 73,
+    "title": "La mochila que parecía más ligera",
+    "intro": "Este cuestionario sigue a Noor y Eli mientras aprenden la diferencia entre masa y peso, y por qué los objetos pesan menos en la Luna.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es la masa?",
+            "choices": [
+                "La fuerza que tira de un objeto hacia abajo",
+                "La cantidad de materia que hay en un objeto",
+                "La cantidad de espacio que rodea a un objeto",
+                "La rapidez con la que cae un objeto"
+            ],
+            "correct_index": 1,
+            "explanation": "La masa es la cantidad de materia que hay en un objeto."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué es el peso?",
+            "choices": [
+                "La cantidad de materia que hay en un objeto",
+                "El tamaño de un objeto",
+                "La fuerza de gravedad que tira de un objeto",
+                "La temperatura de un objeto"
+            ],
+            "correct_index": 2,
+            "explanation": "El peso es la fuerza de gravedad que tira de un objeto."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué le pasaría a la mochila de Noor en la Luna?",
+            "choices": [
+                "Su masa y su peso aumentarían",
+                "Su masa disminuiría, pero su peso seguiría igual",
+                "Su masa seguiría igual, pero pesaría menos",
+                "No tendría masa ni peso"
+            ],
+            "correct_index": 2,
+            "explanation": "Su masa seguiría igual, pero pesaría menos en la Luna."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Por qué se sentiría más ligera la mochila en la Luna?",
+            "choices": [
+                "La Luna tiene una atracción gravitatoria más débil que la Tierra",
+                "La mochila perdería algunos de sus libros",
+                "La Luna no tiene gravedad en absoluto",
+                "El aire de la Luna la empujaría hacia arriba"
+            ],
+            "correct_index": 0,
+            "explanation": "La Luna tiene una atracción gravitatoria más débil que la Tierra."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué herramienta se usa comúnmente para medir la masa?",
+            "choices": [
+                "Un termómetro",
+                "Una balanza o báscula",
+                "Una regla",
+                "Un cronómetro"
+            ],
+            "correct_index": 1,
+            "explanation": "Una balanza o báscula se usa comúnmente para medir la masa."
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "book_id": 53,
+    "title": "La red alimentaria de la pradera",
+    "intro": "Este cuestionario sigue a Nina y a Eli mientras aprenden cómo las cadenas alimentarias se conectan para formar redes alimentarias en un ecosistema.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Dónde comienzan muchas cadenas alimentarias?",
+            "choices": [
+                "Con los halcones",
+                "Con las serpientes",
+                "Con las plantas",
+                "Con los hongos"
+            ],
+            "correct_index": 2,
+            "explanation": "Muchas cadenas alimentarias comienzan con las plantas."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué cadena alimentaria dibujó la maestra Romero en la tierra?",
+            "choices": [
+                "Pasto → saltamontes → rana → serpiente → halcón",
+                "Flor → abeja → conejo → zorro",
+                "Pasto → pájaro → mariposa → serpiente",
+                "Árbol → ratón → saltamontes → halcón"
+            ],
+            "correct_index": 0,
+            "explanation": "La maestra Romero dibujó: pasto → saltamontes → rana → serpiente → halcón."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cuál es la principal diferencia entre una cadena alimentaria y una red alimentaria?",
+            "choices": [
+                "Una cadena alimentaria incluye plantas, pero una red alimentaria no",
+                "Una cadena alimentaria muestra un solo camino, mientras que una red alimentaria muestra muchos caminos conectados",
+                "Una red alimentaria contiene solo animales",
+                "Una cadena alimentaria siempre es más larga que una red alimentaria"
+            ],
+            "correct_index": 1,
+            "explanation": "Una cadena alimentaria muestra un solo camino, mientras que una red alimentaria muestra muchos caminos conectados."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Por qué se llama productoras a las plantas?",
+            "choices": [
+                "Porque cazan a otros animales",
+                "Porque descomponen organismos muertos",
+                "Porque fabrican su propio alimento usando la luz del sol",
+                "Porque comen insectos y animales pequeños"
+            ],
+            "correct_index": 2,
+            "explanation": "Las plantas se llaman productoras porque fabrican su propio alimento usando la luz del sol."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué hacen los descomponedores, como los hongos y las bacterias?",
+            "choices": [
+                "Fabrican luz solar para las plantas",
+                "Descomponen a los seres vivos muertos y devuelven los nutrientes al suelo",
+                "Llevan polen entre las flores",
+                "Comen solo animales grandes"
+            ],
+            "correct_index": 1,
+            "explanation": "Los descomponedores, como los hongos y las bacterias, descomponen a los seres vivos muertos y devuelven los nutrientes al suelo."
+        }
+    ]
+}

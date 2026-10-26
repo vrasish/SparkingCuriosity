@@ -1,0 +1,67 @@
+{
+    "book_id": 54,
+    "title": "El tallo que transportó un río",
+    "intro": "Este cuestionario sigue a Lina y a Mateo mientras descubren cómo el tallo de una planta transporta agua, minerales y alimento.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Por qué estaba caído el girasol después de la mañana calurosa?",
+            "choices": [
+                "Había recibido demasiada luz solar",
+                "Necesitaba más agua",
+                "Sus raíces habían desaparecido",
+                "Su flor era demasiado pesada"
+            ],
+            "correct_index": 1,
+            "explanation": "El girasol estaba caído porque necesitaba más agua."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué demostró el experimento de la flor con agua azul?",
+            "choices": [
+                "Que el agua sube por el tallo",
+                "Que las flores fabrican agua azul",
+                "Que las raíces cambian el color de los pétalos",
+                "Que las hojas mandan agua a la tierra"
+            ],
+            "correct_index": 0,
+            "explanation": "El experimento de la flor con agua azul demostró que el agua sube por el tallo."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cuál es el trabajo del xilema?",
+            "choices": [
+                "Llevar el alimento desde las hojas",
+                "Producir semillas",
+                "Llevar agua y minerales hacia arriba desde las raíces",
+                "Atraer insectos a la flor"
+            ],
+            "correct_index": 2,
+            "explanation": "El xilema lleva agua y minerales hacia arriba desde las raíces."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cuál es el trabajo del floema?",
+            "choices": [
+                "Llevar el alimento fabricado en las hojas al resto de la planta",
+                "Absorber agua directamente del aire",
+                "Sujetar la planta firmemente al suelo",
+                "Fabricar luz solar para las hojas"
+            ],
+            "correct_index": 0,
+            "explanation": "El floema lleva el alimento fabricado en las hojas al resto de la planta."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué se compara el tallo con un sistema de transporte?",
+            "choices": [
+                "Porque permite que la planta se mueva de un lugar a otro",
+                "Porque lleva agua, minerales y alimento a las diferentes partes de la planta",
+                "Porque produce todas las flores de la planta",
+                "Porque protege a la planta de todos los insectos"
+            ],
+            "correct_index": 1,
+            "explanation": "El tallo es como un sistema de transporte porque lleva agua, minerales y alimento a las diferentes partes de la planta."
+        }
+    ]
+}

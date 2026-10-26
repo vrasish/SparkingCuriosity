@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $bookId = isset($_POST['book_id']) ? (int) $_POST['book_id'] : 0;
-require_login($bookId > 0 ? 'book.php?id=' . $bookId . '#reviews' : 'search.php');
 $rating = isset($_POST['rating']) ? (int) $_POST['rating'] : 0;
 $reviewText = trim((string) ($_POST['review_text'] ?? ''));
 $redirect = trim((string) ($_POST['redirect'] ?? ''));
@@ -45,8 +44,9 @@ if (!can_read_book($book)) {
     exit;
 }
 
-$userId = (int) (current_user()['user_id'] ?? 0);
-$result = save_book_review($pdo, $bookId, $userId, $rating, $reviewText);
+$userId = is_logged_in() ? (int) (current_user()['user_id'] ?? 0) : null;
+$visitorToken = $userId ? '' : review_visitor_token();
+$result = save_book_review($pdo, $bookId, $userId, $rating, $reviewText, $visitorToken);
 
 if (!$result['ok']) {
     header('Location: ' . app_url('book.php?id=' . $bookId . '&review_error=' . rawurlencode($result['error']) . '#reviews'));

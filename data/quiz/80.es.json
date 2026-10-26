@@ -1,0 +1,67 @@
+{
+    "book_id": 80,
+    "title": "El misterio de la cueva acogedora",
+    "intro": "Este cuestionario sigue a Lila y Owen mientras descubren cómo la hibernación ayuda a algunos animales a sobrevivir al invierno.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es la hibernación?",
+            "choices": [
+                "Un largo periodo de descanso profundo durante los meses fríos",
+                "Un viaje a un país más cálido",
+                "Una forma en que los animales construyen nidos",
+                "Un tipo de caza"
+            ],
+            "correct_index": 0,
+            "explanation": "La hibernación es un largo periodo de descanso profundo durante los meses fríos."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Por qué hibernan algunos animales?",
+            "choices": [
+                "Para evitar la luz del sol",
+                "Para ahorrar energía cuando hay poca comida y las temperaturas son bajas",
+                "Para que les crezca pelaje nuevo",
+                "Para aprender a cazar"
+            ],
+            "correct_index": 1,
+            "explanation": "Algunos animales hibernan para ahorrar energía cuando hay poca comida y las temperaturas son bajas."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué le pasa al cuerpo de un animal durante la hibernación?",
+            "choices": [
+                "Su ritmo cardíaco y su respiración se vuelven más lentos",
+                "Su corazón late mucho más rápido",
+                "Crece más cada día",
+                "Su cuerpo se calienta más de lo normal"
+            ],
+            "correct_index": 0,
+            "explanation": "Durante la hibernación, el ritmo cardíaco y la respiración del animal se vuelven más lentos."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cómo se preparan muchos animales antes de hibernar?",
+            "choices": [
+                "Comen más de lo normal y almacenan grasa en el cuerpo",
+                "Dejan de comer durante varios meses antes",
+                "Beben solo agua fría",
+                "Pierden todo su pelaje"
+            ],
+            "correct_index": 0,
+            "explanation": "Muchos animales se preparan para hibernar comiendo más de lo normal y almacenando grasa en el cuerpo."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué lugar podría servir de refugio a un animal que hiberna?",
+            "choices": [
+                "Una cueva, una madriguera o un tronco hueco",
+                "Un campo abierto sin cobertura",
+                "El medio de una carretera con mucho tráfico",
+                "La rama de un árbol durante una tormenta"
+            ],
+            "correct_index": 0,
+            "explanation": "Una cueva, una madriguera o un tronco hueco podrían servir de refugio a un animal que hiberna."
+        }
+    ]
+}

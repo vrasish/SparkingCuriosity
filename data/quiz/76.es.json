@@ -1,0 +1,67 @@
+{
+    "book_id": 76,
+    "title": "El misterio de los animales del día y de la noche",
+    "intro": "Este cuestionario sigue a Mia y Leo mientras aprenden por qué algunos animales están activos durante el día y otros durante la noche.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es un animal diurno?",
+            "choices": [
+                "Un animal que está activo sobre todo durante el día",
+                "Un animal que duerme durante todo el año",
+                "Un animal que está activo solo bajo el agua",
+                "Un animal que sale solo en invierno"
+            ],
+            "correct_index": 0,
+            "explanation": "Un animal diurno está activo sobre todo durante el día."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué es un animal nocturno?",
+            "choices": [
+                "Un animal que está activo sobre todo de noche",
+                "Un animal que está activo solo en verano",
+                "Un animal que no puede ver en la oscuridad",
+                "Un animal que duerme solo de día y de noche"
+            ],
+            "correct_index": 0,
+            "explanation": "Un animal nocturno está activo sobre todo de noche."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué animal de la historia estaba activo durante el día?",
+            "choices": [
+                "El búho",
+                "La ardilla",
+                "El murciélago",
+                "La polilla"
+            ],
+            "correct_index": 1,
+            "explanation": "La ardilla estaba activa durante el día."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué adaptación puede ayudar a un búho a cazar de noche?",
+            "choices": [
+                "Plumas de colores brillantes",
+                "Ojos grandes, oído sensible y vuelo silencioso",
+                "Escamas gruesas y una cola larga",
+                "Branquias y aletas"
+            ],
+            "correct_index": 1,
+            "explanation": "Los ojos grandes, el oído sensible y el vuelo silencioso pueden ayudar a un búho a cazar de noche."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué diferentes animales están activos en momentos diferentes?",
+            "choices": [
+                "Les ayuda a encontrar comida, evitar el peligro y sobrevivir en su hábitat",
+                "Todos los animales eligen sus horarios al azar",
+                "Los animales diurnos no pueden dormir",
+                "Los animales nocturnos le tienen miedo a la luz del sol"
+            ],
+            "correct_index": 0,
+            "explanation": "Los distintos animales están activos en momentos diferentes porque les ayuda a encontrar comida, evitar el peligro y sobrevivir en su hábitat."
+        }
+    ]
+}

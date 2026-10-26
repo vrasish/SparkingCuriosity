@@ -1,0 +1,67 @@
+{
+    "book_id": 49,
+    "title": "La gota de lluvia que se fue de viaje",
+    "intro": "Este cuestionario sigue a Kavya y Ben mientras aprenden cómo se mueve el agua a través del ciclo del agua.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué notó Kavya que resbalaba por la ventana del salón?",
+            "choices": [
+                "Un copo de nieve",
+                "Una gota de lluvia",
+                "Una hoja",
+                "Una piedrecita"
+            ],
+            "correct_index": 1,
+            "explanation": "Kavya notó una gota de lluvia que resbalaba por la ventana del salón."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué es la evaporación?",
+            "choices": [
+                "El vapor de agua que se enfría y se convierte en gotas",
+                "El agua que cae de las nubes",
+                "El agua líquida que se convierte en vapor de agua y sube al aire",
+                "El agua que se acumula en lagos y océanos"
+            ],
+            "correct_index": 2,
+            "explanation": "La evaporación es cuando el agua líquida se convierte en vapor de agua y sube al aire."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué sucede durante la condensación?",
+            "choices": [
+                "El vapor de agua se enfría y se convierte en diminutas gotas líquidas",
+                "El agua se congela en lo profundo del subsuelo",
+                "El agua de lluvia fluye hacia los ríos",
+                "El Sol calienta el océano"
+            ],
+            "correct_index": 0,
+            "explanation": "Durante la condensación, el vapor de agua se enfría y se convierte en diminutas gotas líquidas."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cuál de estos es un ejemplo de precipitación?",
+            "choices": [
+                "Lluvia, nieve, aguanieve o granizo que cae de las nubes",
+                "Vapor de agua que sube al aire",
+                "Agua que se filtra en la tierra",
+                "La luz del Sol que calienta un lago"
+            ],
+            "correct_index": 0,
+            "explanation": "La precipitación incluye la lluvia, la nieve, el aguanieve o el granizo que caen de las nubes."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué el ciclo del agua continúa una y otra vez?",
+            "choices": [
+                "El agua desaparece después de llover",
+                "El Sol calienta el agua acumulada y hace que se evapore otra vez",
+                "Las nubes guardan el agua para siempre",
+                "Los ríos impiden que el agua se mueva"
+            ],
+            "correct_index": 1,
+            "explanation": "El ciclo del agua continúa porque el Sol calienta el agua acumulada y hace que se evapore otra vez."
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+    "story_id": "the-secret-inside-an-atom",
+    "book_id": 99,
+    "title": "The Secret Inside an Atom",
+    "audio_source": "uploaded",
+    "pages": [
+        {
+            "page": 1,
+            "text": "The Secret Inside an Atom"
+        },
+        {
+            "page": 2,
+            "text": "Page 2"
+        },
+        {
+            "page": 3,
+            "text": "Page 3"
+        },
+        {
+            "page": 4,
+            "text": "Page 4"
+        },
+        {
+            "page": 5,
+            "text": "Page 5"
+        },
+        {
+            "page": 6,
+            "text": "Page 6"
+        },
+        {
+            "page": 7,
+            "text": "Page 7"
+        },
+        {
+            "page": 8,
+            "text": "Page 8"
+        }
+    ]
+}

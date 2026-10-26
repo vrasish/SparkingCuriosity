@@ -7,7 +7,6 @@
         bookId: 0,
         apiUrl: '',
         canSubmit: false,
-        loginUrl: '',
         existingRating: 0,
         promptVisible: false,
         submitting: false,
@@ -18,6 +17,13 @@
         var div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
+    }
+
+    function tr(key, replace, fallback) {
+        if (typeof global.SciFablesT === 'function') {
+            return global.SciFablesT(key, replace || {});
+        }
+        return fallback || key;
     }
 
     function getSidebarEl() {
@@ -33,14 +39,19 @@
         state.promptEl.className = 'story-rating-prompt';
         state.promptEl.hidden = true;
         state.promptEl.setAttribute('role', 'region');
-        state.promptEl.setAttribute('aria-label', 'Rate this story');
+        state.promptEl.setAttribute('aria-label', tr('book.rate_story', null, 'Rate this story'));
         state.promptEl.innerHTML =
             '<div class="story-rating-prompt-card">' +
-            '  <h3 class="story-rating-prompt-title">How did you like this story?</h3>' +
-            '  <p class="story-rating-prompt-lead">Tap a star to rate it.</p>' +
-            '  <div class="story-rating-stars-input" role="radiogroup" aria-label="Story rating"></div>' +
+            '  <h3 class="story-rating-prompt-title">' +
+            escapeHtml(tr('book.rate_story', null, 'Rate this story')) +
+            '</h3>' +
+            '  <p class="story-rating-prompt-lead">' +
+            escapeHtml(tr('book.rate_story_lead', null, 'Tap a star to rate it.')) +
+            '</p>' +
+            '  <div class="story-rating-stars-input" role="radiogroup" aria-label="' +
+            escapeHtml(tr('book.rating_aria', null, 'Story rating')) +
+            '"></div>' +
             '  <p class="story-rating-prompt-message" hidden aria-live="polite"></p>' +
-            '  <p class="story-rating-prompt-login" hidden><a href="#" class="story-rating-login-link">Log in</a> to rate this story.</p>' +
             '</div>';
 
         var starsWrap = state.promptEl.querySelector('.story-rating-stars-input');
@@ -71,11 +82,6 @@
                 paintStars(state.selectedRating || state.existingRating, false);
             });
             starsWrap.appendChild(btn);
-        }
-
-        var loginLink = state.promptEl.querySelector('.story-rating-login-link');
-        if (loginLink && state.loginUrl) {
-            loginLink.href = state.loginUrl;
         }
 
         var sidebarEl = getSidebarEl();
@@ -139,27 +145,14 @@
         }
 
         if (!state.canSubmit) {
-            var loginEl = state.promptEl.querySelector('.story-rating-prompt-login');
-            var leadEl = state.promptEl.querySelector('.story-rating-prompt-lead');
-            var starsEl = state.promptEl.querySelector('.story-rating-stars-input');
-            if (loginEl) {
-                loginEl.hidden = false;
-            }
-            if (leadEl) {
-                leadEl.textContent = 'Sign in to share your rating.';
-            }
-            if (starsEl) {
-                starsEl.setAttribute('aria-hidden', 'true');
-                starsEl.style.pointerEvents = 'none';
-                starsEl.style.opacity = '0.45';
-            }
+            setMessage(tr('book.rating_locked', null, 'This story must be unlocked before you can rate it.'), true);
             return;
         }
 
         if (state.existingRating > 0) {
             state.selectedRating = state.existingRating;
             paintStars(state.existingRating, false);
-            setMessage('Thanks! Tap a star to update your rating.');
+            setMessage(tr('book.rating_thanks_update', null, 'Thanks! Tap a star to update your rating.'));
         }
     }
 
@@ -184,15 +177,20 @@
                 '">★</span>';
         }
 
+        var countLabel =
+            count === 1
+                ? tr('book.review_count_one', null, '1 review')
+                : tr('book.review_count_many', { count: count }, count + ' reviews');
+
         summaryEl.innerHTML =
             '<p class="book-rating-line"><span class="book-rating-stars">' +
             starsHtml +
             '</span><span class="book-rating-text"><strong>' +
             avg.toFixed(1) +
-            '</strong> out of 5 · ' +
-            count +
-            ' review' +
-            (count === 1 ? '' : 's') +
+            '</strong> ' +
+            escapeHtml(tr('book.out_of_5', null, 'out of 5')) +
+            ' · ' +
+            escapeHtml(countLabel) +
             '</span></p>';
     }
 
@@ -204,7 +202,7 @@
         state.submitting = true;
         state.selectedRating = rating;
         paintStars(rating, false);
-        setMessage('Saving your rating…');
+        setMessage(tr('book.rating_saving', null, 'Saving your rating…'));
 
         fetch(state.apiUrl, {
             method: 'POST',
@@ -222,7 +220,10 @@
                 return response
                     .json()
                     .catch(function () {
-                        return { ok: false, error: 'Could not save your rating.' };
+                        return {
+                            ok: false,
+                            error: tr('book.rating_error', null, 'Could not save your rating.'),
+                        };
                     })
                     .then(function (data) {
                         return { response: response, data: data };
@@ -231,15 +232,13 @@
             .then(function (result) {
                 var data = result.data || {};
                 if (!result.response.ok || !data.ok) {
-                    if (result.response.status === 401 && data.login_url) {
-                        window.location.href = data.login_url;
-                        return;
-                    }
-                    throw new Error(data.error || 'Could not save your rating.');
+                    throw new Error(
+                        data.error || tr('book.rating_error', null, 'Could not save your rating.')
+                    );
                 }
 
                 state.existingRating = rating;
-                setMessage(data.message || 'Thank you for rating this story!');
+                setMessage(data.message || tr('book.rating_thanks', null, 'Thank you for rating this story!'));
                 updateBookPageRating(data.summary);
 
                 if (global.posthog) {
@@ -251,7 +250,7 @@
                 }
             })
             .catch(function (error) {
-                setMessage(error.message || 'Could not save your rating.', true);
+                setMessage(error.message || tr('book.rating_error', null, 'Could not save your rating.'), true);
             })
             .finally(function () {
                 state.submitting = false;
@@ -327,7 +326,6 @@
         state.bookId = parseInt(container.getAttribute('data-book-id') || '0', 10);
         state.apiUrl = container.getAttribute('data-rating-api') || '';
         state.canSubmit = container.getAttribute('data-can-submit') === '1';
-        state.loginUrl = container.getAttribute('data-login-url') || '';
         state.existingRating = parseInt(container.getAttribute('data-existing-rating') || '0', 10);
 
         if (!state.bookId || !state.apiUrl) {

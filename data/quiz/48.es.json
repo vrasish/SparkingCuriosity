@@ -1,0 +1,67 @@
+{
+    "book_id": 48,
+    "title": "La sala de control dentro de tu cabeza",
+    "intro": "Este cuestionario sigue a Zara y Milo mientras descubren cómo el cerebro controla el movimiento, los sentidos, los recuerdos, las emociones y funciones importantes del cuerpo.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cómo le dice el cerebro a los músculos que se muevan?",
+            "choices": [
+                "Envía mensajes a través de la médula espinal y los nervios",
+                "Envía sangre directamente a los músculos",
+                "Llena los músculos de aire",
+                "Hace que los huesos se muevan solos"
+            ],
+            "correct_index": 0,
+            "explanation": "El cerebro envía mensajes a través de la médula espinal y los nervios para decirles a los músculos que se muevan."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué hacen los sentidos antes de que el cerebro nos ayude a entender algo?",
+            "choices": [
+                "Toman decisiones por el cerebro",
+                "Recogen información de lo que nos rodea",
+                "Guardan todos nuestros recuerdos",
+                "Controlan los latidos del corazón"
+            ],
+            "correct_index": 1,
+            "explanation": "Los sentidos recogen información de lo que nos rodea antes de que el cerebro nos ayude a entenderla."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cuál grupo enumera algunos trabajos que hacen distintas partes del cerebro?",
+            "choices": [
+                "Digestión, filtrado de sangre y crecimiento de huesos",
+                "Pensar, recordar, movimiento y equilibrio",
+                "Producir oxígeno, agua y comida",
+                "Hacer crecer el cabello, las uñas y los dientes"
+            ],
+            "correct_index": 1,
+            "explanation": "Distintas partes del cerebro ayudan a pensar, recordar, moverse y mantener el equilibrio."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué sigue haciendo el cerebro mientras una persona duerme?",
+            "choices": [
+                "Deja de funcionar por completo",
+                "Controla la respiración y los latidos del corazón y ayuda a guardar recuerdos",
+                "Apaga todos los nervios del cuerpo",
+                "Impide que el cuerpo descanse"
+            ],
+            "correct_index": 1,
+            "explanation": "Mientras se duerme, el cerebro controla la respiración y los latidos del corazón y ayuda a guardar recuerdos."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué se compara el cerebro con una sala de control?",
+            "choices": [
+                "Porque está vacío y en silencio",
+                "Porque envía mensajes por todo el cuerpo y ayuda a controlar muchas funciones",
+                "Porque guarda comida para el cuerpo",
+                "Porque bombea sangre a cada órgano"
+            ],
+            "correct_index": 1,
+            "explanation": "El cerebro es como una sala de control porque envía mensajes por todo el cuerpo y ayuda a controlar muchas funciones."
+        }
+    ]
+}

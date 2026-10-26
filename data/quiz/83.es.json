@@ -1,0 +1,67 @@
+{
+    "book_id": 83,
+    "title": "El secreto de las seis patas",
+    "intro": "Este cuestionario sigue a Ava y Leo mientras descubren las características principales que hacen que un animal sea un insecto.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cuáles son las tres partes principales del cuerpo de un insecto?",
+            "choices": [
+                "Cabeza, tórax y abdomen",
+                "Cabeza, alas y cola",
+                "Tórax, caparazón y patas",
+                "Abdomen, antenas y pies"
+            ],
+            "correct_index": 0,
+            "explanation": "Las tres partes principales del cuerpo de un insecto son la cabeza, el tórax y el abdomen."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Dónde están unidas las seis patas de un insecto?",
+            "choices": [
+                "A la cabeza",
+                "Al abdomen",
+                "Al tórax",
+                "A las alas"
+            ],
+            "correct_index": 2,
+            "explanation": "Las seis patas de un insecto están unidas al tórax."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Para qué sirven las antenas a los insectos?",
+            "choices": [
+                "Para percibir el mundo que los rodea",
+                "Para respirar bajo el agua",
+                "Para que les crezcan patas nuevas",
+                "Para fabricar comida"
+            ],
+            "correct_index": 0,
+            "explanation": "Las antenas ayudan a los insectos a percibir el mundo que los rodea."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Por qué una araña no es un insecto?",
+            "choices": [
+                "No tiene patas",
+                "Tiene ocho patas y solo dos partes principales en el cuerpo",
+                "Tiene alas",
+                "Tiene columna vertebral"
+            ],
+            "correct_index": 1,
+            "explanation": "Una araña no es un insecto porque tiene ocho patas y solo dos partes principales en el cuerpo."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué pista muestra mejor que un animal pequeño probablemente es un insecto?",
+            "choices": [
+                "Tiene tres partes en el cuerpo, seis patas y antenas",
+                "Tiene ocho patas y no tiene antenas",
+                "Tiene pelo y cuatro patas",
+                "Tiene aletas y branquias"
+            ],
+            "correct_index": 0,
+            "explanation": "Un animal pequeño probablemente es un insecto si tiene tres partes en el cuerpo, seis patas y antenas."
+        }
+    ]
+}

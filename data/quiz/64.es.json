@@ -1,0 +1,67 @@
+{
+    "book_id": 64,
+    "title": "El pequeño equipo de defensa del cuerpo",
+    "intro": "Este cuestionario sigue a Zara y Eli mientras aprenden cómo el sistema inmunitario protege el cuerpo de los virus del resfriado y otros gérmenes.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué causa el resfriado común?",
+            "choices": [
+                "El clima frío por sí solo",
+                "Gérmenes diminutos llamados virus",
+                "Beber agua fría",
+                "No usar una chaqueta"
+            ],
+            "correct_index": 1,
+            "explanation": "El resfriado común es causado por gérmenes diminutos llamados virus."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cómo se pueden propagar los virus del resfriado?",
+            "choices": [
+                "Por gotitas de tos y estornudos o por manos contaminadas",
+                "Solo por la comida",
+                "Solo por picaduras de insectos",
+                "Por la luz del sol"
+            ],
+            "correct_index": 0,
+            "explanation": "Los virus del resfriado se pueden propagar por gotitas de tos y estornudos o por manos contaminadas."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cuáles forman parte de la primera línea de defensa del cuerpo?",
+            "choices": [
+                "El moco, los cilios, las lágrimas, la saliva y la piel",
+                "Los huesos, los músculos y las articulaciones",
+                "Solo el corazón y los pulmones",
+                "Solo el cabello y las uñas"
+            ],
+            "correct_index": 0,
+            "explanation": "El moco, los cilios, las lágrimas, la saliva y la piel forman parte de la primera línea de defensa del cuerpo."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué hacen los neutrófilos y los macrófagos?",
+            "choices": [
+                "Llevan oxígeno por el cuerpo",
+                "Encuentran, rodean y ayudan a destruir los gérmenes invasores",
+                "Digieren la comida en el estómago",
+                "Hacen que el cuerpo crezca más alto"
+            ],
+            "correct_index": 1,
+            "explanation": "Los neutrófilos y los macrófagos encuentran, rodean y ayudan a destruir los gérmenes invasores."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué una persona puede estornudar, producir más moco o tener fiebre leve durante un resfriado?",
+            "choices": [
+                "Son señales de que el sistema inmunitario está luchando contra los gérmenes",
+                "Los huesos están creciendo",
+                "El cuerpo se está debilitando para siempre",
+                "Los pulmones han dejado de funcionar"
+            ],
+            "correct_index": 0,
+            "explanation": "Estornudar, producir más moco o tener fiebre leve son señales de que el sistema inmunitario está luchando contra los gérmenes."
+        }
+    ]
+}

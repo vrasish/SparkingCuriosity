@@ -1,0 +1,67 @@
+{
+    "book_id": 55,
+    "title": "El bosque que se mantuvo verde",
+    "intro": "Este cuestionario sigue a Aria y a Mateo mientras aprenden por qué los árboles de hoja perenne se mantienen verdes y cómo sus hojas los ayudan a sobrevivir al clima difícil.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Por qué los árboles de hoja perenne se mantienen verdes durante todo el año?",
+            "choices": [
+                "Porque les crecen hojas nuevas cada mañana",
+                "Porque conservan muchas de sus hojas durante varios años",
+                "Porque no necesitan hojas",
+                "Porque sus hojas están hechas de madera"
+            ],
+            "correct_index": 1,
+            "explanation": "Los árboles de hoja perenne se mantienen verdes porque conservan muchas de sus hojas durante varios años."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué grupo contiene solo árboles de hoja perenne mencionados en el cuento?",
+            "choices": [
+                "Pino, abeto rojo, abeto, cedro y secuoya",
+                "Arce, roble, manzano y cerezo",
+                "Palmera, cactus, pasto y helecho",
+                "Abedul, sauce, durazno y olmo"
+            ],
+            "correct_index": 0,
+            "explanation": "El pino, el abeto rojo, el abeto, el cedro y la secuoya son árboles de hoja perenne mencionados en el cuento."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo se describen las agujas del abeto rojo en el cuento?",
+            "choices": [
+                "Largas y que crecen en manojos",
+                "Planas y suaves",
+                "Más cortas y más puntiagudas",
+                "Anchas y redondas"
+            ],
+            "correct_index": 2,
+            "explanation": "Las agujas del abeto rojo se describen como más cortas y más puntiagudas."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué tienen de especial las hojas del cedro?",
+            "choices": [
+                "Parecen diminutas escamas verdes",
+                "Tienen forma de flores",
+                "Se caen todos los inviernos",
+                "Crecen solo bajo el agua"
+            ],
+            "correct_index": 0,
+            "explanation": "Las hojas del cedro parecen diminutas escamas verdes."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Cómo ayudan a los árboles de hoja perenne las agujas delgadas y la cubierta cerosa?",
+            "choices": [
+                "Los ayudan a atrapar insectos",
+                "Los ayudan a ahorrar agua y a sobrevivir al clima frío o seco",
+                "Hacen que den fruto",
+                "Los ayudan a cambiar de color en otoño"
+            ],
+            "correct_index": 1,
+            "explanation": "Las agujas delgadas y la cubierta cerosa ayudan a los árboles de hoja perenne a ahorrar agua y a sobrevivir al clima frío o seco."
+        }
+    ]
+}
