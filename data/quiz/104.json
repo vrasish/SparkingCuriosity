@@ -1,0 +1,67 @@
+{
+    "book_id": 104,
+    "title": "The Atom's Family Tree",
+    "intro": "This quiz checks what you learned about atomic number, mass number, and isotopes.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What does the atomic number of an element tell us?",
+            "choices": [
+                "The number of neutrons",
+                "The number of protons",
+                "The mass number",
+                "The average atomic mass"
+            ],
+            "correct_index": 1,
+            "explanation": "Atomic number tells us the number of protons in an atom’s nucleus."
+        },
+        {
+            "id": 2,
+            "prompt": "How is the mass number of an atom calculated?",
+            "choices": [
+                "Protons + Neutrons",
+                "Protons + Electrons",
+                "Neutrons − Protons",
+                "Electrons + Neutrons"
+            ],
+            "correct_index": 0,
+            "explanation": "Mass number is the total number of protons and neutrons in the nucleus."
+        },
+        {
+            "id": 3,
+            "prompt": "An atom has 8 protons and 9 neutrons. What is its mass number?",
+            "choices": [
+                "8",
+                "9",
+                "17",
+                "18"
+            ],
+            "correct_index": 2,
+            "explanation": "Mass number = protons + neutrons = 8 + 9 = 17."
+        },
+        {
+            "id": 4,
+            "prompt": "What are isotopes?",
+            "choices": [
+                "Atoms of different elements with the same number of neutrons",
+                "Atoms of the same element with different numbers of protons",
+                "Atoms of the same element with different numbers of neutrons",
+                "Atoms with no neutrons"
+            ],
+            "correct_index": 2,
+            "explanation": "Isotopes are atoms of the same element with different numbers of neutrons."
+        },
+        {
+            "id": 5,
+            "prompt": "Why is chlorine's average atomic mass about 35.5 instead of a whole number?",
+            "choices": [
+                "Chlorine has different isotopes with different masses and natural abundances",
+                "Chlorine has 35.5 protons",
+                "Chlorine has the same number of protons and neutrons",
+                "Chlorine's mass number changes every day"
+            ],
+            "correct_index": 0,
+            "explanation": "Average atomic mass reflects chlorine’s isotopes and their natural abundances, so it is not a whole number."
+        }
+    ]
+}

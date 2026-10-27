@@ -6117,6 +6117,29 @@ tr:hover td {
     color: var(--impact-muted);
 }
 
+.impact-press-cover {
+    max-width: 420px;
+    margin: 0 auto 1.25rem;
+}
+
+.impact-press-cover img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+}
+
+.impact-press-date {
+    margin: 0 0 1rem !important;
+    font-weight: 700;
+    color: var(--impact-muted) !important;
+}
+
+.impact-press-cta {
+    margin-top: 1.5rem !important;
+}
+
 .impact-media-intro {
     margin-bottom: 18px !important;
     color: var(--impact-muted) !important;

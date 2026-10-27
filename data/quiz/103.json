@@ -1,0 +1,67 @@
+{
+    "book_id": 103,
+    "title": "The Mystery of the Electron Shells",
+    "intro": "This quiz checks what you learned about electron shells, electronic configuration, and valence electrons.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is the maximum number of electrons the K shell can hold?",
+            "choices": [
+                "1",
+                "2",
+                "8",
+                "18"
+            ],
+            "correct_index": 1,
+            "explanation": "The K shell (n = 1) can hold a maximum of 2 electrons."
+        },
+        {
+            "id": 2,
+            "prompt": "What is the electronic configuration of oxygen?",
+            "choices": [
+                "2,6",
+                "2,8",
+                "2,8,1",
+                "2,4"
+            ],
+            "correct_index": 0,
+            "explanation": "Oxygen has 8 electrons, arranged as 2 in the K shell and 6 in the L shell: 2,6."
+        },
+        {
+            "id": 3,
+            "prompt": "What is the electronic configuration of sodium?",
+            "choices": [
+                "2,6",
+                "2,8",
+                "2,8,1",
+                "2,8,7"
+            ],
+            "correct_index": 2,
+            "explanation": "Sodium has 11 electrons, arranged as 2,8,1."
+        },
+        {
+            "id": 4,
+            "prompt": "What are valence electrons?",
+            "choices": [
+                "Electrons in the nucleus",
+                "Electrons in the outermost occupied shell",
+                "All electrons in an atom",
+                "Electrons in the first shell"
+            ],
+            "correct_index": 1,
+            "explanation": "Valence electrons are the electrons in an atom’s outermost occupied shell."
+        },
+        {
+            "id": 5,
+            "prompt": "Why is neon very stable and unreactive?",
+            "choices": [
+                "It has one electron in its outermost shell",
+                "It has no electrons in its outermost shell",
+                "It has eight electrons in its outermost shell",
+                "It has seven electrons in its outermost shell"
+            ],
+            "correct_index": 2,
+            "explanation": "Neon has eight electrons in its outermost shell, which makes it very stable and unreactive."
+        }
+    ]
+}

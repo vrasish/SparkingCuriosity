@@ -52,7 +52,8 @@ $partnerEmail = 'scifables2026@gmail.com';
             <div class="mission-founder-copy">
                 <p class="mission-founder-name">Vaishnavi Renduchintala</p>
                 <p><?= e(t('mission.founder_p1')) ?></p>
-                <p><?= e(t('mission.founder_p2')) ?></p>
+                <p class="mission-highlight"><?= e(t('mission.founder_p2')) ?></p>
+                <p><?= e(t('mission.founder_p3')) ?></p>
             </div>
         </div>
     </section>
@@ -60,7 +61,7 @@ $partnerEmail = 'scifables2026@gmail.com';
     <section class="mission-section" aria-labelledby="mission-heading">
         <h2 id="mission-heading"><?= e(t('mission.our_mission')) ?></h2>
         <p><?= e(t('mission.believe')) ?></p>
-        <p><?= e(t('mission.transform')) ?></p>
+        <p class="mission-highlight"><?= e(t('mission.transform')) ?></p>
         <p class="mission-list-intro"><?= e(t('mission.mission_is')) ?></p>
         <ul class="mission-checklist">
             <li><?= e(t('mission.bullet_curiosity')) ?></li>

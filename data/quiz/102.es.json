@@ -1,0 +1,67 @@
+{
+    "book_id": 102,
+    "title": "El mapa secreto de los elementos",
+    "intro": "Este cuestionario revisa lo que aprendiste sobre la tabla periódica: grupos, períodos, número atómico y tipos de elementos.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cómo están ordenados los elementos en la tabla periódica moderna?",
+            "choices": [
+                "Por número atómico creciente",
+                "Por masa atómica decreciente",
+                "Alfabéticamente por el nombre del elemento",
+                "Por color"
+            ],
+            "correct_index": 0,
+            "explanation": "En la tabla periódica moderna, los elementos están ordenados por número atómico creciente."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cómo se llaman las filas horizontales de la tabla periódica?",
+            "choices": [
+                "Grupos",
+                "Períodos",
+                "Familias",
+                "Bloques"
+            ],
+            "correct_index": 1,
+            "explanation": "Las filas horizontales de la tabla periódica se llaman períodos."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cómo se llaman las columnas verticales de la tabla periódica?",
+            "choices": [
+                "Períodos",
+                "Grupos",
+                "Capas",
+                "Series"
+            ],
+            "correct_index": 1,
+            "explanation": "Las columnas verticales de la tabla periódica se llaman grupos."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué nos dice el número atómico de un elemento?",
+            "choices": [
+                "El número de protones",
+                "El número de neutrones",
+                "La masa atómica promedio",
+                "El número de capas de electrones"
+            ],
+            "correct_index": 0,
+            "explanation": "El número atómico nos dice el número de protones en un átomo."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué tipo de elemento suele ser brillante y un buen conductor del calor y la electricidad?",
+            "choices": [
+                "Metal",
+                "No metal",
+                "Metaloides",
+                "Gas noble"
+            ],
+            "correct_index": 0,
+            "explanation": "Los metales suelen ser brillantes y buenos conductores del calor y la electricidad."
+        }
+    ]
+}

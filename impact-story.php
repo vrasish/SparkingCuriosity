@@ -131,6 +131,60 @@ $pageDescription = $sessionMeta !== null
     <?php endif; ?>
 
     <?php
+    $isPressFolder = (($storyMeta['kind'] ?? '') === 'press');
+    $article = is_array($storyMeta['article'] ?? null) ? $storyMeta['article'] : null;
+    if ($isPressFolder && $article !== null):
+        $articleHeadline = impact_text($article, 'headline');
+        $articleDate = impact_text($article, 'date_label');
+        $articleCta = impact_text($article, 'cta_label', 'Read more');
+        $articleUrl = trim((string) ($article['external_url'] ?? ''));
+        $articleParagraphs = [];
+        if (function_exists('is_spanish') && is_spanish() && !empty($article['paragraphs_es']) && is_array($article['paragraphs_es'])) {
+            $articleParagraphs = $article['paragraphs_es'];
+        } elseif (!empty($article['paragraphs']) && is_array($article['paragraphs'])) {
+            $articleParagraphs = $article['paragraphs'];
+        }
+        $articleCover = trim((string) ($storyMeta['cover'] ?? ''));
+    ?>
+    <section class="impact-section impact-press" aria-labelledby="ngcp-press-heading">
+        <?php if ($articleCover !== ''): ?>
+            <figure class="impact-feature impact-press-cover">
+                <img
+                    src="<?= e(asset_url($articleCover)) ?>"
+                    alt="<?= e($articleHeadline !== '' ? $articleHeadline : impact_text($storyMeta, 'folder_title')) ?>"
+                    width="1200"
+                    height="800"
+                    loading="eager"
+                >
+            </figure>
+        <?php endif; ?>
+        <h2 id="ngcp-press-heading"><?= e($articleHeadline) ?></h2>
+        <?php if ($articleDate !== ''): ?>
+            <p class="impact-press-date"><?= e($articleDate) ?></p>
+        <?php endif; ?>
+        <?php foreach ($articleParagraphs as $paragraph): ?>
+            <?php
+            $paragraph = trim((string) $paragraph);
+            if ($paragraph === '') {
+                continue;
+            }
+            ?>
+            <p><?= e($paragraph) ?></p>
+        <?php endforeach; ?>
+        <?php if ($articleUrl !== ''): ?>
+            <p class="impact-press-cta">
+                <a
+                    class="btn btn-primary"
+                    href="<?= e($articleUrl) ?>"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                ><?= e($articleCta) ?></a>
+            </p>
+        <?php endif; ?>
+    </section>
+    <?php endif; ?>
+
+    <?php
     $highlights = is_array($storyMeta['highlights'] ?? null) ? $storyMeta['highlights'] : [];
     if ($highlights !== []):
     ?>
@@ -196,6 +250,7 @@ $pageDescription = $sessionMeta !== null
     </section>
     <?php endif; ?>
 
+    <?php if (!$isPressFolder): ?>
     <section class="impact-section" aria-labelledby="sessions-heading">
         <h2 id="sessions-heading"><?= e(t('impact.session_folders')) ?></h2>
         <?php if ($sessions === []): ?>
@@ -236,6 +291,7 @@ $pageDescription = $sessionMeta !== null
         </ul>
         <?php endif; ?>
     </section>
+    <?php endif; ?>
     <?php else: ?>
     <?php
         $isArtofHope = in_array($slug, ['artofhope-dzaleka-malawi', 'art-for-hope-dzaleka-malawi'], true)

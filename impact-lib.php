@@ -8,6 +8,44 @@ declare(strict_types=1);
 function impact_stories(): array
 {
     return [
+        'national-girls-collaborative-project' => [
+            'slug' => 'national-girls-collaborative-project',
+            'kind' => 'press',
+            'folder_title' => 'National Girls Collaborative Project',
+            'folder_title_es' => 'National Girls Collaborative Project',
+            'partner' => 'National Girls Collaborative Project (NGCP)',
+            'partner_website' => 'https://ngcproject.org/',
+            'location' => 'Featured Interview',
+            'location_es' => 'Entrevista destacada',
+            'date_label' => 'October 14, 2026',
+            'date_label_es' => '14 de octubre de 2026',
+            'children_reached' => 0,
+            'schools' => 0,
+            'summary' => 'SciFables was featured by NGCP in an interview with 14-year-old founder Vaishnavi Renduchintala.',
+            'summary_es' => 'SciFables fue destacada por NGCP en una entrevista con su fundadora de 14 años, Vaishnavi Renduchintala.',
+            'cover' => 'assets/impact/ngcp-2026/ngcp-feature.jpg',
+            'media_base' => 'assets/impact/ngcp-2026',
+            'article' => [
+                'headline' => 'Featured by the National Girls Collaborative Project (NGCP)',
+                'headline_es' => 'Destacada por el National Girls Collaborative Project (NGCP)',
+                'date_label' => 'October 14, 2026',
+                'date_label_es' => '14 de octubre de 2026',
+                'paragraphs' => [
+                    'SciFables was featured by the National Girls Collaborative Project (NGCP) in an interview with its 14-year-old founder, Vaishnavi Renduchintala.',
+                    'Conducted by Dr. Amanda Sullivan, the interview highlights the inspiration behind SciFables, its mission to lower the entry barrier to STEM through storytelling, and its growing impact in making science education more accessible to children across communities.',
+                    'We are grateful to the NGCP team for recognizing and sharing the SciFables journey!',
+                ],
+                'paragraphs_es' => [
+                    'SciFables fue destacada por el National Girls Collaborative Project (NGCP) en una entrevista con su fundadora de 14 años, Vaishnavi Renduchintala.',
+                    'Dirigida por la Dra. Amanda Sullivan, la entrevista destaca la inspiración detrás de SciFables, su misión de reducir las barreras de entrada a STEM a través de la narración de historias, y su creciente impacto al hacer la educación científica más accesible para niñas y niños de distintas comunidades.',
+                    '¡Estamos agradecidos con el equipo de NGCP por reconocer y compartir el camino de SciFables!',
+                ],
+                'external_url' => 'https://ngcproject.org/resources/meet-14-year-old-founder-scifables',
+                'cta_label' => 'Read the Full Interview',
+                'cta_label_es' => 'Leer la entrevista completa',
+            ],
+            'sessions' => [],
+        ],
         'artofhope-dzaleka-malawi' => [
             'slug' => 'artofhope-dzaleka-malawi',
             'folder_title' => 'ArtofHope — Dzaleka Refugee Camp, Malawi',

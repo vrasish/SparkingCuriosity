@@ -1,0 +1,67 @@
+{
+    "book_id": 101,
+    "title": "El misterio de los bloques invisibles",
+    "intro": "Este cuestionario revisa lo que aprendiste sobre la atomicidad y la valencia: contar átomos en moléculas y cómo se combinan los átomos.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué nos dice la atomicidad sobre una molécula?",
+            "choices": [
+                "El número total de átomos en la molécula",
+                "El número de enlaces que puede formar un átomo",
+                "La carga de la molécula",
+                "La masa de la molécula"
+            ],
+            "correct_index": 0,
+            "explanation": "La atomicidad es el número total de átomos presentes en una molécula."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cuál es la atomicidad del agua, H₂O?",
+            "choices": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ],
+            "correct_index": 2,
+            "explanation": "El agua (H₂O) tiene 2 átomos de hidrógeno y 1 átomo de oxígeno, así que su atomicidad es 3."
+        },
+        {
+            "id": 3,
+            "prompt": "Según la historia, ¿cuál es la valencia común del oxígeno?",
+            "choices": [
+                "1",
+                "2",
+                "3",
+                "4"
+            ],
+            "correct_index": 1,
+            "explanation": "La valencia común del oxígeno es 2: su capacidad de combinación."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cuál es la atomicidad del fósforo, P₄?",
+            "choices": [
+                "2",
+                "3",
+                "4",
+                "8"
+            ],
+            "correct_index": 2,
+            "explanation": "El fósforo (P₄) tiene 4 átomos en una molécula, así que su atomicidad es 4."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué afirmación explica correctamente la diferencia entre atomicidad y valencia?",
+            "choices": [
+                "La atomicidad cuenta átomos en una molécula, mientras que la valencia describe la capacidad de combinación de un átomo",
+                "La atomicidad describe la capacidad de combinación, mientras que la valencia cuenta átomos en una molécula",
+                "La atomicidad y la valencia siempre tienen el mismo valor",
+                "La atomicidad y la valencia ambas describen la masa de los átomos"
+            ],
+            "correct_index": 0,
+            "explanation": "La atomicidad cuenta los átomos en una molécula; la valencia describe la capacidad de combinación de un átomo."
+        }
+    ]
+}
