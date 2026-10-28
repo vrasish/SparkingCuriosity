@@ -114,31 +114,81 @@ function impact_stories(): array
             'cover' => 'assets/impact/risa-malawi/teacher-training-2026-09-25.png',
             'media_base' => 'assets/impact/risa-malawi',
             'member_schools' => '61',
-            'highlights' => [
-                [
-                    'image' => 'assets/impact/risa-malawi/teacher-training-2026-09-25.png',
-                    'caption' => 'Teacher Training & Program Launch — September 25, 2026',
-                    'caption_es' => 'Capacitación docente y lanzamiento del programa — 25 de septiembre de 2026',
+            'highlights' => [],
+            'videos' => [],
+            'sessions' => [
+                'teacher-training' => [
+                    'slug' => 'teacher-training',
+                    'title' => 'Teacher Training & Program Launch',
+                    'title_es' => 'Capacitación docente y lanzamiento del programa',
+                    'subtitle' => 'September 25, 2026',
+                    'subtitle_es' => '25 de septiembre de 2026',
+                    'summary' => 'Virtual training with RISA teachers on the weekly SciFables classroom model: story, discussion, quiz, and hands-on learning.',
+                    'summary_es' => 'Capacitación virtual con maestros de RISA sobre el modelo semanal de SciFables: historia, conversación, cuestionario y aprendizaje práctico.',
+                    'cover' => 'assets/impact/risa-malawi/teacher-training-2026-09-25.png',
+                    'highlights' => [
+                        [
+                            'image' => 'assets/impact/risa-malawi/teacher-training-2026-09-25.png',
+                            'caption' => 'Teacher Training & Program Launch — September 25, 2026',
+                            'caption_es' => 'Capacitación docente y lanzamiento del programa — 25 de septiembre de 2026',
+                        ],
+                    ],
+                ],
+                'risa-classrooms' => [
+                    'slug' => 'risa-classrooms',
+                    'title' => 'In RISA Classrooms',
+                    'title_es' => 'En las aulas de RISA',
+                    'subtitle' => 'Malawi · Across the Network',
+                    'subtitle_es' => 'Malaui · En toda la red',
+                    'summary' => 'Moments from SciFables learning in RISA schools — teachers and students exploring science through stories.',
+                    'summary_es' => 'Momentos del aprendizaje SciFables en escuelas de RISA: maestros y estudiantes explorando la ciencia a través de historias.',
+                    'cover' => 'assets/impact/risa-malawi/risa-clip-1.jpg',
+                    'videos' => [
+                        [
+                            'file' => 'risa-clip-1.mp4',
+                            'poster' => 'risa-clip-1.jpg',
+                            'orientation' => 'portrait',
+                        ],
+                        [
+                            'file' => 'risa-clip-2.mp4',
+                            'poster' => 'risa-clip-2.jpg',
+                            'orientation' => 'portrait',
+                        ],
+                        [
+                            'file' => 'risa-clip-3.mp4',
+                            'poster' => 'risa-clip-3.jpg',
+                            'orientation' => 'landscape',
+                        ],
+                    ],
+                ],
+                'comfort-primary-school' => [
+                    'slug' => 'comfort-primary-school',
+                    'title' => 'Comfort Primary School — SciFables in Action',
+                    'title_es' => 'Escuela primaria Comfort — SciFables en acción',
+                    'subtitle' => 'Malawi · Classroom Learning',
+                    'subtitle_es' => 'Malaui · Aprendizaje en el aula',
+                    'summary' => 'Students learn science through SciFables stories, classroom discussion, and hands-on activities.',
+                    'summary_es' => 'Los estudiantes aprenden ciencia con historias de SciFables, conversación en clase y actividades prácticas.',
+                    'cover' => 'assets/impact/risa-malawi/comfort-primary-cover.jpg',
+                    'videos' => [
+                        [
+                            'file' => 'comfort-primary-1.mp4',
+                            'poster' => 'comfort-primary-1.jpg',
+                            'orientation' => 'portrait',
+                        ],
+                        [
+                            'file' => 'comfort-primary-2.mp4',
+                            'poster' => 'comfort-primary-2.jpg',
+                            'orientation' => 'portrait',
+                        ],
+                        [
+                            'file' => 'comfort-primary-3.mp4',
+                            'poster' => 'comfort-primary-3.jpg',
+                            'orientation' => 'portrait',
+                        ],
+                    ],
                 ],
             ],
-            'videos' => [
-                [
-                    'file' => 'risa-clip-1.mp4',
-                    'poster' => 'risa-clip-1.jpg',
-                    'orientation' => 'portrait',
-                ],
-                [
-                    'file' => 'risa-clip-2.mp4',
-                    'poster' => 'risa-clip-2.jpg',
-                    'orientation' => 'portrait',
-                ],
-                [
-                    'file' => 'risa-clip-3.mp4',
-                    'poster' => 'risa-clip-3.jpg',
-                    'orientation' => 'landscape',
-                ],
-            ],
-            'sessions' => [],
         ],
         'loyola-elementary-los-altos' => [
             'slug' => 'loyola-elementary-los-altos',

@@ -16,5 +16,23 @@ if ($redirect === '' || preg_match('#^(https?:)?//#i', $redirect) || str_contain
     $redirect = app_url(ltrim($redirect, '/'));
 }
 
+// Drop sticky language query params so the cookie alone drives EN/ES after switch.
+$parts = parse_url($redirect);
+if (is_array($parts)) {
+    $query = [];
+    if (!empty($parts['query'])) {
+        parse_str($parts['query'], $query);
+        unset($query['story_lang'], $query['lang']);
+    }
+    $path = (string) ($parts['path'] ?? '/');
+    $redirect = $path;
+    if ($query !== []) {
+        $redirect .= '?' . http_build_query($query);
+    }
+    if (!empty($parts['fragment'])) {
+        $redirect .= '#' . $parts['fragment'];
+    }
+}
+
 header('Location: ' . $redirect, true, 302);
 exit;

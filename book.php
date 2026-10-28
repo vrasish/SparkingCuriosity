@@ -263,7 +263,7 @@ $quizApiUrl = app_api_url('quiz-api.php') . ($contentLang === 'es' ? '?lang=es' 
             <div class="empty-state book-spanish-soon-content">
                 <?php render_spanish_coming_soon_notice(); ?>
                 <p class="mt-2">
-                    <a href="<?= e(app_url('book.php?id=' . $bookId . '&story_lang=en')) ?>" class="btn btn-outline">
+                    <a href="<?= e(lang_switch_url('en', app_url('book.php?id=' . $bookId))) ?>" class="btn btn-outline" hreflang="en">
                         <?= e(t('book.lang_english')) ?>
                     </a>
                 </p>

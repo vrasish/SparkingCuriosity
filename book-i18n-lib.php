@@ -49,16 +49,13 @@ function book_has_spanish(array $book): bool
 }
 
 /**
- * Whether the visitor asked for Spanish story content (site language or ?story_lang=es).
+ * Whether the visitor asked for Spanish story content.
+ * Follows the site language cookie (EN/ES header switch) so the whole platform stays in sync.
  *
  * @param array<string, mixed> $book
  */
 function book_wants_spanish(array $book): bool
 {
-    if (isset($_GET['story_lang'])) {
-        return i18n_normalize_lang((string) $_GET['story_lang']) === 'es';
-    }
-
     return is_spanish();
 }
 
@@ -160,15 +157,18 @@ function book_has_spanish_quiz(int $bookId): bool
 
 function render_book_language_toggle(int $bookId, array $book, bool $wantsSpanish): void
 {
-    $enUrl = app_url('book.php?id=' . $bookId . '&story_lang=en');
-    $esUrl = app_url('book.php?id=' . $bookId . '&story_lang=es');
+    $returnTo = app_url('book.php?id=' . $bookId);
+    $enUrl = lang_switch_url('en', $returnTo);
+    $esUrl = lang_switch_url('es', $returnTo);
 
     echo '<div class="book-lang-toggle" role="group" aria-label="' . e(t('book.story_language')) . '">';
     echo '<span class="book-lang-toggle-label">' . e(t('book.story_language')) . '</span>';
     echo '<a href="' . e($enUrl) . '" class="book-lang-btn' . (!$wantsSpanish ? ' is-active' : '') . '"'
-        . (!$wantsSpanish ? ' aria-current="true"' : '') . '>' . e(t('book.lang_english')) . '</a>';
+        . (!$wantsSpanish ? ' aria-current="true"' : '')
+        . ' hreflang="en">' . e(t('book.lang_english')) . '</a>';
     echo '<a href="' . e($esUrl) . '" class="book-lang-btn' . ($wantsSpanish ? ' is-active' : '') . '"'
-        . ($wantsSpanish ? ' aria-current="true"' : '') . '>' . e(t('book.lang_spanish')) . '</a>';
+        . ($wantsSpanish ? ' aria-current="true"' : '')
+        . ' hreflang="es">' . e(t('book.lang_spanish')) . '</a>';
     echo '</div>';
 }
 

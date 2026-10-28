@@ -78,8 +78,17 @@
         return maxWidth / unscaled.width;
     }
 
+    /** Match Retina screens so pages stay sharp; keep a modest iOS cap for Safari memory. */
+    function getOutputScale() {
+        var dpr = window.devicePixelRatio || 1;
+        if (isIosDevice()) {
+            return Math.min(Math.max(dpr, 2), 2.5);
+        }
+        return Math.min(Math.max(dpr, 1), 3);
+    }
+
     function renderPage(page, pageNum) {
-        var pixelRatio = Math.min(window.devicePixelRatio || 1, isIosDevice() ? 1.25 : 2);
+        var pixelRatio = getOutputScale();
         var unscaled = page.getViewport({ scale: 1 });
         var displayScale = getDisplayScale(unscaled);
         var displayViewport = page.getViewport({ scale: displayScale });
@@ -95,17 +104,26 @@
 
         var canvas = document.createElement('canvas');
         canvas.className = 'pdf-page-canvas';
-        canvas.width = Math.round(renderViewport.width);
-        canvas.height = Math.round(renderViewport.height);
+        var bitmapWidth = Math.max(1, Math.round(renderViewport.width));
+        var bitmapHeight = Math.max(1, Math.round(renderViewport.height));
+        canvas.width = bitmapWidth;
+        canvas.height = bitmapHeight;
         canvas.style.width = displayViewport.width + 'px';
         canvas.style.height = displayViewport.height + 'px';
 
         frame.appendChild(toolbar);
         frame.appendChild(canvas);
 
+        var context = canvas.getContext('2d', { alpha: false });
+        if (context) {
+            // Keep crisp edges when the browser composites the high-DPI bitmap.
+            context.imageSmoothingEnabled = true;
+            context.imageSmoothingQuality = 'high';
+        }
+
         return page
             .render({
-                canvasContext: canvas.getContext('2d'),
+                canvasContext: context,
                 viewport: renderViewport,
             })
             .promise.then(function () {

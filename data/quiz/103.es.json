@@ -1,0 +1,67 @@
+{
+    "book_id": 103,
+    "title": "El misterio de las capas electrónicas",
+    "intro": "Este cuestionario revisa lo que aprendiste sobre las capas electrónicas, la configuración electrónica y los electrones de valencia.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cuál es el número máximo de electrones que puede tener la capa K?",
+            "choices": [
+                "1",
+                "2",
+                "8",
+                "18"
+            ],
+            "correct_index": 1,
+            "explanation": "La capa K (n = 1) puede tener un máximo de 2 electrones."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cuál es la configuración electrónica del oxígeno?",
+            "choices": [
+                "2,6",
+                "2,8",
+                "2,8,1",
+                "2,4"
+            ],
+            "correct_index": 0,
+            "explanation": "El oxígeno tiene 8 electrones, distribuidos como 2 en la capa K y 6 en la capa L: 2,6."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Cuál es la configuración electrónica del sodio?",
+            "choices": [
+                "2,6",
+                "2,8",
+                "2,8,1",
+                "2,8,7"
+            ],
+            "correct_index": 2,
+            "explanation": "El sodio tiene 11 electrones, distribuidos como 2,8,1."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué son los electrones de valencia?",
+            "choices": [
+                "Electrones en el núcleo",
+                "Electrones en la capa ocupada más externa",
+                "Todos los electrones de un átomo",
+                "Electrones en la primera capa"
+            ],
+            "correct_index": 1,
+            "explanation": "Los electrones de valencia son los electrones de la capa ocupada más externa de un átomo."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué el neón es muy estable y poco reactivo?",
+            "choices": [
+                "Tiene un electrón en su capa más externa",
+                "No tiene electrones en su capa más externa",
+                "Tiene ocho electrones en su capa más externa",
+                "Tiene siete electrones en su capa más externa"
+            ],
+            "correct_index": 2,
+            "explanation": "El neón tiene ocho electrones en su capa más externa, lo que lo hace muy estable y poco reactivo."
+        }
+    ]
+}

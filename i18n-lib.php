@@ -21,19 +21,13 @@ function i18n_normalize_lang(?string $lang): string
 
 function current_lang(): string
 {
-    static $lang = null;
-    if ($lang !== null) {
-        return $lang;
+    if (isset($GLOBALS['__scifables_current_lang'])) {
+        return i18n_normalize_lang((string) $GLOBALS['__scifables_current_lang']);
     }
 
-    if (isset($_GET['lang'])) {
-        $lang = i18n_normalize_lang((string) $_GET['lang']);
-        return $lang;
-    }
-
-    $lang = i18n_normalize_lang((string) ($_COOKIE['scifables_lang'] ?? 'en'));
-
-    return $lang;
+    // Prefer the persistent cookie so EN/ES switches apply across the whole site.
+    // Ignore ?lang= on normal pages (only lang-switch.php should set language).
+    return i18n_normalize_lang((string) ($_COOKIE['scifables_lang'] ?? 'en'));
 }
 
 function is_spanish(): bool
@@ -55,6 +49,7 @@ function set_site_lang(string $lang): void
         'samesite' => 'Lax',
     ]);
     $_COOKIE['scifables_lang'] = $lang;
+    $GLOBALS['__scifables_current_lang'] = $lang;
 }
 
 /** Build a same-page URL that switches language. */
@@ -63,6 +58,24 @@ function lang_switch_url(string $lang, ?string $redirect = null): string
     $lang = i18n_normalize_lang($lang);
     if ($redirect === null || $redirect === '') {
         $redirect = (string) ($_SERVER['REQUEST_URI'] ?? '/');
+    }
+
+    // Keep return URL free of language query params; the cookie is the source of truth.
+    $parts = parse_url($redirect);
+    if (is_array($parts)) {
+        $query = [];
+        if (!empty($parts['query'])) {
+            parse_str($parts['query'], $query);
+            unset($query['story_lang'], $query['lang']);
+        }
+        $path = (string) ($parts['path'] ?? '/');
+        $redirect = $path;
+        if ($query !== []) {
+            $redirect .= '?' . http_build_query($query);
+        }
+        if (!empty($parts['fragment'])) {
+            $redirect .= '#' . $parts['fragment'];
+        }
     }
 
     return app_url('lang-switch.php?lang=' . rawurlencode($lang) . '&redirect=' . rawurlencode($redirect));
@@ -315,6 +328,9 @@ function i18n_catalog(): array
             'impact.teacher_training' => 'Teacher Training & Program Launch',
             'impact.risa_videos_heading' => 'In RISA Classrooms',
             'impact.risa_videos_intro' => 'Moments from SciFables learning in RISA schools — teachers and students exploring science through stories.',
+            'impact.risa_folders' => 'Impact Folders',
+            'impact.risa_training_hero' => 'On September 25, 2026, SciFables trained RISA teachers on a simple weekly classroom model for story-based STEM learning.',
+            'impact.risa_training_p2' => 'Teachers are also using an impact metrics sheet to track student participation, understanding, curiosity, and feedback as SciFables expands across the RISA network.',
             'impact.refugee_host' => 'Refugee and host communities',
             'impact.across_risa' => 'Across the RISA network in Malawi',
             'impact.risa_partner_name' => 'RISA (Refugee Independent Schools Association of Malawi)',
@@ -322,6 +338,13 @@ function i18n_catalog(): array
             'impact.risa_p2' => 'Through RISA’s network of 61 member schools reaching approximately 27,000 students, SciFables is helping make science more approachable and engaging through illustrated stories, quizzes, and simple hands-on learning experiences.',
             'impact.risa_p3' => 'On September 25, 2026, SciFables conducted a virtual training session with RISA teachers from different schools. Teachers were introduced to a simple classroom model: read one SciFables story each week, discuss the science concept, complete the accompanying quiz, and add a simple hands-on experiment when appropriate. Teachers are also using an impact metrics sheet to track student participation, understanding, curiosity, and feedback.',
             'impact.risa_p4' => 'This partnership supports SciFables’ mission to lower barriers to STEM education and spark curiosity in young learners—helping students become future thinkers, problem-solvers, and innovators.',
+            'impact.comfort_hero' => 'At Comfort Primary School in Malawi, students are actively learning science through SciFables stories, classroom discussion, and hands-on activities.',
+            'impact.comfort_heading' => 'SciFables in the Classroom',
+            'impact.comfort_p1' => 'In these classroom sessions, students eagerly participate, raise their hands, answer questions, and engage with the science concepts being taught. Seeing the children respond with confidence and curiosity shows how storytelling and colorful illustrations can make science more approachable and easier to understand.',
+            'impact.comfort_p2' => 'The school’s headmaster also shared his appreciation for the SciFables program, describing it as an important and highly helpful resource for the students.',
+            'impact.comfort_p3' => 'These moments show the impact we hope to create through SciFables — not simply giving students access to science content, but helping them participate, ask questions, understand concepts, and become excited about learning STEM.',
+            'impact.comfort_videos_heading' => 'Classroom Moments',
+            'impact.comfort_videos_intro' => 'Students at Comfort Primary School engaging with SciFables — participating, asking questions, and exploring science together.',
             'impact.alt_matter_1' => 'The Matter Mystery story page projected on the classroom wall for students at Dzaleka Refugee Camp',
             'impact.alt_matter_2' => 'Students sitting together on the floor watching The Matter Mystery on the projected SciFables page',
             'impact.alt_matter_3' => 'A projector beaming The Matter Mystery onto the wall while students follow along',
@@ -795,6 +818,9 @@ function i18n_catalog(): array
             'impact.teacher_training' => 'Capacitación docente y lanzamiento del programa',
             'impact.risa_videos_heading' => 'En las aulas de RISA',
             'impact.risa_videos_intro' => 'Momentos del aprendizaje SciFables en escuelas de RISA: maestros y estudiantes explorando la ciencia a través de historias.',
+            'impact.risa_folders' => 'Carpetas de impacto',
+            'impact.risa_training_hero' => 'El 25 de septiembre de 2026, SciFables capacitó a maestros de RISA en un modelo semanal sencillo de aula para el aprendizaje STEM basado en historias.',
+            'impact.risa_training_p2' => 'Los maestros también usan una hoja de métricas de impacto para registrar la participación, la comprensión, la curiosidad y los comentarios de los estudiantes mientras SciFables se amplía en la red de RISA.',
             'impact.refugee_host' => 'Comunidades de refugiados y anfitrionas',
             'impact.across_risa' => 'En la red de RISA en Malaui',
             'impact.risa_partner_name' => 'RISA (Asociación de Escuelas Independientes de Refugiados de Malaui)',
@@ -802,6 +828,13 @@ function i18n_catalog(): array
             'impact.risa_p2' => 'A través de la red de RISA de 61 escuelas afiliadas que alcanzan aproximadamente a 27,000 estudiantes, SciFables ayuda a que la ciencia sea más accesible y atractiva con historias ilustradas, cuestionarios y experiencias sencillas de aprendizaje práctico.',
             'impact.risa_p3' => 'El 25 de septiembre de 2026, SciFables realizó una sesión de capacitación virtual con maestros de RISA de distintas escuelas. Se les presentó un modelo sencillo de aula: leer una historia de SciFables cada semana, conversar sobre el concepto científico, completar el cuestionario correspondiente y agregar un experimento práctico sencillo cuando corresponda. Los maestros también usan una hoja de métricas de impacto para registrar la participación, la comprensión, la curiosidad y los comentarios de los estudiantes.',
             'impact.risa_p4' => 'Esta asociación respalda la misión de SciFables de reducir las barreras a la educación STEM y despertar la curiosidad en los jóvenes aprendices, ayudando a que los estudiantes se conviertan en futuros pensadores, solucionadores de problemas e innovadores.',
+            'impact.comfort_hero' => 'En la Escuela primaria Comfort de Malaui, los estudiantes aprenden ciencia de forma activa con historias de SciFables, conversación en clase y actividades prácticas.',
+            'impact.comfort_heading' => 'SciFables en el aula',
+            'impact.comfort_p1' => 'En estas sesiones, los estudiantes participan con entusiasmo, levantan la mano, responden preguntas y se involucran con los conceptos científicos que se enseñan. Ver a los niños responder con confianza y curiosidad muestra cómo las historias y las ilustraciones coloridas pueden hacer que la ciencia sea más accesible y fácil de entender.',
+            'impact.comfort_p2' => 'El director de la escuela también compartió su aprecio por el programa SciFables, describiéndolo como un recurso importante y de gran ayuda para los estudiantes.',
+            'impact.comfort_p3' => 'Estos momentos muestran el impacto que esperamos crear con SciFables: no solo dar a los estudiantes acceso a contenido científico, sino ayudarlos a participar, hacer preguntas, entender conceptos y entusiasmarse con el aprendizaje STEM.',
+            'impact.comfort_videos_heading' => 'Momentos en el aula',
+            'impact.comfort_videos_intro' => 'Estudiantes de la Escuela primaria Comfort participando con SciFables: involucrándose, haciendo preguntas y explorando la ciencia juntos.',
             'impact.alt_matter_1' => 'La página de El misterio de la materia proyectada en la pared del aula para estudiantes en el campo de refugiados de Dzaleka',
             'impact.alt_matter_2' => 'Estudiantes sentados en el piso mirando El misterio de la materia en la página proyectada de SciFables',
             'impact.alt_matter_3' => 'Un proyector mostrando El misterio de la materia en la pared mientras los estudiantes siguen la historia',

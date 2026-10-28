@@ -186,10 +186,10 @@ $pageDescription = $sessionMeta !== null
 
     <?php
     $highlights = is_array($storyMeta['highlights'] ?? null) ? $storyMeta['highlights'] : [];
-    if ($highlights !== []):
+    if ($highlights !== [] && $slug !== 'risa-malawi'):
     ?>
     <section class="impact-section" aria-labelledby="highlights-heading">
-        <h2 id="highlights-heading"><?= $slug === 'risa-malawi' ? e(t('impact.teacher_training')) : e(t('impact.highlights')) ?></h2>
+        <h2 id="highlights-heading"><?= e(t('impact.highlights')) ?></h2>
         <div class="impact-highlights">
             <?php foreach ($highlights as $highlight): ?>
                 <?php
@@ -216,43 +216,9 @@ $pageDescription = $sessionMeta !== null
     </section>
     <?php endif; ?>
 
-    <?php
-    $storyVideos = is_array($storyMeta['videos'] ?? null) ? $storyMeta['videos'] : [];
-    if ($slug === 'risa-malawi' && $storyVideos !== []):
-    ?>
-    <section class="impact-section impact-media" aria-labelledby="risa-videos-heading">
-        <h2 id="risa-videos-heading"><?= e(t('impact.risa_videos_heading')) ?></h2>
-        <p class="impact-media-intro"><?= e(t('impact.risa_videos_intro')) ?></p>
-        <div class="impact-media-grid impact-media-grid-3 impact-media-grid-risa">
-            <?php foreach ($storyVideos as $video): ?>
-                <?php
-                $videoFile = trim((string) ($video['file'] ?? ''));
-                $videoPoster = trim((string) ($video['poster'] ?? ''));
-                $videoOrientation = trim((string) ($video['orientation'] ?? 'portrait'));
-                if ($videoFile === '') {
-                    continue;
-                }
-                ?>
-                <figure class="impact-media-item impact-media-video impact-media-video-<?= e($videoOrientation === 'landscape' ? 'landscape' : 'portrait') ?>">
-                    <video
-                        controls
-                        playsinline
-                        preload="metadata"
-                        <?php if ($videoPoster !== ''): ?>
-                        poster="<?= e(asset_url($mediaBase . '/' . $videoPoster)) ?>"
-                        <?php endif; ?>
-                    >
-                        <source src="<?= e(asset_url($mediaBase . '/' . $videoFile)) ?>" type="video/mp4">
-                    </video>
-                </figure>
-            <?php endforeach; ?>
-        </div>
-    </section>
-    <?php endif; ?>
-
     <?php if (!$isPressFolder): ?>
     <section class="impact-section" aria-labelledby="sessions-heading">
-        <h2 id="sessions-heading"><?= e(t('impact.session_folders')) ?></h2>
+        <h2 id="sessions-heading"><?= $slug === 'risa-malawi' ? e(t('impact.risa_folders')) : e(t('impact.session_folders')) ?></h2>
         <?php if ($sessions === []): ?>
             <p class="impact-empty-sessions"><?= e(t('impact.empty_sessions')) ?></p>
         <?php else: ?>
@@ -298,6 +264,10 @@ $pageDescription = $sessionMeta !== null
             || (($storyMeta['slug'] ?? '') === 'artofhope-dzaleka-malawi');
         $isLoyolaStem = $slug === 'loyola-elementary-los-altos' && $sessionSlug === 'stem-seed-session';
         $isOnlineMatter = $isArtofHope && $sessionSlug === 'online-states-of-matter';
+        $isComfortPrimary = $slug === 'risa-malawi' && $sessionSlug === 'comfort-primary-school';
+        $isRisaTeacherTraining = $slug === 'risa-malawi' && $sessionSlug === 'teacher-training';
+        $isRisaClassrooms = $slug === 'risa-malawi' && $sessionSlug === 'risa-classrooms';
+        $isRisaSession = $isComfortPrimary || $isRisaTeacherTraining || $isRisaClassrooms;
     ?>
     <p class="impact-back">
         <a href="<?= e(impact_story_url($slug)) ?>"><?= e(t('impact.partner_sessions', ['partner' => impact_text($storyMeta, 'partner', 'Partner')])) ?></a>
@@ -306,7 +276,13 @@ $pageDescription = $sessionMeta !== null
     <header class="impact-hero">
         <p class="impact-kicker"><?= e(impact_text($sessionMeta, 'subtitle', t('impact.kicker'))) ?></p>
         <h1 class="impact-hero-title"><?= e($pageTitle) ?></h1>
-        <?php if ($isLoyolaStem): ?>
+        <?php if ($isRisaTeacherTraining): ?>
+        <p class="impact-hero-lead"><?= e(t('impact.risa_training_hero')) ?></p>
+        <?php elseif ($isRisaClassrooms): ?>
+        <p class="impact-hero-lead"><?= e(t('impact.risa_videos_intro')) ?></p>
+        <?php elseif ($isComfortPrimary): ?>
+        <p class="impact-hero-lead"><?= e(t('impact.comfort_hero')) ?></p>
+        <?php elseif ($isLoyolaStem): ?>
         <p class="impact-hero-lead">
             <?= str_replace(
                 ':count',
@@ -445,6 +421,122 @@ $pageDescription = $sessionMeta !== null
             </div>
         </dl>
     </section>
+    <?php endif; ?>
+
+    <?php if ($isRisaTeacherTraining): ?>
+    <section class="impact-section" aria-labelledby="risa-training-heading">
+        <h2 id="risa-training-heading"><?= e(t('impact.teacher_training')) ?></h2>
+        <p><?= e(t('impact.risa_p3')) ?></p>
+        <p><?= e(t('impact.risa_p4')) ?></p>
+    </section>
+    <?php
+        $trainingHighlights = is_array($sessionMeta['highlights'] ?? null) ? $sessionMeta['highlights'] : [];
+        if ($trainingHighlights !== []):
+    ?>
+    <section class="impact-section" aria-labelledby="risa-training-photos-heading">
+        <h2 id="risa-training-photos-heading"><?= e(t('impact.highlights')) ?></h2>
+        <div class="impact-highlights">
+            <?php foreach ($trainingHighlights as $highlight): ?>
+                <?php
+                $highlightImage = trim((string) ($highlight['image'] ?? ''));
+                $highlightCaption = impact_text($highlight, 'caption');
+                if ($highlightImage === '') {
+                    continue;
+                }
+                ?>
+                <figure class="impact-feature">
+                    <img
+                        src="<?= e(asset_url($highlightImage)) ?>"
+                        alt="<?= e($highlightCaption !== '' ? $highlightCaption : t('impact.alt_highlight')) ?>"
+                        width="1600"
+                        height="900"
+                        loading="eager"
+                    >
+                    <?php if ($highlightCaption !== ''): ?>
+                        <figcaption><?= e($highlightCaption) ?></figcaption>
+                    <?php endif; ?>
+                </figure>
+            <?php endforeach; ?>
+        </div>
+    </section>
+    <?php endif; ?>
+    <?php endif; ?>
+
+    <?php if ($isRisaClassrooms): ?>
+    <section class="impact-section impact-media" aria-labelledby="risa-videos-heading">
+        <h2 id="risa-videos-heading"><?= e(t('impact.risa_videos_heading')) ?></h2>
+        <p class="impact-media-intro"><?= e(t('impact.risa_videos_intro')) ?></p>
+        <?php
+            $risaClassroomVideos = is_array($sessionMeta['videos'] ?? null) ? $sessionMeta['videos'] : [];
+        ?>
+        <div class="impact-media-grid impact-media-grid-3 impact-media-grid-risa">
+            <?php foreach ($risaClassroomVideos as $video): ?>
+                <?php
+                $videoFile = trim((string) ($video['file'] ?? ''));
+                $videoPoster = trim((string) ($video['poster'] ?? ''));
+                $videoOrientation = trim((string) ($video['orientation'] ?? 'portrait'));
+                if ($videoFile === '') {
+                    continue;
+                }
+                ?>
+                <figure class="impact-media-item impact-media-video impact-media-video-<?= e($videoOrientation === 'landscape' ? 'landscape' : 'portrait') ?>">
+                    <video
+                        controls
+                        playsinline
+                        preload="metadata"
+                        <?php if ($videoPoster !== ''): ?>
+                        poster="<?= e(asset_url($mediaBase . '/' . $videoPoster)) ?>"
+                        <?php endif; ?>
+                    >
+                        <source src="<?= e(asset_url($mediaBase . '/' . $videoFile)) ?>" type="video/mp4">
+                    </video>
+                </figure>
+            <?php endforeach; ?>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <?php if ($isComfortPrimary): ?>
+    <section class="impact-section" aria-labelledby="comfort-session-heading">
+        <h2 id="comfort-session-heading"><?= e(t('impact.comfort_heading')) ?></h2>
+        <p><?= e(t('impact.comfort_p1')) ?></p>
+        <p><?= e(t('impact.comfort_p2')) ?></p>
+        <p><?= e(t('impact.comfort_p3')) ?></p>
+    </section>
+
+    <?php
+        $comfortVideos = is_array($sessionMeta['videos'] ?? null) ? $sessionMeta['videos'] : [];
+        if ($comfortVideos !== []):
+    ?>
+    <section class="impact-section impact-media" aria-labelledby="comfort-videos-heading">
+        <h2 id="comfort-videos-heading"><?= e(t('impact.comfort_videos_heading')) ?></h2>
+        <p class="impact-media-intro"><?= e(t('impact.comfort_videos_intro')) ?></p>
+        <div class="impact-media-grid impact-media-grid-3 impact-media-grid-risa">
+            <?php foreach ($comfortVideos as $video): ?>
+                <?php
+                $videoFile = trim((string) ($video['file'] ?? ''));
+                $videoPoster = trim((string) ($video['poster'] ?? ''));
+                $videoOrientation = trim((string) ($video['orientation'] ?? 'portrait'));
+                if ($videoFile === '') {
+                    continue;
+                }
+                ?>
+                <figure class="impact-media-item impact-media-video impact-media-video-<?= e($videoOrientation === 'landscape' ? 'landscape' : 'portrait') ?>">
+                    <video
+                        controls
+                        playsinline
+                        preload="metadata"
+                        <?php if ($videoPoster !== ''): ?>
+                        poster="<?= e(asset_url($mediaBase . '/' . $videoPoster)) ?>"
+                        <?php endif; ?>
+                    >
+                        <source src="<?= e(asset_url($mediaBase . '/' . $videoFile)) ?>" type="video/mp4">
+                    </video>
+                </figure>
+            <?php endforeach; ?>
+        </div>
+    </section>
+    <?php endif; ?>
     <?php endif; ?>
 
     <?php if ($isLoyolaStem): ?>
@@ -714,6 +806,8 @@ $pageDescription = $sessionMeta !== null
             <a href="<?= e($seedStoryUrl) ?>" class="btn btn-primary"><?= e(t('impact.read_seed')) ?></a>
             <?php elseif ($isArtofHope && ($sessionSlug === 'matter-mystery' || $sessionSlug === 'online-states-of-matter')): ?>
             <a href="<?= e($matterStoryUrl) ?>" class="btn btn-primary"><?= e(t('impact.read_matter')) ?></a>
+            <?php elseif ($isRisaSession): ?>
+            <a href="<?= e(impact_story_url('risa-malawi')) ?>" class="btn btn-primary"><?= e(impact_text($storyMeta, 'folder_title', 'RISA')) ?></a>
             <?php endif; ?>
             <?php
                 $ctaInstagramUrl = ($isOnlineMatter ?? false)

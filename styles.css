@@ -2715,7 +2715,7 @@ tr:hover td {
     max-width: var(--pdf-page-max-width, 980px);
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     border-radius: 10px;
     transition: box-shadow 0.2s ease, outline-color 0.2s ease;
 }
@@ -2745,6 +2745,7 @@ tr:hover td {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    width: 100%;
     padding: 6px 4px 8px;
     min-height: 44px;
 }
@@ -2854,6 +2855,9 @@ tr:hover td {
 .pdf-page-canvas {
     display: block;
     max-width: 100%;
+    height: auto;
+    /* Avoid flex stretch / CSS upscaling that softens the PDF bitmap on mobile. */
+    flex-shrink: 0;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
