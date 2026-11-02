@@ -68,6 +68,7 @@
 html {
     scroll-behavior: smooth;
     background: var(--color-bg-page);
+    overscroll-behavior-x: none;
 }
 
 body {
@@ -81,6 +82,9 @@ body {
     background: var(--color-bg-page);
     position: relative;
     overflow-x: hidden;
+    overscroll-behavior-x: none;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body::before {
@@ -2706,7 +2710,8 @@ tr:hover td {
     min-height: 120px;
     width: 100%;
     max-width: 100%;
-    overflow-x: auto;
+    overflow-x: hidden;
+    touch-action: pan-y pinch-zoom;
 }
 
 .pdf-page-frame {
@@ -3308,6 +3313,38 @@ tr:hover td {
     .btn:hover,
     .story-card:hover {
         transform: none;
+    }
+}
+
+/* Steady mobile scrolling — less background motion, no rubber-band sideways wobble. */
+@media (max-width: 900px) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .fun-bg .bg-blob,
+    .fun-bg .bg-icon,
+    .fun-bg .bg-field-icon,
+    .fun-bg .bg-shape,
+    .fun-bg .bg-waves,
+    .bg-fill {
+        animation: none !important;
+    }
+
+    .pdf-viewer-wrap,
+    .pdf-viewer-column,
+    .book-content-pdf {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .read-aloud-player {
+        /* Keep player stable while scrolling story pages on phones. */
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 }
 
@@ -6028,6 +6065,200 @@ tr:hover td {
     font-size: 1.2rem;
     line-height: 1.55;
     color: var(--impact-muted);
+}
+
+.impact-hero-writeup {
+    max-width: 46rem;
+    font-size: 1.28rem;
+    font-weight: 600;
+    color: var(--impact-ink);
+}
+
+.impact-collage-section .impact-media-intro,
+.impact-videos-section .impact-media-intro {
+    margin: 0 0 18px;
+}
+
+.impact-carousel {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+        "prev stage next"
+        "copy copy copy"
+        "dots dots dots";
+    align-items: center;
+    gap: 14px 10px;
+    outline: none;
+}
+
+.impact-carousel-viewport {
+    grid-area: stage;
+    width: min(100%, 860px);
+    margin: 0 auto;
+}
+
+.impact-carousel-track {
+    position: relative;
+}
+
+.impact-carousel-slide {
+    margin: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: transparent;
+    box-shadow: none;
+    text-align: center;
+}
+
+.impact-carousel-slide[hidden] {
+    display: none !important;
+}
+
+.impact-carousel-slide img,
+.impact-carousel-slide video {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: min(70vh, 620px);
+    margin: 0 auto;
+    object-fit: contain;
+    background: transparent;
+    border-radius: 16px;
+}
+
+.impact-collage-photo {
+    background: transparent;
+}
+
+.impact-collage-photo img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: min(70vh, 620px);
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.impact-collage-video.is-portrait {
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.impact-collage-video video {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: min(70vh, 620px);
+    margin: 0 auto;
+    object-fit: contain;
+    background: transparent;
+}
+
+.impact-carousel-nav {
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.86);
+    color: #fff;
+    font-size: 1.85rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.22);
+}
+
+.impact-carousel-prev {
+    grid-area: prev;
+}
+
+.impact-carousel-next {
+    grid-area: next;
+}
+
+.impact-carousel-nav:hover,
+.impact-carousel-nav:focus-visible {
+    background: #4c1d95;
+}
+
+.impact-carousel-nav:focus-visible {
+    outline: 3px solid #c4b5fd;
+    outline-offset: 2px;
+}
+
+.impact-carousel-copy {
+    grid-area: copy;
+    max-width: 44rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.impact-carousel-copy h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.2rem;
+    line-height: 1.3;
+    color: var(--impact-ink);
+}
+
+.impact-carousel-copy p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--impact-muted);
+}
+
+.impact-carousel-dots {
+    grid-area: dots;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.impact-carousel-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(76, 29, 149, 0.28);
+    cursor: pointer;
+}
+
+.impact-carousel-dot.is-active {
+    background: #4c1d95;
+    transform: scale(1.15);
+}
+
+@media (max-width: 900px) {
+    .impact-hero-writeup {
+        font-size: 1.12rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .impact-carousel {
+        grid-template-columns: 1fr auto auto 1fr;
+        grid-template-areas:
+            "stage stage stage stage"
+            ". prev next ."
+            "copy copy copy copy"
+            "dots dots dots dots";
+        gap: 12px;
+    }
+
+    .impact-carousel-nav {
+        width: 42px;
+        height: 42px;
+        font-size: 1.6rem;
+    }
+
+    .impact-carousel-slide img,
+    .impact-carousel-slide video {
+        max-height: min(52vh, 420px);
+    }
 }
 
 .impact-feature {

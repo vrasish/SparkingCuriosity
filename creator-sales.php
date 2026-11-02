@@ -26,7 +26,7 @@ $shareLabel = creator_share_label();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=5, viewport-fit=cover">
     <title><?= e(site_page_title('Creator Sales')) ?></title>
     <?php render_stylesheet(); ?>
 </head>

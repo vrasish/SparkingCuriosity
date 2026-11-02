@@ -1,0 +1,67 @@
+{
+    "book_id": 104,
+    "title": "El árbol familiar de los átomos",
+    "intro": "Este cuestionario revisa lo que aprendiste sobre el número atómico, el número másico y los isótopos.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué nos dice el número atómico de un elemento?",
+            "choices": [
+                "El número de neutrones",
+                "El número de protones",
+                "El número másico",
+                "La masa atómica promedio"
+            ],
+            "correct_index": 1,
+            "explanation": "El número atómico nos dice el número de protones en el núcleo de un átomo."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cómo se calcula el número másico de un átomo?",
+            "choices": [
+                "Protones + Neutrones",
+                "Protones + Electrones",
+                "Neutrones − Protones",
+                "Electrones + Neutrones"
+            ],
+            "correct_index": 0,
+            "explanation": "El número másico es el total de protones y neutrones en el núcleo."
+        },
+        {
+            "id": 3,
+            "prompt": "Un átomo tiene 8 protones y 9 neutrones. ¿Cuál es su número másico?",
+            "choices": [
+                "8",
+                "9",
+                "17",
+                "18"
+            ],
+            "correct_index": 2,
+            "explanation": "Número másico = protones + neutrones = 8 + 9 = 17."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Qué son los isótopos?",
+            "choices": [
+                "Átomos de distintos elementos con el mismo número de neutrones",
+                "Átomos del mismo elemento con distinto número de protones",
+                "Átomos del mismo elemento con distinto número de neutrones",
+                "Átomos sin neutrones"
+            ],
+            "correct_index": 2,
+            "explanation": "Los isótopos son átomos del mismo elemento con distinto número de neutrones."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Por qué la masa atómica promedio del cloro es aproximadamente 35.5 y no un número entero?",
+            "choices": [
+                "El cloro tiene distintos isótopos con masas y abundancias naturales diferentes",
+                "El cloro tiene 35.5 protones",
+                "El cloro tiene el mismo número de protones y neutrones",
+                "El número másico del cloro cambia cada día"
+            ],
+            "correct_index": 0,
+            "explanation": "La masa atómica promedio refleja los isótopos del cloro y sus abundancias naturales, por eso no es un número entero."
+        }
+    ]
+}
