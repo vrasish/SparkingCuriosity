@@ -1,0 +1,67 @@
+{
+    "book_id": 106,
+    "title": "The Secret of the Charged Kingdom",
+    "intro": "This quiz checks what you learned about ions, cations, and anions.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is an ion?",
+            "choices": [
+                "An atom or group of atoms with a net electric charge",
+                "An atom that has no protons",
+                "A molecule with no electrons",
+                "An atom with equal numbers of protons and neutrons"
+            ],
+            "correct_index": 0,
+            "explanation": "An ion is an atom or group of atoms that carries a net electric charge."
+        },
+        {
+            "id": 2,
+            "prompt": "What happens when an atom loses an electron?",
+            "choices": [
+                "It becomes a negatively charged anion",
+                "It becomes a positively charged cation",
+                "It becomes neutral",
+                "It gains a neutron"
+            ],
+            "correct_index": 1,
+            "explanation": "Losing an electron leaves more protons than electrons, so the atom becomes a positively charged cation."
+        },
+        {
+            "id": 3,
+            "prompt": "What happens when an atom gains an electron?",
+            "choices": [
+                "It becomes a positively charged cation",
+                "It loses its charge",
+                "It becomes a negatively charged anion",
+                "It gains a proton"
+            ],
+            "correct_index": 2,
+            "explanation": "Gaining an electron gives the atom more electrons than protons, so it becomes a negatively charged anion."
+        },
+        {
+            "id": 4,
+            "prompt": "Which of the following is a polyatomic ion?",
+            "choices": [
+                "Na⁺",
+                "Cl⁻",
+                "SO₄²⁻",
+                "Mg²⁺"
+            ],
+            "correct_index": 2,
+            "explanation": "SO₄²⁻ is a polyatomic ion — a charged group of atoms. Na⁺, Cl⁻, and Mg²⁺ are monoatomic ions."
+        },
+        {
+            "id": 5,
+            "prompt": "What is the charge of iron(III), Fe³⁺?",
+            "choices": [
+                "+1",
+                "+2",
+                "+3",
+                "-3"
+            ],
+            "correct_index": 2,
+            "explanation": "Iron(III) is written Fe³⁺, so its charge is +3."
+        }
+    ]
+}

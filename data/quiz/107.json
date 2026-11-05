@@ -1,0 +1,67 @@
+{
+    "book_id": 107,
+    "title": "The Tug-of-War Mystery",
+    "intro": "This quiz checks what you learned about balanced and unbalanced forces.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is the net force when two equal forces act in opposite directions?",
+            "choices": [
+                "10 N",
+                "5 N",
+                "0 N",
+                "50 N"
+            ],
+            "correct_index": 2,
+            "explanation": "Equal forces in opposite directions cancel each other, so the net force is 0 N."
+        },
+        {
+            "id": 2,
+            "prompt": "What happens to an object when balanced forces act on it?",
+            "choices": [
+                "Its velocity does not change",
+                "It always stops moving",
+                "It always speeds up",
+                "It always changes direction"
+            ],
+            "correct_index": 0,
+            "explanation": "Balanced forces do not change an object’s state of motion—velocity stays the same."
+        },
+        {
+            "id": 3,
+            "prompt": "In a tug-of-war, one team pulls with 70 N to the left and the other team pulls with 40 N to the right. What is the net force?",
+            "choices": [
+                "30 N to the left",
+                "30 N to the right",
+                "110 N to the left",
+                "0 N"
+            ],
+            "correct_index": 0,
+            "explanation": "Opposite forces are subtracted: 70 N − 40 N = 30 N to the left (toward the stronger pull)."
+        },
+        {
+            "id": 4,
+            "prompt": "Which example shows balanced forces acting on a moving object?",
+            "choices": [
+                "A stationary ball being kicked",
+                "A rolling car slowing down because of friction",
+                "A cart moving at constant speed in a straight line",
+                "One tug-of-war team pulling harder than the other"
+            ],
+            "correct_index": 2,
+            "explanation": "Constant speed in a straight line means velocity is not changing, so the forces are balanced."
+        },
+        {
+            "id": 5,
+            "prompt": "What can unbalanced forces do to an object's motion?",
+            "choices": [
+                "Only keep it at rest",
+                "Start or stop motion, change speed, or change direction",
+                "Always produce a net force of 0 N",
+                "Only change the object's shape"
+            ],
+            "correct_index": 1,
+            "explanation": "Unbalanced forces produce a nonzero net force and can start, stop, speed up, slow down, or change direction."
+        }
+    ]
+}

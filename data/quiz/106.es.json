@@ -1,0 +1,67 @@
+{
+    "book_id": 106,
+    "title": "El secreto del reino de los iones",
+    "intro": "Este cuestionario revisa lo que aprendiste sobre iones, cationes y aniones.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es un ion?",
+            "choices": [
+                "Un átomo o grupo de átomos con una carga eléctrica neta",
+                "Un átomo que no tiene protones",
+                "Una molécula sin electrones",
+                "Un átomo con el mismo número de protones y neutrones"
+            ],
+            "correct_index": 0,
+            "explanation": "Un ion es un átomo o grupo de átomos que tiene una carga eléctrica neta."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué ocurre cuando un átomo pierde un electrón?",
+            "choices": [
+                "Se convierte en un anión con carga negativa",
+                "Se convierte en un catión con carga positiva",
+                "Se vuelve neutro",
+                "Gana un neutrón"
+            ],
+            "correct_index": 1,
+            "explanation": "Al perder un electrón quedan más protones que electrones, así que el átomo se convierte en un catión con carga positiva."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué ocurre cuando un átomo gana un electrón?",
+            "choices": [
+                "Se convierte en un catión con carga positiva",
+                "Pierde su carga",
+                "Se convierte en un anión con carga negativa",
+                "Gana un protón"
+            ],
+            "correct_index": 2,
+            "explanation": "Al ganar un electrón hay más electrones que protones, así que el átomo se convierte en un anión con carga negativa."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cuál de los siguientes es un ion poliatómico?",
+            "choices": [
+                "Na⁺",
+                "Cl⁻",
+                "SO₄²⁻",
+                "Mg²⁺"
+            ],
+            "correct_index": 2,
+            "explanation": "SO₄²⁻ es un ion poliatómico: un grupo de átomos con carga. Na⁺, Cl⁻ y Mg²⁺ son iones monoatómicos."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Cuál es la carga del hierro(III), Fe³⁺?",
+            "choices": [
+                "+1",
+                "+2",
+                "+3",
+                "-3"
+            ],
+            "correct_index": 2,
+            "explanation": "El hierro(III) se escribe Fe³⁺, así que su carga es +3."
+        }
+    ]
+}

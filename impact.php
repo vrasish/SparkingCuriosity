@@ -54,6 +54,7 @@ $collageVideos = [
         <p class="impact-hero-lead impact-hero-writeup">
             <?= e(t('impact.support_writeup', [
                 'schools' => number_format($schoolsReached),
+                'teachers' => impact_teachers_reached_display(),
                 'students' => number_format($studentsReached),
             ])) ?>
         </p>

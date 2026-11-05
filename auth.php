@@ -415,7 +415,8 @@ function render_current_impact_badge(): void
 
     $students = impact_total_children_reached();
     $schools = impact_total_schools();
-    if ($students < 1 && $schools < 1) {
+    $teachersLabel = impact_teachers_reached_display();
+    if ($students < 1 && $schools < 1 && $teachersLabel === '') {
         return;
     }
 
@@ -425,6 +426,9 @@ function render_current_impact_badge(): void
     }
     if ($schools > 0) {
         $aria .= ($students > 0 ? ',' : '') . ' ' . (int) $schools . ' schools';
+    }
+    if ($teachersLabel !== '') {
+        $aria .= (($students > 0 || $schools > 0) ? ',' : '') . ' ' . $teachersLabel . ' teachers';
     }
 
     echo '<div class="current-impact" aria-label="' . e(trim($aria)) . '">';
@@ -440,6 +444,12 @@ function render_current_impact_badge(): void
         echo '<span class="current-impact-metric">';
         echo '<span class="current-impact-label">' . e(t('impact.schools')) . '</span>';
         echo '<span class="current-impact-value impact-count" data-count-to="' . (int) $schools . '" data-count-duration="2000">1</span>';
+        echo '</span>';
+    }
+    if ($teachersLabel !== '') {
+        echo '<span class="current-impact-metric">';
+        echo '<span class="current-impact-label">' . e(t('impact.teachers')) . '</span>';
+        echo '<span class="current-impact-value">' . e($teachersLabel) . '</span>';
         echo '</span>';
     }
     echo '</span>';

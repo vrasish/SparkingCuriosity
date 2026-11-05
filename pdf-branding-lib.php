@@ -41,7 +41,13 @@ function site_logo_url(): string
 
 function find_python_with_pymupdf(): ?string
 {
-    $candidates = ['/tmp/pdfvenv/bin/python3', '/tmp/pdfvenv/bin/python', 'python3', 'python'];
+    $candidates = [
+        '/tmp/pdfvenv/bin/python3-arm64',
+        '/tmp/pdfvenv/bin/python3',
+        '/tmp/pdfvenv/bin/python',
+        'python3',
+        'python',
+    ];
     foreach ($candidates as $bin) {
         $cmd = escapeshellarg($bin) . ' -c ' . escapeshellarg('import fitz');
         exec($cmd, $out, $code);
@@ -65,6 +71,9 @@ function pdf_compact_brand_book_ids(): array
         102, // The Secret Map of the Elements
         103, // The Mystery of the Electron Shells
         104, // The Atom's Family Tree
+        105, // The Push-and-Pull Adventure
+        106, // The Secret of the Charged Kingdom
+        107, // The Tug-of-War Mystery
     ];
 }
 

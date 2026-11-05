@@ -21,7 +21,10 @@
 
     function tr(key, replace, fallback) {
         if (typeof global.SciFablesT === 'function') {
-            return global.SciFablesT(key, replace || {});
+            var translated = global.SciFablesT(key, replace || {});
+            if (translated && translated !== key) {
+                return translated;
+            }
         }
         return fallback || key;
     }
@@ -156,6 +159,19 @@
         }
     }
 
+    function starsHtml(rating) {
+        var rounded = Math.max(0, Math.min(5, Math.round(Number(rating) || 0)));
+        var html = '<span class="stars-display" aria-hidden="true">';
+        for (var i = 1; i <= 5; i += 1) {
+            html +=
+                '<span class="star ' +
+                (i <= rounded ? 'star-filled' : 'star-empty') +
+                '">★</span>';
+        }
+        html += '</span>';
+        return html;
+    }
+
     function updateBookPageRating(summary) {
         if (!summary || !summary.count) {
             return;
@@ -168,15 +184,6 @@
 
         var avg = Number(summary.average) || 0;
         var count = Number(summary.count) || 0;
-        var rounded = Math.max(1, Math.min(5, Math.round(avg)));
-        var starsHtml = '';
-        for (var i = 1; i <= 5; i += 1) {
-            starsHtml +=
-                '<span class="star ' +
-                (i <= rounded ? 'star-filled' : 'star-empty') +
-                '">★</span>';
-        }
-
         var countLabel =
             count === 1
                 ? tr('book.review_count_one', null, '1 review')
@@ -184,7 +191,7 @@
 
         summaryEl.innerHTML =
             '<p class="book-rating-line"><span class="book-rating-stars">' +
-            starsHtml +
+            starsHtml(avg) +
             '</span><span class="book-rating-text"><strong>' +
             avg.toFixed(1) +
             '</strong> ' +
@@ -194,11 +201,85 @@
             '</span></p>';
     }
 
+    function syncReviewForm(rating) {
+        var form = document.querySelector('.review-form');
+        if (!form) {
+            return;
+        }
+
+        var input = form.querySelector('input[name="rating"][value="' + rating + '"]');
+        if (input) {
+            input.checked = true;
+            input.removeAttribute('required');
+            form.querySelectorAll('input[name="rating"]').forEach(function (radio) {
+                radio.removeAttribute('required');
+            });
+        }
+
+        var submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.textContent = tr('book.update_review', null, 'Update Review');
+        }
+    }
+
+    function updateReviewsList(rating, wasUpdate) {
+        var section = document.getElementById('reviews');
+        if (!section) {
+            return;
+        }
+
+        var empty = section.querySelector('.empty-state-inline');
+        if (empty) {
+            empty.remove();
+        }
+
+        var list = section.querySelector('.reviews-list');
+        if (!list) {
+            list = document.createElement('ul');
+            list.className = 'reviews-list';
+            section.appendChild(list);
+        }
+
+        var itemHtml =
+            '<li class="review-item" data-own-rating="1">' +
+            '<div class="review-item-head">' +
+            '<span class="review-item-stars">' +
+            starsHtml(rating) +
+            '</span>' +
+            '<span class="review-item-author">Reader</span>' +
+            '</div>' +
+            '<p class="review-item-text review-item-text-muted"><em>' +
+            escapeHtml(tr('book.rated_only', null, 'Rated without a written review.')) +
+            '</em></p>' +
+            '</li>';
+
+        var own = list.querySelector('[data-own-rating="1"]');
+        if (own) {
+            own.outerHTML = itemHtml;
+            return;
+        }
+
+        if (wasUpdate) {
+            var first = list.querySelector('.review-item');
+            if (first) {
+                var starsWrap = first.querySelector('.review-item-stars');
+                if (starsWrap) {
+                    starsWrap.innerHTML = starsHtml(rating);
+                    first.setAttribute('data-own-rating', '1');
+                    return;
+                }
+            }
+        }
+
+        list.insertAdjacentHTML('afterbegin', itemHtml);
+    }
+
     function submitRating(rating) {
         if (!state.canSubmit || state.submitting || rating < 1 || rating > 5) {
             return;
         }
 
+        var wasUpdate = state.existingRating > 0;
         state.submitting = true;
         state.selectedRating = rating;
         paintStars(rating, false);
@@ -240,6 +321,12 @@
                 state.existingRating = rating;
                 setMessage(data.message || tr('book.rating_thanks', null, 'Thank you for rating this story!'));
                 updateBookPageRating(data.summary);
+                updateReviewsList(rating, wasUpdate);
+                syncReviewForm(rating);
+
+                if (state.container) {
+                    state.container.setAttribute('data-existing-rating', String(rating));
+                }
 
                 if (global.posthog) {
                     global.posthog.capture('story_rated', {

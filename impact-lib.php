@@ -318,6 +318,12 @@ function impact_total_schools(): int
     return $total;
 }
 
+/** Display string for teachers reached (e.g. "500+"). */
+function impact_teachers_reached_display(): string
+{
+    return '500+';
+}
+
 function impact_session_count(): int
 {
     return count(impact_stories());

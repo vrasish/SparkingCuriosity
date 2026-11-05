@@ -1,0 +1,67 @@
+{
+    "book_id": 105,
+    "title": "The Push-and-Pull Adventure",
+    "intro": "This quiz checks what you learned about force, types of forces, and effects of force.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is a force?",
+            "choices": [
+                "A push or pull",
+                "A type of energy",
+                "A measuring instrument",
+                "A kind of motion"
+            ],
+            "correct_index": 0,
+            "explanation": "A force is a push or a pull."
+        },
+        {
+            "id": 2,
+            "prompt": "Which of the following is a contact force?",
+            "choices": [
+                "Magnetic force",
+                "Gravitational force",
+                "Frictional force",
+                "Electrostatic force"
+            ],
+            "correct_index": 2,
+            "explanation": "Frictional force is a contact force because it acts between surfaces that touch. Magnetic, gravitational, and electrostatic forces can act at a distance."
+        },
+        {
+            "id": 3,
+            "prompt": "Which force can act without objects touching each other?",
+            "choices": [
+                "Muscular force",
+                "Frictional force",
+                "Magnetic force",
+                "Push force"
+            ],
+            "correct_index": 2,
+            "explanation": "Magnetic force can act at a distance without the objects touching."
+        },
+        {
+            "id": 4,
+            "prompt": "Which of the following is an effect of force?",
+            "choices": [
+                "Changing the direction of a moving object",
+                "Changing the color of an object",
+                "Changing the temperature of an object",
+                "Changing the material of an object"
+            ],
+            "correct_index": 0,
+            "explanation": "One effect of force is changing the direction of a moving object."
+        },
+        {
+            "id": 5,
+            "prompt": "What instrument is used to measure force?",
+            "choices": [
+                "Thermometer",
+                "Spring balance",
+                "Measuring cylinder",
+                "Stopwatch"
+            ],
+            "correct_index": 1,
+            "explanation": "A spring balance is used to measure force."
+        }
+    ]
+}
