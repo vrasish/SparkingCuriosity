@@ -18,21 +18,33 @@ if ($redirect === '' || preg_match('#^(https?:)?//#i', $redirect) || str_contain
 
 // Drop sticky language query params so the cookie alone drives EN/ES after switch.
 $parts = parse_url($redirect);
+$query = [];
+$path = '/';
+$fragment = '';
 if (is_array($parts)) {
-    $query = [];
     if (!empty($parts['query'])) {
         parse_str($parts['query'], $query);
-        unset($query['story_lang'], $query['lang']);
     }
+    unset($query['story_lang'], $query['lang'], $query['_sw'], $query['v']);
     $path = (string) ($parts['path'] ?? '/');
-    $redirect = $path;
-    if ($query !== []) {
-        $redirect .= '?' . http_build_query($query);
+    if ($path === '') {
+        $path = '/';
     }
     if (!empty($parts['fragment'])) {
-        $redirect .= '#' . $parts['fragment'];
+        $fragment = (string) $parts['fragment'];
     }
 }
 
-header('Location: ' . $redirect, true, 302);
+// Force a fresh document load (same-URL redirects on /search were keeping the old language).
+$query['_sw'] = $lang;
+$redirect = $path . '?' . http_build_query($query);
+if ($fragment !== '') {
+    $redirect .= '#' . $fragment;
+}
+
+// Never cache language redirects — browsers were reusing a cached 302 and skipping Set-Cookie.
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: 0');
+header('Location: ' . $redirect, true, 303);
 exit;

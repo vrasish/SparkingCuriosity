@@ -60,7 +60,6 @@ $partnerEmail = 'scifables2026@gmail.com';
 
                 <p class="mission-founder-name"><?= e(t('mission.about_me')) ?></p>
                 <p><?= e(t('mission.founder_p1')) ?></p>
-                <p class="mission-highlight"><?= e(t('mission.founder_p2')) ?></p>
                 <p><?= e(t('mission.founder_p3')) ?></p>
                 <p><?= e(t('mission.founder_p4')) ?></p>
                 <p><?= e(t('mission.founder_p5')) ?></p>
@@ -83,7 +82,6 @@ $partnerEmail = 'scifables2026@gmail.com';
 
     <section class="mission-section" aria-labelledby="creative-process-heading">
         <h2 id="creative-process-heading"><?= e(t('mission.creative')) ?></h2>
-        <p><?= e(t('mission.creative_p1')) ?></p>
         <p><?= e(t('mission.creative_p2')) ?></p>
         <p><?= e(t('mission.creative_p3')) ?></p>
         <p class="mission-highlight"><?= e(t('mission.creative_highlight')) ?></p>

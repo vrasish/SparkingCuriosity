@@ -1,0 +1,67 @@
+{
+    "book_id": 107,
+    "title": "El misterio del tira y afloja",
+    "intro": "Este cuestionario revisa lo que aprendiste sobre fuerzas equilibradas y desequilibradas.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Cuál es la fuerza neta cuando dos fuerzas iguales actúan en direcciones opuestas?",
+            "choices": [
+                "10 N",
+                "5 N",
+                "0 N",
+                "50 N"
+            ],
+            "correct_index": 2,
+            "explanation": "Las fuerzas iguales en direcciones opuestas se anulan, así que la fuerza neta es 0 N."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Qué le pasa a un objeto cuando actúan sobre él fuerzas equilibradas?",
+            "choices": [
+                "Su velocidad no cambia",
+                "Siempre se detiene",
+                "Siempre acelera",
+                "Siempre cambia de dirección"
+            ],
+            "correct_index": 0,
+            "explanation": "Las fuerzas equilibradas no cambian el estado de movimiento del objeto: la velocidad se mantiene igual."
+        },
+        {
+            "id": 3,
+            "prompt": "En un tira y afloja, un equipo tira con 70 N hacia la izquierda y el otro con 40 N hacia la derecha. ¿Cuál es la fuerza neta?",
+            "choices": [
+                "30 N hacia la izquierda",
+                "30 N hacia la derecha",
+                "110 N hacia la izquierda",
+                "0 N"
+            ],
+            "correct_index": 0,
+            "explanation": "Las fuerzas opuestas se restan: 70 N − 40 N = 30 N hacia la izquierda (hacia el tirón más fuerte)."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cuál ejemplo muestra fuerzas equilibradas actuando sobre un objeto en movimiento?",
+            "choices": [
+                "Una pelota quieta a la que se le da una patada",
+                "Un auto rodando que frena por la fricción",
+                "Un carro que se mueve a velocidad constante en línea recta",
+                "Un equipo de tira y afloja que tira más fuerte que el otro"
+            ],
+            "correct_index": 2,
+            "explanation": "Velocidad constante en línea recta significa que la velocidad no cambia, así que las fuerzas están equilibradas."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué pueden hacer las fuerzas desequilibradas al movimiento de un objeto?",
+            "choices": [
+                "Solo mantenerlo en reposo",
+                "Iniciar o detener el movimiento, cambiar la rapidez o cambiar la dirección",
+                "Siempre producir una fuerza neta de 0 N",
+                "Solo cambiar la forma del objeto"
+            ],
+            "correct_index": 1,
+            "explanation": "Las fuerzas desequilibradas producen una fuerza neta distinta de cero y pueden iniciar, detener, acelerar, frenar o cambiar la dirección."
+        }
+    ]
+}

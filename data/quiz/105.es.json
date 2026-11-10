@@ -1,0 +1,67 @@
+{
+    "book_id": 105,
+    "title": "La aventura de empujar y tirar",
+    "intro": "Este cuestionario revisa lo que aprendiste sobre la fuerza, los tipos de fuerzas y los efectos de la fuerza.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "¿Qué es una fuerza?",
+            "choices": [
+                "Un empujón o un tirón",
+                "Un tipo de energía",
+                "Un instrumento de medición",
+                "Un tipo de movimiento"
+            ],
+            "correct_index": 0,
+            "explanation": "Una fuerza es un empujón o un tirón."
+        },
+        {
+            "id": 2,
+            "prompt": "¿Cuál de las siguientes es una fuerza de contacto?",
+            "choices": [
+                "Fuerza magnética",
+                "Fuerza gravitacional",
+                "Fuerza de fricción",
+                "Fuerza electrostática"
+            ],
+            "correct_index": 2,
+            "explanation": "La fuerza de fricción es una fuerza de contacto porque actúa entre superficies que se tocan. Las fuerzas magnética, gravitacional y electrostática pueden actuar a distancia."
+        },
+        {
+            "id": 3,
+            "prompt": "¿Qué fuerza puede actuar sin que los objetos se toquen?",
+            "choices": [
+                "Fuerza muscular",
+                "Fuerza de fricción",
+                "Fuerza magnética",
+                "Fuerza de empujar"
+            ],
+            "correct_index": 2,
+            "explanation": "La fuerza magnética puede actuar a distancia sin que los objetos se toquen."
+        },
+        {
+            "id": 4,
+            "prompt": "¿Cuál de los siguientes es un efecto de la fuerza?",
+            "choices": [
+                "Cambiar la dirección de un objeto en movimiento",
+                "Cambiar el color de un objeto",
+                "Cambiar la temperatura de un objeto",
+                "Cambiar el material de un objeto"
+            ],
+            "correct_index": 0,
+            "explanation": "Uno de los efectos de la fuerza es cambiar la dirección de un objeto en movimiento."
+        },
+        {
+            "id": 5,
+            "prompt": "¿Qué instrumento se usa para medir la fuerza?",
+            "choices": [
+                "Termómetro",
+                "Balanza de resorte",
+                "Probeta graduada",
+                "Cronómetro"
+            ],
+            "correct_index": 1,
+            "explanation": "La balanza de resorte se usa para medir la fuerza."
+        }
+    ]
+}

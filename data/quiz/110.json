@@ -1,0 +1,67 @@
+{
+    "book_id": 110,
+    "title": "The Amazing World of Water Pressure",
+    "intro": "This quiz checks what you learned about fluids and the laws of liquid pressure.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What is a fluid?",
+            "choices": [
+                "A substance that can flow",
+                "A substance that is always solid",
+                "A substance that has no pressure",
+                "A substance that cannot change shape"
+            ],
+            "correct_index": 0,
+            "explanation": "A fluid is a substance that can flow. Both liquids and gases are fluids."
+        },
+        {
+            "id": 2,
+            "prompt": "At the same point in a liquid at rest, how does pressure act?",
+            "choices": [
+                "Only downward",
+                "Only upward",
+                "Equally in all directions",
+                "Only sideways"
+            ],
+            "correct_index": 2,
+            "explanation": "At the same point in a liquid at rest, pressure is equal in every direction."
+        },
+        {
+            "id": 3,
+            "prompt": "What happens to liquid pressure as depth increases?",
+            "choices": [
+                "It decreases",
+                "It increases",
+                "It stays the same",
+                "It becomes zero"
+            ],
+            "correct_index": 1,
+            "explanation": "Liquid pressure increases with depth. The deeper you go, the greater the pressure."
+        },
+        {
+            "id": 4,
+            "prompt": "Which formula is used to calculate pressure due to a liquid column?",
+            "choices": [
+                "P = F × A",
+                "P = dgh",
+                "P = m ÷ g",
+                "P = A ÷ F"
+            ],
+            "correct_index": 1,
+            "explanation": "Pressure due to a liquid column is P = dgh (density × g × depth)."
+        },
+        {
+            "id": 5,
+            "prompt": "What happens to the same liquid in connected open containers of different shapes?",
+            "choices": [
+                "It settles at different heights",
+                "It settles at the same level",
+                "It flows only into the widest container",
+                "It produces no pressure"
+            ],
+            "correct_index": 1,
+            "explanation": "In connected vessels, the same liquid settles at the same level."
+        }
+    ]
+}

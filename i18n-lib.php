@@ -78,7 +78,8 @@ function lang_switch_url(string $lang, ?string $redirect = null): string
         }
     }
 
-    return app_url('lang-switch.php?lang=' . rawurlencode($lang) . '&redirect=' . rawurlencode($redirect));
+    // v=3 busts browsers that cached older lang-switch redirects (which broke EN/ES, especially on /search).
+    return app_url('lang-switch.php?lang=' . rawurlencode($lang) . '&redirect=' . rawurlencode($redirect) . '&v=3');
 }
 
 /**
@@ -425,7 +426,7 @@ function i18n_catalog(): array
             'mission.commitment_body' => 'For every nonprofit, school, or library that partners with Science Fables, we provide free access to our educational story library because we believe every child deserves the opportunity to discover science through reading.',
             'mission.kicker' => 'Partner with Science Fables',
             'mission.hero_title' => 'Making Science Accessible Through Stories',
-            'mission.hero_lead' => 'Science Fables is a free digital library of engaging science stories that helps children ages 8–15 discover STEM through imagination, curiosity, and reading.',
+            'mission.hero_lead' => 'Science Fables is a free digital platform of engaging science stories that helps children ages 8–15 discover STEM through imagination, curiosity, and exploration.',
             'mission.hero_support' => "Whether you're a nonprofit, school, library, museum, or community organization, we'd love to work together to inspire the next generation of scientists, engineers, and innovators.",
             'mission.explore' => 'Explore Stories',
             'mission.join' => '🤝 Join Our Mission',
@@ -437,11 +438,11 @@ function i18n_catalog(): array
             'mission.inspiration_p1b' => 'It really inspired me because he showed how curiosity and access to science can help someone solve real problems.',
             'mission.inspiration_p2' => 'Coming from an underprivileged rural background in Malawi, he faced many challenges, but he continued learning from books and eventually used what he learned to build a windmill from materials around him. His invention helped bring electricity to his home and showed how one young person’s curiosity could make a difference in an entire community.',
             'mission.about_me' => 'About me',
-            'mission.founder_p1' => 'My name is Vaishnavi Renduchintala. I am a freshman in high school and the founder of Science Fables. I have always loved science and storytelling, so I decided to combine them into something fun for kids. That\'s how SciFables was born.',
+            'mission.founder_p1' => 'My name is Vaishnavi Renduchintala, and I am currently a freshman at Los Altos High School. I founded Science Fables when I was in eighth grade. I have always loved science and storytelling, so I decided to combine them into something more engaging for kids.',
             'mission.founder_p2' => 'SciFables lowers the entry barrier to STEM by transforming complex and abstract science concepts into relatable stories that children can understand and enjoy.',
             'mission.founder_p3' => 'My goal is to help children feel that science is something they can understand, explore, and be excited about.',
             'mission.founder_p4' => 'William’s story connects closely with why I created SciFables. I want children to see science as more than facts they have to memorize. I want them to become curious, ask “why?” and “how?”, and understand that the science they learn can one day help them solve problems in their own communities. Through SciFables, I hope to lower the barrier to STEM and give more children the opportunity to develop that kind of curiosity and confidence.',
-            'mission.founder_p5' => 'It is especially meaningful to me that SciFables is now reaching students around the world. My hope is that among the children learning through SciFables today, there will be future innovators, doctors, engineers, scientists, and researchers who use science to create solutions that we cannot even imagine yet.',
+            'mission.founder_p5' => 'It is especially meaningful to me that SciFables is now reaching students around the world. My hope is that among the children learning through SciFables, there will be future innovators, doctors, engineers, scientists, and researchers who use science to create solutions that we cannot even imagine yet.',
             'mission.our_mission' => 'Our Mission',
             'mission.believe' => 'We believe every child deserves the opportunity to fall in love with science.',
             'mission.transform' => 'SciFables lowers the entry barrier to STEM by transforming complex and abstract science concepts into relatable stories that children can understand and enjoy.',
@@ -454,7 +455,7 @@ function i18n_catalog(): array
             'mission.creative_p1' => 'SciFables was founded by Vaishnavi Renduchintala with the goal of helping children discover science through engaging storytelling.',
             'mission.creative_p2' => 'Every story begins with an original science topic, educational objective, and storyline developed by Vaishnavi. She researches the science concepts, designs the learning experience, reviews every story for scientific accuracy, and ensures that each story is age-appropriate and aligned with the intended educational goals.',
             'mission.creative_p3' => 'To make the creative process more efficient, SciFables uses AI-assisted tools for tasks such as brainstorming, editing, grammar improvements, illustration generation, and design assistance.',
-            'mission.creative_highlight' => 'AI is used as a creative assistant—not as the author. Every story, quiz, and science explanation is reviewed, edited, and approved by Vaishnavi before publication.',
+            'mission.creative_highlight' => 'AI is used as a creative assistant—not as the author. Every story, quiz, and science explanation is designed, edited, and approved by Vaishnavi before publication.',
             'mission.creative_p4' => 'SciFables is committed to providing accurate, engaging, and responsible educational content for children.',
             'mission.who_serve' => 'Who We Serve',
             'mission.audience_children' => 'Children (Ages 8–15)',
@@ -982,7 +983,7 @@ function i18n_catalog(): array
             'mission.commitment_body' => 'Por cada organización sin fines de lucro, escuela o biblioteca que se asocia con Science Fables, ofrecemos acceso gratuito a nuestra biblioteca educativa porque creemos que cada niño merece descubrir la ciencia a través de la lectura.',
             'mission.kicker' => 'Asóciate con Science Fables',
             'mission.hero_title' => 'Haciendo la ciencia accesible a través de historias',
-            'mission.hero_lead' => 'Science Fables es una biblioteca digital gratuita de historias de ciencia que ayuda a niños de 8 a 15 años a descubrir STEM con imaginación, curiosidad y lectura.',
+            'mission.hero_lead' => 'Science Fables es una plataforma digital gratuita de historias de ciencia que ayuda a niños de 8 a 15 años a descubrir STEM con imaginación, curiosidad y exploración.',
             'mission.hero_support' => 'Ya seas una organización sin fines de lucro, escuela, biblioteca, museo u organización comunitaria, nos encantaría trabajar juntos para inspirar a la próxima generación de científicos, ingenieros e innovadores.',
             'mission.explore' => 'Explorar historias',
             'mission.join' => '🤝 Únete a nuestra misión',
@@ -994,7 +995,7 @@ function i18n_catalog(): array
             'mission.inspiration_p1b' => 'Me inspiró de verdad porque mostró cómo la curiosidad y el acceso a la ciencia pueden ayudar a alguien a resolver problemas reales.',
             'mission.inspiration_p2' => 'Proveniente de un entorno rural desfavorecido en Malaui, enfrentó muchos desafíos, pero siguió aprendiendo de los libros y finalmente usó lo que aprendió para construir un molino de viento con materiales que tenía a su alrededor. Su invento ayudó a llevar electricidad a su casa y demostró cómo la curiosidad de una persona joven puede marcar la diferencia en toda una comunidad.',
             'mission.about_me' => 'Sobre mí',
-            'mission.founder_p1' => 'Me llamo Vaishnavi Renduchintala. Soy estudiante de primer año de preparatoria y fundadora de Science Fables. Siempre me ha gustado la ciencia y contar historias, así que decidí combinarlas en algo divertido para los niños. Así nació SciFables.',
+            'mission.founder_p1' => 'Me llamo Vaishnavi Renduchintala y actualmente soy estudiante de primer año en Los Altos High School. Fundé Science Fables cuando estaba en octavo grado. Siempre me ha gustado la ciencia y contar historias, así que decidí combinarlas en algo más atractivo para los niños.',
             'mission.founder_p2' => 'SciFables reduce las barreras de entrada a STEM al transformar conceptos científicos complejos y abstractos en historias cercanas que los niños pueden entender y disfrutar.',
             'mission.founder_p3' => 'Mi meta es ayudar a los niños a sentir que la ciencia es algo que pueden entender, explorar y que los puede emocionar.',
             'mission.founder_p4' => 'La historia de William se conecta de cerca con por qué creé SciFables. Quiero que los niños vean la ciencia como algo más que datos que tienen que memorizar. Quiero que se vuelvan curiosos, que pregunten “¿por qué?” y “¿cómo?”, y que entiendan que la ciencia que aprenden un día puede ayudarles a resolver problemas en sus propias comunidades. A través de SciFables, espero bajar la barrera a STEM y dar a más niños la oportunidad de desarrollar ese tipo de curiosidad y confianza.',
@@ -1011,7 +1012,7 @@ function i18n_catalog(): array
             'mission.creative_p1' => 'SciFables fue fundada por Vaishnavi Renduchintala con el objetivo de ayudar a los niños a descubrir la ciencia a través de historias atractivas.',
             'mission.creative_p2' => 'Cada historia comienza con un tema científico original, un objetivo educativo y una trama desarrollados por Vaishnavi. Ella investiga los conceptos científicos, diseña la experiencia de aprendizaje, revisa cada historia para asegurar su precisión científica y garantiza que sea apropiada para la edad y esté alineada con los objetivos educativos.',
             'mission.creative_p3' => 'Para hacer el proceso creativo más eficiente, SciFables usa herramientas asistidas por IA para tareas como lluvia de ideas, edición, mejoras de gramática, generación de ilustraciones y apoyo de diseño.',
-            'mission.creative_highlight' => 'La IA se usa como asistente creativo, no como autora. Cada historia, cuestionario y explicación científica es revisada, editada y aprobada por Vaishnavi antes de publicarse.',
+            'mission.creative_highlight' => 'La IA se usa como asistente creativo, no como autora. Cada historia, cuestionario y explicación científica es diseñada, editada y aprobada por Vaishnavi antes de publicarse.',
             'mission.creative_p4' => 'SciFables se compromete a ofrecer contenido educativo preciso, atractivo y responsable para los niños.',
             'mission.who_serve' => 'A quiénes servimos',
             'mission.audience_children' => 'Niños (edades 8–15)',

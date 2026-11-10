@@ -74,6 +74,9 @@ function pdf_compact_brand_book_ids(): array
         105, // The Push-and-Pull Adventure
         106, // The Secret of the Charged Kingdom
         107, // The Tug-of-War Mystery
+        108, // The Secret of the Snowy Mountain
+        109, // The Mystery of Sharp Edges and Wide Tracks
+        110, // The Amazing World of Water Pressure
     ];
 }
 

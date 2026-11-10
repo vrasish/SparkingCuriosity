@@ -23,6 +23,10 @@
         {
             "page": 5,
             "text": "Page 5"
+        },
+        {
+            "page": 6,
+            "text": "Page 6"
         }
     ]
 }

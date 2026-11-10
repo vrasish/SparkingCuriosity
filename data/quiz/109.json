@@ -1,0 +1,67 @@
+{
+    "book_id": 109,
+    "title": "The Mystery of Sharp Edges and Wide Tracks",
+    "intro": "This quiz checks what you learned about everyday applications of pressure.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "What happens to pressure when the same force acts over a smaller area?",
+            "choices": [
+                "Pressure decreases",
+                "Pressure increases",
+                "Pressure stays the same",
+                "Pressure becomes zero"
+            ],
+            "correct_index": 1,
+            "explanation": "For the same force, a smaller contact area produces greater pressure (P = F / A)."
+        },
+        {
+            "id": 2,
+            "prompt": "Which situation produces less pressure on the ground?",
+            "choices": [
+                "A tractor with narrow tyres",
+                "A person standing on one foot",
+                "A snow vehicle with continuous tracks",
+                "A sharp knife cutting an apple"
+            ],
+            "correct_index": 2,
+            "explanation": "Continuous tracks spread the force over a larger contact area, so pressure on the ground is less."
+        },
+        {
+            "id": 3,
+            "prompt": "A boy weighs 400 N. If he stands on one foot with a contact area of 0.01 m², what pressure does he exert?",
+            "choices": [
+                "4,000 Pa",
+                "20,000 Pa",
+                "40,000 Pa",
+                "400,000 Pa"
+            ],
+            "correct_index": 2,
+            "explanation": "Pressure = Force ÷ Area = 400 N ÷ 0.01 m² = 40,000 Pa."
+        },
+        {
+            "id": 4,
+            "prompt": "If a boy changes from standing on both feet to standing on one foot, what happens to his pressure on the ground?",
+            "choices": [
+                "It decreases because his weight decreases",
+                "It increases because the contact area becomes smaller",
+                "It stays the same because his mass is unchanged",
+                "It becomes zero because one foot is lifted"
+            ],
+            "correct_index": 1,
+            "explanation": "His weight stays the same, but standing on one foot halves the contact area, so pressure increases."
+        },
+        {
+            "id": 5,
+            "prompt": "Which statement best explains the relationship between force, area, and pressure?",
+            "choices": [
+                "For the same force, a larger contact area produces greater pressure",
+                "For the same force, a smaller contact area produces greater pressure",
+                "Pressure does not depend on contact area",
+                "Pressure always increases when weight stays the same"
+            ],
+            "correct_index": 1,
+            "explanation": "Pressure equals force divided by area, so the same force over a smaller area means greater pressure."
+        }
+    ]
+}

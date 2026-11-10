@@ -1,0 +1,67 @@
+{
+    "book_id": 108,
+    "title": "The Secret of the Snowy Mountain",
+    "intro": "This quiz checks what you learned about pressure, weight, thrust, and force.",
+    "questions": [
+        {
+            "id": 1,
+            "prompt": "Why do snowshoes help a person sink less deeply into soft snow?",
+            "choices": [
+                "They increase the person's weight",
+                "They spread the same force over a larger area",
+                "They decrease the force of gravity",
+                "They make the snow harder"
+            ],
+            "correct_index": 1,
+            "explanation": "Snowshoes spread the same force over a larger area, which lowers pressure and reduces sinking."
+        },
+        {
+            "id": 2,
+            "prompt": "What is the formula for pressure?",
+            "choices": [
+                "Pressure = Force × Area",
+                "Pressure = Area ÷ Force",
+                "Pressure = Force ÷ Area",
+                "Pressure = Mass × Gravity"
+            ],
+            "correct_index": 2,
+            "explanation": "Pressure is force divided by area: P = F / A."
+        },
+        {
+            "id": 3,
+            "prompt": "What is weight?",
+            "choices": [
+                "The amount of matter in an object",
+                "The gravitational force acting on an object",
+                "The area covered by an object",
+                "The pressure produced by an object"
+            ],
+            "correct_index": 1,
+            "explanation": "Weight is the gravitational force acting on an object (W = mg)."
+        },
+        {
+            "id": 4,
+            "prompt": "What is thrust?",
+            "choices": [
+                "A force acting parallel to a surface",
+                "A force acting perpendicular to a surface",
+                "The mass of an object",
+                "The area of a surface"
+            ],
+            "correct_index": 1,
+            "explanation": "Thrust is a force acting perpendicular (at 90°) to a surface."
+        },
+        {
+            "id": 5,
+            "prompt": "A box applies a force of 50 N over an area of 0.1 m². What pressure does it produce?",
+            "choices": [
+                "5 Pa",
+                "50 Pa",
+                "500 Pa",
+                "5000 Pa"
+            ],
+            "correct_index": 2,
+            "explanation": "Pressure = Force ÷ Area = 50 N ÷ 0.1 m² = 500 Pa."
+        }
+    ]
+}

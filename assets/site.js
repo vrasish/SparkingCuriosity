@@ -80,7 +80,40 @@
         getMap: getQuizDoneMap,
     };
 
+    function stripLangSwitchParam() {
+        try {
+            var url = new URL(window.location.href);
+            if (!url.searchParams.has('_sw')) {
+                return;
+            }
+            url.searchParams.delete('_sw');
+            var qs = url.searchParams.toString();
+            var next = url.pathname + (qs ? '?' + qs : '') + url.hash;
+            window.history.replaceState({}, '', next);
+        } catch (err) {
+            // ignore
+        }
+    }
+
+    function reloadIfLanguageStale(event) {
+        // Back-forward cache can restore /search in the old language after EN/ES.
+        if (!event || !event.persisted) {
+            return;
+        }
+        try {
+            var cookieMatch = document.cookie.match(/(?:^|; )scifables_lang=([^;]*)/);
+            var cookieLang = cookieMatch ? decodeURIComponent(cookieMatch[1]) : 'en';
+            var htmlLang = (document.documentElement.lang || 'en').toLowerCase();
+            if (cookieLang && htmlLang && cookieLang !== htmlLang) {
+                window.location.reload();
+            }
+        } catch (err) {
+            // ignore
+        }
+    }
+
     function boot() {
+        stripLangSwitchParam();
         initMobileNav();
         applyQuizDoneBadges();
     }
@@ -90,4 +123,6 @@
     } else {
         boot();
     }
+
+    window.addEventListener('pageshow', reloadIfLanguageStale);
 })();
